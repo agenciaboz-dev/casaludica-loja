@@ -1,0 +1,13 @@
+@import '/src/sass/colors';
+
+.Background-Component {
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+
+    .blue-gradient {
+        width: 100%;
+        background: linear-gradient(90deg, $primary-color, white);
+        height: 60vw;
+    }
+}
