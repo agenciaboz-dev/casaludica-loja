@@ -1,2 +1,7 @@
 $background-color: white;
 $primary-color: #363775;
+
+:export {
+    primary: $primary-color;
+    background: $background-color;
+}
