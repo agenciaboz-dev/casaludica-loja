@@ -6,7 +6,7 @@ export interface Product {
     images?: string
     date?: Date   
     description?: string
-    resume: string
+    resume?: string
     featured?: Boolean
     price: number
     stock?: number

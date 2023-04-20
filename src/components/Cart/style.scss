@@ -25,6 +25,8 @@
     }
 
     .product-list {
+        flex-direction: column;
+        gap: 5vw;
         margin: 5vw;
         overflow-y: auto;
         height: 80vh;

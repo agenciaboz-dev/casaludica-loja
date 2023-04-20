@@ -20,11 +20,16 @@ export const CartProvider:React.FC<CartProviderProps> = ({children}) => {
         products: [{
             id: 1,
             cover: '',
-            description: 'teste teste teste',
             name: 'Produto Teste',
             price: 25.10,
             quantity: 1,
-            resume: 'tal tal'
+        },
+        {
+            id: 2,
+            cover: '',
+            name: 'Produtinho',
+            price: 5.40,
+            quantity: 1,
         }], 
     })
 

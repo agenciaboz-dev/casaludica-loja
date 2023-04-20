@@ -13,10 +13,11 @@ export const useCart = () => {
     }
     
     const quantity = (product:Product, quantity:number) => {
-        const original_quantity = product.quantity
-        if (quantity < 0 && original_quantity == 1) return
-        const products = cart.products?.filter(item => item.id != product.id)
-        products?.push({...product, quantity: original_quantity+quantity})
+        if (quantity < 0 && product.quantity == 1) return
+        const products:Product[] = JSON.parse(JSON.stringify(cart.products))
+        products.map(item => {
+            if (item.id == product.id) item.quantity = product.quantity + quantity
+        })
         cartContext.setValue({...cart, products})
     }
 
