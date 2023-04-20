@@ -26,4 +26,24 @@
             }
         }
     }
+
+    .links {
+        flex-direction: column;
+        padding: 3vw 10vw;
+        gap: 7vw;
+
+        .Link-Component {
+            flex-direction: column;
+
+            .name {
+                font-size: 4vw;
+            }
+
+            .sublinks {
+                flex-direction: column;
+                padding: 2vw 5vw;
+                gap: 2vw;
+            }
+        }
+    }
 }
