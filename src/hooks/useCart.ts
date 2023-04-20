@@ -1,11 +1,16 @@
 import { useContext, useState, useEffect } from 'react'
 import CartContext from '../contexts/cartContext'
+import { Product } from '../definitions/products';
 
 export const useCart = () => {
+    const [total, setTotal] = useState(0)
+
     const cartContext = useContext(CartContext);
     const cart = cartContext.value
     
-    const [total, setTotal] = useState(0)
+    const remove = (product:Product) => {
+        cartContext.setValue({...cart, products: cart.products?.filter(item => item.id != product.id)})
+    }
 
     useEffect(() => {
         let sum = 0
@@ -13,5 +18,5 @@ export const useCart = () => {
         setTotal(sum)
     }, [cart.products])
 
-    return { products: cart.products, total }
+    return { products: cart.products, total, remove }
 }

@@ -8,6 +8,7 @@ import { ReactComponent as UpIcon } from '../../../images/quantity-increase.svg'
 import { ReactComponent as DownIcon } from '../../../images/quantity-decrease.svg'
 import { ReactComponent as RemoveIcon } from '../../../images/remove_product.svg'
 import { CurrencyText } from '../../CurrencyText';
+import { useCart } from '../../../hooks/useCart';
 
 interface ProductProps {
     product: ProductType
@@ -15,6 +16,11 @@ interface ProductProps {
 
 export const Product:React.FC<ProductProps> = ({ product }) => {
     const colors = useColors()
+    const cart = useCart()
+
+    const remove = () => {
+        cart.remove(product)
+    }
     
     return (
         <div className='Product-Component' >
@@ -28,7 +34,7 @@ export const Product:React.FC<ProductProps> = ({ product }) => {
                         <div className="quantity">{product.quantity}</div>
                         <DownIcon />
                     </div>
-                    <RemoveIcon style={{alignSelf: 'flex-start'}} />
+                    <RemoveIcon onClick={() => remove()} style={{alignSelf: 'flex-start'}} />
                 </div>
             </div>
             <div className="bottom-container">
