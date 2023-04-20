@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material"
 import { useColors } from "./useColors"
 
 export const useMuiTheme = () => {
-    const COLORS = useColors()
+    const colors = useColors()
     const THEME = createTheme({
         typography: {
         //  "fontFamily": ["Poppins"].join(','),
@@ -15,18 +15,21 @@ export const useMuiTheme = () => {
             // mode: 'dark',
 
             primary: {
-                main: COLORS.primary,
+                main: colors.primary,
             },
             secondary: {
                 main: '#fff',
             },
             text: {
-                primary: COLORS.primary,
-                // secondary: COLORS.primary,
-                // disabled: COLORS.primary,
+                primary: colors.primary,
+                // secondary: colors.primary,
+                // disabled: colors.primary,
             },
+            success: {
+                main: colors.green
+            }
             // error: {
-            //     main: COLORS.red,
+            //     main: colors.red,
             // }
         }
     })

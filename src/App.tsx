@@ -4,20 +4,23 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { ThemeProvider } from "@mui/material";
 import { useMuiTheme } from './hooks/useMuiTheme';
+import { CartProvider } from './contexts/cartContext';
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
         <ThemeProvider theme={muiTheme}>
-            
-            <BrowserRouter>
-                <Routes>
-                    <Route index element={<Home />} />
-                </Routes>
+            <CartProvider>
 
-            </BrowserRouter>
+                <BrowserRouter>
+                    <Routes>
+                        <Route index element={<Home />} />
+                    </Routes>
 
+                </BrowserRouter>
+
+            </CartProvider>
         </ThemeProvider>
   )
 }
