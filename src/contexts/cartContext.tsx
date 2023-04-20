@@ -30,6 +30,13 @@ export const CartProvider:React.FC<CartProviderProps> = ({children}) => {
             name: 'Produtinho',
             price: 5.40,
             quantity: 1,
+        },
+        {
+            id: 3,
+            cover: '',
+            name: 'Novo Teste',
+            price: 250.10,
+            quantity: 1,
         }], 
     })
 

@@ -12,6 +12,14 @@
         .text {
             flex-direction: column;
             color: white;
+
+            h3 {
+                font-size: 4vw;
+            }
+
+            .total {
+                font-size: 3vw;
+            }
         }
 
         .amount-circle {
@@ -27,10 +35,9 @@
     .product-list {
         flex-direction: column;
         gap: 5vw;
-        margin: 5vw;
         overflow-y: auto;
         height: 80vh;
-        padding: 3vw;
+        padding: 5vw;
     }
 
     .button-container {

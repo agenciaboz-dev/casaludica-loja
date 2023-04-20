@@ -29,7 +29,7 @@ export const Cart:React.FC<CartProps> = ({ isOpen, setOpen }) => {
                 <CartIcon />
                 <div className="text">
                     <h3>SEU CARRINHO</h3>
-                    <p>Valor total: {<CurrencyText value={cart.total} />}</p>
+                    <p className='total'>Valor total: {<CurrencyText value={cart.total} />}</p>
                 </div>
                 <div className="amount-circle">
                     <h3>{cart.products?.length || 0}</h3>
