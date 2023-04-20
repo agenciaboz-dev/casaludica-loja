@@ -3,17 +3,17 @@ export interface Product {
     quantity: number
     name: string
     cover: string
-    images: string
-    date: Date   
-    description: string
+    images?: string
+    date?: Date   
+    description?: string
     resume: string
-    featured: Boolean
+    featured?: Boolean
     price: number
-    stock: number
-    category: number
-    tags: string
-    weight: number
-    width: number
-    height: number
-    lenght: number
+    stock?: number
+    category?: number
+    tags?: string
+    weight?: number
+    width?: number
+    height?: number
+    lenght?: number
 }

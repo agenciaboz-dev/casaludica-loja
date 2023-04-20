@@ -4,6 +4,7 @@ import './style.scss';
 import { ReactComponent as CartIcon } from '../../images/cart.svg'
 import { useCart } from '../../hooks/useCart';
 import { CurrencyText } from '../CurrencyText';
+import { Product } from './Product';
 
 interface CartProps {
     isOpen: boolean
@@ -35,7 +36,7 @@ export const Cart:React.FC<CartProps> = ({ isOpen, setOpen }) => {
                 </div>
             </div>
             <div className="product-list">
-
+                {cart.products?.map(product => <Product key={product.id} product={product} />)}
             </div>
             <div className="button-container">
                 <button style={{width: '100%'}}>Finalizar compra</button>

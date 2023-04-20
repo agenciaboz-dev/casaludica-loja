@@ -1,0 +1,61 @@
+@import '/src/sass/colors';
+
+.Product-Component {
+    width: 100%;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    padding: 5vw;
+    border-radius: 10vw;
+    flex-direction: column;
+    height: fit-content;
+    gap: 3vw;
+
+    .top-container {
+        justify-content: space-between;
+        align-items: center;
+
+        .right-container {
+            gap: 3vw;
+
+            .quantity-container {
+                flex-direction: column;
+                gap: 2vw;
+        
+                .quantity {
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $background-secondary-color;
+                    font-size: 7vw;
+                    font-weight: bold;
+                    padding: 2vw;
+                }
+            }
+        }
+    }
+
+    .bottom-container {
+        gap: 5vw;
+
+        .quantity-container {
+            border-radius: 100%;
+            background-color: $background-secondary-color;
+            width: 10vw;
+            height: 10vw;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .name-price {
+            flex-direction: column;
+
+            .name {
+
+            }
+
+            span {
+                font-weight: bold;
+                color: darken($background-secondary-color, 50);
+            }
+        }
+    }
+}

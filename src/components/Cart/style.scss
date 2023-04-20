@@ -16,7 +16,7 @@
 
         .amount-circle {
             border-radius: 100%;
-            background-color: darken($background-color, 20);
+            background-color: $background-secondary-color;
             width: 10vw;
             height: 10vw;
             justify-content: center;
@@ -28,6 +28,7 @@
         margin: 5vw;
         overflow-y: auto;
         height: 80vh;
+        padding: 3vw;
     }
 
     .button-container {
