@@ -1,0 +1,29 @@
+@import '/src/sass/colors';
+
+.Menu-Component {
+    width: 80vw;
+    
+    .profile {
+        background-color: $primary-color;
+        padding: 10vw 5vw;
+        gap: 5vw;
+
+        .info {
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+
+            .name {
+                font-size: 4vw;
+            }
+
+            .email {
+                font-size: 3vw;
+            }
+
+            .link {
+                text-decoration: underline;
+            }
+        }
+    }
+}
