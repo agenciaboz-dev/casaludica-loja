@@ -11,6 +11,14 @@ export const useCart = () => {
     const remove = (product:Product) => {
         cartContext.setValue({...cart, products: cart.products?.filter(item => item.id != product.id)})
     }
+    
+    const quantity = (product:Product, quantity:number) => {
+        const original_quantity = product.quantity
+        if (quantity < 0 && original_quantity == 1) return
+        const products = cart.products?.filter(item => item.id != product.id)
+        products?.push({...product, quantity: original_quantity+quantity})
+        cartContext.setValue({...cart, products})
+    }
 
     useEffect(() => {
         let sum = 0
@@ -18,5 +26,5 @@ export const useCart = () => {
         setTotal(sum)
     }, [cart.products])
 
-    return { products: cart.products, total, remove }
+    return { products: cart.products, total, remove, quantity }
 }

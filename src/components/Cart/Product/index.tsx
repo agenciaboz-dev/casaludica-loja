@@ -21,6 +21,14 @@ export const Product:React.FC<ProductProps> = ({ product }) => {
     const remove = () => {
         cart.remove(product)
     }
+
+    const increase = () => {
+        cart.quantity(product, 1)
+    }
+
+    const decrease = () => {
+        cart.quantity(product, -1)
+    }
     
     return (
         <div className='Product-Component' >
@@ -30,9 +38,9 @@ export const Product:React.FC<ProductProps> = ({ product }) => {
                 </Avatar>
                 <div className="right-container">
                     <div className="quantity-container">
-                        <UpIcon />
+                        <UpIcon onClick={() => increase()} />
                         <div className="quantity">{product.quantity}</div>
-                        <DownIcon />
+                        <DownIcon onClick={() => decrease()} />
                     </div>
                     <RemoveIcon onClick={() => remove()} style={{alignSelf: 'flex-start'}} />
                 </div>
