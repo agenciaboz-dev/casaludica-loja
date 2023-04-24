@@ -18,21 +18,21 @@ export default CartContext;
 export const CartProvider:React.FC<CartProviderProps> = ({children}) => {
     const [value, setValue] = useState<Cart>({ 
         products: [{
-            id: 1,
+            id: 91,
             cover: '',
             name: 'Produto Teste',
             price: 25.10,
             quantity: 1,
         },
         {
-            id: 2,
+            id: 92,
             cover: '',
             name: 'Produtinho',
             price: 5.40,
             quantity: 1,
         },
         {
-            id: 3,
+            id: 93,
             cover: '',
             name: 'Novo Teste',
             price: 250.10,

@@ -21,11 +21,15 @@ export const useCart = () => {
         cartContext.setValue({...cart, products})
     }
 
+    const add = (product:Product) => {
+        cartContext.setValue({...cart, products: [...cart.products || [], {...product, quantity: 1}]})
+    }
+
     useEffect(() => {
         let sum = 0
         cart.products?.map(product => sum += (product.price * product.quantity))
         setTotal(sum)
     }, [cart.products])
 
-    return { products: cart.products, total, remove, quantity }
+    return { products: cart.products, total, remove, quantity, add }
 }
