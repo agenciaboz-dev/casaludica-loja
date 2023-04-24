@@ -29,3 +29,8 @@ export interface Collection {
     name: string,
     icon: any
 }
+
+export interface Category {
+    id: number,
+    name: string
+}

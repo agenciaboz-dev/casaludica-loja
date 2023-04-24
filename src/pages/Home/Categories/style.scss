@@ -1,0 +1,23 @@
+@import '/src/sass/colors';
+
+.Categories-Component {
+    width: 100%;
+    flex-direction: column;
+    color: $primary-color;
+    gap: 3vw;
+
+    .categories-container {
+        gap: 3vw;
+        width: 100%;
+        overflow-x: auto;
+
+        .category-container {
+            border: 1px solid rgba($color: #000000, $alpha: 0.4);
+            width: 40vw;
+            padding: 5vw 3vw;
+            align-items: center;
+            gap: 3vw;
+            flex-shrink: 0;
+        }
+    }
+}
