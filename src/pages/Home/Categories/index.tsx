@@ -16,7 +16,7 @@ export const Categories:React.FC<CategoriesProps> = ({  }) => {
     const navigate = useNavigate()
 
     const search = (category:Category) => {
-        api.products.category(category.id, (response: { data: Product[] }) => {
+        api.products.category(category, (response: { data: Product[] }) => {
             console.log(response.data)
             navigate('/search', { state: { products: response.data } })
         })

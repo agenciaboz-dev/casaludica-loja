@@ -1,4 +1,5 @@
 import { api } from "../api"
+import { Category } from "../definitions/products"
 
 export const useApi = () => {
     const methods = {
@@ -11,7 +12,7 @@ export const useApi = () => {
                 .then(response => callback(response))
                 .catch(error => errorCallback(error))
                 .finally(() => finallyCallback()),
-            category: (id:number, callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => api.post('/products/category', id)
+            category: (category:Category, callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => api.post('/products/category', category)
                 .then(response => callback(response))
                 .catch(error => errorCallback(error))
                 .finally(() => finallyCallback()),
