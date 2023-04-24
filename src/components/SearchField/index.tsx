@@ -14,6 +14,7 @@ export const SearchField:React.FC<SearchFieldProps> = ({  }) => {
             <TextField
                 id="input-with-icon-textfield"
                 sx={{backgroundColor: 'white', borderRadius: '2vw'}}
+                placeholder={'Estou procurando por...'}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start" sx={{marginTop: '0 !important'}}>
@@ -21,9 +22,8 @@ export const SearchField:React.FC<SearchFieldProps> = ({  }) => {
                         </InputAdornment>
                     ),
                     disableUnderline: true,
-                    sx:{borderRadius: '2vw !important'}
                 }}
-                inputProps={{sx: {padding: '3vw 0', borderRadius: '2vw'}}}
+                inputProps={{sx: {padding: '3vw 0'}}}
                 variant="filled"
             />
         </div>
