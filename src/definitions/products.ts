@@ -18,6 +18,12 @@ export interface Product {
     lenght?: number
 }
 
+export interface Promotion {
+    id: number
+    image_url: string
+    subtitle: string
+}
+
 export interface Collection {
     id: number,
     name: string,

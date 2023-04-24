@@ -1,0 +1,10 @@
+@import '/src/sass/colors';
+
+.Promotions-Component {
+    width: 100%;
+    flex-direction: column;
+
+    .carousel {
+        border-radius: 3vw;
+    }
+}
