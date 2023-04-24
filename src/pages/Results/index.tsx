@@ -34,6 +34,7 @@ export const Results:React.FC<ResultsProps> = ({  }) => {
                 <p>{product.description}</p>
                 <Button variant='contained' onClick={() => cart.add(product)} >Eu quero</Button>
             </div>)}
+            {products.length == 0 && <p style={{alignSelf: 'center'}}>Nenhum resultado</p>}
         </div>
     )
 }
