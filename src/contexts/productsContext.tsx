@@ -25,7 +25,7 @@ export const ProductsProvider:React.FC<ProductsProviderProps> = ({children}) => 
     }, [value])
 
     useEffect(() => {
-        api.products((response: { data:Product[] }) => setValue(response.data))
+        api.products.get((response: { data:Product[] }) => setValue(response.data))
     }, [])
 
     return (

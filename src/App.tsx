@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material";
 import { useMuiTheme } from './hooks/useMuiTheme';
 import { CartProvider } from './contexts/cartContext';
 import { ProductsProvider } from './contexts/productsContext';
+import { Results } from './pages/Results';
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -18,6 +19,7 @@ function App() {
                     <BrowserRouter>
                         <Routes>
                             <Route index element={<Home />} />
+                            <Route path='/search' element={<Results />} />
                         </Routes>
 
                     </BrowserRouter>

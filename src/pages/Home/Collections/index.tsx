@@ -1,6 +1,7 @@
 import React from 'react';
 import { Collection } from '../../../definitions/products';
 import { useCollections } from '../../../hooks/useCollections';
+import './style.scss'
 
 interface CollectionProps {
     collection: Collection
