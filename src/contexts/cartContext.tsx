@@ -41,7 +41,7 @@ export const CartProvider:React.FC<CartProviderProps> = ({children}) => {
     })
 
     useEffect(() => {
-        console.log(value)
+        console.log({cart: value})
     }, [value])
 
     return (

@@ -5,22 +5,25 @@ import { Home } from './pages/Home';
 import { ThemeProvider } from "@mui/material";
 import { useMuiTheme } from './hooks/useMuiTheme';
 import { CartProvider } from './contexts/cartContext';
+import { ProductsProvider } from './contexts/productsContext';
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
         <ThemeProvider theme={muiTheme}>
-            <CartProvider>
+            <ProductsProvider>
+                <CartProvider>
 
-                <BrowserRouter>
-                    <Routes>
-                        <Route index element={<Home />} />
-                    </Routes>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route index element={<Home />} />
+                        </Routes>
 
-                </BrowserRouter>
+                    </BrowserRouter>
 
-            </CartProvider>
+                </CartProvider>
+            </ProductsProvider>
         </ThemeProvider>
   )
 }
