@@ -2,6 +2,7 @@ import React from 'react';
 import { Background } from '../../components/Background';
 import { Header } from '../../components/Header';
 import { SearchField } from '../../components/SearchField';
+import { Collections } from './Collections';
 import './style.scss';
 
 export const Home = () => {
@@ -10,7 +11,9 @@ export const Home = () => {
         <div className='Home-Page' >
             <Background />
             <Header />
+
             <SearchField />
+            <Collections />
         </div>
     )
 }

@@ -17,3 +17,9 @@ export interface Product {
     height?: number
     lenght?: number
 }
+
+export interface Collection {
+    id: number,
+    name: string,
+    icon: any
+}
