@@ -19,12 +19,12 @@ export const Header = () => {
         <>
             <div className='Header-Component' >
                 <IconButton color='secondary' sx={{gap: '2vw'}} onClick={() => setOpenMenu(true)}>
-                    <MenuIcon sx={{width: '13vw', height: 'auto'}} />
+                    <MenuIcon sx={{flex:1}} />
                 </IconButton>
                 <LogoIcon />
                 <Badge badgeContent={cart.products?.length || 0} color='primary'>
                     <IconButton color='secondary' sx={{gap: '2vw'}} onClick={() => setOpenCart(true)}>
-                        <CartIcon />
+                        <CartIcon style={{flex:1}} />
                     </IconButton>
                 </Badge>
             </div>
