@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Product } from '../../../definitions/products';
 import { useApi } from '../../../hooks/useApi';
@@ -24,6 +25,11 @@ export const Popular:React.FC<PopularProps> = ({  }) => {
             <h3>Mais curtidos pela galerinha</h3>
             <div className="products-container">
                 {products.map(product => <Container key={product.id} product={product} />)}
+                {products.length == 0 && <>
+                    <Skeleton sx={{flexShrink: 0}} variant='rounded' width={'40vw'} height={'50vw'} />
+                    <Skeleton sx={{flexShrink: 0}} variant='rounded' width={'40vw'} height={'50vw'} />
+                    <Skeleton sx={{flexShrink: 0}} variant='rounded' width={'40vw'} height={'50vw'} />
+                </>}
             </div>
         </div>
     )
