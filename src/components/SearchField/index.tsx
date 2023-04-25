@@ -21,11 +21,17 @@ export const SearchField:React.FC<SearchFieldProps> = ({  }) => {
     const navigate = useNavigate()
 
     const handleSubmit = (values:formValues) => {
-        console.log(values)
-        api.products.search(values, (response: { data: Product[] }) => {
-            console.log(response.data)
-            navigate('/search', { state: { products: response.data } })
-        })
+        if (values.search) {
+            api.products.search(values, (response: { data: Product[] }) => {
+                console.log(response.data)
+                navigate('/search', { state: { products: response.data } })
+            })
+        } else {
+            api.products.get((response: { data: Product[] }) => {
+                console.log(response.data)
+                navigate('/search', { state: { products: response.data } })
+            })
+        }
     }
     
     return (
