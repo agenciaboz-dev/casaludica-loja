@@ -21,19 +21,19 @@ export const useCollections = () => {
         {
             id: 2,
             name: 'Móveis',
-            categories: [],
+            categories: [3],
             icon: () => <FurnitureIcon width={width}/>
         },
         {
             id: 3,
             name: 'Playgrounds',
-            categories: [],
+            categories: [4],
             icon: () => <PlaygroundsIcon width={width}/>
         },
         {
             id: 4,
             name: 'Vestuário',
-            categories: [],
+            categories: [5],
             icon: () => <ClothesIcon width={width}/>
         },
         {
