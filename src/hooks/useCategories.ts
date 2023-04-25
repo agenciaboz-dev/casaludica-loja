@@ -1,16 +1,8 @@
-import { SetStateAction, useEffect, useState } from "react"
-import { Category } from "../definitions/products"
-import { useApi } from "./useApi"
+import { useContext } from 'react'
+import CategoriesContext from '../contexts/categoriesContext'
 
 export const useCategories = () => {
-    const [categories, setCategories] = useState<Category[]>([])
-    const api = useApi()
+    const categoriesContext = useContext(CategoriesContext);
 
-    useEffect(() => {
-        api.categories.get((response: { data:Category[] }) => {
-            setCategories(response.data)
-        })
-    }, [])
-
-    return categories
+    return {categories: categoriesContext.value, setCategories: categoriesContext.setValue}
 }

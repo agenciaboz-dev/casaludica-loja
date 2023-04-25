@@ -11,7 +11,7 @@ interface CategoriesProps {
 }
 
 export const Categories:React.FC<CategoriesProps> = ({  }) => {
-    const categories = useCategories()
+    const { categories } = useCategories()
     const api = useApi()
     const navigate = useNavigate()
 
