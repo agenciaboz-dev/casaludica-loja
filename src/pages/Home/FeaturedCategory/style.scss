@@ -1,6 +1,7 @@
 @import '/src/sass/colors';
 
 .FeaturedCategory-Component {
+    position: relative;
     width: 100%;
     flex-direction: column;
     gap: 3vw;
@@ -17,6 +18,7 @@
             align-items: center;
             gap: 1.5vw;
             color: $primary-color;
+            background-color: white;
         }
 
         .Product-Component:nth-child(2n) {
@@ -31,5 +33,13 @@
         .skeleton:nth-child(2n) {
             margin-top: -10vw;
         }
+    }
+
+    .background {
+        position: absolute;
+        top: -30vw;
+        left: -5vw;
+        z-index: -1;
+        width: 100vw;
     }
 }

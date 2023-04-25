@@ -4,6 +4,7 @@ import { useApi } from '../../../hooks/useApi';
 import { Product } from './Product';
 import { Skeleton } from '@mui/material'
 import './style.scss';
+import { ReactComponent as BackgroundImage } from '../../../images/background/featured.svg'
 
 interface FeaturedCategoryProps {
     
@@ -25,6 +26,7 @@ export const FeaturedCategory:React.FC<FeaturedCategoryProps> = ({  }) => {
     
     return (
         <div className='FeaturedCategory-Component' >
+            <BackgroundImage className='background' />
             <h3>{title}</h3>
             <div className="product-list">
                 {products.slice(0, 4).map(product => <Product key={product.id} product={product} />)}
