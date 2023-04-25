@@ -33,7 +33,7 @@ export const Product:React.FC<ProductProps> = ({ product }) => {
     return (
         <div className='Product-Component' >
             <div className="top-container">
-                <Avatar src={product.cover} variant={'rounded'} sx={{bgcolor: colors.primary, width: '25vw', height: '25vw', borderRadius: '5vw'}} >
+                <Avatar src={product.cover} variant={'rounded'} sx={{bgcolor: colors.primary, width: '32vw', height: '32vw', borderRadius: '5vw'}} >
                     <BrokenImageIcon sx={{width: 'auto', height: 'auto'}} />
                 </Avatar>
                 <div className="right-container">
