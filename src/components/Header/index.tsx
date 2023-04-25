@@ -7,6 +7,7 @@ import { ReactComponent as CartIcon } from '../../images/cart.svg'
 import { ReactComponent as LogoIcon } from '../../images/logo.svg'
 import { Cart } from '../Cart';
 import { useCart } from '../../hooks/useCart';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
 
@@ -14,6 +15,7 @@ export const Header = () => {
     const [openCart, setOpenCart] = useState(false)
 
     const cart = useCart()
+    const navigate = useNavigate()
     
     return (
         <>
@@ -21,7 +23,7 @@ export const Header = () => {
                 <IconButton color='secondary' sx={{gap: '2vw'}} onClick={() => setOpenMenu(true)}>
                     <MenuIcon sx={{flex:1}} />
                 </IconButton>
-                <LogoIcon />
+                <LogoIcon onClick={() => navigate('/')} />
                 <Badge badgeContent={cart.products?.length || 0} color='primary'>
                     <IconButton color='secondary' sx={{gap: '2vw'}} onClick={() => setOpenCart(true)}>
                         <CartIcon style={{flex:1}} />
