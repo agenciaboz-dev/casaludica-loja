@@ -1,5 +1,7 @@
 import React from 'react';
-import { Collection } from '../../../definitions/products';
+import { useNavigate } from 'react-router-dom';
+import { Collection, Product } from '../../../definitions/products';
+import { useApi } from '../../../hooks/useApi';
 import { useCollections } from '../../../hooks/useCollections';
 import './style.scss'
 
@@ -12,14 +14,22 @@ export const Collections = ({  }) => {
 
     const Collection:React.FC<CollectionProps> = ({ collection, icon: IconComponent }) => {
         return (
-            <div style={{ flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ flexDirection: 'column', alignItems: 'center' }} onClick={() => handleClick(collection)} >
                 <IconComponent />
                 <p>{collection.name}</p>
             </div>
         )
     }
 
+    const handleClick = (collection:Collection) => {
+        api.products.collection(collection, (response: { data: Product[] }) => {
+            navigate('/search', { state: { products: response.data } })
+        })
+    }
+
     const collections = useCollections()
+    const api = useApi()
+    const navigate = useNavigate()
     
     return (
         <div className='Collections-Component' >

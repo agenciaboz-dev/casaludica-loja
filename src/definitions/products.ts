@@ -25,8 +25,9 @@ export interface Promotion {
 }
 
 export interface Collection {
-    id: number,
-    name: string,
+    id: number
+    name: string
+    categories: number[]
     icon: any
 }
 

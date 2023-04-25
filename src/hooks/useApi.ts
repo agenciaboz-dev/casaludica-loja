@@ -1,5 +1,5 @@
 import { api } from "../api"
-import { Category } from "../definitions/products"
+import { Category, Collection } from "../definitions/products"
 
 export const useApi = () => {
     const methods = {
@@ -13,6 +13,10 @@ export const useApi = () => {
                 .catch(error => errorCallback(error))
                 .finally(() => finallyCallback()),
             category: (category:Category, callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => api.post('/products/category', category)
+                .then(response => callback(response))
+                .catch(error => errorCallback(error))
+                .finally(() => finallyCallback()),
+            collection: (collection:Collection, callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => api.post('/products/collection', collection)
                 .then(response => callback(response))
                 .catch(error => errorCallback(error))
                 .finally(() => finallyCallback()),

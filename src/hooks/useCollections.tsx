@@ -15,26 +15,31 @@ export const useCollections = () => {
         {
             id: 0,
             name: 'Brinquedos',
+            categories: [1],
             icon: () => <ToysIcon width={width} />
         },
         {
             id: 1,
             name: 'Móveis',
+            categories: [2],
             icon: () => <FurnitureIcon width={width}/>
         },
         {
             id: 2,
             name: 'Playgrounds',
+            categories: [],
             icon: () => <PlaygroundsIcon width={width}/>
         },
         {
             id: 3,
             name: 'Vestuário',
+            categories: [],
             icon: () => <ClothesIcon width={width}/>
         },
         {
             id: 4,
             name: 'Exclusivos',
+            categories: [],
             icon: () => <ExclusiveIcon width={width}/>
         },
     ]
