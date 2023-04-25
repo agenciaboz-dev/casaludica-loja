@@ -15,6 +15,10 @@ export const Promotions:React.FC<PromotionsProps> = ({  }) => {
         <div className='Promotions-Component' >
             <Carousel
             showThumbs={false}
+            autoPlay
+            infiniteLoop
+            interval={5000}
+            transitionTime={1000}
             >
                 {promotions.map(promotion => 
                     <div key={promotion.id}>
