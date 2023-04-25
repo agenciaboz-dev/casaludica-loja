@@ -20,6 +20,12 @@ export const useApi = () => {
                 .then(response => callback(response))
                 .catch(error => errorCallback(error))
                 .finally(() => finallyCallback()),
+        },
+        categories: {
+            get: (callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => api.get('/categories')
+                .then(response => callback(response))
+                .catch(error => errorCallback(error))
+                .finally(() => finallyCallback()),
         }
     }
 

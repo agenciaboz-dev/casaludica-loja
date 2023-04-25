@@ -1,24 +1,16 @@
+import { SetStateAction, useEffect, useState } from "react"
 import { Category } from "../definitions/products"
+import { useApi } from "./useApi"
 
 export const useCategories = () => {
-    const categories:Category[] = [
-        {
-            id: 1,
-            name: 'Cartas'
-        },
-        {
-            id: 2,
-            name: 'Brinquedos'
-        },
-        {
-            id: 3,
-            name: 'Roupas'
-        },
-        {
-            id: 4,
-            name: 'Playgrounds'
-        },
-    ]
+    const [categories, setCategories] = useState<Category[]>([])
+    const api = useApi()
+
+    useEffect(() => {
+        api.categories.get((response: { data:Category[] }) => {
+            setCategories(response.data)
+        })
+    }, [])
 
     return categories
 }
