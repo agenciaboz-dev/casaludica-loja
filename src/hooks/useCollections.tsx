@@ -13,31 +13,31 @@ export const useCollections = () => {
     const width = '10vw'
     const collections:Collection[] = [
         {
-            id: 0,
+            id: 1,
             name: 'Brinquedos',
-            categories: [1],
+            categories: [1, 2],
             icon: () => <ToysIcon width={width} />
         },
         {
-            id: 1,
+            id: 2,
             name: 'Móveis',
-            categories: [2],
+            categories: [],
             icon: () => <FurnitureIcon width={width}/>
         },
         {
-            id: 2,
+            id: 3,
             name: 'Playgrounds',
             categories: [],
             icon: () => <PlaygroundsIcon width={width}/>
         },
         {
-            id: 3,
+            id: 4,
             name: 'Vestuário',
             categories: [],
             icon: () => <ClothesIcon width={width}/>
         },
         {
-            id: 4,
+            id: 5,
             name: 'Exclusivos',
             categories: [],
             icon: () => <ExclusiveIcon width={width}/>

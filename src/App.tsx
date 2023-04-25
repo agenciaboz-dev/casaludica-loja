@@ -7,25 +7,28 @@ import { useMuiTheme } from './hooks/useMuiTheme';
 import { CartProvider } from './contexts/cartContext';
 import { ProductsProvider } from './contexts/productsContext';
 import { Results } from './pages/Results';
+import { LoadingProvider } from './contexts/loadingContext';
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
         <ThemeProvider theme={muiTheme}>
-            <ProductsProvider>
-                <CartProvider>
+            <LoadingProvider>
+                <ProductsProvider>
+                    <CartProvider>
 
-                    <BrowserRouter>
-                        <Routes>
-                            <Route index element={<Home />} />
-                            <Route path='/search' element={<Results />} />
-                        </Routes>
+                        <BrowserRouter>
+                            <Routes>
+                                <Route index element={<Home />} />
+                                <Route path='/search' element={<Results />} />
+                            </Routes>
 
-                    </BrowserRouter>
+                        </BrowserRouter>
 
-                </CartProvider>
-            </ProductsProvider>
+                    </CartProvider>
+                </ProductsProvider>
+            </LoadingProvider>
         </ThemeProvider>
   )
 }

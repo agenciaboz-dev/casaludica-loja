@@ -8,6 +8,7 @@ import { ReactComponent as LogoIcon } from '../../images/logo.svg'
 import { Cart } from '../Cart';
 import { useCart } from '../../hooks/useCart';
 import { useNavigate } from 'react-router-dom';
+import { Loading } from '../Loading';
 
 export const Header = () => {
 
@@ -32,6 +33,8 @@ export const Header = () => {
             </div>
             <Menu isOpen={openMenu} setOpen={setOpenMenu} />
             <Cart isOpen={openCart} setOpen={setOpenCart} />
+            <Loading />
+
         </>
     )
 }
