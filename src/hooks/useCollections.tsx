@@ -39,7 +39,7 @@ export const useCollections = () => {
         {
             id: 5,
             name: 'Exclusivos',
-            categories: [],
+            categories: [6],
             icon: () => <ExclusiveIcon width={width}/>
         },
     ]
