@@ -5,6 +5,7 @@ import { ReactComponent as InstagramIcon } from '../../../images/socials/instagr
 import { ReactComponent as FacebookIcon } from '../../../images/socials/facebook.svg'
 import { ReactComponent as YoutubeIcon } from '../../../images/socials/youtube.svg'
 import { ReactComponent as WhatsappIcon } from '../../../images/socials/whatsapp.svg'
+import { ReactComponent as BackgroundImage } from '../../../images/background/socials.svg'
 
 interface SocialProps {
     
@@ -12,9 +13,14 @@ interface SocialProps {
 
 export const Social:React.FC<SocialProps> = ({  }) => {
     const promotions = usePromotions()
+
+    const backgroundStyle = {
+        position: 'absolute'
+    }
     
     return (
         <div className='Social-Component' >
+            <BackgroundImage className='background' />
             <h3>Nos siga em</h3>
             <h3>@casaludica</h3>
 

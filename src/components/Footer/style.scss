@@ -6,6 +6,7 @@
     gap: 3vw;
 
     .Social-Component {
+        position: relative;
         flex-direction: column;
         width: 100%;
         gap: 3vw;
@@ -19,6 +20,14 @@
             svg {
                 width: 13vw;
             }
+        }
+
+        .background {
+            position: absolute;
+            top: -33vw;
+            left: -5vw;
+            z-index: -1;
+            width: 100vw;
         }
     }
 
