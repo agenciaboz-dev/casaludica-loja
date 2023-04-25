@@ -13,16 +13,23 @@ export const useCart = () => {
     }
     
     const quantity = (product:Product, quantity:number) => {
+        console.log({quantity})
         if (quantity < 0 && product.quantity == 1) return
         const products:Product[] = JSON.parse(JSON.stringify(cart.products))
         products.map(item => {
-            if (item.id == product.id) item.quantity = product.quantity + quantity
+            if (item.id == product.id) {
+                item.quantity = item.quantity + quantity
+            }
         })
         cartContext.setValue({...cart, products})
     }
 
     const add = (product:Product) => {
-        cartContext.setValue({...cart, products: [...cart.products || [], {...product, quantity: 1}]})
+        if (cart.products.filter(item => item.id == product.id).length != 0) {
+            quantity(product, 1)
+        } else {
+            cartContext.setValue({...cart, products: [...cart.products || [], {...product, quantity: 1}]})
+        }
     }
 
     useEffect(() => {
