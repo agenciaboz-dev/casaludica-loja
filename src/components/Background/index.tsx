@@ -6,6 +6,7 @@ export const Background = () => {
     return (
         <div className='Background-Component' >
             <div className="blue-gradient"></div>
+            <div className="blue-socials"></div>
         </div>
     )
 }

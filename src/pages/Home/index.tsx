@@ -1,5 +1,6 @@
 import React from 'react';
 import { Background } from '../../components/Background';
+import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { SearchField } from '../../components/SearchField';
 import { Categories } from './Categories';
@@ -20,6 +21,8 @@ export const Home = () => {
             <Promotions />
             <Categories />
             <Popular />
+
+            <Footer />
         </div>
     )
 }

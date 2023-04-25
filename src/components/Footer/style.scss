@@ -1,0 +1,56 @@
+@import '/src/sass/colors';
+
+.Footer-Component {
+    flex-direction: column;
+    width: 100%;
+    gap: 3vw;
+
+    .Social-Component {
+        flex-direction: column;
+        width: 100%;
+        gap: 3vw;
+        color: white;
+
+        .icons-container {
+            width: 100%;
+            justify-content: center;
+            gap: 2vw;
+
+            svg {
+                width: 13vw;
+            }
+        }
+    }
+
+    .About-Component {
+        width: 100%;
+        flex-direction: column;
+        gap: 5vw;
+        color: $primary-color;
+
+        .container {
+            width: 100%;
+            flex-direction: column;
+        }
+    }
+
+    .Newsletter-Component {
+        width: 100%;
+        flex-direction: column;
+        gap: 3vw;
+        color: $primary-color;
+
+        form {
+            flex-direction: column;
+            gap: 3vw;
+        }
+    }
+
+    .Copyright-Component {
+        margin: 10vw 0;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        color: $primary-color;
+    }
+}
