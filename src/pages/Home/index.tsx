@@ -5,6 +5,7 @@ import { Header } from '../../components/Header';
 import { SearchField } from '../../components/SearchField';
 import { Categories } from './Categories';
 import { Collections } from './Collections';
+import { FeaturedCategory } from './FeaturedCategory';
 import { Popular } from './Popular';
 import { Promotions } from './Promotions';
 import './style.scss';
@@ -21,6 +22,7 @@ export const Home = () => {
             <Promotions />
             <Categories />
             <Popular />
+            <FeaturedCategory />
 
             <Footer />
         </div>

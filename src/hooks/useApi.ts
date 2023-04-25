@@ -45,13 +45,11 @@ export const useApi = () => {
                     finallyCallback()
                 })
             },
-            collection: (collection:Collection, callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => {
-                setLoading(true)
-                api.post('/products/collection', collection)
+            collection: (categories:number[], callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => {
+                api.post('/products/collection', { categories })
                 .then(response => callback(response))
                 .catch(error => errorCallback(error))
                 .finally(() => {
-                    setLoading(false)
                     finallyCallback()
                 })
             },

@@ -5,9 +5,10 @@ import { useColors } from '../../hooks/useColors';
 interface CurrencyTextProps {
     value: number|string
     color?: string
+    style?:React.CSSProperties
 }
 
-export const CurrencyText:React.FC<CurrencyTextProps> = ({ value, color }) => {
+export const CurrencyText:React.FC<CurrencyTextProps> = ({ value, color, style }) => {
     const colors = useColors()
     
     return (
@@ -19,7 +20,7 @@ export const CurrencyText:React.FC<CurrencyTextProps> = ({ value, color }) => {
             decimalScale={2}
             fixedDecimalScale={true}
             prefix={'R$ '}
-            style={{color: color || colors.primary2}}
+            style={{...style, color: color || (style?.color || colors.primary2)}}
         />
     )
 }

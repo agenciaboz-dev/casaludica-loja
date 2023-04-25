@@ -1,0 +1,35 @@
+@import '/src/sass/colors';
+
+.FeaturedCategory-Component {
+    width: 100%;
+    flex-direction: column;
+    gap: 3vw;
+    color: $primary-color;
+
+    .product-list {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 3vw;
+
+        .Product-Component {
+            width: 43vw;
+            height: 75vw;
+            align-items: center;
+            gap: 1.5vw;
+            color: $primary-color;
+        }
+
+        .Product-Component:nth-child(2n) {
+            margin-top: -10vw;
+        }
+        
+        .skeleton {
+            width: 43vw;
+            height: 75vw;
+        }
+
+        .skeleton:nth-child(2n) {
+            margin-top: -10vw;
+        }
+    }
+}

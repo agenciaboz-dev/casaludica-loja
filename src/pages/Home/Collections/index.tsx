@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Collection, Product } from '../../../definitions/products';
 import { useApi } from '../../../hooks/useApi';
 import { useCollections } from '../../../hooks/useCollections';
+import { useLoading } from '../../../hooks/useLoading';
 import './style.scss'
 
 interface CollectionProps {
@@ -22,11 +23,13 @@ export const Collections = ({  }) => {
     }
 
     const handleClick = (collection:Collection) => {
-        api.products.collection(collection, (response: { data: Product[] }) => {
+        setLoading(true)
+        api.products.collection(collection.categories, (response: { data: Product[] }) => {
             navigate('/search', { state: { products: response.data } })
-        })
+        }, () => null, () => setLoading(false))
     }
 
+    const { setLoading } = useLoading()
     const collections = useCollections()
     const api = useApi()
     const navigate = useNavigate()
