@@ -17,6 +17,14 @@ export const useApi = () => {
                     finallyCallback()
                 })
             },
+            popular: (callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => {
+                api.get('/products/popular')
+                .then(response => callback(response))
+                .catch(error => errorCallback(error))
+                .finally(() => {
+                    finallyCallback()
+                })
+            },
             search: (data:{ search:string }, callback:Function, errorCallback:Function = (error: any) => console.error(error), finallyCallback:Function = () => null) => {
                 setLoading(true)
                 api.post('/products', data)

@@ -4,6 +4,7 @@ import { Header } from '../../components/Header';
 import { SearchField } from '../../components/SearchField';
 import { Categories } from './Categories';
 import { Collections } from './Collections';
+import { Popular } from './Popular';
 import { Promotions } from './Promotions';
 import './style.scss';
 
@@ -18,6 +19,7 @@ export const Home = () => {
             <Collections />
             <Promotions />
             <Categories />
+            <Popular />
         </div>
     )
 }
