@@ -1,6 +1,11 @@
 @import './colors';
 @import './button';
 
+@font-face {
+    font-family: BowlbyOneSC;
+    src: url("../fonts/BowlbyOneSC-Regular.ttf") ;
+}
+
 .MuiList-root {
     width: 100%;
 }
