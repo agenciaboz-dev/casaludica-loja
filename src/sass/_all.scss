@@ -6,6 +6,17 @@
     src: url("../fonts/BowlbyOneSC-Regular.ttf") ;
 }
 
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Regular.ttf") ;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Bold.ttf") ;
+    font-weight: bold;
+}
+
 .MuiList-root {
     width: 100%;
 }
@@ -14,7 +25,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    // font-family: Poppins;
+    font-family: Poppins;
+}
+
+h1,h2,h3 {
+    font-family: BowlbyOneSC;
+    font-weight: 400;
 }
 
 .MuiTextField-root {
