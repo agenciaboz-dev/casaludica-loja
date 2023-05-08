@@ -5,17 +5,11 @@
     flex-direction: column;
     gap: 3vw;
     color: white;
-
-    h3 {
-        font-family: BowlbyOneSC;
-        font-weight: 400;
-    }
     
     .collections-container {
         background-color: white;
         border-radius: 3vw;
         justify-content: space-between;
-        
         font-size: 2.5vw;
         font-weight: bold;
         color: $primary-color;
