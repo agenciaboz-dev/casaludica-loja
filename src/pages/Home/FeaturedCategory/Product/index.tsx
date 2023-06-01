@@ -21,7 +21,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             <Avatar
                 src={product.cover}
                 variant={"rounded"}
-                sx={{ bgcolor: colors.primary, width: "32vw", height: "32vw", borderRadius: "5vw" }}
+                sx={{ bgcolor: colors.primary, width: "30vw", height: "30vw", borderRadius: "5vw" }}
             >
                 <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
             </Avatar>
@@ -32,7 +32,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 onClick={() => cart.add(product)}
                 variant="contained"
                 fullWidth
-                sx={{ backgroundColor: colors.green, borderRadius: "10vw", fontWeight: "bold" }}
+                sx={{ backgroundColor: colors.green, borderRadius: "10vw", fontFamily: "BowlbyOneSC", fontWeight: "400", fontSize: "4vw", padding: 0 }}
             >
                 Quero esse
             </Button>

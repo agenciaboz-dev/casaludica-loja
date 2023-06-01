@@ -6,6 +6,12 @@
     flex-direction: column;
     gap: 3vw;
     color: $primary-color;
+    margin: 5vw 0;
+
+    h3 {
+        font-size: 5.5vw;
+        width: 40vw;
+    }
 
     .product-list {
         flex-wrap: wrap;
@@ -13,16 +19,31 @@
         gap: 3vw;
 
         .Product-Component {
+            border-radius: 5vw;
             width: 43vw;
-            height: 75vw;
+            height: fit-content;
             align-items: center;
             gap: 1.5vw;
             color: $primary-color;
             background-color: white;
+            text-align: center;
+            padding: 2vw;
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            p {
+                font-size: 3.5vw;
+            }
+
+            span {
+                font-size: 4vw;
+            }
         }
 
         .Product-Component:nth-child(2n) {
-            margin-top: -10vw;
+            margin-top: -17vw;
         }
         
         .skeleton {
