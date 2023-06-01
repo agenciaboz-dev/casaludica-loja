@@ -12,22 +12,37 @@
         gap: 3vw;
         color: white;
 
+        .follow-us {
+            flex-direction: column;
+
+            h3 {
+                font-size: 5vw;
+            }
+            
+            .ig-at {
+                font-size: 6vw;
+                font-family: Poppins;
+                margin-left: 4vw;
+            }
+        }
+
         .icons-container {
             width: 100%;
             justify-content: center;
             gap: 2vw;
 
             svg {
-                width: 13vw;
+                width: 15vw;
             }
         }
 
         .background {
             position: absolute;
-            top: -40vw;
+            top: -50vw;
             left: -5vw;
             z-index: -1;
             width: 100vw;
+            transform: scale(1.2);
         }
     }
 
