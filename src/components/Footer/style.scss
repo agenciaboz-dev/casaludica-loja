@@ -52,6 +52,15 @@
         flex-direction: column;
         gap: 5vw;
         color: $primary-color;
+        margin: 5vw 0;
+
+        h1 {
+            font-size: 6vw;
+        }
+
+        p {
+            font-size: 5vw;
+        }
 
         .container {
             width: 100%;
