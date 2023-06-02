@@ -3,15 +3,14 @@
 .Footer-Component {
     flex-direction: column;
     width: 100%;
-    gap: 3vw;
+    gap: 5vw;
 
     .Social-Component {
         position: relative;
         flex-direction: column;
         width: 100%;
-        gap: 3vw;
+        gap: 1vw;
         color: white;
-        margin: 5vw 0;
 
         .follow-us {
             flex-direction: column;
@@ -52,7 +51,6 @@
         flex-direction: column;
         gap: 5vw;
         color: $primary-color;
-        margin: 5vw 0;
 
         h1 {
             font-size: 6vw;
@@ -71,7 +69,7 @@
     .Newsletter-Component {
         width: 100%;
         flex-direction: column;
-        gap: 3vw;
+        gap: 1vw;
         color: $primary-color;
 
         form {
