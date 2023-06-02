@@ -29,8 +29,9 @@ export const Header = () => {
     return (
         <>
             <div className="Header-Component">
-                <IconButton color="secondary" sx={{ gap: "2vw" }} onClick={() => setOpenMenu(true)}>
-                    <MenuIcon sx={{ flex: 1 }} />
+                <IconButton color="secondary" sx={{ gap: "2vw", padding: 0, fontFamily: "BowlbyOneSC", fontWeight: "400", fontSize: "4vw" }} onClick={() => setOpenMenu(true)}>
+                    <MenuIcon />
+                    Menu
                 </IconButton>
                 <LogoIcon onClick={() => navigate("/")} />
                 <Badge badgeContent={cart.products?.length || 0} color="primary">
