@@ -38,10 +38,10 @@
 
         .background {
             position: absolute;
-            top: -50vw;
+            top: -10vw;
             left: -5vw;
             z-index: -1;
-            transform: scaleY(1.2);
+            height: 125vw;
             width: 100vw;
         }
     }
@@ -51,6 +51,7 @@
         flex-direction: column;
         gap: 5vw;
         color: $primary-color;
+        margin-top: 3vw;
 
         h1 {
             font-size: 6vw;
