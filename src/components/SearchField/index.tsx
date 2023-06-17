@@ -30,10 +30,11 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start" sx={{ marginTop: "0 !important" }}>
-                                        <SearchIcon sx={{ opacity: 0.5, width: "7vw", height: "auto" }} />
+                                        <SearchIcon sx={{ opacity: 0.5, width: "7vw", height: "auto", marginRight: "-1.5vw" }} />
                                     </InputAdornment>
                                 ),
                                 disableUnderline: true,
+                                sx: {paddingLeft: "1.5vw"}
                             }}
                             inputProps={{ sx: { padding: "3vw 0" } }}
                             variant="filled"

@@ -21,8 +21,10 @@ export const Social:React.FC<SocialProps> = ({  }) => {
     return (
         <div className='Social-Component' >
             <BackgroundImage className='background' />
-            <h3>Nos siga em</h3>
-            <h3>@casaludica</h3>
+            <div className="follow-us">
+                <h3>Nos siga em</h3>
+                <h3 className='ig-at'>@casaludica</h3>
+            </div>
 
             <Carousel
             showThumbs={false}

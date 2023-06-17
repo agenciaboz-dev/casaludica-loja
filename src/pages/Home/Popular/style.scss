@@ -4,11 +4,16 @@
     width: 100%;
     flex-direction: column;
     color: $primary-color;
-    gap: 3vw;
+    gap: 1vw;
+
+    h3 {
+        font-size: 4vw;
+    }
     
     .products-container {
         gap: 2vw;
         overflow-x: auto;
+        padding: 1vw;
     }
 
     .Product-Component {
@@ -20,8 +25,7 @@
         background-size: contain;
         background-repeat: no-repeat;
         // background-position: center;
-        padding: 0 2vw;
-        padding-bottom: 5vw;
+        padding: 2vw;
 
         .container {
             justify-content: space-between;

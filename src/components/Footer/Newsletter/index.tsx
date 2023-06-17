@@ -57,7 +57,7 @@ export const Newsletter:React.FC<NewsletterProps> = ({  }) => {
                         value={values.email}
                         onChange={handleChange}
                     />
-                    <Button variant='contained' sx={{backgroundColor: colors.green, borderRadius: '10vw'}} >Inscreva-se</Button>
+                    <Button variant='contained' sx={{backgroundColor: colors.green, borderRadius: '10vw', fontFamily: 'BowlbyOneSC', fontWeight: '400'}} >Inscreva-se</Button>
                 </Form>}
             </Formik>
         </div>
