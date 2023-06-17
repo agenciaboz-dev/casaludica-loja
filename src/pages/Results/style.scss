@@ -6,9 +6,16 @@
     gap: 5vw;
     padding: 0 5vw;
 
+    .results-title {
+        color: $primary-color;
+    }
+
     .skeletons-container {
         flex-direction: column;
         gap: 3vw;
         align-items: center;
+    }
+    .results-container {
+        margin-bottom: 10vw;
     }
 }
