@@ -91,6 +91,8 @@ export const Results: React.FC<ResultsProps> = ({}) => {
             <SearchField />
             <Collections />
 
+            <h3 className="results-title">Resultados da pesquisa:</h3>
+
             {loading ? (
                 <div className="skeletons-container">
                     <Skeleton variant="rounded" sx={image_skeleton_style} />
@@ -106,6 +108,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
             ) : (
                 products.map((product: Product) => (
                     <div
+                        className="results-container"
                         style={{ flexDirection: "column", alignItems: "center" }}
                         key={product.id}
                         onClick={() => navigate(`/product/${product.id}`)}
@@ -121,7 +124,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                 ))
             )}
 
-            {!loading && products.length == 0 && <p style={{ alignSelf: "center" }}>Nenhum resultado</p>}
+            {!loading && products.length == 0 && <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>}
 
             <Footer />
         </div>
