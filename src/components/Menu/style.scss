@@ -29,11 +29,16 @@
 
     .links {
         flex-direction: column;
-        padding: 3vw 10vw;
-        gap: 7vw;
+        padding: 3vw 8vw;
+        gap: 4vw;
 
         .Link-Component {
             flex-direction: column;
+
+            h3 {
+                font-family: Poppins;
+                font-weight: bold;
+            }
 
             .name {
                 font-size: 4vw;
