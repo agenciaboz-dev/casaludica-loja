@@ -1,16 +1,26 @@
 import { Promotion } from "../definitions/products"
 
 export const usePromotions = () => {
-    const promotions:Promotion[] = [
+    const promotions: Promotion[] = [
         {
             id: 1,
-            image_url: '/1.png',
-            subtitle: 'Até 5x sem juros'
+            image_url: "https://loja.casaludica.com.br/wp-content/uploads/2023/07/Peca-1-Marketplace-Doe-Esperanca-1.webp",
+            subtitle: "",
         },
         {
             id: 2,
-            image_url: 'https://cdn.pixabay.com/photo/2013/10/02/23/03/mountains-190055_1280.jpg',
-            subtitle: 'Até 8x sem juros'
+            image_url: "https://loja.casaludica.com.br/wp-content/uploads/2023/07/Peca-1-Marketplace-Doe-Esperanca.webp",
+            subtitle: "",
+        },
+        {
+            id: 3,
+            image_url: "https://loja.casaludica.com.br/wp-content/uploads/2023/07/Peca-1-Marketplace-Diretor-de-Escola-copiar.webp",
+            subtitle: "",
+        },
+        {
+            id: 3,
+            image_url: "https://loja.casaludica.com.br/wp-content/uploads/2023/07/Peca-1-Marketplace-To-de-Ferias.webp",
+            subtitle: "",
         },
     ]
 
