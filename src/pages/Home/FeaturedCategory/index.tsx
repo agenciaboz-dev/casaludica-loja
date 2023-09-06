@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Product as ProductType } from '../../../definitions/products';
-import { useApi } from '../../../hooks/useApi';
-import { Product } from './Product';
-import { Skeleton } from '@mui/material'
-import './style.scss';
-import { ReactComponent as BackgroundImage } from '../../../images/background/featured.svg'
+import React, { useEffect, useState } from "react"
+import { useApi } from "../../../hooks/useApi"
+import { Product } from "./Product"
+import { Skeleton } from "@mui/material"
+import "./style.scss"
+import { ReactComponent as BackgroundImage } from "../../../images/background/featured.svg"
 
 interface FeaturedCategoryProps {}
 
 export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
     const [title, setTitle] = useState("Para reunir a família")
     const [categories, setCategories] = useState([1, 2, 3, 4])
-    const [products, setProducts] = useState<ProductType[]>([])
+    const [products, setProducts] = useState<Product[]>([])
 
     const api = useApi()
 
     useEffect(() => {
         api.products.collection({
             data: categories,
-            callback: (response: { data: ProductType[] }) => {
+            callback: (response: { data: Product[] }) => {
                 setProducts(response.data)
             },
         })

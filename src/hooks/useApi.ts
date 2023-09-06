@@ -1,33 +1,28 @@
 import { api } from "../api"
-import { Category, Collection } from "../definitions/products"
 import { useLoading } from "./useLoading"
 
 interface ApiOptions {
-	data?: any
-	callback: Function
-	errorCallback?: Function
-	finallyCallback?: Function
+    data?: any
+    callback: Function
+    errorCallback?: Function
+    finallyCallback?: Function
 }
 
 export const useApi = () => {
-	const { loading, setLoading } = useLoading()
+    const { loading, setLoading } = useLoading()
 
-	const defaultError = (error: Error, errorCallback?: Function) => {
-		errorCallback && errorCallback()
-		console.error(error)
-	}
+    const defaultError = (error: Error, errorCallback?: Function) => {
+        errorCallback && errorCallback()
+        console.error(error)
+    }
 
-	const defaultFinally = (finallyCallback?: Function) => {
-		finallyCallback && finallyCallback()
-	}
+    const defaultFinally = (finallyCallback?: Function) => {
+        finallyCallback && finallyCallback()
+    }
 
-	const methods = {
+    const methods = {
         products: {
-            get: (
-                callback: Function,
-                errorCallback: Function = (error: any) => console.error(error),
-                finallyCallback: Function = () => null
-            ) => {
+            get: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
                 // setLoading(true)
                 api.get("/products")
                     .then((response) => callback(response))
@@ -37,11 +32,7 @@ export const useApi = () => {
                         finallyCallback()
                     })
             },
-            popular: (
-                callback: Function,
-                errorCallback: Function = (error: any) => console.error(error),
-                finallyCallback: Function = () => null
-            ) => {
+            popular: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
                 api.get("/products/popular")
                     .then((response) => callback(response))
                     .catch((error) => errorCallback(error))
@@ -77,11 +68,7 @@ export const useApi = () => {
             },
         },
         categories: {
-            get: (
-                callback: Function,
-                errorCallback: Function = (error: any) => console.error(error),
-                finallyCallback: Function = () => null
-            ) => {
+            get: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
                 // setLoading(true)
                 api.get("/categories")
                     .then((response) => callback(response))
@@ -102,5 +89,5 @@ export const useApi = () => {
         },
     }
 
-	return methods
+    return methods
 }

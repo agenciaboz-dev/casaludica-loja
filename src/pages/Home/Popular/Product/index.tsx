@@ -2,13 +2,12 @@ import { Avatar, IconButton } from '@mui/material';
 import React from 'react';
 import { useNavigate } from "react-router-dom"
 import { CurrencyText } from "../../../../components/CurrencyText"
-import { Product as ProductType } from "../../../../definitions/products"
 import { useCart } from "../../../../hooks/useCart"
 import { useColors } from "../../../../hooks/useColors"
 import { ReactComponent as CartIcon } from "../../../../images/cart.svg"
 
 interface ProductProps {
-    product: ProductType
+    product: Product
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {

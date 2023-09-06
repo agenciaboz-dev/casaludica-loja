@@ -2,8 +2,7 @@ import React from 'react';
 import { useCategories } from '../../../hooks/useCategories';
 import './style.scss';
 import { Avatar, Skeleton } from '@mui/material'
-import BrokenImageIcon from '@mui/icons-material/BrokenImage';
-import { Category, Product } from "../../../definitions/products"
+import BrokenImageIcon from "@mui/icons-material/BrokenImage"
 import { useNavigate } from "react-router-dom"
 import { useColors } from "../../../hooks/useColors"
 

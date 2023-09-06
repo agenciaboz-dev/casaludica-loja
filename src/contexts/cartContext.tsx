@@ -1,6 +1,5 @@
 import { createContext, useState } from 'react';
-import React, { useEffect } from 'react';
-import { Cart } from '../definitions/cart';
+import React, { useEffect } from "react"
 
 interface CartContextValue {
     value: Cart

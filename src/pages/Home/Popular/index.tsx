@@ -1,6 +1,5 @@
 import { Skeleton } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { Product } from "../../../definitions/products"
+import React, { useEffect, useState } from "react"
 import { useApi } from "../../../hooks/useApi"
 import { Product as Container } from "./Product"
 import "./style.scss"

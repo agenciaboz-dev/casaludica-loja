@@ -1,11 +1,11 @@
-export interface Link {
+declare interface Link {
     id: number
     name: string
     location: string
     sublinks?: Sublink[]
 }
 
-export interface Sublink {
+declare interface Sublink {
     id: number
     name: string
     location: string

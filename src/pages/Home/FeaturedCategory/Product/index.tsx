@@ -1,6 +1,5 @@
 import { Avatar, Button } from '@mui/material';
-import React from 'react';
-import { Product as ProductType } from '../../../../definitions/products';
+import React from "react"
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import { useColors } from '../../../../hooks/useColors';
 import { CurrencyText } from '../../../../components/CurrencyText';
@@ -8,7 +7,7 @@ import { useCart } from '../../../../hooks/useCart';
 import { useNavigate } from "react-router-dom"
 
 interface ProductProps {
-    product: ProductType
+    product: Product
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {

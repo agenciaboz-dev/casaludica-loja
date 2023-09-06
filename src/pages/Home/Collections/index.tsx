@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Collection, Product } from '../../../definitions/products';
+import { Collection } from "../../../definitions/products"
 import { useApi } from '../../../hooks/useApi';
 import { useCollections } from '../../../hooks/useCollections';
 import { useLoading } from '../../../hooks/useLoading';

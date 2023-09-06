@@ -1,6 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from '../../../definitions/menu';
+import { useNavigate } from "react-router-dom"
 
 interface LinkProps {
     link: Link

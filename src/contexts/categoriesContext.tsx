@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import React from 'react';
-import { Category } from '../definitions/products';
+import React from "react"
 import { useApi } from '../hooks/useApi';
 
 interface CategoriesContextValue {

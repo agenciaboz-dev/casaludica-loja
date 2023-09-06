@@ -2,8 +2,7 @@ import { Dialog, CircularProgress, DialogContent, DialogContentText, DialogTitle
 import Button from '@mui/material/Button'
 import { Form, Formik } from 'formik'
 import React, { useRef, useState, useEffect } from 'react'
-import MaskedInput from 'react-text-mask'
-import { Address } from '../../definitions/user'
+import MaskedInput from "react-text-mask"
 import { useApi } from '../../hooks/useApi'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 

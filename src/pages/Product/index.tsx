@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Background } from "../../components/Background"
 import { Header } from "../../components/Header"
 import { SearchField } from "../../components/SearchField"
-import { Category, Product as ProductType } from "../../definitions/products"
 import { useApi } from "../../hooks/useApi"
 import { useCategories } from "../../hooks/useCategories"
 import { useProducts } from "../../hooks/useProducts"
@@ -27,7 +26,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const colors = useColors()
     const cart = useCart()
 
-    const [product, setProduct] = useState<ProductType>({} as ProductType)
+    const [product, setProduct] = useState<Product>({} as Product)
     const [category, setCategory] = useState<Category>()
     const [galery, setGalery] = useState<string[]>([])
     const [loading, setLoading] = useState(true)
@@ -57,7 +56,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
         if (products.length == 0) {
             api.products.id({
                 data: { id },
-                callback: (response: { data: ProductType }) => {
+                callback: (response: { data: Product }) => {
                     setProduct(response.data)
                 },
             })
