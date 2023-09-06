@@ -5,15 +5,17 @@
     flex-direction: column;
     color: $primary-color;
     gap: 1vw;
-
+    
     h3 {
         font-size: 4vw;
     }
     
     .products-container {
+        width: 100vw;
+        margin-left: -5vw;
+        padding: 1vw 5vw;
         gap: 2vw;
         overflow-x: auto;
-        padding: 1vw;
     }
 
     .Product-Component {
@@ -22,6 +24,7 @@
         flex-shrink: 0;
         width: 40vw;
         height: 50vw;
+        background-color: white;
         background-size: contain;
         background-repeat: no-repeat;
         // background-position: center;

@@ -12,9 +12,10 @@
     
     .categories-container {
         gap: 3vw;
-        width: 100%;
+        width: 100vw;
+        margin-left: -5vw;
         overflow-x: auto;
-        padding: 1vw;
+        padding: 1vw 5vw;
         
         .category-container {
             box-shadow: 0 2px 3px rgba($color: #000000, $alpha: 0.4);
