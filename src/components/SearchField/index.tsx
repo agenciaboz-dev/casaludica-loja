@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.scss';
+// import './style.scss';
 import { TextField, InputAdornment } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import { Formik, Form } from "formik"
@@ -19,7 +19,9 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
     }
 
     return (
-        <div className="SearchField-Component">
+        <div className="SearchField-Component" style={{
+            width: "100%"
+        }}>
             <Formik initialValues={{ search: "" }} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
@@ -34,7 +36,8 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
                                     </InputAdornment>
                                 ),
                                 disableUnderline: true,
-                                sx: {paddingLeft: "1.5vw"}
+                                sx: {paddingLeft: "1.5vw"},
+                                style: { fontSize: "5vw" }
                             }}
                             inputProps={{ sx: { padding: "3vw 0" } }}
                             variant="filled"
