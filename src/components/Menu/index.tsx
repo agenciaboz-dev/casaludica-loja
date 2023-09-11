@@ -1,4 +1,4 @@
-import { Avatar, Button, Drawer } from '@mui/material'
+import { Avatar, Box, Button, Drawer } from '@mui/material'
 import React from 'react'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useMenuLinks } from '../../hooks/useMenuLinks'
@@ -24,13 +24,13 @@ export const Menu: React.FC<MenuProps> = ({ isOpen, setOpen }) => {
 		<Drawer anchor={'left'} open={isOpen} onClose={closeMenu} PaperProps={{ className: 'Menu-Component', style: {
 			width: "80vw"
 		}}}>
-			<div className="profile" style={{
+			<Box className="profile" style={{
 				backgroundColor: colors.primary,
 				padding: "10vw 5vw",
 				gap: "5vw"
 			}}>
 				<Avatar sx={{ width: '20vw', height: '20vw' }} src="/broken-image.jpg" />
-				<div className="info" style={{
+				<Box className="info" style={{
 					flexDirection: "column",
 					justifyContent: "spaceBetween",
 					color: "white"
@@ -44,9 +44,9 @@ export const Menu: React.FC<MenuProps> = ({ isOpen, setOpen }) => {
 					<h5 className="link" style={{
 						textDecoration: "underline"
 					}}>Editar Perfil</h5>
-				</div>
-			</div>
-			<div className="links" style={{
+				</Box>
+			</Box>
+			<Box className="links" style={{
 				flexDirection: "column",
 				padding: "3vw 8vw",
 				gap: "4vw"
@@ -63,7 +63,7 @@ export const Menu: React.FC<MenuProps> = ({ isOpen, setOpen }) => {
 				>
 					Resetar endereço
 				</Button>
-			</div>
+			</Box>
 		</Drawer>
 	)
 }
