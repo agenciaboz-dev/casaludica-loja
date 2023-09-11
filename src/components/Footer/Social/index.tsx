@@ -6,6 +6,7 @@ import { ReactComponent as FacebookIcon } from '../../../images/socials/facebook
 import { ReactComponent as YoutubeIcon } from '../../../images/socials/youtube.svg'
 import { ReactComponent as WhatsappIcon } from '../../../images/socials/whatsapp.svg'
 import { ReactComponent as BackgroundImage } from '../../../images/background/socials.svg'
+import { Box } from '@mui/material';
 
 interface SocialProps {
     
@@ -19,12 +20,33 @@ export const Social:React.FC<SocialProps> = ({  }) => {
     }
     
     return (
-        <div className='Social-Component' >
-            <BackgroundImage className='background' />
-            <div className="follow-us">
-                <h3>Nos siga em</h3>
-                <h3 className='ig-at'>@casaludica</h3>
-            </div>
+        <Box className='Social-Component' style={{
+            position: "relative",
+            flexDirection: "column",
+            width: "100%",
+            gap: "1vw",
+            color: "white"
+        }}>
+            <BackgroundImage className='background' style={{
+                position: "absolute",
+                top: "-10vw",
+                left: "-5vw",
+                zIndex: "-1",
+                height: "125vw",
+                width: "100vw"
+            }}/>
+            <Box className="follow-us" style={{
+                flexDirection: "column"
+            }}>
+                <h3 style={{
+                    fontSize: "5vw"
+                }}>Nos siga em</h3>
+                <h3 className='ig-at' style={{
+                    fontSize: "6vw",
+                    fontFamily: "Poppins",
+                    marginLeft: "4vw"
+                }}>@casaludica</h3>
+            </Box>
 
             <Carousel
             showThumbs={false}
@@ -34,19 +56,23 @@ export const Social:React.FC<SocialProps> = ({  }) => {
             transitionTime={1000}
             >
                 {promotions.map(promotion => 
-                    <div key={promotion.id}>
+                    <Box key={promotion.id}>
                         <img src={promotion.image_url} alt="" />
                         <p className="legend">{promotion.subtitle}</p>
-                    </div>
+                    </Box>
                 )}
             </Carousel>
 
-            <div className="icons-container">
-                <InstagramIcon />
-                <FacebookIcon />
-                <YoutubeIcon />
-                <WhatsappIcon />
-            </div>
-        </div>
+            <Box className="icons-container" style={{
+                width: "100%",
+                justifyContent: "center",
+                gap: "2vw"
+            }}>
+                <InstagramIcon style={{ width: "15vw" }}/>
+                <FacebookIcon style={{ width: "15vw" }}/>
+                <YoutubeIcon style={{ width: "15vw" }}/>
+                <WhatsappIcon style={{ width: "15vw" }}/>
+            </Box>
+        </Box>
     )
 }

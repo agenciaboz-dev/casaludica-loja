@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import { Form, Formik } from 'formik';
 import React from 'react';
 import { useColors } from '../../../hooks/useColors';
@@ -32,11 +32,19 @@ export const Newsletter:React.FC<NewsletterProps> = ({  }) => {
     }
     
     return (
-        <div className='Newsletter-Component' >
+        <Box className='Newsletter-Component' style={{
+            width: "100%",
+            flexDirection: "column",
+            gap: "1vw",
+            color: colors.primary
+        }} >
             <p>Assine a nossa Newsletter e receba novidades e promoções!</p>
             <Formik initialValues={{name: '', email: ''}} onSubmit={handleSubmit} >
                 {({values, handleChange}) => 
-                <Form>
+                <Form style={{
+                    flexDirection: "column",
+                    gap: "3vw"
+                }}>
                     <TextField
                         id="name"
                         sx={textFieldSx}
@@ -60,6 +68,6 @@ export const Newsletter:React.FC<NewsletterProps> = ({  }) => {
                     <Button variant='contained' sx={{backgroundColor: colors.green, borderRadius: '10vw', fontFamily: 'BowlbyOneSC', fontWeight: '400'}} >Inscreva-se</Button>
                 </Form>}
             </Formik>
-        </div>
+        </Box>
     )
 }
