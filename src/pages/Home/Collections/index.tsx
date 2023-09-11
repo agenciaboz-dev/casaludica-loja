@@ -4,25 +4,28 @@ import { Collection } from "../../../definitions/products"
 import { useApi } from '../../../hooks/useApi';
 import { useCollections } from '../../../hooks/useCollections';
 import { useLoading } from '../../../hooks/useLoading';
-import './style.scss'
+import { Box } from "@mui/material"
+import { useColors } from "../../../hooks/useColors"
+//import './style.scss'
 
 interface CollectionProps {
     collection: Collection
     icon: any
 }
 
-export const Collections = ({  }) => {
+export const Collections = ({}) => {
+    const colors = useColors()
 
-    const Collection:React.FC<CollectionProps> = ({ collection, icon: IconComponent }) => {
+    const Collection: React.FC<CollectionProps> = ({ collection, icon: IconComponent }) => {
         return (
-            <div style={{ flexDirection: 'column', alignItems: 'center' }} onClick={() => handleClick(collection)} >
+            <Box style={{ flexDirection: "column", alignItems: "center" }} onClick={() => handleClick(collection)}>
                 <IconComponent />
                 <p>{collection.name}</p>
-            </div>
+            </Box>
         )
     }
 
-    const handleClick = (collection:Collection) => {
+    const handleClick = (collection: Collection) => {
         navigate(`/search/collection/${collection.categories}`)
     }
 
@@ -30,13 +33,27 @@ export const Collections = ({  }) => {
     const collections = useCollections()
     const api = useApi()
     const navigate = useNavigate()
-    
+
     return (
-        <div className='Collections-Component' >
+        <Box className="Collections-Component" sx={{ width: "100%", flexDirection: "column", gap: "1vw", color: "white" }}>
             <h3>Coleções</h3>
-            <div className="collections-container">
-                {collections.map(collection => <Collection key={collection.id} collection={collection} icon={collection.icon} />)}
-            </div>
-        </div>
+            <Box
+                className="collections-container"
+                sx={{
+                    backgroundColor: "white",
+                    borderRadius: "3vw",
+                    justifyContent: "space-between",
+                    fontSize: "2.5vw",
+                    fontWeight: "bold",
+                    color: colors.primary,
+                    padding: "2vw 5vw",
+                    boxShadow: " 0 1vw 2vw 0 rgba(0,0,0,0.4)",
+                }}
+            >
+                {collections.map((collection) => (
+                    <Collection key={collection.id} collection={collection} icon={collection.icon} />
+                ))}
+            </Box>
+        </Box>
     )
 }
