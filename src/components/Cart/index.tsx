@@ -1,17 +1,18 @@
-import { Drawer } from '@mui/material';
+import { Drawer, Box } from '@mui/material';
 import React from 'react';
-import './style.scss';
 import { ReactComponent as CartIcon } from '../../images/cart.svg'
 import { useCart } from '../../hooks/useCart';
 import { CurrencyText } from '../CurrencyText';
 import { Product } from './Product';
+import { useColors } from "../../hooks/useColors"
 
 interface CartProps {
     isOpen: boolean
     setOpen: (value:boolean) => void
 }
 
-export const Cart:React.FC<CartProps> = ({ isOpen, setOpen }) => {
+export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
+    const colors = useColors()
     const cart = useCart()
 
     const closeMenu = () => {
@@ -23,24 +24,51 @@ export const Cart:React.FC<CartProps> = ({ isOpen, setOpen }) => {
             anchor={'right'}
             open={isOpen}
             onClose={closeMenu}
-            PaperProps={{className: 'Cart-Component'}}
-            >
-            <div className="info">
+            PaperProps={{className: 'Cart-Component', style: { width: '80vw' }}}
+        >
+            <Box className="info" style={{
+                backgroundColor: colors.primary,
+                padding: '10vw',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+            }}>
                 <CartIcon />
-                <div className="text">
-                    <h3>SEU CARRINHO</h3>
-                    <p className='total'>Valor total: {<CurrencyText value={cart.total} />}</p>
-                </div>
-                <div className="amount-circle">
+                <Box className="text" style={{
+                    flexDirection: 'column',
+                    color: 'white',
+                }}>
+                    <h3 style={{ fontSize: '4vw' }}>SEU CARRINHO</h3>
+                    <p className="total" style={{ fontSize: '3vw' }}>Valor total: {<CurrencyText value={cart.total} />}</p>
+                </Box>
+                <Box className="amount-circle" style={{
+                    borderRadius: '100%',
+                    backgroundColor: colors.secondary,
+                    width: '10vw',
+                    height: '10vw',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
                     <h3>{cart.products?.length || 0}</h3>
-                </div>
-            </div>
-            <div className="product-list">
+                </Box>
+            </Box>
+            <Box className="product-list" style={{
+                flexDirection: 'column',
+                gap: '5vw',
+                overflowY: 'auto',
+                height: '80vh',
+                padding: '5vw',
+            }}>
                 {cart.products?.map(product => <Product key={product.id} product={product} />)}
-            </div>
-            <div className="button-container">
-                <button style={{width: '100%'}}>Finalizar compra</button>
-            </div>
+            </Box>
+            <Box className="button-container" style={{
+                width: '100%',
+                padding: '5vw 3vw',
+                borderTopRightRadius: '10vw',
+                borderTopLeftRadius: '10vw',
+                boxShadow: '0 0 15px rgba(0,0,0,0.4)',
+            }}>
+                <button style={{ width: '100%' }}>Finalizar compra</button>
+            </Box>
         </Drawer>
     )
 }

@@ -1,4 +1,4 @@
-import { Dialog, CircularProgress, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material'
+import { Dialog, CircularProgress, DialogContent, DialogContentText, DialogTitle, TextField, Box } from '@mui/material'
 import Button from '@mui/material/Button'
 import { Form, Formik } from 'formik'
 import React, { useRef, useState, useEffect } from 'react'
@@ -90,14 +90,14 @@ export const CepModal: React.FC<CepModalProps> = ({ open, setOpen }) => {
 				/>
 				{loading && <CircularProgress color="primary" sx={{ alignSelf: 'center', margin: '2vw' }} />}
 				{address && (
-					<div className="cep-container" style={{ flexDirection: 'column', gap: '2vw' }}>
+					<Box className="cep-container" style={{ flexDirection: 'column', gap: '2vw' }}>
 						<p>Bairro: {address.bairro}</p>
 						<p>Logradouro: {address.logradouro}</p>
 						<p>Cidade: {address.localidade}</p>
 						<Button onClick={saveAddress} variant="contained">
 							OK
 						</Button>
-					</div>
+					</Box>
 				)}
 			</DialogContent>
 		</Dialog>

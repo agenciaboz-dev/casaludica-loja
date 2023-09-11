@@ -1,6 +1,5 @@
 import React from "react"
-import "./style.scss"
-import { Avatar } from "@mui/material"
+import { Avatar, Box } from "@mui/material"
 import BrokenImageIcon from "@mui/icons-material/BrokenImage"
 import { useColors } from "../../../hooks/useColors"
 import { ReactComponent as UpIcon } from "../../../images/quantity-increase.svg"
@@ -30,27 +29,64 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     }
 
     return (
-        <div className="Product-Component">
-            <div className="top-container">
+        <Box className="Product-Component" style={{
+            width: "100%",
+            boxShadow: "0 0 8px rgba(0, 0, 0, 0.4)",
+            padding: "5vw",
+            borderRadius: "10vw",
+            flexDirection: "column",
+            height: "fit-content",
+            gap: "3vw",
+        }}>
+            <Box className="top-container" style={{
+                justifyContent: "space-between",
+                alignItems: "center",
+            }}>
                 <Avatar src={product.cover} variant={"rounded"} sx={{ bgcolor: colors.primary, width: "32vw", height: "32vw", borderRadius: "5vw" }}>
                     <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                 </Avatar>
-                <div className="right-container">
-                    <div className="quantity-container">
+                <Box className="right-container" style={{
+                    gap: "3vw",
+                }}>
+                    <Box className="quantity-container" style={{
+                        flexDirection: "column",
+                        gap: "2vw",
+                    }}>
                         <UpIcon onClick={() => increase()} />
-                        <div className="quantity">{product.quantity}</div>
+                        <Box className="quantity" style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: colors.secondary,
+                            fontSize: "7vw",
+                            fontWeight: "bold",
+                            padding: "2vw",
+                        }}>{product.quantity}</Box>
                         <DownIcon onClick={() => decrease()} />
-                    </div>
+                    </Box>
                     <RemoveIcon onClick={() => remove()} style={{ alignSelf: "flex-start" }} />
-                </div>
-            </div>
-            <div className="bottom-container">
-                <div className="quantity-container">x{product.quantity}</div>
-                <div className="name-price">
-                    <h3 className="name">{product.name}</h3>
+                </Box>
+            </Box>
+            <Box className="bottom-container" style={{
+                gap: "5vw",
+            }}>
+                <Box className="quantity-container" style={{
+                    borderRadius: "100%",
+                    backgroundColor: colors.secondary,
+                    width: "10vw",
+                    height: "10vw",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontWeight: "bold",
+                }}>x{product.quantity}</Box>
+                <Box className="name-price" style={{
+                    flexDirection: "column",
+                }}>
+                    <h3 className="name" style={{
+                        fontWeight: "bold",
+                    }}>{product.name}</h3>
                     <CurrencyText value={product.price * product.quantity} />
-                </div>
-            </div>
-        </div>
+                </Box>
+            </Box>
+        </Box>
     )
 }
