@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './style.scss'
 import MenuIcon from '@mui/icons-material/Menu'
-import { IconButton, Badge } from '@mui/material'
+import { IconButton, Badge, Box } from '@mui/material'
 import { Menu } from '../Menu'
 import { ReactComponent as CartIcon } from '../../images/cart.svg'
 import { ReactComponent as LogoIcon } from '../../images/logo.svg'
@@ -28,7 +28,7 @@ export const Header = () => {
 
     return (
         <>
-            <div className="Header-Component" style={{
+            <Box className="Header-Component" style={{
                 width: "100%",
                 alignItems: "center",
                 justifyContent: "space-between"
@@ -46,7 +46,7 @@ export const Header = () => {
                         <CartIcon style={{ flex: 1 }} />
                     </IconButton>
                 </Badge>
-            </div>
+            </Box>
             <Menu isOpen={openMenu} setOpen={setOpenMenu} />
             <Cart isOpen={cart.open} setOpen={cart.setOpen} />
             <Loading />
