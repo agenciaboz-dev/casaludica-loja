@@ -3,7 +3,7 @@ import { About } from './About';
 import { Copyright } from './Copyright';
 import { Newsletter } from './Newsletter';
 import { Social } from './Social';
-import './style.scss';
+// import './style.scss';
 import { Box } from '@mui/material';
 
 interface FooterProps {

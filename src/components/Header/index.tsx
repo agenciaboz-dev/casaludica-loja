@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './style.scss'
+// import './style.scss'
 import MenuIcon from '@mui/icons-material/Menu'
 import { IconButton, Badge, Box } from '@mui/material'
 import { Menu } from '../Menu'

@@ -4,7 +4,8 @@ import { ReactComponent as CartIcon } from '../../images/cart.svg'
 import { useCart } from '../../hooks/useCart';
 import { CurrencyText } from '../CurrencyText';
 import { Product } from './Product';
-import { useColors } from "../../hooks/useColors"
+import { useColors } from "../../hooks/useColors";
+// import './style.scss';
 
 interface CartProps {
     isOpen: boolean

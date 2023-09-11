@@ -7,6 +7,7 @@ import { ReactComponent as DownIcon } from "../../../images/quantity-decrease.sv
 import { ReactComponent as RemoveIcon } from "../../../images/remove_product.svg"
 import { CurrencyText } from "../../CurrencyText"
 import { useCart } from "../../../hooks/useCart"
+// import './style.scss'
 
 interface ProductProps {
     product: Product
