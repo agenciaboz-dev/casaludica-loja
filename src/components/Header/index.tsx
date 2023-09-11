@@ -28,13 +28,20 @@ export const Header = () => {
 
     return (
         <>
-            <div className="Header-Component">
+            <div className="Header-Component" style={{
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "space-between"
+            }}>
                 <IconButton color="secondary" sx={{ gap: "2vw", padding: 0, fontFamily: "BowlbyOneSC", fontWeight: "400", fontSize: "4vw" }} onClick={() => setOpenMenu(true)}>
                     <MenuIcon />
                     Menu
                 </IconButton>
                 <LogoIcon onClick={() => navigate("/")} />
-                <Badge badgeContent={cart.products?.length || 0} color="primary">
+                <Badge badgeContent={cart.products?.length || 0} color="primary" style={{
+                    top: "3vw",
+                    right: "1vw"
+                }}>
                     <IconButton color="secondary" sx={{ gap: "2vw" }} onClick={() => cart.setOpen(true)}>
                         <CartIcon style={{ flex: 1 }} />
                     </IconButton>
