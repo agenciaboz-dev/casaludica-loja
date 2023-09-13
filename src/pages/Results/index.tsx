@@ -1,4 +1,4 @@
-import { Avatar, Button, Skeleton } from "@mui/material"
+import { Avatar, Button, Skeleton, Box } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Background } from "../../components/Background"
@@ -8,7 +8,8 @@ import { SearchField } from "../../components/SearchField"
 import { useApi } from "../../hooks/useApi"
 import { useCart } from "../../hooks/useCart"
 import { Collections } from "../Home/Collections"
-import "./style.scss"
+import { useColors } from "../../hooks/useColors"
+//import "./style.scss"
 
 interface ResultsProps {}
 
@@ -18,6 +19,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
     const type = useParams().type
     const value = useParams().value
     const api = useApi()
+    const colors = useColors()
 
     const [products, setProducts] = useState<Product[]>([])
     const [loading, setLoading] = useState(true)
@@ -54,11 +56,11 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                         setProducts(response.data)
                     },
                 })
-            } else if (type == 'category') {
+            } else if (type == "category") {
                 api.products.category(value, {
                     callback: (response: { data: Product[] }) => {
                         setProducts(response.data)
-                    }
+                    },
                 })
             }
         } else {
@@ -83,17 +85,19 @@ export const Results: React.FC<ResultsProps> = ({}) => {
     }, [])
 
     return (
-        <div className="Results-Page">
+        <Box className="Results-Page" sx={{ width: "100%", flexDirection: "column", gap: "5vw", padding: "0 5vw" }}>
             <Background />
             <Header />
 
             <SearchField />
             <Collections />
 
-            <h3 className="results-title">Resultados da pesquisa:</h3>
+            <h3 className="results-title" style={{ color: colors.primary }}>
+                Resultados da pesquisa:
+            </h3>
 
             {loading ? (
-                <div className="skeletons-container">
+                <Box className="skeletons-container" sx={{ flexDirection: "column", gap: "3vw", alignItems: "center" }}>
                     <Skeleton variant="rounded" sx={image_skeleton_style} />
                     <Skeleton variant="rounded" sx={skeleton_style} />
                     <Skeleton variant="rounded" sx={skeleton_style} />
@@ -103,14 +107,15 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                     <Skeleton variant="rounded" sx={image_skeleton_style} />
                     <Skeleton variant="rounded" sx={skeleton_style} />
                     <Skeleton variant="rounded" sx={skeleton_style} />
-                </div>
+                </Box>
             ) : (
                 products.map((product: Product) => (
-                    <div
+                    <Box
                         className="results-container"
                         style={{ flexDirection: "column", alignItems: "center" }}
                         key={product.id}
                         onClick={() => navigate(`/product/${product.id}`)}
+                        sx={{ marginBottom: "10vw" }}
                     >
                         <h1>{product.name}</h1>
                         <Avatar src={product.cover} sx={{ width: "50vw", height: "auto" }} />
@@ -119,13 +124,15 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                         <Button variant="contained" onClick={() => cart.add(product)}>
                             Eu quero
                         </Button>
-                    </div>
+                    </Box>
                 ))
             )}
 
-            {!loading && products.length == 0 && <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>}
+            {!loading && products.length == 0 && (
+                <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>
+            )}
 
             <Footer />
-        </div>
+        </Box>
     )
 }
