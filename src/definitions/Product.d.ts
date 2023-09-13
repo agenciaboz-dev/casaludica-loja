@@ -1,4 +1,6 @@
-declare interface Product {
+import { Product } from "../pages/Product"
+
+export interface Product {
     id: number
     quantity: number
     name: string

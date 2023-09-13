@@ -10,6 +10,7 @@ import { Results } from './pages/Results';
 import { LoadingProvider } from './contexts/loadingContext';
 import { CategoriesProvider } from './contexts/categoriesContext';
 import { Product } from "./pages/Product"
+import { Checkout } from "./components/Checkout"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -27,6 +28,7 @@ function App() {
                                     <Route path="/search/:type" element={<Results />} />
                                     <Route path="/search/:type/:value" element={<Results />} />
                                     <Route path="/product/:id" element={<Product />} />
+                                    <Route path="/checkout" element={<Checkout />} />
                                 </Routes>
                             </BrowserRouter>
                         </CartProvider>

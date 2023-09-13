@@ -1,0 +1,68 @@
+@import '/src/sass/colors';
+
+.Checkout-Component{
+    flex-direction: column;
+    width: 100%;
+    padding: 0 5vw;
+    gap: 5vw;
+
+    .finish {
+        font-weight: bold;
+        font-size: 5vw;
+        color: #363775;
+    }    
+    .order{
+        width: 100%;
+        box-shadow: 0 0 8px rgba(0,0,0,0.4);
+        padding: 5vw;
+        border-radius: 4.5vw;
+        flex-direction: column;
+        height: fit-content;
+        gap: 3vw;
+        
+        .product-container {
+            position:relative;
+            justify-content: center;
+            align-items: center;
+            gap: 3vw;
+
+            span{
+                font-weight: bold;
+            }
+
+            .right-container{
+                color: #363775;
+                font-weight: 500;
+                font-size: 3vw;
+                flex-direction: column;
+                
+            }
+
+            .img-product{
+                width: 37vw;
+                height: 37vw;
+            }
+
+            .price{
+                color: #686868;
+                font-weight:bolder;
+                font-size: 3vw;
+            }
+
+            .number{
+                width: 30%;
+                border-radius: 1.6vw;
+                height: 5.5vw;
+                
+            }
+        }
+
+        .close{
+            position: absolute;
+            top: 0vw;
+            right: 0vw;
+            
+        }
+    }
+
+}
