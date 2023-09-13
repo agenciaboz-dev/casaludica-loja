@@ -1,9 +1,9 @@
-import { Avatar, Button } from '@mui/material';
+import { Avatar, Button, Box } from "@mui/material"
 import React from "react"
-import BrokenImageIcon from '@mui/icons-material/BrokenImage';
-import { useColors } from '../../../../hooks/useColors';
-import { CurrencyText } from '../../../../components/CurrencyText';
-import { useCart } from '../../../../hooks/useCart';
+import BrokenImageIcon from "@mui/icons-material/BrokenImage"
+import { useColors } from "../../../../hooks/useColors"
+import { CurrencyText } from "../../../../components/CurrencyText"
+import { useCart } from "../../../../hooks/useCart"
 import { useNavigate } from "react-router-dom"
 
 interface ProductProps {
@@ -16,7 +16,25 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     const navigate = useNavigate()
 
     return (
-        <div className="Product-Component" onClick={() => navigate(`/product/${product.id}`)}>
+        <Box
+            className="Product-Component"
+            onClick={() => navigate(`/product/${product.id}`)}
+            sx={{
+                borderRadius: "5vw",
+                width: "43vw",
+                height: "fit-content",
+                alignItems: "center",
+                gap: "1.5vw",
+                color: colors.primary,
+                backgroundColor: "white",
+                textAlign: "center",
+                padding: "2vw",
+                flexDirection: "column",
+                boxShadow: `0 2px 3px rgba(0, 0, 0, 0.4)`,
+
+                "& .Product-Component:nth-child(2n)": { marginTop: "-17vw" },
+            }}
+        >
             <Avatar
                 src={product.cover}
                 variant={"rounded"}
@@ -24,17 +42,24 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             >
                 <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
             </Avatar>
-            <h2>{product.name}</h2>
-            <p>{product.resume}</p>
+            <h2 style={{ fontSize: "5vw" }}>{product.name}</h2>
+            <p style={{ fontSize: "3.5vw" }}>{product.resume}</p>
             <CurrencyText value={product.price} color={"#686868"} style={{ fontWeight: "bold" }} />
             <Button
                 onClick={() => cart.add(product)}
                 variant="contained"
                 fullWidth
-                sx={{ backgroundColor: colors.green, borderRadius: "10vw", fontFamily: "BowlbyOneSC", fontWeight: "400", fontSize: "4vw", padding: 0 }}
+                sx={{
+                    backgroundColor: colors.green,
+                    borderRadius: "10vw",
+                    fontFamily: "BowlbyOneSC",
+                    fontWeight: "400",
+                    fontSize: "4vw",
+                    padding: 0,
+                }}
             >
                 Quero esse
             </Button>
-        </div>
+        </Box>
     )
 }

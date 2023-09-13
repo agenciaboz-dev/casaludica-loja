@@ -6,6 +6,8 @@ import { CurrencyText } from '../CurrencyText';
 import { Product } from './Product';
 import { useColors } from "../../hooks/useColors";
 // import './style.scss';
+import { ButtonComponent } from "../ButtonComponent"
+
 
 interface CartProps {
     isOpen: boolean

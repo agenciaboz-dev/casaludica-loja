@@ -1,14 +1,15 @@
-import { Skeleton } from '@mui/material';
+import { Skeleton, Box } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useApi } from "../../../hooks/useApi"
 import { Product as Container } from "./Product"
-import "./style.scss"
+import { useColors } from "../../../hooks/useColors"
+//import "./style.scss"
 
 interface PopularProps {}
 
 export const Popular: React.FC<PopularProps> = ({}) => {
     const api = useApi()
-
+    const colors = useColors()
     const [products, setProducts] = useState<Product[]>([])
 
     useEffect(() => {
@@ -18,9 +19,15 @@ export const Popular: React.FC<PopularProps> = ({}) => {
     }, [])
 
     return (
-        <div className="Popular-Component">
-            <h3>Mais curtidos pela galerinha</h3>
-            <div className="products-container">
+        <Box
+            className="Popular-Component"
+            sx={{ width: " 100%", flexDirection: "column", color: colors.primary, gap: "1vw" }}
+        >
+            <h3 style={{ fontSize: "4vw" }}>Mais curtidos pela galerinha</h3>
+            <Box
+                className="products-container"
+                sx={{ width: "100vw", marginLeft: "-5vw", padding: "1vw 5vw", gap: "2vw", overflowX: "auto" }}
+            >
                 {products.map((product) => (
                     <Container key={product.id} product={product} />
                 ))}
@@ -31,7 +38,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                         <Skeleton sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
                     </>
                 )}
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }

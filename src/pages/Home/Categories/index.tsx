@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCategories } from '../../../hooks/useCategories';
-import './style.scss';
-import { Avatar, Skeleton } from '@mui/material'
+//import './style.scss';
+import { Avatar, Box, Skeleton, alpha } from "@mui/material"
 import BrokenImageIcon from "@mui/icons-material/BrokenImage"
 import { useNavigate } from "react-router-dom"
 import { useColors } from "../../../hooks/useColors"
@@ -18,11 +18,37 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     }
 
     return (
-        <div className="Categories-Component">
-            <h3>Categorias</h3>
-            <div className="categories-container">
+        <Box
+            className="Categories-Component"
+            sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: "1vw" }}
+        >
+            <h3 style={{ fontSize: "5vw" }}>Categorias</h3>
+            <Box
+                className="categories-container"
+                sx={{
+                    gap: "3vw",
+                    width: "100vw",
+                    marginLeft: "-5vw",
+                    overflowX: "auto",
+                    padding: "1vw 5vw",
+                }}
+            >
                 {categories.map((category) => (
-                    <div className="category-container" key={category.id} onClick={() => search(category)}>
+                    <Box
+                        className="category-container"
+                        key={category.id}
+                        onClick={() => search(category)}
+                        sx={{
+                            boxShadow: `0 2px 3px rgba(0, 0, 0, 0.4)`,
+                            borderRadius: "2vw",
+                            width: "fit-content",
+                            padding: "5vw 2vw",
+                            alignItems: "center",
+                            gap: "3vw",
+                            flexShrink: "0",
+                            overflowX: "hidden",
+                        }}
+                    >
                         <Avatar
                             src={`/${category.id}`}
                             variant={"rounded"}
@@ -30,8 +56,8 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         >
                             <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                         </Avatar>
-                        <p>{category.name}</p>
-                    </div>
+                        <p style={{ fontSize: "4vw", wordBreak: "break-all" }}>{category.name}</p>
+                    </Box>
                 ))}
                 {categories.length == 0 && (
                     <>
@@ -40,7 +66,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         <Skeleton variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
                     </>
                 )}
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }
