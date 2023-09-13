@@ -6,8 +6,8 @@ import { SearchField } from "../../components/SearchField"
 import { useApi } from "../../hooks/useApi"
 import { useCategories } from "../../hooks/useCategories"
 import { useProducts } from "../../hooks/useProducts"
-import { Skeleton, Paper, IconButton } from "@mui/material"
-import "./style.scss"
+import { Skeleton, Paper, IconButton, Box } from "@mui/material"
+//import "./style.scss"
 import { Carousel } from "react-responsive-carousel"
 import { CurrencyText } from "../../components/CurrencyText"
 import { ReactComponent as ArrowIcon } from "../../images/arrow.svg"
@@ -65,7 +65,15 @@ export const Product: React.FC<ProductProps> = ({}) => {
         }
     }, [])
     return (
-        <div className="Product-Page">
+        <Box
+            className="Product-Page"
+            sx={{
+                width: "100%",
+                flexDirection: "column",
+                gap: "5vw",
+                padding: "0 5vw",
+            }}
+        >
             <Background />
             <Header />
             <SearchField />
@@ -76,19 +84,19 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 </>
             ) : (
                 <>
-                    <div className="navigation">
-                        <h3 className="link" onClick={() => navigate("/")}>
+                    <Box className="navigation" sx={{ gap: "2vw", color: "white" }}>
+                        <h3 className="link" style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
                             Início
                         </h3>
                         <h3>/</h3>
-                        <h3 className="link" onClick={() => onCategoryClick()}>
+                        <h3 className="link" style={{ cursor: "pointer" }} onClick={() => onCategoryClick()}>
                             {category?.name}
                         </h3>
                         <h3>/</h3>
                         <h3 className="link">{product?.name}</h3>
-                    </div>
+                    </Box>
 
-                    <Paper elevation={1} className="title">
+                    <Paper elevation={1} className="title" sx={{ padding: "3vw 5vw" }}>
                         <h2>{product.name}</h2>
                     </Paper>
 
@@ -101,29 +109,47 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             transitionTime={1000}
                         >
                             {galery.map((image) => (
-                                <div key={galery.indexOf(image)}>
+                                <Box key={galery.indexOf(image)}>
                                     <img src={image} alt="" />
-                                </div>
+                                </Box>
                             ))}
                         </Carousel>
                     </Paper>
 
-                    <p className="description">{product.description}</p>
+                    <p className="description" style={{ color: colors.primary, textAlign: "center", fontSize: "4vw" }}>
+                        {product.description}
+                    </p>
 
-                    <div className="numbers">
-                        <div className="quantity-container">
+                    <Box className="numbers">
+                        <Box
+                            className="quantity-container"
+                            sx={{ alignItems: "center", width: "50vw", justifyContent: "space-between" }}
+                        >
                             <IconButton onClick={() => changeQuantity(-1)}>
                                 <ArrowIcon />
                             </IconButton>
 
-                            <div className="quantity">
+                            <Box
+                                className="quantity"
+                                sx={{
+                                    color: colors.primary,
+                                    fontWeight: "bold",
+                                    fontSize: "5vw",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    padding: " 2vw 3vw",
+                                    backgroundColor: colors.background_secondary,
+                                    border: `1px solid ${colors.primary}`,
+                                    borderRadius: "1vw",
+                                }}
+                            >
                                 <p>{quantity}</p>
-                            </div>
+                            </Box>
 
                             <IconButton onClick={() => changeQuantity(1)}>
                                 <ArrowIcon style={{ transform: "rotate(180deg)" }} />
                             </IconButton>
-                        </div>
+                        </Box>
                         <CurrencyText
                             value={product.price * quantity}
                             style={{
@@ -136,13 +162,13 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 fontWeight: "bold",
                             }}
                         />
-                    </div>
+                    </Box>
 
                     <Button variant="contained" onClick={() => cart.add({ ...product, quantity })}>
                         Adicionar ao carrinho
                     </Button>
                 </>
             )}
-        </div>
+        </Box>
     )
 }
