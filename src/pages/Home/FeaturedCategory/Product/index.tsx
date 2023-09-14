@@ -5,6 +5,7 @@ import { useColors } from "../../../../hooks/useColors"
 import { CurrencyText } from "../../../../components/CurrencyText"
 import { useCart } from "../../../../hooks/useCart"
 import { useNavigate } from "react-router-dom"
+import { ButtonComponent } from "../../../../components/ButtonComponent"
 
 interface ProductProps {
     product: Product
@@ -45,21 +46,10 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             <h2 style={{ fontSize: "5vw" }}>{product.name}</h2>
             <p style={{ fontSize: "3.5vw" }}>{product.resume}</p>
             <CurrencyText value={product.price} color={"#686868"} style={{ fontWeight: "bold" }} />
-            <Button
-                onClick={() => cart.add(product)}
-                variant="contained"
-                fullWidth
-                sx={{
-                    backgroundColor: colors.green,
-                    borderRadius: "10vw",
-                    fontFamily: "BowlbyOneSC",
-                    fontWeight: "400",
-                    fontSize: "4vw",
-                    padding: 0,
-                }}
-            >
+
+            <ButtonComponent sx={{ fontSize: "4vw", fontWeight: "400" }} onClick={() => cart.add(product)}>
                 Quero esse
-            </Button>
+            </ButtonComponent>
         </Box>
     )
 }

@@ -9,6 +9,7 @@ import { useApi } from "../../hooks/useApi"
 import { useCart } from "../../hooks/useCart"
 import { Collections } from "../Home/Collections"
 import { useColors } from "../../hooks/useColors"
+import { ButtonComponent } from "../../components/ButtonComponent"
 //import "./style.scss"
 
 interface ResultsProps {}
@@ -121,9 +122,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                         <Avatar src={product.cover} sx={{ width: "50vw", height: "auto" }} />
                         <h3>{product.resume}</h3>
                         <p>{product.description}</p>
-                        <Button variant="contained" onClick={() => cart.add(product)}>
-                            Eu quero
-                        </Button>
+                        <ButtonComponent onClick={() => cart.add(product)}>Quero esse</ButtonComponent>
                     </Box>
                 ))
             )}

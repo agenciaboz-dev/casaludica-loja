@@ -14,6 +14,7 @@ import { ReactComponent as ArrowIcon } from "../../images/arrow.svg"
 import { useColors } from "../../hooks/useColors"
 import Button from "@mui/material/Button"
 import { useCart } from "../../hooks/useCart"
+import { ButtonComponent } from "../../components/ButtonComponent"
 
 interface ProductProps {}
 
@@ -163,10 +164,9 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             }}
                         />
                     </Box>
-
-                    <Button variant="contained" onClick={() => cart.add({ ...product, quantity })}>
+                    <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>
                         Adicionar ao carrinho
-                    </Button>
+                    </ButtonComponent>
                 </>
             )}
         </Box>

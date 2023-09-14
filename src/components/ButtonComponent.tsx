@@ -11,7 +11,7 @@ export const ButtonComponent: React.FC<ButtonProps> = (props) => {
         padding: "3vw",
         justifyContent: "center",
         alignItems: "center",
-        fontWeight: "bold",
+        fontFamily: "BowlbyOneSC",
     }
     return (
         <Button {...props} sx={style}>

@@ -1,12 +1,12 @@
 import { IconButton, Box } from "@mui/material"
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Product as ProductType } from "../../definitions/Product"
+
 import { useCart } from "../../hooks/useCart"
 import { ReactComponent as CloseIcon } from "../../images/x.svg"
 
 interface ProductProps {
-    product: ProductType
+    product: Product
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
