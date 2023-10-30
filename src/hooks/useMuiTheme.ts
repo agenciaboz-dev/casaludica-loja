@@ -5,11 +5,11 @@ export const useMuiTheme = () => {
     const colors = useColors()
     const THEME = createTheme({
         typography: {
-        //  "fontFamily": ["Poppins"].join(','),
-        //  "fontSize": 14,
-        //  "fontWeightLight": 300,
-        //  "fontWeightRegular": 400,
-        //  "fontWeightMedium": 500
+            //  "fontFamily": ["BowlbyOneSC"].join(','),
+            //  "fontSize": 14,
+            //  "fontWeightLight": 300,
+            //  "fontWeightRegular": 400,
+            //  "fontWeightMedium": 500
         },
         palette: {
             // mode: 'dark',
@@ -18,7 +18,7 @@ export const useMuiTheme = () => {
                 main: colors.primary,
             },
             secondary: {
-                main: '#fff',
+                main: "#fff",
             },
             text: {
                 primary: colors.primary,
@@ -26,12 +26,12 @@ export const useMuiTheme = () => {
                 // disabled: colors.primary,
             },
             success: {
-                main: colors.green
-            }
+                main: colors.green,
+            },
             // error: {
             //     main: colors.red,
             // }
-        }
+        },
     })
     
     return THEME
