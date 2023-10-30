@@ -10,6 +10,7 @@ import { useCart } from "../../hooks/useCart"
 import { Collections } from "../Home/Collections"
 import { useColors } from "../../hooks/useColors"
 import { ButtonComponent } from "../../components/ButtonComponent"
+import { ProductContainer } from "./ProductContainer"
 //import "./style.scss"
 
 interface ResultsProps {}
@@ -111,19 +112,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                 </Box>
             ) : (
                 products.map((product: Product) => (
-                    <Box
-                        className="results-container"
-                        style={{ flexDirection: "column", alignItems: "center" }}
-                        key={product.id}
-                        onClick={() => navigate(`/product/${product.id}`)}
-                        sx={{ marginBottom: "10vw" }}
-                    >
-                        <h1>{product.name}</h1>
-                        <Avatar src={product.cover} sx={{ width: "50vw", height: "auto" }} />
-                        <h3>{product.resume}</h3>
-                        <p>{product.description}</p>
-                        <ButtonComponent onClick={() => cart.add(product)}>Quero esse</ButtonComponent>
-                    </Box>
+                    <ProductContainer key={product.id} product={product} />
                 ))
             )}
 
