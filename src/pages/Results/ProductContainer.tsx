@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Avatar, Box } from "@mui/material"
+import { Avatar, Box, Skeleton } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { ButtonComponent } from "../../components/ButtonComponent"
 import { useCart } from "../../hooks/useCart"
@@ -17,6 +17,17 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
     const productRef = useRef(null)
 
     const [image, setImage] = useState("")
+
+    const skeleton_style = {
+        height: "10vw",
+        width: "100%",
+    }
+
+    const image_skeleton_style = {
+        height: "40vw",
+        width: "40vw",
+        borderRadius: "5vw",
+    }
 
     const handleProductVisible = () => {
         api.images(product.id, true).then((images) => {
@@ -60,11 +71,21 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
             sx={{ marginBottom: "10vw" }}
             ref={productRef}
         >
-            <h1>{product.name}</h1>
-            <Avatar src={"data:image/jpeg;base64," + image} sx={{ width: "50vw", height: "auto" }} />
-            <h3>{product.resume}</h3>
-            <p>{product.description}</p>
-            <ButtonComponent onClick={() => cart.add(product)}>Quero esse</ButtonComponent>
+            {image ? (
+                <>
+                    <h1>{product.name}</h1>
+                    <Avatar src={"data:image/jpeg;base64," + image} variant="square" sx={{ width: "50vw", height: "auto", borderRadius: "5vw" }} />
+                    <h3>{product.resume}</h3>
+                    <p>{product.description}</p>
+                    <ButtonComponent onClick={() => cart.add(product)}>Quero esse</ButtonComponent>
+                </>
+            ) : (
+                <Box sx={{ flexDirection: "column", gap: "2vw", width: "100%", alignItems: "center" }}>
+                    <Skeleton variant="rounded" sx={image_skeleton_style} />
+                    <Skeleton variant="rounded" sx={skeleton_style} />
+                    <Skeleton variant="rounded" sx={skeleton_style} />
+                </Box>
+            )}
         </Box>
     )
 }
