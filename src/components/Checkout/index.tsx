@@ -9,6 +9,7 @@ import { Box, TextField } from "@mui/material"
 import { ButtonComponent } from "../ButtonComponent"
 import { Billing } from "./Billing"
 import { useFormik } from "formik"
+import { Review } from "./Review"
 //import "./style.scss"
 
 interface CheckoutProps {}
@@ -81,6 +82,8 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             </Box>
 
             <Billing formik={billingFormik} />
+
+            <Review />
         </Box>
     )
 }
