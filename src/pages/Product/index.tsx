@@ -104,17 +104,9 @@ export const Product: React.FC<ProductProps> = ({}) => {
                     </Paper>
 
                     <Paper className="galery">
-                        <Carousel
-                            showThumbs={false}
-                            // autoPlay
-                            infiniteLoop
-                            interval={5000}
-                            transitionTime={1000}
-                        >
+                        <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000}>
                             {galery.map((image) => (
-                                <Box key={galery.indexOf(image)}>
-                                    <img src={"data:image/jpeg;base64," + image} alt="" />
-                                </Box>
+                                <img key={galery.indexOf(image)} src={"data:image/jpeg;base64," + image} alt="" />
                             ))}
                         </Carousel>
                     </Paper>
@@ -163,9 +155,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             }}
                         />
                     </Box>
-                    <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>
-                        Adicionar ao carrinho
-                    </ButtonComponent>
+                    <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>Adicionar ao carrinho</ButtonComponent>
                 </>
             )}
         </Box>

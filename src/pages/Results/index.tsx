@@ -66,7 +66,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                 })
             }
         } else {
-            api.products.get((response: { data: Product[] }) => {
+            api.products.list((response: { data: Product[] }) => {
                 console.log(response.data)
                 setProducts(response.data)
             })
@@ -95,7 +95,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
             <Collections />
 
             <h3 className="results-title" style={{ color: colors.primary }}>
-                Resultados da pesquisa:
+                Resultados da pesquisa: {!!products.length && `(${products.length})`}
             </h3>
 
             {loading ? (
@@ -111,14 +111,10 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                     <Skeleton variant="rounded" sx={skeleton_style} />
                 </Box>
             ) : (
-                products.map((product: Product) => (
-                    <ProductContainer key={product.id} product={product} />
-                ))
+                products.map((product: Product) => <ProductContainer key={product.id} product={product} />)
             )}
 
-            {!loading && products.length == 0 && (
-                <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>
-            )}
+            {!loading && products.length == 0 && <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>}
 
             <Footer />
         </Box>

@@ -1,5 +1,5 @@
 import { api } from "../api"
-import { useLoading } from "./useLoading"
+import { useFranchise } from "./useFranchise"
 
 interface ApiOptions {
     data?: any
@@ -9,7 +9,7 @@ interface ApiOptions {
 }
 
 export const useApi = () => {
-    const { loading, setLoading } = useLoading()
+    const { franchise } = useFranchise()
 
     const defaultError = (error: Error, errorCallback?: Function) => {
         errorCallback && errorCallback()
@@ -22,9 +22,9 @@ export const useApi = () => {
 
     const methods = {
         products: {
-            get: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
+            list: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
                 // setLoading(true)
-                api.get("/products")
+                api.post("/products", { franchise })
                     .then((response) => callback(response))
                     .catch((error) => errorCallback(error))
                     .finally(() => {
@@ -42,7 +42,7 @@ export const useApi = () => {
             },
             search: (data: { search: string }, options: ApiOptions) => {
                 // setLoading(true)
-                api.post("/products", data)
+                api.post("/products", { search: data.search, franchise })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))

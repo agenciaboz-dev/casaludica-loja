@@ -5,6 +5,7 @@ import { ButtonComponent } from "../../components/ButtonComponent"
 import { useCart } from "../../hooks/useCart"
 import { useApi } from "../../hooks/useApi"
 import { sentenceCase } from "change-case"
+import { useProducts } from "../../hooks/useProducts"
 
 interface ProductContainerProps {
     product: Product
@@ -14,7 +15,8 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
     const navigate = useNavigate()
     const cart = useCart()
     const api = useApi()
-    
+    const { add: updateProduct } = useProducts()
+
     const productRef = useRef(null)
 
     const [image, setImage] = useState("")
@@ -31,8 +33,10 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
     }
 
     const handleProductVisible = () => {
-        api.images(product.id, true).then((images) => {
-            setImage(images)
+        api.images(product.id, true).then((image) => {
+            setImage(image)
+            updateProduct({ ...product, cover: image })
+            product.cover = image
         })
     }
 

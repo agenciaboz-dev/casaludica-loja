@@ -11,30 +11,33 @@ import { LoadingProvider } from './contexts/loadingContext';
 import { CategoriesProvider } from './contexts/categoriesContext';
 import { Product } from "./pages/Product"
 import { Checkout } from "./components/Checkout"
+import { FranchiseProvider } from "./contexts/franchiseContext"
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
         <ThemeProvider theme={muiTheme}>
-            <LoadingProvider>
-                <CategoriesProvider>
-                    <ProductsProvider>
-                        <CartProvider>
-                            <BrowserRouter>
-                                <Routes>
-                                    <Route index element={<Home />} />
-                                    <Route path="/search" element={<Results />} />
-                                    <Route path="/search/:type" element={<Results />} />
-                                    <Route path="/search/:type/:value" element={<Results />} />
-                                    <Route path="/product/:id" element={<Product />} />
-                                    <Route path="/checkout" element={<Checkout />} />
-                                </Routes>
-                            </BrowserRouter>
-                        </CartProvider>
-                    </ProductsProvider>
-                </CategoriesProvider>
-            </LoadingProvider>
+            <FranchiseProvider>
+                <LoadingProvider>
+                    <CategoriesProvider>
+                        <ProductsProvider>
+                            <CartProvider>
+                                <BrowserRouter>
+                                    <Routes>
+                                        <Route index element={<Home />} />
+                                        <Route path="/search" element={<Results />} />
+                                        <Route path="/search/:type" element={<Results />} />
+                                        <Route path="/search/:type/:value" element={<Results />} />
+                                        <Route path="/product/:id" element={<Product />} />
+                                        <Route path="/checkout" element={<Checkout />} />
+                                    </Routes>
+                                </BrowserRouter>
+                            </CartProvider>
+                        </ProductsProvider>
+                    </CategoriesProvider>
+                </LoadingProvider>
+            </FranchiseProvider>
         </ThemeProvider>
     )
 }
