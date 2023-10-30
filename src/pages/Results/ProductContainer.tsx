@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { ButtonComponent } from "../../components/ButtonComponent"
 import { useCart } from "../../hooks/useCart"
 import { useApi } from "../../hooks/useApi"
+import { sentenceCase } from "change-case"
 
 interface ProductContainerProps {
     product: Product
@@ -13,7 +14,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
     const navigate = useNavigate()
     const cart = useCart()
     const api = useApi()
-
+    
     const productRef = useRef(null)
 
     const [image, setImage] = useState("")
@@ -73,7 +74,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
         >
             {image ? (
                 <>
-                    <h1>{product.name}</h1>
+                    <h1>{sentenceCase(product.name, { locale: "pt-br" })}</h1>
                     <Avatar src={"data:image/jpeg;base64," + image} variant="square" sx={{ width: "50vw", height: "auto", borderRadius: "5vw" }} />
                     <h3>{product.resume}</h3>
                     <p>{product.description}</p>

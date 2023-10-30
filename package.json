@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-text-mask": "^5.4.11",
     "axios": "^1.3.5",
+    "change-case": "^5.1.2",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-currency-format": "^1.1.0",
