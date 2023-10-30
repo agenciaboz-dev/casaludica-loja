@@ -10,11 +10,13 @@ import { ButtonComponent } from "../ButtonComponent"
 import { Billing } from "./Billing"
 import { useFormik } from "formik"
 import { Review } from "./Review"
+import { useSnackbar } from "burgos-snackbar"
 //import "./style.scss"
 
 interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
+    const { snackbar } = useSnackbar()
     const cart = useCart()
 
     const initialValues: BillingForm = {
@@ -28,12 +30,33 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         email: "",
         notes: "",
     }
+
     const billingFormik = useFormik({
         initialValues,
         onSubmit: (values) => {
-            console.log(values)
+            const data = {
+                billing: values,
+                products: cart.products,
+                total: cart.total,
+            }
+            console.log(data)
+            // window.open(``)
+            snackbar({
+                severity: "info",
+                text: "vai abrir o boz pay agora, depois do pagamento vai trazer de volta pra cá com uma tela de status do pedido?",
+            })
         },
     })
+
+    const handleSubmit = () => {
+        const values = billingFormik.values
+        if (!values.name || !values.lastname || !values.address || !values.city || !values.email || !values.phone || !values.postalcode) {
+            snackbar({ severity: "error", text: "Preencha os campos obrigatórios" })
+            return
+        }
+
+        billingFormik.handleSubmit()
+    }
 
     return (
         <Box className="Checkout-Component" sx={{ flexDirection: "column", width: "100%", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}>
@@ -84,6 +107,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             <Billing formik={billingFormik} />
 
             <Review />
+            <ButtonComponent onClick={handleSubmit}>Pagar</ButtonComponent>
         </Box>
     )
 }

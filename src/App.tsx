@@ -12,32 +12,36 @@ import { CategoriesProvider } from './contexts/categoriesContext';
 import { Product } from "./pages/Product"
 import { Checkout } from "./components/Checkout"
 import { FranchiseProvider } from "./contexts/franchiseContext"
+import { Snackbar, SnackbarProvider } from "burgos-snackbar"
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
         <ThemeProvider theme={muiTheme}>
-            <FranchiseProvider>
-                <LoadingProvider>
-                    <CategoriesProvider>
-                        <ProductsProvider>
-                            <CartProvider>
-                                <BrowserRouter>
-                                    <Routes>
-                                        <Route index element={<Home />} />
-                                        <Route path="/search" element={<Results />} />
-                                        <Route path="/search/:type" element={<Results />} />
-                                        <Route path="/search/:type/:value" element={<Results />} />
-                                        <Route path="/product/:id" element={<Product />} />
-                                        <Route path="/checkout" element={<Checkout />} />
-                                    </Routes>
-                                </BrowserRouter>
-                            </CartProvider>
-                        </ProductsProvider>
-                    </CategoriesProvider>
-                </LoadingProvider>
-            </FranchiseProvider>
+            <SnackbarProvider>
+                <FranchiseProvider>
+                    <LoadingProvider>
+                        <CategoriesProvider>
+                            <ProductsProvider>
+                                <CartProvider>
+                                    <BrowserRouter>
+                                        <Snackbar />
+                                        <Routes>
+                                            <Route index element={<Home />} />
+                                            <Route path="/search" element={<Results />} />
+                                            <Route path="/search/:type" element={<Results />} />
+                                            <Route path="/search/:type/:value" element={<Results />} />
+                                            <Route path="/product/:id" element={<Product />} />
+                                            <Route path="/checkout" element={<Checkout />} />
+                                        </Routes>
+                                    </BrowserRouter>
+                                </CartProvider>
+                            </ProductsProvider>
+                        </CategoriesProvider>
+                    </LoadingProvider>
+                </FranchiseProvider>
+            </SnackbarProvider>
         </ThemeProvider>
     )
 }
