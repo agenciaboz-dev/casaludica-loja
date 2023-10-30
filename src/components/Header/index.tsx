@@ -38,25 +38,27 @@ export const Header = () => {
             >
                 <IconButton
                     color="secondary"
-                    sx={{ gap: "2vw", padding: 0, fontFamily: "BowlbyOneSC", fontWeight: "400", fontSize: "4vw" }}
+                    sx={{ gap: "2vw", padding: 0, fontFamily: "BowlbyOneSC", fontWeight: "400", fontSize: "4vw", flex: 0.3 }}
                     onClick={() => setOpenMenu(true)}
                 >
                     <MenuIcon />
                     Menu
                 </IconButton>
-                <LogoIcon onClick={() => navigate("/")} />
-                <Badge
-                    badgeContent={cart.products?.length || 0}
-                    color="primary"
-                    sx={{
-                        //top:"3vw",
-                        right: "1vw",
-                    }}
-                >
-                    <IconButton color="secondary" sx={{ gap: "2vw" }} onClick={() => cart.setOpen(true)}>
-                        <CartIcon style={{ flex: 1 }} />
-                    </IconButton>
-                </Badge>
+                <LogoIcon onClick={() => navigate("/")} style={{ flex: 0.3 }} />
+                <Box sx={{ flex: 0.3, justifyContent: "flex-end" }}>
+                    <Badge
+                        badgeContent={cart.products?.length || 0}
+                        color="primary"
+                        sx={{
+                            //top:"3vw",
+                            right: "1vw",
+                        }}
+                    >
+                        <IconButton color="secondary" sx={{ gap: "2vw" }} onClick={() => cart.setOpen(true)}>
+                            <CartIcon style={{ flex: 1 }} />
+                        </IconButton>
+                    </Badge>
+                </Box>
             </Box>
             <Menu isOpen={openMenu} setOpen={setOpenMenu} />
             <Cart isOpen={cart.open} setOpen={cart.setOpen} />
