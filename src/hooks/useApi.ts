@@ -67,6 +67,7 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
         },
+        images: async (id: number) => (await api.post("/products/images", { id })).data,
         categories: {
             get: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
                 // setLoading(true)

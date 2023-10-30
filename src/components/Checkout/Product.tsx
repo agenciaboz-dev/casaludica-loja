@@ -1,12 +1,11 @@
 import { IconButton, Box } from "@mui/material"
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Product as ProductType } from "../../definitions/Product"
 import { useCart } from "../../hooks/useCart"
-import { ReactComponent as CloseIcon } from "../../images/x.svg"
+// import { ReactComponent as CloseIcon } from "../../images/x.svg"
 
 interface ProductProps {
-    product: ProductType
+    product: Product
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
@@ -24,15 +23,9 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
         }
     }
     return (
-        <Box
-            className="product-container"
-            sx={{ position: "relative", justifyContent: "center", alignItems: "center", gap: "3vw" }}
-        >
+        <Box className="product-container" sx={{ position: "relative", justifyContent: "center", alignItems: "center", gap: "3vw" }}>
             <img src={product.cover} alt="product" className="img-product" style={{ width: "37vw", height: "37vw" }} />
-            <Box
-                className="right-container"
-                sx={{ color: "#363775", fontWeight: "500", fontSize: "3vw", flexDirection: "column" }}
-            >
+            <Box className="right-container" sx={{ color: "#363775", fontWeight: "500", fontSize: "3vw", flexDirection: "column" }}>
                 <p className="name-product">
                     Produto: <span style={{ fontWeight: "bold" }}>{product.name}</span>
                 </p>
@@ -54,7 +47,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 </p>
             </Box>
             <IconButton className="close" onClick={deleteProduct} sx={{ position: "absolute", top: "0vw", right: "0vw" }}>
-                <CloseIcon style={{ height: "auto", width: "6vw" }} />
+                {/* <CloseIcon style={{ height: "auto", width: "6vw" }} /> */}
             </IconButton>
         </Box>
     )

@@ -46,9 +46,11 @@ export const Product: React.FC<ProductProps> = ({}) => {
         if (product.id) {
             setCategory(product?.categories)
             setLoading(false)
-            const images = product.images?.split(",")
-            console.log(images)
-            setGalery(images as string[])
+            api.images(product.id).then((images) => {
+                const imagesList = images.split(",")
+                console.log(imagesList)
+                setGalery(imagesList)
+            })
         }
     }, [product])
 
@@ -110,7 +112,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         >
                             {galery.map((image) => (
                                 <Box key={galery.indexOf(image)}>
-                                    <img src={image} alt="" />
+                                    <img src={"data:image/jpeg;base64," + image} alt="" />
                                 </Box>
                             ))}
                         </Carousel>
@@ -121,10 +123,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                     </p>
 
                     <Box className="numbers">
-                        <Box
-                            className="quantity-container"
-                            sx={{ alignItems: "center", width: "50vw", justifyContent: "space-between" }}
-                        >
+                        <Box className="quantity-container" sx={{ alignItems: "center", width: "50vw", justifyContent: "space-between" }}>
                             <IconButton onClick={() => changeQuantity(-1)}>
                                 <ArrowIcon />
                             </IconButton>
