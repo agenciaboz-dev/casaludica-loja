@@ -95,7 +95,7 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
                 }}
             >
                 <ButtonComponent
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", fontSize: "4vw" }}
                     title="Finalizar compra"
                     onClick={() => finishOrder()}
                     disabled={cart.products.length == 0}
