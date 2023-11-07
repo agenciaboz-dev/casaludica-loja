@@ -1,4 +1,4 @@
-import { IconButton, Box } from "@mui/material"
+import { IconButton, Box, TextField } from "@mui/material"
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useCart } from "../../hooks/useCart"
@@ -25,26 +25,37 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     return (
         <Box sx={{ position: "relative", justifyContent: "center", alignItems: "center", gap: "3vw" }}>
             <img src={"data:image/jpeg;base64," + product.cover} alt="product" style={{ width: "37vw", height: "37vw" }} />
-            <Box sx={{ color: "#363775", fontWeight: "500", fontSize: "3vw", flexDirection: "column" }}>
+            <Box sx={{ color: "#363775", fontWeight: "500", fontSize: "3vw", flexDirection: "column", gap: "1.8vw" }}>
                 <Box sx={{ flexDirection: "column" }}>
-                    <p style={{ fontSize: "3.1vw" }}>
+                    <p style={{ fontSize: "3.2vw" }}>
                         Produto: <span style={{ fontWeight: "bold" }}>{product.name}</span>
                     </p>
                     <Box sx={{ flexDirection: "row", gap: "1vw", alignItems: "center" }}>
-                        <p style={{ fontSize: "3.1vw" }}>Quantidade: </p>
-                        <input
+                        <p style={{ fontSize: "3.2vw" }}>Quantidade: </p>
+                        <TextField
                             type="number"
                             className="number"
                             value={productQuantity}
                             onChange={(event) => setProductQuantity(Number(event.target.value))}
-                            style={{ width: "30%", borderRadius: "1.6vw", height: "5.5vw", padding: "2vw" }}
+                            sx={{
+                                width: "35%",
+                                "& .MuiInputBase-input": {
+                                    borderRadius: "1.6vw",
+                                    height: "0vw",
+                                },
+                            }}
+                            InputProps={{
+                                inputProps: {
+                                    min: 1,
+                                },
+                            }}
                         />
                     </Box>
                 </Box>
                 <p style={{ fontSize: "3.5vw" }}>
                     Preço:{" "}
                     <span style={{ color: "#686868", fontWeight: "bolder", fontSize: "3.8vw" }}>
-                        R${product.price * productQuantity}
+                        R${(product.price * productQuantity).toFixed(2)}
                     </span>
                 </p>
             </Box>
