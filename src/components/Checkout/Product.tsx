@@ -2,7 +2,7 @@ import { IconButton, Box, TextField } from "@mui/material"
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useCart } from "../../hooks/useCart"
-// import { ReactComponent as CloseIcon } from "../../images/x.svg"
+import { ReactComponent as CloseIcon } from "../../images/x.svg"
 
 interface ProductProps {
     product: Product
@@ -11,8 +11,6 @@ interface ProductProps {
 export const Product: React.FC<ProductProps> = ({ product }) => {
     const cart = useCart()
     const navigate = useNavigate()
-
-    const [productQuantity, setProductQuantity] = useState(product.quantity)
 
     const deleteProduct = () => {
         if (cart.products.length > 1) {
@@ -31,40 +29,15 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         Produto: <span style={{ fontWeight: "bold" }}>{product.name}</span>
                     </p>
                     <Box sx={{ flexDirection: "row", gap: "1vw", alignItems: "center" }}>
-                        <p style={{ fontSize: "3.2vw" }}>Quantidade: </p>
-                        <TextField
-                            type="number"
-                            className="number"
-                            value={productQuantity}
-                            onChange={(event) => setProductQuantity(Number(event.target.value))}
-                            sx={{
-                                width: "35%",
-                                "& .MuiInputBase-input": {
-                                    borderRadius: "1.6vw",
-                                    height: "0vw",
-                                },
-                            }}
-                            InputProps={{
-                                inputProps: {
-                                    min: 1,
-                                },
-                            }}
-                        />
+                        <p style={{ fontSize: "3.2vw" }}>Quantidade: {product.quantity} </p>
                     </Box>
                 </Box>
                 <p style={{ fontSize: "3.5vw" }}>
-                    Preço:{" "}
-                    <span style={{ color: "#686868", fontWeight: "bolder", fontSize: "3.8vw" }}>
-                        R${(product.price * productQuantity).toFixed(2)}
-                    </span>
+                    Preço unitário: <span style={{ color: "#686868", fontWeight: "bolder", fontSize: "3.8vw" }}>R${product.price.toFixed(2)}</span>
                 </p>
             </Box>
-            <IconButton
-                className="close"
-                onClick={deleteProduct}
-                sx={{ position: "absolute", top: "0vw", right: "0vw", padding: 0 }}
-            >
-                {/* <CloseIcon style={{ height: "auto", width: "6vw" }} /> */}x
+            <IconButton className="close" onClick={deleteProduct} sx={{ position: "absolute", top: "0vw", right: "0vw", padding: 0 }}>
+                <CloseIcon style={{ height: "auto", width: "6vw" }} />
             </IconButton>
         </Box>
     )

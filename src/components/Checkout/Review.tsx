@@ -10,7 +10,6 @@ export const Review: React.FC<ReviewProps> = ({}) => {
 
     return (
         <Box sx={{ flexDirection: "column", color: "primary.main", gap: "5vw" }}>
-            <p style={{ fontFamily: "BowlbyOneSC" }}>Seu pedido</p>
             <Paper elevation={5} sx={{ flexDirection: "column", borderRadius: "4.5vw", gap: "5vw", padding: "3vw", color: "#686868" }}>
                 <Grid container spacing={1.5}>
                     <Grid item xs={6}>
