@@ -83,7 +83,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
             {loading ? (
                 <>
-                    <Skeleton variant="rounded" sx={{ width: "100%", height: "10vw" }} />
+                    <Skeleton variant="rounded" sx={{ width: "100%", height: "10vw" }} animation="wave" />
                 </>
             ) : (
                 <>

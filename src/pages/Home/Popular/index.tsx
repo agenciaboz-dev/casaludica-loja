@@ -28,9 +28,9 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                     ))}
                 {products.length == 0 && (
                     <>
-                        <Skeleton sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
-                        <Skeleton sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
-                        <Skeleton sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
+                        <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
+                        <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
+                        <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
                     </>
                 )}
             </Box>

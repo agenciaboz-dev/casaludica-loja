@@ -100,15 +100,15 @@ export const Results: React.FC<ResultsProps> = ({}) => {
 
             {loading ? (
                 <Box className="skeletons-container" sx={{ flexDirection: "column", gap: "3vw", alignItems: "center" }}>
-                    <Skeleton variant="rounded" sx={image_skeleton_style} />
-                    <Skeleton variant="rounded" sx={skeleton_style} />
-                    <Skeleton variant="rounded" sx={skeleton_style} />
-                    <Skeleton variant="rounded" sx={image_skeleton_style} />
-                    <Skeleton variant="rounded" sx={skeleton_style} />
-                    <Skeleton variant="rounded" sx={skeleton_style} />
-                    <Skeleton variant="rounded" sx={image_skeleton_style} />
-                    <Skeleton variant="rounded" sx={skeleton_style} />
-                    <Skeleton variant="rounded" sx={skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                 </Box>
             ) : (
                 products.map((product: Product) => <ProductContainer key={product.id} product={product} />)

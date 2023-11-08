@@ -18,10 +18,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     }
 
     return (
-        <Box
-            className="Categories-Component"
-            sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: "1vw" }}
-        >
+        <Box className="Categories-Component" sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: "1vw" }}>
             <h3 style={{ fontSize: "5vw" }}>Categorias</h3>
             <Box
                 className="categories-container"
@@ -49,11 +46,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             overflowX: "hidden",
                         }}
                     >
-                        <Avatar
-                            src={`/${category.id}`}
-                            variant={"rounded"}
-                            sx={{ bgcolor: colors.primary, borderRadius: "5vw" }}
-                        >
+                        <Avatar src={`/${category.id}`} variant={"rounded"} sx={{ bgcolor: colors.primary, borderRadius: "5vw" }}>
                             <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                         </Avatar>
                         <p style={{ fontSize: "4vw", wordBreak: "break-all" }}>{category.name}</p>
@@ -61,9 +54,9 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                 ))}
                 {categories.length == 0 && (
                     <>
-                        <Skeleton variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
-                        <Skeleton variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
-                        <Skeleton variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
+                        <Skeleton animation="wave" variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
+                        <Skeleton animation="wave" variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
+                        <Skeleton animation="wave" variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
                     </>
                 )}
             </Box>

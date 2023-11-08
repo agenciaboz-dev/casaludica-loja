@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Box } from "@mui/material"
+import { Avatar, IconButton, Box, Skeleton } from "@mui/material"
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { CurrencyText } from "../../../../components/CurrencyText"
@@ -78,29 +78,33 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             }}
         >
             {/* <Avatar src={product.cover} sx={{width: '30vw', height: '30vw'}} /> */}
-            <Box
-                className="container"
-                sx={{
-                    justifyContent: "space-between",
-                    marginTop: "auto",
-                    backgroundColor: "white",
-                    padding: "3vw",
-                    borderRadius: "2vw",
-                    boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
-                    alignItems: "center",
-                    width: "100%",
-                }}
-            >
-                <Box className="text" sx={{ flexDirection: "column", fontSize: "3.5vw", fontWeight: "bold", gap: "2vw" }}>
-                    <p className="name" style={{ whiteSpace: "nowrap", width: "20vw", overflow: "hidden", textOverflow: "ellipsis" }}>
-                        {product.name}
-                    </p>
-                    <CurrencyText value={product.price} color={colors.pink} />
+            {product.cover ? (
+                <Box
+                    className="container"
+                    sx={{
+                        justifyContent: "space-between",
+                        marginTop: "auto",
+                        backgroundColor: "white",
+                        padding: "3vw",
+                        borderRadius: "2vw",
+                        boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
+                        alignItems: "center",
+                        width: "100%",
+                    }}
+                >
+                    <Box className="text" sx={{ flexDirection: "column", fontSize: "3.5vw", fontWeight: "bold", gap: "2vw" }}>
+                        <p className="name" style={{ whiteSpace: "nowrap", width: "20vw", overflow: "hidden", textOverflow: "ellipsis" }}>
+                            {product.name}
+                        </p>
+                        <CurrencyText value={product.price} color={colors.pink} />
+                    </Box>
+                    <IconButton sx={{ backgroundColor: colors.primary, width: "9vw", height: "9vw" }} onClick={() => cart.add(product)}>
+                        <CartIcon />
+                    </IconButton>
                 </Box>
-                <IconButton sx={{ backgroundColor: colors.primary, width: "9vw", height: "9vw" }} onClick={() => cart.add(product)}>
-                    <CartIcon />
-                </IconButton>
-            </Box>
+            ) : (
+                <Skeleton sx={{ flexShrink: 0 }} variant="rounded" width={"35vw"} height={"45vw"} animation="wave" />
+            )}
         </Box>
     )
 }
