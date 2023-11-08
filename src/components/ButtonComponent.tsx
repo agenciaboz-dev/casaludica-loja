@@ -3,18 +3,17 @@ import React from "react"
 
 export const ButtonComponent: React.FC<ButtonProps> = (props) => {
     const style: SxProps = {
-        display: "flex",
         borderRadius: "20vw",
         border: "none",
-        backgroundColor: "#34A853",
         color: "white",
         padding: "3vw",
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "BowlbyOneSC",
     }
+
     return (
-        <Button {...props} sx={style}>
+        <Button {...props} variant="contained" color="success" sx={style}>
             {props.children}
         </Button>
     )
