@@ -17,4 +17,5 @@ declare interface Product {
     width?: number
     height?: number
     lenght?: number
+    sold: number
 }
