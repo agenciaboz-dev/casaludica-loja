@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Background } from "../../components/Background"
 import { Header } from "../../components/Header"
 import { SearchField } from "../../components/SearchField"
@@ -11,13 +11,15 @@ import { Billing } from "./Billing"
 import { useFormik } from "formik"
 import { Review } from "./Review"
 import { useSnackbar } from "burgos-snackbar"
-//import "./style.scss"
+import { PayModal } from "../PayModal"
 
 interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const { snackbar } = useSnackbar()
     const cart = useCart()
+
+    const [paying, setPaying] = useState(false)
 
     const initialValues: BillingForm = {
         name: "",
@@ -40,11 +42,11 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 total: cart.total,
             }
             console.log(data)
-            // window.open(``)
-            snackbar({
-                severity: "info",
-                text: "vai abrir o boz pay agora, depois do pagamento vai trazer de volta pra cá com uma tela de status do pedido?",
-            })
+            setPaying(true)
+            // snackbar({
+            //     severity: "info",
+            //     text: "vai abrir o boz pay agora, depois do pagamento vai trazer de volta pra cá com uma tela de status do pedido?",
+            // })
         },
     })
 
@@ -64,7 +66,6 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             <Header />
             <SearchField />
             <Collections />
-
             <p className="finish" style={{ fontWeight: "bold", fontSize: "5vw", color: "#363775", fontFamily: "BowlbyOneSC" }}>
                 Finalizar Pedido
             </p>
@@ -86,9 +87,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     <Product key={product.id} product={product} />
                 ))}
             </Box>
-
             <Review />
-
             <Box
                 className="order"
                 sx={{
@@ -107,10 +106,10 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     <ButtonComponent sx={{ width: "100%" }}>Aplicar cupom</ButtonComponent>
                 </Box>
             </Box>
-
             <Billing formik={billingFormik} />
-
             <ButtonComponent onClick={handleSubmit}>Pagar</ButtonComponent>
+
+            <PayModal open={paying} setOpen={setPaying} orderId="" />
         </Box>
     )
 }
