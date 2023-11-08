@@ -10,7 +10,6 @@ interface FeaturedCategoryProps {}
 
 export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
     const [title, setTitle] = useState("Para reunir a família")
-    const [categories, setCategories] = useState([1, 2, 3, 4])
     const [products, setProducts] = useState<Product[]>([])
 
     const api = useApi()
@@ -25,8 +24,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
         },
     }
     useEffect(() => {
-        api.products.collection({
-            data: categories,
+        api.products.category("11", {
             callback: (response: { data: Product[] }) => {
                 setProducts(response.data)
             },
@@ -41,9 +39,12 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
             <BackgroundImage className="background" style={{ position: "absolute", top: "-35vw", left: "-5vw", zIndex: "-1", width: " 100vw" }} />
             <h3 style={{ fontSize: "5.5vw", width: "40vw" }}>{title}</h3>
             <Box className="product-list" sx={{ flexWrap: "wrap", justifyContent: "space-between", gap: "3vw" }}>
-                {products.slice(0, 4).map((product) => (
-                    <Product key={product.id} product={product} />
-                ))}
+                {products
+                    .sort((a, b) => b.id - a.id)
+                    .slice(0, 4)
+                    .map((product) => (
+                        <Product key={product.id} product={product} />
+                    ))}
                 {products.length == 0 && (
                     <>
                         <Skeleton animation="wave" variant="rounded" className="skeleton" sx={style_skeleton} />
