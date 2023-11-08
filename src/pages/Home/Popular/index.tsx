@@ -21,8 +21,8 @@ export const Popular: React.FC<PopularProps> = ({}) => {
             <Box className="products-container" sx={{ width: "100vw", marginLeft: "-5vw", padding: "1vw 5vw", gap: "2vw", overflowX: "auto" }}>
                 {products
                     .sort((a, b) => a.id - b.id)
-                    .slice(0, 5)
                     .sort((a, b) => b.sold - a.sold)
+                    .slice(0, 5)
                     .map((product) => (
                         <Container key={product.id} product={product} />
                     ))}
