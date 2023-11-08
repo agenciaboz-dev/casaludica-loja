@@ -50,7 +50,7 @@ export const useApi = () => {
             },
             category: (category: string, options: ApiOptions) => {
                 // setLoading(true)
-                api.post("/products/category", { id: Number(category) })
+                api.post("/products", { category: Number(category), franchise })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))

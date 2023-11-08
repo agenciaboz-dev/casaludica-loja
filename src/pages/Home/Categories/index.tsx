@@ -5,6 +5,7 @@ import { Avatar, Box, Skeleton, alpha } from "@mui/material"
 import BrokenImageIcon from "@mui/icons-material/BrokenImage"
 import { useNavigate } from "react-router-dom"
 import { useColors } from "../../../hooks/useColors"
+import { sentenceCase } from "change-case"
 
 interface CategoriesProps {}
 
@@ -49,7 +50,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         <Avatar src={`/${category.id}`} variant={"rounded"} sx={{ bgcolor: colors.primary, borderRadius: "5vw" }}>
                             <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                         </Avatar>
-                        <p style={{ fontSize: "4vw", wordBreak: "break-all" }}>{category.name}</p>
+                        <p style={{ fontSize: "4vw", wordBreak: "break-all" }}>{sentenceCase(category.name)}</p>
                     </Box>
                 ))}
                 {categories.length == 0 && (
