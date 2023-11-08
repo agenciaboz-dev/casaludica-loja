@@ -8,4 +8,10 @@ declare interface BillingForm {
     phone: string
     email: string
     notes: string
+    district: string
+    number: string
+    state: string
+    complement: string
+
+    cpf: string
 }

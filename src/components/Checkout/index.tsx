@@ -5,21 +5,26 @@ import { SearchField } from "../../components/SearchField"
 import { useCart } from "../../hooks/useCart"
 import { Collections } from "../../pages/Home/Collections"
 import { Product } from "./Product"
-import { Box, TextField } from "@mui/material"
+import { Box, CircularProgress, TextField } from "@mui/material"
 import { ButtonComponent } from "../ButtonComponent"
 import { Billing } from "./Billing"
 import { useFormik } from "formik"
 import { Review } from "./Review"
 import { useSnackbar } from "burgos-snackbar"
 import { PayModal } from "../PayModal"
+import { useFranchise } from "../../hooks/useFranchise"
+import { useApi } from "../../hooks/useApi"
 
 interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const { snackbar } = useSnackbar()
+    const { franchise } = useFranchise()
     const cart = useCart()
+    const api = useApi()
 
-    const [paying, setPaying] = useState(false)
+    const [payingOrderId, setPayingOrderId] = useState("")
+    const [makingOrder, setMakingOrder] = useState(false)
 
     const initialValues: BillingForm = {
         name: "",
@@ -31,22 +36,46 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         phone: "",
         email: "",
         notes: "",
+        district: "",
+        number: "",
+        state: "",
+        complement: "",
+        cpf: "",
     }
 
     const billingFormik = useFormik({
         initialValues,
         onSubmit: (values) => {
-            const data = {
-                billing: values,
+            const data: OrderForm = {
+                address: values.address,
+                city: values.city,
+                company: values.company,
+                email: values.email,
+                lastname: values.lastname,
+                name: values.name,
+                notes: values.notes,
+                phone: values.phone,
+                postcode: values.postalcode,
+                district: values.district,
+                number: values.number,
+                state: values.state,
+                complement: values.complement,
+                cpf: values.cpf,
+
                 products: cart.products,
                 total: cart.total,
+                storeId: franchise,
             }
             console.log(data)
-            setPaying(true)
-            // snackbar({
-            //     severity: "info",
-            //     text: "vai abrir o boz pay agora, depois do pagamento vai trazer de volta pra cá com uma tela de status do pedido?",
-            // })
+            setMakingOrder(true)
+            api.order.new({
+                data,
+                callback: (response) => {
+                    setMakingOrder(false)
+                    console.log(response.data)
+                    setPayingOrderId(response.data.order.id)
+                },
+            })
         },
     })
 
@@ -107,9 +136,9 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 </Box>
             </Box>
             <Billing formik={billingFormik} />
-            <ButtonComponent onClick={handleSubmit}>Pagar</ButtonComponent>
+            <ButtonComponent onClick={handleSubmit}>{makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}</ButtonComponent>
 
-            <PayModal open={paying} setOpen={setPaying} orderId="" />
+            <PayModal open={!!payingOrderId} close={() => setPayingOrderId("")} orderId={payingOrderId} />
         </Box>
     )
 }

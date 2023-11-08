@@ -1,9 +1,10 @@
+import { AxiosResponse } from "axios"
 import { api } from "../api"
 import { useFranchise } from "./useFranchise"
 
 interface ApiOptions {
     data?: any
-    callback: Function
+    callback: (response: AxiosResponse) => void
     errorCallback?: Function
     finallyCallback?: Function
 }
@@ -83,6 +84,14 @@ export const useApi = () => {
         cep: {
             get: (options: ApiOptions) => {
                 api.post("/cep", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+        },
+        order: {
+            new: (options: ApiOptions) => {
+                api.post("/order/new", options.data)
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))

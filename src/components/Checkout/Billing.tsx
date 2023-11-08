@@ -36,6 +36,14 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         required
                     />
                     <TextField
+                        label="CPF"
+                        value={formik.values.cpf}
+                        name="cpf"
+                        onChange={formik.handleChange}
+                        InputProps={{ sx: inputStyle }}
+                        required
+                    />
+                    <TextField
                         label="Nome da Empresa (opcional)"
                         value={formik.values.company}
                         name="company"
@@ -59,9 +67,40 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         required
                     />
                     <TextField
+                        label="Número"
+                        value={formik.values.number}
+                        name="number"
+                        onChange={formik.handleChange}
+                        InputProps={{ sx: inputStyle }}
+                        required
+                    />
+                    <TextField
+                        label="Bairro"
+                        value={formik.values.district}
+                        name="district"
+                        onChange={formik.handleChange}
+                        InputProps={{ sx: inputStyle }}
+                        required
+                    />
+                    <TextField
+                        label="Complement (opcional)"
+                        value={formik.values.complement}
+                        name="complement"
+                        onChange={formik.handleChange}
+                        InputProps={{ sx: inputStyle }}
+                    />
+                    <TextField
                         label="Cidade"
                         value={formik.values.city}
                         name="city"
+                        onChange={formik.handleChange}
+                        InputProps={{ sx: inputStyle }}
+                        required
+                    />
+                    <TextField
+                        label="Estado"
+                        value={formik.values.state}
+                        name="state"
                         onChange={formik.handleChange}
                         InputProps={{ sx: inputStyle }}
                         required
