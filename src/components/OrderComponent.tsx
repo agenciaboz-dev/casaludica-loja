@@ -3,6 +3,7 @@ import { Box } from "@mui/material"
 import { Order } from "boz.pay.component"
 import { CurrencyText } from "./CurrencyText"
 import { Product } from "./Checkout/Product"
+import { PendingPayment } from "./PendingPayment"
 
 interface OrderComponentProps {
     order: Order
@@ -32,6 +33,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
 
     return (
         <Box sx={{ flexDirection: "column", padding: "5vw" }}>
+            {order.status == "PENDING" && <PendingPayment orderId={order.id.toString()} />}
             <DataText title="Id: " value={order.referenceId} />
             <DataText title="Status: " value={order.status} />
             <DataText title="Data: " value={new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")} />
