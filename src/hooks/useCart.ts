@@ -36,11 +36,15 @@ export const useCart = () => {
         setTimeout(() => cartContext.setOpen(true), 300)
     }
 
+    const reset = () => {
+        cartContext.setValue({ ...cart, products: [] })
+    }
+
     useEffect(() => {
         let sum = 0
         cart.products?.map((product) => (sum += product.price * product.quantity))
         setTotal(sum)
     }, [cart.products])
 
-    return { products: cart.products, total, remove, quantity, add, open: cartContext.open, setOpen: cartContext.setOpen }
+    return { products: cart.products, total, remove, quantity, add, open: cartContext.open, setOpen: cartContext.setOpen, reset }
 }

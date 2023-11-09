@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios"
-import { api } from "../api"
+import { api, bozpayApi } from "../api"
 import { useFranchise } from "./useFranchise"
 
 interface ApiOptions {
@@ -92,6 +92,13 @@ export const useApi = () => {
         order: {
             new: (options: ApiOptions) => {
                 api.post("/order/new", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+            get: (store: string, referenceId: string, options: ApiOptions) => {
+                bozpayApi
+                    .post("/order", { store, referenceId })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))

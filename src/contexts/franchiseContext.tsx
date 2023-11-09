@@ -3,6 +3,7 @@ import React from "react"
 
 interface FranchiseContextValue {
     franchise: number
+    bozpayStoreIdentifier: string
 }
 
 interface FranchiseProviderProps {
@@ -15,6 +16,7 @@ export default FranchiseContext
 
 export const FranchiseProvider: React.FC<FranchiseProviderProps> = ({ children }) => {
     const [franchise, setFranchise] = useState(1)
+    const bozpayStoreIdentifier = `casaludica.mkt-${franchise}`
 
-    return <FranchiseContext.Provider value={{ franchise }}>{children}</FranchiseContext.Provider>
+    return <FranchiseContext.Provider value={{ franchise, bozpayStoreIdentifier }}>{children}</FranchiseContext.Provider>
 }

@@ -3,7 +3,7 @@ import FranchiseContext from "../contexts/franchiseContext"
 
 export const useFranchise = () => {
     const franchiseContext = useContext(FranchiseContext)
-    const { franchise } = franchiseContext
+    const {} = franchiseContext
 
-    return { franchise }
+    return { ...franchiseContext }
 }

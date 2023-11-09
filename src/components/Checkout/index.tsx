@@ -62,7 +62,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 complement: values.complement,
                 cpf: values.cpf,
 
-                products: cart.products,
+                products: cart.products.map((item) => ({ ...item, cover: "" })),
                 total: cart.total,
                 storeId: franchise,
             }
