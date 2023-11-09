@@ -34,6 +34,7 @@ export const Header = () => {
                     width: "100%",
                     alignItems: "center",
                     justifyContent: "space-between",
+                    paddingTop: "5vw",
                 }}
             >
                 <IconButton
