@@ -6,6 +6,7 @@ import BrokenImageIcon from "@mui/icons-material/BrokenImage"
 import { useNavigate } from "react-router-dom"
 import { useColors } from "../../../hooks/useColors"
 import { sentenceCase } from "change-case"
+import CategoryIcon from "@mui/icons-material/Category"
 
 interface CategoriesProps {}
 
@@ -47,9 +48,10 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             overflowX: "hidden",
                         }}
                     >
-                        <Avatar src={`/${category.id}`} variant={"rounded"} sx={{ bgcolor: colors.primary, borderRadius: "5vw" }}>
+                        {/* <Avatar src={`/${category.id}`} variant={"rounded"} sx={{ bgcolor: colors.primary, borderRadius: "5vw" }}>
                             <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
-                        </Avatar>
+                        </Avatar> */}
+                        <CategoryIcon />
                         <p style={{ fontSize: "4vw", wordBreak: "break-all" }}>{sentenceCase(category.name)}</p>
                     </Box>
                 ))}
