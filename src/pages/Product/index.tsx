@@ -104,11 +104,17 @@ export const Product: React.FC<ProductProps> = ({}) => {
                     </Paper>
 
                     <Paper className="galery">
-                        <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000}>
-                            {galery.map((image) => (
-                                <img key={galery.indexOf(image)} src={"data:image/jpeg;base64," + image} alt="" />
-                            ))}
-                        </Carousel>
+                        {!!galery.length ? (
+                            <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000}>
+                                {galery.map((image, index) => (
+                                    <Box key={index}>
+                                        <img src={"data:image/jpeg;base64," + image} alt="" />
+                                    </Box>
+                                ))}
+                            </Carousel>
+                        ) : (
+                            <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "90vw" }} />
+                        )}
                     </Paper>
 
                     <p className="description" style={{ color: colors.primary, textAlign: "center", fontSize: "4vw" }}>
