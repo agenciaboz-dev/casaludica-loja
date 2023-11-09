@@ -130,6 +130,7 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         multiline
                         minRows={3}
                     />
+                    <button type="submit" style={{ display: "none" }}></button>
                 </Paper>
             </form>
         </Box>
