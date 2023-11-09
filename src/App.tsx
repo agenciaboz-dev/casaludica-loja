@@ -1,18 +1,15 @@
 import React from 'react';
 import './sass/_all.scss';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { BrowserRouter } from "react-router-dom"
 import { ThemeProvider } from "@mui/material";
 import { useMuiTheme } from './hooks/useMuiTheme';
 import { CartProvider } from './contexts/cartContext';
-import { ProductsProvider } from './contexts/productsContext';
-import { Results } from './pages/Results';
+import { ProductsProvider } from "./contexts/productsContext"
 import { LoadingProvider } from './contexts/loadingContext';
-import { CategoriesProvider } from './contexts/categoriesContext';
-import { Product } from "./pages/Product"
-import { Checkout } from "./components/Checkout"
+import { CategoriesProvider } from "./contexts/categoriesContext"
 import { FranchiseProvider } from "./contexts/franchiseContext"
 import { Snackbar, SnackbarProvider } from "burgos-snackbar"
+import { Routes } from "./routes"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -27,14 +24,7 @@ function App() {
                                 <CartProvider>
                                     <BrowserRouter>
                                         <Snackbar />
-                                        <Routes>
-                                            <Route index element={<Home />} />
-                                            <Route path="/search" element={<Results />} />
-                                            <Route path="/search/:type" element={<Results />} />
-                                            <Route path="/search/:type/:value" element={<Results />} />
-                                            <Route path="/product/:id" element={<Product />} />
-                                            <Route path="/checkout" element={<Checkout />} />
-                                        </Routes>
+                                        <Routes />
                                     </BrowserRouter>
                                 </CartProvider>
                             </ProductsProvider>
