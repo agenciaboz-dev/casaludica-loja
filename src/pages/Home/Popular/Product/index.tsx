@@ -1,12 +1,11 @@
 import { Avatar, IconButton, Box, Skeleton } from "@mui/material"
-import React, { useEffect, useRef, useState } from "react"
+import React from "react"
 import { useNavigate } from "react-router-dom"
 import { CurrencyText } from "../../../../components/CurrencyText"
 import { useCart } from "../../../../hooks/useCart"
 import { useColors } from "../../../../hooks/useColors"
 import { ReactComponent as CartIcon } from "../../../../images/cart.svg"
-import { useApi } from "../../../../hooks/useApi"
-import { useProducts } from "../../../../hooks/useProducts"
+import { useDynamicImage } from "../../../../hooks/useDynamicImage"
 
 interface ProductProps {
     product: Product
@@ -16,47 +15,8 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     const cart = useCart()
     const colors = useColors()
     const navigate = useNavigate()
-    const api = useApi()
 
-    const { add: updateProduct } = useProducts()
-
-    const productRef = useRef(null)
-
-    const handleProductVisible = () => {
-        api.images(product.id, true).then((image) => {
-            updateProduct({ ...product, cover: image })
-            product.cover = image
-        })
-    }
-
-    useEffect(() => {
-        if (!product.cover) {
-            const observer = new IntersectionObserver(
-                async (entries) => {
-                    const [entry] = entries
-                    if (entry.isIntersecting) {
-                        // The product is now in the viewport, fetch the image
-                        handleProductVisible()
-                        observer.unobserve(entry.target) // Stop observing since image is fetched
-                    }
-                },
-                {
-                    root: null, // Use the viewport as the root
-                    threshold: 0.1, // 10% of the product should be visible
-                }
-            )
-
-            if (productRef.current) {
-                observer.observe(productRef.current)
-            }
-
-            return () => {
-                if (productRef.current) {
-                    observer.unobserve(productRef.current)
-                }
-            }
-        }
-    }, [product, productRef])
+    const productRef = useDynamicImage(product)
 
     return (
         <Box
