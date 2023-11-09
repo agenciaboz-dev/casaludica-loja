@@ -40,14 +40,14 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
         >
             {product.cover ? (
                 <>
-                    <h1>{sentenceCase(product.name, { locale: "pt-br" })}</h1>
+                    <h2 style={{ textAlign: "center" }}>{sentenceCase(product.name, { locale: "pt-br" })}</h2>
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
                         sx={{ width: "50vw", height: "auto", borderRadius: "5vw" }}
                     />
-                    <h3>{product.resume}</h3>
-                    <p>{product.description}</p>
+                    <h3 style={{ textAlign: "center" }}>{product.resume}</h3>
+                    <p style={{ textAlign: "center" }}>{product.description}</p>
                     <ButtonComponent onClick={() => cart.add(product)}>Quero esse</ButtonComponent>
                 </>
             ) : (
