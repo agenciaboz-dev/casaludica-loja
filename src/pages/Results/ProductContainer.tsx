@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Avatar, Box, Skeleton } from "@mui/material"
+import { Avatar, Box, Skeleton, Paper, Grid } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { ButtonComponent } from "../../components/ButtonComponent"
 import { useCart } from "../../hooks/useCart"
@@ -40,18 +40,39 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
         >
             {product.cover ? (
                 <>
-                    <h2 style={{ textAlign: "center" }}>{sentenceCase(product.name, { locale: "pt-br" })}</h2>
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
-                        sx={{ width: "50vw", height: "auto", borderRadius: "5vw" }}
+                        sx={{ width: "37vw", height: "auto", borderRadius: "5vw" }}
                     />
-                    <h3 style={{ textAlign: "center" }}>{product.resume}</h3>
-                    <p style={{ textAlign: "center" }}>{product.description}</p>
+                    <h4
+                        style={{
+                            textAlign: "center",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            width: "40vw",
+                        }}
+                    >
+                        {product.resume}
+                    </h4>
+                    <h2
+                        style={{
+                            textAlign: "center",
+                            fontSize: "4vw",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            width: "40vw",
+                            color: "#363775",
+                        }}
+                    >
+                        R${product.price}
+                    </h2>
                     <ButtonComponent onClick={() => cart.add(product)}>Quero esse</ButtonComponent>
                 </>
             ) : (
-                <Box sx={{ flexDirection: "column", gap: "2vw", width: "100%", alignItems: "center" }}>
+                <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
                     <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
                     <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                     <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />

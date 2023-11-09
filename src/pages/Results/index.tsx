@@ -1,4 +1,4 @@
-import { Avatar, Button, Skeleton, Box } from "@mui/material"
+import { Avatar, Button, Skeleton, Box, Grid } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Background } from "../../components/Background"
@@ -99,22 +99,84 @@ export const Results: React.FC<ResultsProps> = ({}) => {
             </h3>
 
             {loading ? (
-                <Box className="skeletons-container" sx={{ flexDirection: "column", gap: "3vw", alignItems: "center" }}>
-                    <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                </Box>
+                <Grid container spacing={4}>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                            <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                            <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        </Box>
+                    </Grid>
+                </Grid>
             ) : (
-                products.map((product: Product) => <ProductContainer key={product.id} product={product} />)
+                <Grid container spacing={2}>
+                    {products.map((product: Product) => (
+                        <Grid item key={product.id} xs={6} sm={6} md={6} lg={6} xl={6}>
+                            <ProductContainer key={product.id} product={product} />
+                        </Grid>
+                    ))}
+                </Grid>
             )}
 
-            {!loading && products.length == 0 && <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>}
+            {!loading && products.length == 0 && (
+                <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>
+            )}
 
             <Footer />
         </Box>
