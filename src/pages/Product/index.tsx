@@ -15,6 +15,7 @@ import { useColors } from "../../hooks/useColors"
 import Button from "@mui/material/Button"
 import { useCart } from "../../hooks/useCart"
 import { ButtonComponent } from "../../components/ButtonComponent"
+import { ProductContainer } from "../Results/ProductContainer"
 
 interface ProductProps {}
 interface DataTextProps {
@@ -52,14 +53,13 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const colors = useColors()
     const cart = useCart()
 
-    
     const [product, setProduct] = useState<Product>()
     const [category, setCategory] = useState<Category>()
     const [galery, setGalery] = useState<string[]>([])
     const [quantity, setQuantity] = useState(1)
     const [fullDescription, setFullDescription] = useState(false)
 
-    const similarProducts = products.filter((item) => item.category == product?.category)
+    const similarProducts = products.filter((item) => item.category == product?.category && item.id != product?.id)
 
     const onCategoryClick = () => {
         navigate(`/search/category/${category?.id}`)
@@ -92,7 +92,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
         } else {
             setProduct(products.find((product) => product.id == id))
         }
-    }, [])
+    }, [id])
+
     return (
         <Box
             className="Product-Page"
@@ -101,7 +102,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 flexDirection: "column",
                 gap: "5vw",
                 padding: "0 5vw",
-                paddingBottom: "10vw",
+                paddingBottom: "5vw",
             }}
         >
             <Background />
@@ -234,7 +235,15 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         />
                     </Box>
                     <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>Adicionar ao carrinho</ButtonComponent>
-                    <Box sx={{ gap: "5vw" }}>oi</Box>
+
+                    <Box color="primary.main">
+                        <h3>Produtos similares ({similarProducts.length})</h3>
+                    </Box>
+                    <Box sx={{ gap: "5vw", width: "100vw", overflowX: "auto", marginLeft: "-5vw", padding: "0 5vw" }}>
+                        {similarProducts.map((item) => (
+                            <ProductContainer key={item.id} product={item} />
+                        ))}
+                    </Box>
                 </>
             )}
         </Box>
