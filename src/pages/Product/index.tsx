@@ -166,7 +166,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             <DataText title="Altura" value={`${product.height} cm`} />
                             <DataText title="Comprimento" value={`${product.lenght} cm`} />
                             <DataText title="Peso" value={`${product.weight} kg`} />
-                            <DataText title="Classificação" value={`anos`} />
+                            <DataText title="Classificação" value={`${product.ageRating}`} />
                         </Box>
                     </Box>
 
