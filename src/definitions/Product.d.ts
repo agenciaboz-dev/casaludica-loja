@@ -9,6 +9,8 @@ declare interface Product {
     resume?: string
     featured?: Boolean
     price: number
+    sold: number
+
     stock?: number
     category?: number
     categories?: Category
@@ -17,5 +19,5 @@ declare interface Product {
     width?: number
     height?: number
     lenght?: number
-    sold: number
+    ageRating?: string
 }
