@@ -209,6 +209,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     backgroundColor: colors.background_secondary,
                                     border: `1px solid ${colors.primary}`,
                                     borderRadius: "1vw",
+                                    width: "10vw",
                                 }}
                             >
                                 <p>{quantity}</p>
