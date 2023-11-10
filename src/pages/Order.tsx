@@ -46,7 +46,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
             <Header />
             <SearchField />
 
-            <h2 style={{ color: "white", fontSize: "2rem" }}>Seu pedido</h2>
+            <h2 style={{ color: "white", fontSize: "2rem" }}>Seu pedido: #{order?.referenceId}</h2>
 
             {order ? (
                 <OrderComponent order={order} />
