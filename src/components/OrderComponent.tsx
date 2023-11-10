@@ -68,12 +68,11 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                 <DataText title="Total: " value={<RealText value={order.total} />} />
             </Box>
             <Box sx={{ flexDirection: "column", gap: "4vw" }}>
-                <p style={{ fontFamily: "BowlbyOneSC", color: "#363775", fontSize: "1.3rem" }}>
-                    Produtos ({order.products.length})
-                </p>
+                <p style={{ fontFamily: "BowlbyOneSC", color: "#363775", fontSize: "1.3rem" }}>Produtos ({order.products.length})</p>
                 <Box
                     sx={{
                         flexDirection: "column",
+                        alignItems: "flex-start",
                         gap: "1vw",
                         padding: "3vw",
                         boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
@@ -82,11 +81,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                 >
                     {order.products.map((item) => (
                         // é o mesmo componente usado no checkout, cuidado ao editar
-                        <Product
-                            key={item.id}
-                            product={{ ...item, cover: "", sold: 0, id: Number(item.referenceId) }}
-                            hideCloseButton
-                        />
+                        <Product key={item.id} product={{ ...item, cover: "", sold: 0, id: Number(item.referenceId) }} hideCloseButton />
                     ))}
                 </Box>
             </Box>
