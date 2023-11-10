@@ -98,7 +98,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                 Resultados da pesquisa: {!!products.length && `(${products.length})`}
             </h3>
 
-            {loading ? (
+            {/* {loading ? (
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                         <Box
@@ -209,15 +209,15 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                         </Box>
                     </Grid>
                 </Grid>
-            ) : (
-                <Grid container spacing={2}>
-                    {products.map((product: Product) => (
-                        <Grid item key={product.id} xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <ProductContainer key={product.id} product={product} />
-                        </Grid>
-                    ))}
-                </Grid>
-            )}
+            ) : ( */}
+            <Grid container spacing={2}>
+                {products.map((product: Product) => (
+                    <Grid item key={product.id} xs={12} sm={12} md={12} lg={12} xl={12}>
+                        <ProductContainer key={product.id} product={product} />
+                    </Grid>
+                ))}
+            </Grid>
+            {/* )} */}
 
             {!loading && products.length == 0 && (
                 <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>
