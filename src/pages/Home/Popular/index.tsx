@@ -12,20 +12,23 @@ export const Popular: React.FC<PopularProps> = ({}) => {
     const api = useApi()
     const colors = useColors()
     const { products } = useProducts()
+    const [popular, setPopular] = useState(products)
 
-    useEffect(() => {}, [])
+    useEffect(() => {
+        console.log({ popular })
+    }, [popular])
+
+    useEffect(() => {
+        setPopular(products.sort((a, b) => b.sold - a.sold).slice(0, 5))
+    }, [products])
 
     return (
         <Box className="Popular-Component" sx={{ width: " 100%", flexDirection: "column", color: colors.primary, gap: "1vw" }}>
             <h3 style={{ fontSize: "4vw" }}>Mais curtidos pela galerinha</h3>
             <Box className="products-container" sx={{ width: "100vw", marginLeft: "-5vw", padding: "1vw 5vw", gap: "2vw", overflowX: "auto" }}>
-                {products
-                    .sort((a, b) => a.id - b.id)
-                    .sort((a, b) => b.sold - a.sold)
-                    .slice(0, 5)
-                    .map((product) => (
-                        <Container key={product.id} product={product} />
-                    ))}
+                {popular.map((product) => (
+                    <Container key={product.id} product={product} />
+                ))}
                 {products.length == 0 && (
                     <>
                         <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
