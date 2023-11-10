@@ -63,11 +63,11 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                         variant="square"
                         sx={{ width: "40vw", height: "auto", borderRadius: "5vw" }}
                     />
-                    <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
+                    <Box sx={{ flexDirection: "column", alignItems: "center", gap: "2vw" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
                             <h4
                                 style={{
-                                    textAlign: "center",
+                                    textAlign: "start",
                                     textOverflow: "ellipsis",
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
@@ -78,21 +78,23 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                             </h4>
                             <p
                                 style={{
-                                    textAlign: "center",
-                                    textOverflow: "ellipsis",
-                                    flexWrap: "wrap",
+                                    textAlign: "start",
                                     overflow: "hidden",
                                     width: "40vw",
-                                    maxHeight: "12vw",
+                                    maxHeight: "13vw",
                                     textTransform: "lowercase",
+                                    display: "-webkit-box",
+                                    WebkitBoxOrient: "vertical",
+                                    WebkitLineClamp: 3, // Defina o número máximo de linhas que deseja exibir
+                                    whiteSpace: "normal",
                                 }}
                             >
-                                {product.resume}
+                                {product.description}
                             </p>
                             <h2
                                 style={{
-                                    textAlign: "center",
-                                    fontSize: "4vw",
+                                    textAlign: "start",
+                                    fontSize: "5vw",
                                     textOverflow: "ellipsis",
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
@@ -107,7 +109,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                             onClick={() => cart.add(product)}
                             sx={{
                                 ...button_Style,
-                                width: "80%",
+                                width: "100%",
                                 backgroundColor: "#34A853",
                             }}
                         >
@@ -120,6 +122,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
 
                     <Box sx={{ width: "45%", flexDirection: "column", gap: "2vw" }}>
+                        <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                         <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                         <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                         <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
