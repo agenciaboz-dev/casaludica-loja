@@ -20,6 +20,10 @@ export const CategoriesProvider:React.FC<CategoriesProviderProps> = ({children})
     const api = useApi()
 
     useEffect(() => {
+        console.log({ categories: value })
+    }, [value])
+
+    useEffect(() => {
         api.categories.get((response: { data:Category[] }) => setValue(response.data))
     }, [])
 
