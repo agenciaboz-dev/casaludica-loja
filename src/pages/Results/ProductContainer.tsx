@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Avatar, Box, Skeleton, Paper, Grid } from "@mui/material"
+import { Avatar, Box, Skeleton, Paper, Grid, Button } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { ButtonComponent } from "../../components/ButtonComponent"
 import { useCart } from "../../hooks/useCart"
@@ -19,7 +19,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
     const productRef = useDynamicImage(product)
 
     const skeleton_style = {
-        height: "10vw",
+        height: "8vw",
         width: "100%",
     }
 
@@ -28,14 +28,29 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
         width: "40vw",
         borderRadius: "5vw",
     }
+    const button_Style = {
+        borderRadius: "20vw",
+        border: "none",
+        color: "white",
+
+        justifyContent: "center",
+        alignItems: "center",
+        fontFamily: "BowlbyOneSC",
+    }
 
     return (
         <Box
             className="results-container"
-            style={{ flexDirection: "column", alignItems: "center" }}
+            style={{
+                flexDirection: "row",
+                alignItems: "center",
+                width: "100%",
+                gap: "2vw",
+                justifyContent: "space-around",
+            }}
             key={product.id}
             onClick={() => navigate(`/product/${product.id}`)}
-            sx={{ marginBottom: "10vw" }}
+            sx={{ marginBottom: "8vw" }}
             ref={productRef}
         >
             {product.cover ? (
@@ -43,40 +58,57 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
-                        sx={{ width: "37vw", height: "auto", borderRadius: "5vw" }}
+                        sx={{ width: "40vw", height: "auto", borderRadius: "5vw" }}
                     />
-                    <h4
-                        style={{
-                            textAlign: "center",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            width: "40vw",
-                        }}
-                    >
-                        {product.resume}
-                    </h4>
-                    <h2
-                        style={{
-                            textAlign: "center",
-                            fontSize: "4vw",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            width: "40vw",
-                            color: "#363775",
-                        }}
-                    >
-                        R${product.price}
-                    </h2>
-                    <ButtonComponent onClick={() => cart.add(product)}>Quero esse</ButtonComponent>
+                    <Box sx={{ flexDirection: "column", alignItems: "center", gap: "3vw" }}>
+                        <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
+                            <h4
+                                style={{
+                                    textAlign: "center",
+                                    textOverflow: "ellipsis",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    width: "40vw",
+                                }}
+                            >
+                                {product.name}
+                            </h4>
+                            <h2
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: "5vw",
+                                    textOverflow: "ellipsis",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    width: "40vw",
+                                    color: "#363775",
+                                }}
+                            >
+                                R${product.price}
+                            </h2>
+                        </Box>
+                        <Button
+                            onClick={() => cart.add(product)}
+                            sx={{
+                                ...button_Style,
+                                width: "80%",
+                                backgroundColor: "#34A853",
+                            }}
+                        >
+                            Quero esse
+                        </Button>
+                    </Box>
                 </>
             ) : (
-                <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%", alignItems: "center" }}>
+                <>
                     <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                    <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                </Box>
+
+                    <Box sx={{ width: "45%", flexDirection: "column", gap: "2vw" }}>
+                        <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                        <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                    </Box>
+                </>
             )}
         </Box>
     )

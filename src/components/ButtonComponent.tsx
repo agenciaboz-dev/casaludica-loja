@@ -13,7 +13,7 @@ export const ButtonComponent: React.FC<ButtonProps> = (props) => {
     }
 
     return (
-        <Button {...props} variant="contained" color="success" sx={style}>
+        <Button {...props} variant="contained" color="success" sx={{ ...style }}>
             {props.children}
         </Button>
     )
