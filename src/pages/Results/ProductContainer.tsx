@@ -45,12 +45,15 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                 flexDirection: "row",
                 alignItems: "center",
                 width: "100%",
-                gap: "2vw",
+                gap: "3vw",
                 justifyContent: "space-around",
+                borderRadius: "5vw",
+                padding: "4vw",
+                boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
             }}
             key={product.id}
             onClick={() => navigate(`/product/${product.id}`)}
-            sx={{ marginBottom: "8vw" }}
+            sx={{ marginBottom: "1vw" }}
             ref={productRef}
         >
             {product.cover ? (
@@ -60,7 +63,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                         variant="square"
                         sx={{ width: "40vw", height: "auto", borderRadius: "5vw" }}
                     />
-                    <Box sx={{ flexDirection: "column", alignItems: "center", gap: "3vw" }}>
+                    <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
                             <h4
                                 style={{
@@ -73,10 +76,23 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                             >
                                 {product.name}
                             </h4>
+                            <p
+                                style={{
+                                    textAlign: "center",
+                                    textOverflow: "ellipsis",
+                                    flexWrap: "wrap",
+                                    overflow: "hidden",
+                                    width: "40vw",
+                                    maxHeight: "12vw",
+                                    textTransform: "lowercase",
+                                }}
+                            >
+                                {product.resume}
+                            </p>
                             <h2
                                 style={{
                                     textAlign: "center",
-                                    fontSize: "5vw",
+                                    fontSize: "4vw",
                                     textOverflow: "ellipsis",
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
