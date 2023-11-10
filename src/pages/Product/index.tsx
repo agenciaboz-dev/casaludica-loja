@@ -71,7 +71,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
     useEffect(() => {
         if (product.id) {
-            setCategory(product?.categories)
+            setCategory(categories.find((category) => category.id == product.category))
             setLoading(false)
             api.images(product.id).then((images) => {
                 const imagesList = images.split(",")
@@ -114,16 +114,37 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 </>
             ) : (
                 <>
-                    <Box className="navigation" sx={{ gap: "2vw", color: "white" }}>
-                        <h3 className="link" style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+                    <Box sx={{ gap: "2vw", color: "white", fontSize: "0.75rem" }}>
+                        <h3 style={{ fontFamily: "Poppins", cursor: "pointer" }} onClick={() => navigate("/")}>
                             Início
                         </h3>
-                        <h3>/</h3>
-                        <h3 className="link" style={{ cursor: "pointer" }} onClick={() => onCategoryClick()}>
+                        <h3 style={{ fontFamily: "Poppins" }}>/</h3>
+                        <h3
+                            style={{
+                                fontFamily: "Poppins",
+                                cursor: "pointer",
+                                width: "auto",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                            }}
+                            onClick={() => onCategoryClick()}
+                        >
                             {category?.name}
                         </h3>
-                        <h3>/</h3>
-                        <h3 className="link">{product?.name}</h3>
+                        <h3 style={{ fontFamily: "Poppins" }}>/</h3>
+                        <h3
+                            style={{
+                                fontFamily: "Poppins",
+                                width: "auto",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                                maxWidth: "50vw",
+                            }}
+                        >
+                            {product?.name}
+                        </h3>
                     </Box>
 
                     <Paper elevation={1} className="title" sx={{ padding: "3vw 5vw" }}>
