@@ -6,7 +6,7 @@ import { SearchField } from "../../components/SearchField"
 import { useApi } from "../../hooks/useApi"
 import { useCategories } from "../../hooks/useCategories"
 import { useProducts } from "../../hooks/useProducts"
-import { Skeleton, Paper, IconButton, Box, Accordion, AccordionSummary, AccordionDetails, AlertColor } from "@mui/material"
+import { Skeleton, Paper, IconButton, Box, AlertColor } from "@mui/material"
 //import "./style.scss"
 import { Carousel } from "react-responsive-carousel"
 import { CurrencyText } from "../../components/CurrencyText"
@@ -15,12 +15,6 @@ import { useColors } from "../../hooks/useColors"
 import Button from "@mui/material/Button"
 import { useCart } from "../../hooks/useCart"
 import { ButtonComponent } from "../../components/ButtonComponent"
-import { styled } from "@mui/material/styles"
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp"
-import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
-import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/AccordionSummary"
-import MuiAccordionDetails from "@mui/material/AccordionDetails"
-import Typography from "@mui/material/Typography"
 
 interface ProductProps {}
 interface DataTextProps {
@@ -35,9 +29,8 @@ const DataText: React.FC<DataTextProps> = ({ title, value, color, bold }) => {
         <Box
             sx={{
                 gap: "5vw",
-                fontSize: "4vw",
+                fontSize: "1.1rem",
                 alignItems: "center",
-                padding: "1vw",
                 color: "primary.main",
                 fontFamily: "BowlbyOneSC",
                 justifyContent: "space-between",
@@ -46,9 +39,7 @@ const DataText: React.FC<DataTextProps> = ({ title, value, color, bold }) => {
             }}
         >
             {title}
-            <Box sx={{ textAlign: "flex-end", fontSize: "1rem", color: `${color}.main`, fontWeight: bold ? "bold" : "" }}>
-                {value}
-            </Box>
+            <Box sx={{ textAlign: "flex-end", fontSize: "1rem", color: `${color}.main`, fontWeight: bold ? "bold" : "" }}>{value}</Box>
         </Box>
     )
 }
@@ -66,57 +57,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const [galery, setGalery] = useState<string[]>([])
     const [loading, setLoading] = useState(true)
     const [quantity, setQuantity] = useState(1)
-    const [expanded, setExpanded] = React.useState<string | false>("")
-
-    const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-        setExpanded(newExpanded ? panel : false)
-    }
-
-    const scroll_bar = {
-        "::-webkit-scrollbar": {
-            width: "0.7vw",
-        },
-
-        "::-webkit-scrollbar-thumb": {
-            backgroundColor: "#363775" /* Cor de fundo do polegar */,
-            borderRadius: "5px" /* Raio de borda do polegar */,
-        },
-
-        /* Mudar a cor do polegar quando estiver em estado hover */
-        "::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "#363775",
-        },
-    }
-
-    const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters elevation={0} square {...props} />)(
-        ({ theme }) => ({
-            border: `0px solid ${theme.palette.divider}`,
-            "&:not(:last-child)": {
-                borderBottom: 0,
-            },
-            "&:before": {
-                display: "none",
-                width: "100%",
-            },
-        })
-    )
-
-    const AccordionSummary = styled((props: AccordionSummaryProps) => (
-        <MuiAccordionSummary
-            expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} color={"primary"} />}
-            {...props}
-        />
-    ))(({ theme }) => ({
-        borderRadius: "5vw",
-        backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, .05)" : "rgba(0, 0, 0, .03)",
-        flexDirection: "row-reverse",
-        "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-            transform: "rotate(90deg)",
-        },
-        "& .MuiAccordionSummary-content": {
-            marginLeft: theme.spacing(1),
-        },
-    }))
+    const [fullDescription, setFullDescription] = useState(false)
 
     const onCategoryClick = () => {
         navigate(`/search/category/${category?.id}`)
@@ -202,61 +143,35 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "90vw" }} />
                         )}
                     </Paper>
-                    <Box sx={{ flexDirection: "column", gap: "1vw", width: "100%" }}>
-                        <Accordion
-                            expanded={expanded === "description"}
-                            onChange={handleChange("description")}
-                            sx={{ flexDirection: "column" }}
+                    <Box sx={{ flexDirection: "column", width: "100%" }}>
+                        <Box
+                            sx={{
+                                flexDirection: "column",
+                                color: "primary.main",
+                                height: fullDescription ? "auto" : "30vw",
+                                overflow: "hidden",
+                            }}
+                            onClick={() => setFullDescription(!fullDescription)}
                         >
-                            <AccordionSummary aria-controls="description" id="description-header">
-                                <Typography>
-                                    <p style={{ fontFamily: "BowlbyOneSC", color: "#363775" }}>Descrição</p>
-                                </Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    <p
-                                        style={{
-                                            color: colors.primary,
-                                            textAlign: "justify",
-                                            textTransform: "lowercase",
-                                            fontSize: "4vw",
-                                        }}
-                                    >
-                                        {product.description}
-                                    </p>
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion
-                            expanded={expanded === "info"}
-                            onChange={handleChange("info")}
-                            sx={{ flexDirection: "column", justifyContent: "space-between", width: "100%" }}
-                        >
-                            <AccordionSummary aria-controls="info" id="info-header">
-                                <Typography>
-                                    <p style={{ fontFamily: "BowlbyOneSC", color: "#363775" }}>Informações Técnicas</p>
-                                </Typography>
-                            </AccordionSummary>
-                            <AccordionDetails sx={{}}>
-                                <Box className={"opa"} sx={{ flexDirection: "column", width: "100%" }}>
-                                    <DataText title="Id" value={product.id} />
-                                    <DataText
-                                        title="Dimensões"
-                                        value={`${product.width} x ${product.lenght} x ${product.height}`}
-                                    />
-                                    <DataText title="Peso" value={`${product.weight} kg`} />
-                                    <DataText title="Classificação" value={`anos`} />
-                                </Box>
-                            </AccordionDetails>
-                        </Accordion>
+                            <DataText title="Desrição" value="" />
+                            <p style={{ textAlign: "justify" }}>{product.description}</p>
+                        </Box>
+
+                        <Button sx={{ fontSize: "1.1rem" }} onClick={() => setFullDescription(!fullDescription)}>
+                            {fullDescription ? "encurtar" : "Ver tudo"}
+                        </Button>
+
+                        <Box sx={{ flexDirection: "column", width: "100%" }}>
+                            <DataText title="Largura" value={`${product.width} cm`} />
+                            <DataText title="Altura" value={`${product.height} cm`} />
+                            <DataText title="Comprimento" value={`${product.lenght} cm`} />
+                            <DataText title="Peso" value={`${product.weight} kg`} />
+                            <DataText title="Classificação" value={`anos`} />
+                        </Box>
                     </Box>
 
                     <Box className="numbers">
-                        <Box
-                            className="quantity-container"
-                            sx={{ alignItems: "center", width: "50vw", justifyContent: "space-between" }}
-                        >
+                        <Box className="quantity-container" sx={{ alignItems: "center", width: "50vw", justifyContent: "space-between" }}>
                             <IconButton onClick={() => changeQuantity(-1)}>
                                 <ArrowIcon />
                             </IconButton>
@@ -295,9 +210,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             }}
                         />
                     </Box>
-                    <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>
-                        Adicionar ao carrinho
-                    </ButtonComponent>
+                    <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>Adicionar ao carrinho</ButtonComponent>
                 </>
             )}
         </Box>
