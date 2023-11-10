@@ -52,12 +52,14 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const colors = useColors()
     const cart = useCart()
 
-    const [product, setProduct] = useState<Product>({} as Product)
+    
+    const [product, setProduct] = useState<Product>()
     const [category, setCategory] = useState<Category>()
     const [galery, setGalery] = useState<string[]>([])
-    const [loading, setLoading] = useState(true)
     const [quantity, setQuantity] = useState(1)
     const [fullDescription, setFullDescription] = useState(false)
+
+    const similarProducts = products.filter((item) => item.category == product?.category)
 
     const onCategoryClick = () => {
         navigate(`/search/category/${category?.id}`)
@@ -70,9 +72,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
     }
 
     useEffect(() => {
-        if (product.id) {
+        if (product?.id) {
             setCategory(categories.find((category) => category.id == product.category))
-            setLoading(false)
             api.images(product.id).then((images) => {
                 const imagesList = images.split(",")
                 console.log(imagesList)
@@ -83,14 +84,13 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
     useEffect(() => {
         if (products.length == 0) {
-            api.products.id({
-                data: { id },
+            api.products.id(id, {
                 callback: (response: { data: Product }) => {
                     setProduct(response.data)
                 },
             })
         } else {
-            setProduct(products.filter((product) => product.id == id)[0])
+            setProduct(products.find((product) => product.id == id))
         }
     }, [])
     return (
@@ -108,9 +108,10 @@ export const Product: React.FC<ProductProps> = ({}) => {
             <Header />
             <SearchField />
 
-            {loading ? (
+            {!product ? (
                 <>
                     <Skeleton variant="rounded" sx={{ width: "100%", height: "10vw" }} animation="wave" />
+                    Buscando produto
                 </>
             ) : (
                 <>
@@ -233,6 +234,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         />
                     </Box>
                     <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>Adicionar ao carrinho</ButtonComponent>
+                    <Box sx={{ gap: "5vw" }}>oi</Box>
                 </>
             )}
         </Box>

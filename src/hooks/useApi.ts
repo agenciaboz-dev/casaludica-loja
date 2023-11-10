@@ -61,8 +61,8 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
-            id: (options: ApiOptions) => {
-                api.post("/products/id", options.data)
+            id: (id: number, options: ApiOptions) => {
+                api.post("/products/id", { id, franchise })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
