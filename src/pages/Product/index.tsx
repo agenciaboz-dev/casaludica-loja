@@ -76,7 +76,6 @@ export const Product: React.FC<ProductProps> = ({}) => {
             setCategory(categories.find((category) => category.id == product.category))
             api.images(product.id).then((images) => {
                 const imagesList = images.split(",")
-                console.log(imagesList)
                 setGalery(imagesList)
             })
         }

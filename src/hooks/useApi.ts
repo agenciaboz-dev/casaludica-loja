@@ -81,6 +81,18 @@ export const useApi = () => {
                     })
             },
         },
+        collections: {
+            get: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
+                // setLoading(true)
+                api.get("/collections")
+                    .then((response) => callback(response))
+                    .catch((error) => errorCallback(error))
+                    .finally(() => {
+                        // setLoading(false)
+                        finallyCallback()
+                    })
+            },
+        },
         cep: {
             get: (options: ApiOptions) => {
                 api.post("/cep", options.data)

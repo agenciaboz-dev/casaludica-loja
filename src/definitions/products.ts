@@ -4,9 +4,3 @@ export interface Promotion {
     subtitle: string
 }
 
-export interface Collection {
-    id: number
-    name: string
-    categories: number[]
-    icon: any
-}
