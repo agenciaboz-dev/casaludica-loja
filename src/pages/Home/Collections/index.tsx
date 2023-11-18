@@ -1,9 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom"
-import { useApi } from "../../../hooks/useApi"
 import { useCollections } from "../../../hooks/useCollections"
-import { useLoading } from "../../../hooks/useLoading"
-import { Box } from "@mui/material"
+import { Box, MenuItem } from "@mui/material"
 import { useColors } from "../../../hooks/useColors"
 import ToysIcon from "@mui/icons-material/Toys"
 
@@ -16,10 +14,10 @@ export const Collections = ({}) => {
 
     const Collection: React.FC<CollectionProps> = ({ collection }) => {
         return (
-            <Box style={{ flexDirection: "column", alignItems: "center" }} onClick={() => handleClick(collection)}>
+            <MenuItem style={{ flexDirection: "column", alignItems: "center" }} onClick={() => handleClick(collection)}>
                 <ToysIcon sx={{ width: "10vw" }} />
                 <p>{collection.name}</p>
-            </Box>
+            </MenuItem>
         )
     }
 
@@ -27,9 +25,7 @@ export const Collections = ({}) => {
         navigate(`/search/collection/${collection.id}`)
     }
 
-    const { setLoading } = useLoading()
     const collections = useCollections()
-    const api = useApi()
     const navigate = useNavigate()
 
     return (
@@ -44,10 +40,8 @@ export const Collections = ({}) => {
                     fontSize: "2.5vw",
                     fontWeight: "bold",
                     color: colors.primary,
-                    padding: "2vw 5vw",
                     boxShadow: " 0 1vw 2vw 0 rgba(0,0,0,0.4)",
                     overflowX: "auto",
-                    gap: "5vw",
                     textAlign: "center",
                 }}
             >
