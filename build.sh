@@ -1,10 +1,14 @@
 #!/bin/bash
 
-user="casal104"
-subdomain="public_subdomains/lojas.casaludica.com.br"
-path="/home/${user}/${subdomain}"
+ssh_profile="root@agencyboz"
+user="agenc5523"
+domain="agencyboz.com"
+subdomain="public_html"
+
+# subdomain="public_subdomains/lojas.casaludica.com.br"
+path="/home/${domain}/${subdomain}"
 
 yarn build
 echo 'Uploading build to server'
-scp -r -P 22022 build/* casaludica:${path}
-ssh -p 22022 casaludica "chown -R ${user}:${user} ${path}/*"
+scp -r build/* ${ssh_profile}:${path}
+ssh ${ssh_profile} "chown -R ${user}:${user} ${path}/*"
