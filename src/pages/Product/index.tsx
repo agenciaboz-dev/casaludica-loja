@@ -239,9 +239,11 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         <h3>Produtos similares ({similarProducts.length})</h3>
                     </Box>
                     <Box sx={{ gap: "5vw", width: "100vw", overflowX: "auto", marginLeft: "-5vw", padding: "0 5vw" }}>
-                        {similarProducts.map((item) => (
-                            <ProductContainer key={item.id} product={item} />
-                        ))}
+                        {similarProducts
+                            .sort((a, b) => a.id - b.id)
+                            .map((item) => (
+                                <ProductContainer key={item.id} product={item} />
+                            ))}
                     </Box>
                 </>
             )}
