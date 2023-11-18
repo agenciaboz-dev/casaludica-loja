@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCategories } from '../../../hooks/useCategories';
 //import './style.scss';
-import { Avatar, Box, Skeleton, alpha } from "@mui/material"
+import { Avatar, Box, MenuItem, Skeleton, alpha } from "@mui/material"
 import BrokenImageIcon from "@mui/icons-material/BrokenImage"
 import { useNavigate } from "react-router-dom"
 import { useColors } from "../../../hooks/useColors"
@@ -33,7 +33,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                 }}
             >
                 {categories.map((category) => (
-                    <Box
+                    <MenuItem
                         className="category-container"
                         key={category.id}
                         onClick={() => search(category)}
@@ -53,7 +53,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         </Avatar> */}
                         <CategoryIcon />
                         <p style={{ fontSize: "4vw", wordBreak: "break-all" }}>{sentenceCase(category.name)}</p>
-                    </Box>
+                    </MenuItem>
                 ))}
                 {categories.length == 0 && (
                     <>
