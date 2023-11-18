@@ -55,8 +55,8 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
-            collection: (options: ApiOptions) => {
-                api.post("/products/collection", { categories: options.data })
+            collection: (collectionId: number, options: ApiOptions) => {
+                api.post("/products", { collection: collectionId, franchise })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))

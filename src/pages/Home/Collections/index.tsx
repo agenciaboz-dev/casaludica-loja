@@ -24,7 +24,7 @@ export const Collections = ({}) => {
     }
 
     const handleClick = (collection: Collection) => {
-        navigate(`/search/collection/${collection.categories}`)
+        navigate(`/search/collection/${collection.id}`)
     }
 
     const { setLoading } = useLoading()

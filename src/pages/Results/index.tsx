@@ -53,9 +53,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                     }
                 )
             } else if (type == "collection") {
-                const categories = value.split(",").map((item) => Number(item))
-                api.products.collection({
-                    data: categories,
+                api.products.collection(Number(value), {
                     callback: (response: { data: Product[] }) => {
                         setProducts(response.data)
                     },
