@@ -5,7 +5,6 @@ user="agenc5523"
 domain="agencyboz.com"
 subdomain="public_html"
 
-# subdomain="public_subdomains/lojas.casaludica.com.br"
 path="/home/${domain}/${subdomain}"
 
 yarn build
