@@ -176,7 +176,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             onClick={() => setFullDescription(!fullDescription)}
                         >
                             <DataText title="Desrição" value="" />
-                            <p style={{ textAlign: "justify" }}>{product.description}</p>
+                            <pre style={{ textAlign: "start", whiteSpace: "break-spaces" }}>{product.description}</pre>
                         </Box>
 
                         <Button sx={{ fontSize: "1.1rem" }} onClick={() => setFullDescription(!fullDescription)}>
