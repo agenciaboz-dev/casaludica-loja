@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Box, Skeleton } from "@mui/material"
+import { Avatar, IconButton, Box, Skeleton, MenuItem } from "@mui/material"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { CurrencyText } from "../../../../components/CurrencyText"
@@ -19,7 +19,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     const productRef = useDynamicImage(product)
 
     return (
-        <Box
+        <MenuItem
             ref={productRef}
             className="Product-Component"
             style={{ backgroundImage: `url(data:image/jpeg;base64,${product.cover})` }}
@@ -65,6 +65,6 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             ) : (
                 <Skeleton sx={{ flexShrink: 0 }} variant="rounded" width={"35vw"} height={"45vw"} animation="wave" />
             )}
-        </Box>
+        </MenuItem>
     )
 }
