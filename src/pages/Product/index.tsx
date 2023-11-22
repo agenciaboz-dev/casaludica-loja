@@ -191,7 +191,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
                     <Paper className="galery">
                         {!!galery.length ? (
-                            <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000}>
+                            <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
                                 {galery.map((image, index) => (
                                     <Box key={index}>
                                         <img src={"data:image/jpeg;base64," + image} alt="" />
