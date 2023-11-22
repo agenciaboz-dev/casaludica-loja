@@ -6,7 +6,7 @@ import { SearchField } from "../../components/SearchField"
 import { useApi } from "../../hooks/useApi"
 import { useCategories } from "../../hooks/useCategories"
 import { useProducts } from "../../hooks/useProducts"
-import { Skeleton, Paper, IconButton, Box, AlertColor } from "@mui/material"
+import { Skeleton, Paper, IconButton, Box, AlertColor, Rating, SxProps } from "@mui/material"
 //import "./style.scss"
 import { Carousel } from "react-responsive-carousel"
 import { CurrencyText } from "../../components/CurrencyText"
@@ -23,9 +23,11 @@ interface DataTextProps {
     value: React.ReactNode
     color?: AlertColor
     bold?: boolean
+    titleSx?: SxProps
+    valueSx?: SxProps
 }
 
-const DataText: React.FC<DataTextProps> = ({ title, value, color, bold }) => {
+const DataText: React.FC<DataTextProps> = ({ title, value, color, bold, valueSx, titleSx }) => {
     return (
         <Box
             sx={{
@@ -37,10 +39,20 @@ const DataText: React.FC<DataTextProps> = ({ title, value, color, bold }) => {
                 justifyContent: "space-between",
                 fontWeight: bold ? "bold" : "",
                 width: "100%",
+                ...titleSx,
             }}
         >
             {title}
-            <Box sx={{ textAlign: "flex-end", fontSize: "1rem", color: `${color}.main`, fontWeight: bold ? "bold" : "" }}>{value}</Box>
+            <Box
+                sx={{
+                    fontSize: "1rem",
+                    color: `${color}.main`,
+                    fontWeight: bold ? "bold" : "",
+                    ...valueSx,
+                }}
+            >
+                {value}
+            </Box>
         </Box>
     )
 }
@@ -148,8 +160,33 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         </h3>
                     </Box>
 
-                    <Paper elevation={1} className="title" sx={{ padding: "3vw 5vw" }}>
-                        <h3>{product.name}</h3>
+                    <Paper elevation={1} className="title" sx={{ padding: "3vw 5vw", flexDirection: "column", width: "100%" }}>
+                        <Box sx={{ width: "100%", justifyContent: "space-between" }}>
+                            <Box sx={{ flex: 0.7 }}>
+                                <DataText
+                                    title="Marca:"
+                                    value={`${product.brand}`}
+                                    titleSx={{ fontSize: "0.9rem", justifyContent: "flex-start", gap: "2vw" }}
+                                    valueSx={{ fontSize: "0.8rem" }}
+                                />
+                            </Box>
+                            <Box sx={{ gap: "1vw", flex: 0.3, alignItems: "center", fontSize: "0.8rem" }}>
+                                <Rating
+                                    value={4}
+                                    sx={{
+                                        fontSize: "1rem",
+                                        "& .MuiRating-iconFilled": {
+                                            color: "primary.main",
+                                        },
+                                        "& .MuiRating-iconHover": {
+                                            color: "primary.main",
+                                        },
+                                    }}
+                                />
+                                4.2
+                            </Box>
+                        </Box>
+                        <h3 style={{ fontSize: "1.2rem" }}>{product.name}</h3>
                     </Paper>
 
                     <Paper className="galery">

@@ -10,6 +10,7 @@ declare interface Product {
     featured?: Boolean
     price: number
     sold: number
+    brand: string
 
     stock?: number
     category?: number
