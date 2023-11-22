@@ -202,32 +202,6 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "90vw" }} />
                         )}
                     </Paper>
-                    <Box sx={{ flexDirection: "column", width: "100%" }}>
-                        <Box
-                            sx={{
-                                flexDirection: "column",
-                                color: "primary.main",
-                                height: fullDescription ? "auto" : "30vw",
-                                overflow: "hidden",
-                            }}
-                            onClick={() => setFullDescription(!fullDescription)}
-                        >
-                            <DataText title="Desrição" value="" />
-                            <pre style={{ textAlign: "start", whiteSpace: "break-spaces" }}>{product.description}</pre>
-                        </Box>
-
-                        <Button sx={{ fontSize: "1.1rem" }} onClick={() => setFullDescription(!fullDescription)}>
-                            {fullDescription ? "encurtar" : "Ver tudo"}
-                        </Button>
-
-                        <Box sx={{ flexDirection: "column", width: "100%" }}>
-                            <DataText title="Largura" value={`${product.width} cm`} />
-                            <DataText title="Altura" value={`${product.height} cm`} />
-                            <DataText title="Comprimento" value={`${product.lenght} cm`} />
-                            <DataText title="Peso" value={`${product.weight} kg`} />
-                            <DataText title="Classificação" value={`${product.ageRating}`} />
-                        </Box>
-                    </Box>
 
                     <Box className="numbers">
                         <Box className="quantity-container" sx={{ alignItems: "center", width: "50vw", justifyContent: "space-between" }}>
@@ -271,6 +245,50 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         />
                     </Box>
                     <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>Adicionar ao carrinho</ButtonComponent>
+
+                    <Box sx={{ flexDirection: "column", width: "100%", gap: "5vw" }}>
+                        <Box
+                            sx={{
+                                flexDirection: "column",
+                                color: "primary.main",
+                                height: fullDescription ? "auto" : "30vw",
+                                overflow: "hidden",
+                            }}
+                            onClick={() => setFullDescription(!fullDescription)}
+                        >
+                            <DataText title="Desrição" value="" />
+                            <pre style={{ textAlign: "start", whiteSpace: "break-spaces" }}>{product.description}</pre>
+                        </Box>
+
+                        <Button sx={{ padding: 0 }} onClick={() => setFullDescription(!fullDescription)}>
+                            <Paper sx={{ width: "100%", padding: "3vw", flexDirection: "column", alignItems: "center" }}>
+                                <DataText
+                                    title={fullDescription ? "Ler menos" : "Ler mais"}
+                                    value=""
+                                    titleSx={{ fontSize: "0.9rem", justifyContent: "flex-start", width: "auto", gap: 0 }}
+                                />
+                                <Box
+                                    sx={{
+                                        width: 0,
+                                        height: 0,
+                                        borderColor: "primary.main",
+                                        borderLeft: "2vw solid transparent",
+                                        borderRight: "2vw solid transparent",
+                                        borderTop: fullDescription ? "" : "3vw solid",
+                                        borderBottom: fullDescription ? "3vw solid" : "",
+                                    }}
+                                />
+                            </Paper>
+                        </Button>
+
+                        <Box sx={{ flexDirection: "column", width: "100%" }}>
+                            <DataText title="Largura" value={`${product.width} cm`} />
+                            <DataText title="Altura" value={`${product.height} cm`} />
+                            <DataText title="Comprimento" value={`${product.lenght} cm`} />
+                            <DataText title="Peso" value={`${product.weight} kg`} />
+                            <DataText title="Classificação" value={`${product.ageRating}`} />
+                        </Box>
+                    </Box>
 
                     <Box color="primary.main">
                         <h3>Produtos similares ({similarProducts.length})</h3>
