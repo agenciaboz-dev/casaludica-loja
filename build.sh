@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ssh_profile="root@agencyboz"
-user="agenc5523"
-domain="agencyboz.com"
+user="lojas5330"
+domain="lojas.casaludica.com.br"
 subdomain="public_html"
 
 path="/home/${domain}/${subdomain}"
