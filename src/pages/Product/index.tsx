@@ -281,19 +281,19 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             </Paper>
                         </Button>
 
-                        <Box sx={{ flexDirection: "column", width: "100%" }}>
+                        {/* <Box sx={{ flexDirection: "column", width: "100%" }}>
                             <DataText title="Largura" value={`${product.width} cm`} />
                             <DataText title="Altura" value={`${product.height} cm`} />
                             <DataText title="Comprimento" value={`${product.lenght} cm`} />
                             <DataText title="Peso" value={`${product.weight} kg`} />
                             <DataText title="Classificação" value={`${product.ageRating}`} />
-                        </Box>
+                        </Box> */}
                     </Box>
 
                     <Box color="primary.main">
                         <h3>Produtos similares ({similarProducts.length})</h3>
                     </Box>
-                    <Box sx={{ gap: "5vw", width: "100vw", overflowX: "auto", marginLeft: "-5vw", padding: "0 5vw" }}>
+                    <Box sx={{ gap: "5vw", width: "100vw", overflowX: "auto", marginLeft: "-5vw", padding: "0 5vw 5vw" }}>
                         {similarProducts
                             .sort((a, b) => a.id - b.id)
                             .map((item) => (
