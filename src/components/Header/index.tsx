@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 //import "./style.scss"
 import MenuIcon from "@mui/icons-material/Menu"
-import { IconButton, Badge, Box } from "@mui/material"
+import { IconButton, Badge, Box, useMediaQuery } from "@mui/material"
 import { Menu } from "../Menu"
 import { ReactComponent as CartIcon } from "../../images/cart.svg"
 import { ReactComponent as LogoIcon } from "../../images/logo.svg"
@@ -13,6 +13,8 @@ import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { CepModal } from "../CepModal"
 
 export const Header = () => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
+
     const [openMenu, setOpenMenu] = useState(false)
     const [cepModal, setCepModal] = useState(false)
 
@@ -33,20 +35,45 @@ export const Header = () => {
                 sx={{
                     width: "100%",
                     alignItems: "center",
-                    justifyContent: "space-between",
-                    paddingTop: "5vw",
+                    justifyContent: isMobile ? "space-between" : "start",
+                    paddingTop: isMobile ? "5vw" : "2vw",
                 }}
             >
                 <IconButton
                     color="secondary"
-                    sx={{ gap: "2vw", padding: 0, fontFamily: "BowlbyOneSC", fontWeight: "400", fontSize: "4vw", flex: 0.3 }}
+                    sx={{
+                        gap: isMobile ? "2vw" : "0.5vw",
+                        padding: 0,
+                        fontFamily: "BowlbyOneSC",
+                        fontWeight: "400",
+                        fontSize: isMobile ? "4vw" : "2vw",
+                        flex: isMobile ? 0.3 : "",
+                        justifyContent: "start",
+                    }}
                     onClick={() => setOpenMenu(true)}
                 >
-                    <MenuIcon />
+                    <MenuIcon
+                        sx={{
+                            height: isMobile ? "10vw" : "4vw",
+                            width: isMobile ? "10vw" : "4vw",
+                        }}
+                    />
                     Menu
                 </IconButton>
-                <LogoIcon onClick={() => navigate("/")} style={{ flex: 0.3 }} />
-                <Box sx={{ flex: 0.3, justifyContent: "flex-end" }}>
+                <LogoIcon
+                    onClick={() => navigate("/")}
+                    style={{
+                        marginLeft: isMobile ? "" : "2vw",
+                        flex: isMobile ? 0.3 : "",
+                    }}
+                />
+                <Box
+                    sx={{
+                        marginLeft: isMobile ? "" : "auto",
+                        flex: isMobile ? 0.3 : "",
+                        justifyContent: "flex-end",
+                    }}
+                >
                     <Badge
                         badgeContent={cart.products?.length || 0}
                         color="primary"
@@ -55,8 +82,14 @@ export const Header = () => {
                             right: "1vw",
                         }}
                     >
-                        <IconButton color="secondary" sx={{ gap: "2vw" }} onClick={() => cart.setOpen(true)}>
-                            <CartIcon style={{ flex: 1 }} />
+                        <IconButton color="secondary" sx={{ gap: "2vw", padding: 0 }} onClick={() => cart.setOpen(true)}>
+                            <CartIcon
+                                style={{
+                                    flex: 1,
+                                    height: isMobile ? "10vw" : "4vw",
+                                    width: isMobile ? "10vw" : "4vw",
+                                }}
+                            />
                         </IconButton>
                     </Badge>
                 </Box>
