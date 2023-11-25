@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Box, Skeleton, MenuItem } from "@mui/material"
+import { Avatar, IconButton, Box, Skeleton, MenuItem, useMediaQuery } from "@mui/material"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { CurrencyText } from "../../../../components/CurrencyText"
@@ -12,6 +12,7 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const cart = useCart()
     const colors = useColors()
     const navigate = useNavigate()
@@ -25,16 +26,16 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             style={{ backgroundImage: `url(data:image/jpeg;base64,${product.cover})` }}
             onClick={() => navigate(`/product/${product.id}`)}
             sx={{
-                borderRadius: "1vw",
+                borderRadius: isMobile ? "1vw" : "0.5vw",
                 boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
                 flexShrink: "0",
-                width: "40vw",
-                height: "50vw",
+                width: isMobile ? "40vw" : "15vw",
+                height: isMobile ? "50vw" : "15vw",
                 backgroundColor: "white",
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
-                // background-position: center,
-                padding: "2vw",
+                // backgroundPosition: "center",
+                padding: isMobile ? "2vw" : "1vw",
             }}
         >
             {/* <Avatar src={product.cover} sx={{width: '30vw', height: '30vw'}} /> */}
@@ -45,20 +46,35 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         justifyContent: "space-between",
                         marginTop: "auto",
                         backgroundColor: "white",
-                        padding: "3vw",
-                        borderRadius: "2vw",
+                        padding: isMobile ? "3vw" : "0.5vw",
+                        borderRadius: isMobile ? "2vw" : "0.5vw",
                         boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
                         alignItems: "center",
                         width: "100%",
+                        gap: isMobile ? "0" : "0.5vw",
                     }}
                 >
-                    <Box className="text" sx={{ flexDirection: "column", fontSize: "3.5vw", fontWeight: "bold", gap: "2vw" }}>
-                        <p className="name" style={{ whiteSpace: "nowrap", width: "20vw", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <Box
+                        className="text"
+                        sx={{ flexDirection: "column", fontSize: isMobile ? "3.5vw" : "1vw", fontWeight: "bold", gap: isMobile ? "2vw" : "0" }}
+                    >
+                        <p
+                            className="name"
+                            style={{
+                                whiteSpace: isMobile ? "nowrap" : "normal",
+                                width: isMobile ? "20vw" : "auto",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                            }}
+                        >
                             {product.name}
                         </p>
                         <CurrencyText value={product.price} color={colors.pink} />
                     </Box>
-                    <IconButton sx={{ backgroundColor: colors.primary, width: "9vw", height: "9vw" }} onClick={() => cart.add(product)}>
+                    <IconButton
+                        sx={{ backgroundColor: colors.primary, width: isMobile ? "9vw" : "3vw", height: isMobile ? "9vw" : "3vw" }}
+                        onClick={() => cart.add(product)}
+                    >
                         <CartIcon />
                     </IconButton>
                 </Box>

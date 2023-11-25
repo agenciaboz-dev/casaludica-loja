@@ -1,4 +1,4 @@
-import { Skeleton, Box } from "@mui/material"
+import { Skeleton, Box, useMediaQuery, Grid } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useApi } from "../../../hooks/useApi"
 import { Product as Container } from "./Product"
@@ -9,6 +9,7 @@ import { useProducts } from "../../../hooks/useProducts"
 interface PopularProps {}
 
 export const Popular: React.FC<PopularProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const api = useApi()
     const colors = useColors()
     const { products } = useProducts()
@@ -23,20 +24,77 @@ export const Popular: React.FC<PopularProps> = ({}) => {
     }, [products])
 
     return (
-        <Box className="Popular-Component" sx={{ width: " 100%", flexDirection: "column", color: colors.primary, gap: "1vw" }}>
-            <h3 style={{ fontSize: "4vw" }}>Mais curtidos pela galerinha</h3>
-            <Box className="products-container" sx={{ width: "100vw", marginLeft: "-5vw", padding: "1vw 5vw", gap: "2vw", overflowX: "auto" }}>
-                {popular.map((product) => (
-                    <Container key={product.id} product={product} />
-                ))}
-                {products.length == 0 && (
-                    <>
-                        <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
-                        <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
-                        <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
-                    </>
-                )}
-            </Box>
+        <Box
+            className="Popular-Component"
+            sx={{
+                width: " 100%",
+                flexDirection: isMobile ? "column" : "row",
+                color: colors.primary,
+                gap: isMobile ? "1vw" : "0",
+            }}
+        >
+            {isMobile && (
+                <>
+                    <h3 style={{ fontSize: "5vw" }}>Mais curtidos pela galerinha</h3>
+                    <Box
+                        className="products-container"
+                        sx={{ width: "100vw", marginLeft: "-5vw", padding: "1vw 5vw", gap: "2vw", overflowX: "auto" }}
+                    >
+                        {popular.map((product) => (
+                            <Container key={product.id} product={product} />
+                        ))}
+                        {products.length == 0 && (
+                            <>
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
+                            </>
+                        )}
+                    </Box>
+                </>
+            )}
+            {!isMobile && (
+                <Grid container spacing={2} sx={{ alignItems: "center" }}>
+                    <h3 style={{ fontSize: "3vw", marginRight: "auto" }}>
+                        Mais curtidos
+                        <br />
+                        pela galerinha
+                    </h3>
+                    {popular.map((product) => (
+                        <Grid item>
+                            <Container key={product.id} product={product} />
+                        </Grid>
+                    ))}
+                    {products.length == 0 && (
+                        <>
+                            <Grid item>
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                            </Grid>
+                            <Grid item>
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                            </Grid>
+                            <Grid item>
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                            </Grid>
+                            <Grid item>
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                            </Grid>
+                            <Grid item>
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                            </Grid>
+                        </>
+                    )}
+                    <Box
+                        sx={{
+                            flexDirection: "column",
+                            marginLeft: "auto",
+                        }}
+                    >
+                        <h3 style={{ fontSize: "3vw" }}>Não fique de fora!</h3>
+                        <h3 style={{ fontSize: "3vw", textDecoration: "underline" }}>Veja mais</h3>
+                    </Box>
+                </Grid>
+            )}
         </Box>
     )
 }

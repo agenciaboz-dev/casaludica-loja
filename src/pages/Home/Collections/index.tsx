@@ -41,7 +41,7 @@ export const Collections = ({}) => {
                     fontSize: "2.5vw",
                     fontWeight: "bold",
                     color: colors.primary,
-                    boxShadow: " 0 1vw 2vw 0 rgba(0,0,0,0.4)",
+                    boxShadow: isMobile ? "0 1vw 2vw 0 rgba(0,0,0,0.4)" : "0 0.1vw 0.3vw 0 rgba(0,0,0,0.4)",
                     overflowX: "auto",
                     textAlign: "center",
                 }}

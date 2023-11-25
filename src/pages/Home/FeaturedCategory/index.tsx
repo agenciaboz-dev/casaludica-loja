@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useApi } from "../../../hooks/useApi"
 import { Product } from "./Product"
-import { Skeleton, Box, SxProps } from "@mui/material"
+import { Skeleton, Box, SxProps, useMediaQuery } from "@mui/material"
 //import "./style.scss"
 import { ReactComponent as BackgroundImage } from "../../../images/background/featured.svg"
 import { useColors } from "../../../hooks/useColors"
@@ -9,6 +9,7 @@ import { useColors } from "../../../hooks/useColors"
 interface FeaturedCategoryProps {}
 
 export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [title, setTitle] = useState("Para reunir a família")
     const [products, setProducts] = useState<Product[]>([])
 
@@ -36,7 +37,9 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
             className="FeaturedCategory-Component"
             sx={{ position: "relative", width: "100%", flexDirection: "column", gap: "1vw", color: colors.primary }}
         >
-            <BackgroundImage className="background" style={{ position: "absolute", top: "-35vw", left: "-5vw", zIndex: "-1", width: " 100vw" }} />
+            {isMobile && (
+                <BackgroundImage className="background" style={{ position: "absolute", top: "-35vw", left: "-5vw", zIndex: "-1", width: " 100vw" }} />
+            )}
             <h3 style={{ fontSize: "5.5vw", width: "40vw" }}>{title}</h3>
             <Box className="product-list" sx={{ flexWrap: "wrap", justifyContent: "space-between", gap: "3vw" }}>
                 {products

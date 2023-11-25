@@ -24,7 +24,7 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
         <div
             className="SearchField-Component"
             style={{
-                width: isMobile ? "100%" : "75%",
+                width: isMobile ? "100%" : "70%",
             }}
         >
             <Formik initialValues={{ search: "" }} onSubmit={handleSubmit}>
