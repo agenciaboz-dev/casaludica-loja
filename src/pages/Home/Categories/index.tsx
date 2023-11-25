@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCategories } from '../../../hooks/useCategories';
 //import './style.scss';
-import { Avatar, Box, MenuItem, Skeleton, alpha } from "@mui/material"
+import { Avatar, Box, MenuItem, Skeleton, alpha, useMediaQuery } from "@mui/material"
 import BrokenImageIcon from "@mui/icons-material/BrokenImage"
 import { useNavigate } from "react-router-dom"
 import { useColors } from "../../../hooks/useColors"
@@ -11,6 +11,7 @@ import CategoryIcon from "@mui/icons-material/Category"
 interface CategoriesProps {}
 
 export const Categories: React.FC<CategoriesProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const { categories } = useCategories()
     const navigate = useNavigate()
     const colors = useColors()
@@ -20,12 +21,12 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     }
 
     return (
-        <Box className="Categories-Component" sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: "1vw" }}>
-            <h3 style={{ fontSize: "5vw" }}>Categorias</h3>
+        <Box className="Categories-Component" sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: isMobile ? "1vw" : "0" }}>
+            <h3 style={{ fontSize: isMobile ? "5vw" : "1vw" }}>Categorias</h3>
             <Box
                 className="categories-container"
                 sx={{
-                    gap: "3vw",
+                    gap: isMobile ? "3vw" : "1vw",
                     width: "100vw",
                     marginLeft: "-5vw",
                     overflowX: "auto",
@@ -39,11 +40,11 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         onClick={() => search(category)}
                         sx={{
                             boxShadow: `0 2px 3px rgba(0, 0, 0, 0.4)`,
-                            borderRadius: "2vw",
+                            borderRadius: isMobile ? "2vw" : "0.5vw",
                             width: "fit-content",
-                            padding: "5vw 2vw",
+                            padding: isMobile ? "5vw 2vw" : "1vw",
                             alignItems: "center",
-                            gap: "3vw",
+                            gap: isMobile ? "3vw" : "1vw",
                             flexShrink: "0",
                             overflowX: "hidden",
                         }}
@@ -52,7 +53,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                         </Avatar> */}
                         <CategoryIcon />
-                        <p style={{ fontSize: "4vw", wordBreak: "break-all" }}>{sentenceCase(category.name)}</p>
+                        <p style={{ fontSize: isMobile ? "4vw" : "1vw", wordBreak: "break-all" }}>{sentenceCase(category.name)}</p>
                     </MenuItem>
                 ))}
                 {categories.length == 0 && (
