@@ -24,10 +24,7 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
         <div
             className="SearchField-Component"
             style={{
-                width: isMobile ? "100%" : "60%",
-                position: isMobile ? "relative" : "absolute",
-                top: isMobile ? "" : "2.5vw",
-                right: isMobile ? "" : "12vw",
+                width: isMobile ? "100%" : "75%",
             }}
         >
             <Formik initialValues={{ search: "" }} onSubmit={handleSubmit}>
@@ -51,10 +48,10 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
                                     </InputAdornment>
                                 ),
                                 disableUnderline: true,
-                                sx: { paddingLeft: isMobile ? "1.5vw" : "0.5vw" },
-                                style: { fontSize: isMobile ? "5vw" : "1.5vw" },
+                                sx: { paddingLeft: isMobile ? "1.5vw" : "0.5vw", borderRadius: isMobile ? "2vw" : "0.5vw" },
+                                style: { fontSize: isMobile ? "5vw" : "1vw" },
                             }}
-                            inputProps={{ sx: { padding: isMobile ? "3vw 0" : "1vw 0" } }}
+                            inputProps={{ sx: { padding: isMobile ? "3vw 0" : "0.75vw 0 0.5vw 0" } }}
                             variant="filled"
                             value={values.search}
                             onChange={handleChange}

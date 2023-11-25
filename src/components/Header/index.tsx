@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom"
 import { Loading } from "../Loading"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { CepModal } from "../CepModal"
+import { SearchField } from "../../components/SearchField"
 
 export const Header = () => {
     const isMobile = useMediaQuery("(orientation: portrait)")
@@ -35,7 +36,7 @@ export const Header = () => {
                 sx={{
                     width: "100%",
                     alignItems: "center",
-                    justifyContent: isMobile ? "space-between" : "start",
+                    justifyContent: "space-between",
                     paddingTop: isMobile ? "5vw" : "2vw",
                 }}
             >
@@ -46,7 +47,7 @@ export const Header = () => {
                         padding: 0,
                         fontFamily: "BowlbyOneSC",
                         fontWeight: "400",
-                        fontSize: isMobile ? "4vw" : "2vw",
+                        fontSize: isMobile ? "4vw" : "1.5vw",
                         flex: isMobile ? 0.3 : "",
                         justifyContent: "start",
                     }}
@@ -54,8 +55,8 @@ export const Header = () => {
                 >
                     <MenuIcon
                         sx={{
-                            height: isMobile ? "10vw" : "4vw",
-                            width: isMobile ? "10vw" : "4vw",
+                            height: isMobile ? "10vw" : "3vw",
+                            width: isMobile ? "10vw" : "3vw",
                         }}
                     />
                     Menu
@@ -63,13 +64,12 @@ export const Header = () => {
                 <LogoIcon
                     onClick={() => navigate("/")}
                     style={{
-                        marginLeft: isMobile ? "" : "2vw",
                         flex: isMobile ? 0.3 : "",
                     }}
                 />
+                {!isMobile && <SearchField />}
                 <Box
                     sx={{
-                        marginLeft: isMobile ? "" : "auto",
                         flex: isMobile ? 0.3 : "",
                         justifyContent: "flex-end",
                     }}
@@ -86,8 +86,8 @@ export const Header = () => {
                             <CartIcon
                                 style={{
                                     flex: 1,
-                                    height: isMobile ? "10vw" : "4vw",
-                                    width: isMobile ? "10vw" : "4vw",
+                                    height: isMobile ? "10vw" : "3vw",
+                                    width: isMobile ? "10vw" : "3vw",
                                 }}
                             />
                         </IconButton>

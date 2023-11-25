@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom"
 import { useCollections } from "../../../hooks/useCollections"
-import { Box, MenuItem } from "@mui/material"
+import { Box, MenuItem, useMediaQuery } from "@mui/material"
 import { useColors } from "../../../hooks/useColors"
 import ToysIcon from "@mui/icons-material/Toys"
 
@@ -10,12 +10,13 @@ interface CollectionProps {
 }
 
 export const Collections = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const colors = useColors()
 
     const Collection: React.FC<CollectionProps> = ({ collection }) => {
         return (
             <MenuItem style={{ flexDirection: "column", alignItems: "center" }} onClick={() => handleClick(collection)}>
-                <ToysIcon sx={{ width: "10vw" }} />
+                <ToysIcon sx={{ width: "10vw", height: isMobile ? "auto" : "5vw" }} />
                 <p>{collection.name}</p>
             </MenuItem>
         )
@@ -29,13 +30,13 @@ export const Collections = ({}) => {
     const navigate = useNavigate()
 
     return (
-        <Box className="Collections-Component" sx={{ width: "100%", flexDirection: "column", gap: "1vw", color: "white" }}>
+        <Box className="Collections-Component" sx={{ width: "100%", flexDirection: "column", gap: "0.5vw", color: "white" }}>
             <h3>Coleções</h3>
             <Box
                 className="collections-container"
                 sx={{
                     backgroundColor: "white",
-                    borderRadius: "3vw",
+                    borderRadius: isMobile ? "3vw" : "0.5vw",
                     justifyContent: "space-between",
                     fontSize: "2.5vw",
                     fontWeight: "bold",
