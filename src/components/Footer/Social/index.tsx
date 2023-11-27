@@ -6,19 +6,18 @@ import { ReactComponent as FacebookIcon } from '../../../images/socials/facebook
 import { ReactComponent as YoutubeIcon } from '../../../images/socials/youtube.svg'
 import { ReactComponent as WhatsappIcon } from '../../../images/socials/whatsapp.svg'
 import { ReactComponent as BackgroundImage } from '../../../images/background/socials.svg'
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from "@mui/material"
 
-interface SocialProps {
-    
-}
+interface SocialProps {}
 
-export const Social:React.FC<SocialProps> = ({  }) => {
+export const Social: React.FC<SocialProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const promotions = usePromotions()
 
     const backgroundStyle = {
-        position: 'absolute'
+        position: "absolute",
     }
-    
+
     return (
         <Box
             className="Social-Component"
@@ -34,10 +33,11 @@ export const Social:React.FC<SocialProps> = ({  }) => {
                 className="background"
                 style={{
                     position: "absolute",
-                    top: "-10vw",
-                    left: "-5vw",
+                    top: isMobile ? "-10vw" : "5vw",
+                    left: isMobile ? "-5vw" : "-10vw",
                     zIndex: "-1",
-                    height: "125vw",
+                    height: isMobile ? "125vw" : "",
+                    transform: isMobile ? "" : "scale(3,1.5)",
                     width: "100vw",
                 }}
             />
@@ -49,7 +49,7 @@ export const Social:React.FC<SocialProps> = ({  }) => {
             >
                 <h3
                     style={{
-                        fontSize: "5vw",
+                        fontSize: isMobile ? "5vw" : "1vw",
                     }}
                 >
                     Nos siga em
@@ -57,9 +57,9 @@ export const Social:React.FC<SocialProps> = ({  }) => {
                 <h3
                     className="ig-at"
                     style={{
-                        fontSize: "6vw",
+                        fontSize: isMobile ? "6vw" : "1.5vw",
                         fontFamily: "Poppins",
-                        marginLeft: "4vw",
+                        marginLeft: isMobile ? "4vw" : 0,
                     }}
                 >
                     @casaludica
@@ -83,10 +83,10 @@ export const Social:React.FC<SocialProps> = ({  }) => {
                     gap: "2vw",
                 }}
             >
-                <InstagramIcon style={{ width: "15vw" }} />
-                <FacebookIcon style={{ width: "15vw" }} />
-                <YoutubeIcon style={{ width: "15vw" }} />
-                <WhatsappIcon style={{ width: "15vw" }} />
+                <InstagramIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
             </Box>
         </Box>
     )
