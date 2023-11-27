@@ -1,12 +1,13 @@
-import { Box, Button, TextField } from '@mui/material';
-import { Form, Formik } from 'formik';
-import React from 'react';
-import { useColors } from '../../../hooks/useColors';
+import { Box, Button, TextField, useMediaQuery } from "@mui/material"
+import { Form, Formik } from "formik"
+import React from "react"
+import { useColors } from "../../../hooks/useColors"
 import { ButtonComponent } from "../../ButtonComponent"
 
 interface NewsletterProps {}
 
 export const Newsletter: React.FC<NewsletterProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const colors = useColors()
 
     const handleSubmit = (values: { name: string; email: string }) => {}
@@ -25,7 +26,7 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
     }
 
     const inputProps = {
-        sx: { padding: "3vw" },
+        sx: { padding: isMobile ? "3vw" : "1vw" },
     }
 
     return (
@@ -34,17 +35,16 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
             style={{
                 width: "100%",
                 flexDirection: "column",
-                gap: "1vw",
+                gap: isMobile ? "1vw" : "0.5vw",
                 color: colors.primary,
             }}
         >
-            <p>Assine a nossa Newsletter e receba novidades e promoções!</p>
             <Formik initialValues={{ name: "", email: "" }} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form
                         style={{
                             flexDirection: "column",
-                            gap: "3vw",
+                            gap: isMobile ? "3vw" : "1vw",
                         }}
                     >
                         <TextField
