@@ -14,12 +14,14 @@ import { useSnackbar } from "burgos-snackbar"
 import { PayModal } from "../PayModal"
 import { useFranchise } from "../../hooks/useFranchise"
 import { useApi } from "../../hooks/useApi"
+import { useUser } from "../../hooks/useUser"
 
 interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const { snackbar } = useSnackbar()
     const { franchise } = useFranchise()
+    const { user } = useUser()
     const cart = useCart()
     const api = useApi()
 
@@ -40,7 +42,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         number: "",
         state: "",
         complement: "",
-        cpf: "",
+        cpf: ""
     }
 
     const billingFormik = useFormik({
@@ -65,6 +67,8 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 products: cart.products.map((item) => ({ ...item, cover: "" })),
                 total: cart.total,
                 storeId: franchise,
+
+                user_id: user?.id
             }
             console.log(data)
             setMakingOrder(true)
@@ -74,9 +78,9 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     setMakingOrder(false)
                     console.log(response.data)
                     setPayingOrderId(response.data.order.id)
-                },
+                }
             })
-        },
+        }
     })
 
     const handleSubmit = () => {
@@ -109,9 +113,8 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     flexDirection: "column",
                     height: "fit-content",
 
-                    gap: "3vw",
-                }}
-            >
+                    gap: "3vw"
+                }}>
                 {cart.products.map((product) => (
                     <Product key={product.id} product={product} />
                 ))}
@@ -127,9 +130,8 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     borderRadius: "4.5vw",
                     flexDirection: "column",
                     height: "fit-content",
-                    gap: "3vw",
-                }}
-            >
+                    gap: "3vw"
+                }}>
                 <Box className="order" sx={{ flexDirection: "column", width: "100%", padding: "1vw 0vw", gap: "3vw" }}>
                     <TextField label="Código do cupom" InputProps={{ sx: { bgcolor: "#F0EEEE" } }} />
                     <ButtonComponent sx={{ width: "100%" }}>Aplicar cupom</ButtonComponent>

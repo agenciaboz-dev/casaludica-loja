@@ -10,6 +10,7 @@ import { CategoriesProvider } from "./contexts/categoriesContext"
 import { FranchiseProvider } from "./contexts/franchiseContext"
 import { Snackbar, SnackbarProvider } from "burgos-snackbar"
 import { Routes } from "./routes"
+import { UserProvider } from "./contexts/userContext"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -22,10 +23,12 @@ function App() {
                         <CategoriesProvider>
                             <ProductsProvider>
                                 <CartProvider>
-                                    <BrowserRouter>
-                                        <Snackbar />
-                                        <Routes />
-                                    </BrowserRouter>
+                                    <UserProvider>
+                                        <BrowserRouter>
+                                            <Snackbar />
+                                            <Routes />
+                                        </BrowserRouter>
+                                    </UserProvider>
                                 </CartProvider>
                             </ProductsProvider>
                         </CategoriesProvider>

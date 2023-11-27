@@ -16,12 +16,9 @@ declare interface OrderForm {
     state: string
     cpf: string
 
-    products: {
-        name: string
-        price: number
-        quantity: number
-        id: number
-    }[]
+    user_id?: number
+
+    products: OrderProduct[]
 }
 
 declare interface Charge {
@@ -43,4 +40,26 @@ declare interface Charge {
     }
     reference_id: string
     status: string
+}
+
+declare interface Order {
+    id: number
+    storeId: number
+    notes?: string
+    datetime: string
+    total: Float
+
+    paymentType?: string
+    installments?: number
+
+    user: User
+
+    products: OrderProduct[]
+}
+
+declare interface OrderProduct {
+    name: string
+    price: number
+    quantity: number
+    id: number
 }
