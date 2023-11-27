@@ -1,12 +1,14 @@
-import { Button, ButtonProps, SxProps } from "@mui/material"
+import { Button, ButtonProps, SxProps, useMediaQuery } from "@mui/material"
 import React from "react"
 
 export const ButtonComponent: React.FC<ButtonProps> = (props) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const style: SxProps = {
         borderRadius: "20vw",
         border: "none",
         color: "white",
-        padding: "3vw",
+        fontSize: isMobile ? "4vw" : "1vw",
+        padding: isMobile ? "3vw" : "0.5vw 2vw",
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "BowlbyOneSC",

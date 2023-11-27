@@ -16,7 +16,7 @@ export const Home = () => {
     return (
         <Box
             className="Home-Page"
-            sx={{ width: "100%", flexDirection: "column", padding: isMobile ? "0 5vw" : "0 10vw", gap: isMobile ? "5vw" : "1.5vw" }}
+            sx={{ width: "100%", flexDirection: "column", padding: isMobile ? "0 5vw" : "0 10vw", gap: isMobile ? "5vw" : "2vw" }}
         >
             <Background />
             <Header />

@@ -40,7 +40,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
             {isMobile && (
                 <BackgroundImage className="background" style={{ position: "absolute", top: "-35vw", left: "-5vw", zIndex: "-1", width: " 100vw" }} />
             )}
-            <h3 style={{ fontSize: "5.5vw", width: "40vw" }}>{title}</h3>
+            <h3 style={{ fontSize: isMobile ? "5.5vw" : "2vw", width: "40vw" }}>{title}</h3>
             <Box className="product-list" sx={{ flexWrap: "wrap", justifyContent: "space-between", gap: "3vw" }}>
                 {products
                     .sort((a, b) => b.id - a.id)
