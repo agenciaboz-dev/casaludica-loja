@@ -17,8 +17,8 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
     const colors = useColors()
 
     const style_skeleton: SxProps = {
-        width: "43vw",
-        height: "75vw",
+        width: isMobile ? "43vw" : "15vw",
+        height: isMobile ? "75vw" : "25vw",
 
         ".skeleton:nth-child(2n)": {
             marginTop: "-10vw",
