@@ -4,23 +4,24 @@ import { Copyright } from './Copyright';
 import { Newsletter } from './Newsletter';
 import { Social } from './Social';
 // import './style.scss';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from "@mui/material"
 
-interface FooterProps {
-    
-}
+interface FooterProps {}
 
-export const Footer:React.FC<FooterProps> = ({  }) => {
-    
+export const Footer: React.FC<FooterProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
-        <Box className='Footer-Component' style={{
-            flexDirection: "column",
-            width: "100%",
-            gap: "5vw"
-        }}>
+        <Box
+            className="Footer-Component"
+            style={{
+                flexDirection: "column",
+                width: "100%",
+                gap: isMobile ? "5vw" : "2w",
+            }}
+        >
             <Social />
             <About />
-            <Newsletter />
+            {isMobile && <Newsletter />}
             <Copyright />
         </Box>
     )
