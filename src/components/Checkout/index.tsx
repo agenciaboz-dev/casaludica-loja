@@ -28,22 +28,24 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const [payingOrderId, setPayingOrderId] = useState("")
     const [makingOrder, setMakingOrder] = useState(false)
 
-    const initialValues: BillingForm = {
-        name: "",
-        lastname: "",
-        company: "",
-        postalcode: "",
-        address: "",
-        city: "",
-        phone: "",
-        email: "",
-        notes: "",
-        district: "",
-        number: "",
-        state: "",
-        complement: "",
-        cpf: ""
-    }
+    const initialValues: BillingForm = user
+        ? { ...user, postalcode: user.postcode, notes: "", company: user.company || "", complement: user.complement || "" }
+        : {
+              name: "",
+              lastname: "",
+              company: "",
+              postalcode: "",
+              address: "",
+              city: "",
+              phone: "",
+              email: "",
+              notes: "",
+              district: "",
+              number: "",
+              state: "",
+              complement: "",
+              cpf: ""
+          }
 
     const billingFormik = useFormik({
         initialValues,

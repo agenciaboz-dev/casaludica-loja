@@ -1,10 +1,9 @@
 import axios from 'axios';
+import url from "./backend"
 
 export const api = axios.create({
-    // baseURL: "http://localhost:4100/api",
-    // baseURL: "https://app.agenciaboz.com.br:4100/api",
-    baseURL: "https://agencyboz.com:4100/api",
+    baseURL: url
     // timeout: 1000 * 10,
 })
 
-export const bozpayApi = axios.create({ baseURL: "https://app.agenciaboz.com.br:4118/api" })
+export const bozpayApi = axios.create({ baseURL: "https://agencyboz.com:4118/api" })
