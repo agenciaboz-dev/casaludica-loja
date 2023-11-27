@@ -28,9 +28,9 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                 sx={{
                     gap: isMobile ? "3vw" : "1vw",
                     width: "100vw",
-                    marginLeft: "-5vw",
+                    marginLeft: isMobile ? "-5vw" : "-10vw",
                     overflowX: "auto",
-                    padding: "1vw 5vw",
+                    padding: isMobile ? "1vw 5vw" : "1vw 10vw",
                 }}
             >
                 {categories.map((category) => (
@@ -58,9 +58,27 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                 ))}
                 {categories.length == 0 && (
                     <>
-                        <Skeleton animation="wave" variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
-                        <Skeleton animation="wave" variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
-                        <Skeleton animation="wave" variant="rounded" width={"40vw"} height={"20vw"} sx={{ flexShrink: 0 }} />
+                        <Skeleton
+                            animation="wave"
+                            variant="rounded"
+                            width={isMobile ? "40vw" : "10vw"}
+                            height={isMobile ? "20vw" : "4vw"}
+                            sx={{ flexShrink: 0 }}
+                        />
+                        <Skeleton
+                            animation="wave"
+                            variant="rounded"
+                            width={isMobile ? "40vw" : "10vw"}
+                            height={isMobile ? "20vw" : "4vw"}
+                            sx={{ flexShrink: 0 }}
+                        />
+                        <Skeleton
+                            animation="wave"
+                            variant="rounded"
+                            width={isMobile ? "40vw" : "10vw"}
+                            height={isMobile ? "20vw" : "4vw"}
+                            sx={{ flexShrink: 0 }}
+                        />
                     </>
                 )}
             </Box>
