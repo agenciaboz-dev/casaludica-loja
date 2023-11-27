@@ -16,7 +16,7 @@ export const Collections = ({}) => {
     const Collection: React.FC<CollectionProps> = ({ collection }) => {
         return (
             <MenuItem style={{ flexDirection: "column", alignItems: "center" }} onClick={() => handleClick(collection)}>
-                <ToysIcon sx={{ width: "10vw", height: isMobile ? "auto" : "5vw" }} />
+                <ToysIcon sx={{ width: "10vw", height: isMobile ? "auto" : "3vw" }} />
                 <p>{collection.name}</p>
             </MenuItem>
         )
@@ -41,7 +41,7 @@ export const Collections = ({}) => {
                     fontSize: "2.5vw",
                     fontWeight: "bold",
                     color: colors.primary,
-                    boxShadow: isMobile ? "0 1vw 2vw 0 rgba(0,0,0,0.4)" : "0 0.1vw 0.3vw 0 rgba(0,0,0,0.4)",
+                    boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
                     overflowX: "auto",
                     textAlign: "center",
                 }}

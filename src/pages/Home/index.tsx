@@ -14,7 +14,10 @@ import { Box, useMediaQuery } from "@mui/material"
 export const Home = () => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     return (
-        <Box className="Home-Page" sx={{ width: "100%", flexDirection: "column", padding: "0 5vw", gap: isMobile ? "5vw" : "1.5vw" }}>
+        <Box
+            className="Home-Page"
+            sx={{ width: "100%", flexDirection: "column", padding: isMobile ? "0 5vw" : "0 10vw", gap: isMobile ? "5vw" : "1.5vw" }}
+        >
             <Background />
             <Header />
             {isMobile && <SearchField />}
