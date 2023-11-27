@@ -66,7 +66,7 @@ export const useApi = () => {
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
-            },
+            }
         },
         images: async (id: number, mainOnly?: boolean) => (await api.post("/products/images", { id, mainOnly })).data,
         categories: {
@@ -79,7 +79,7 @@ export const useApi = () => {
                         // setLoading(false)
                         finallyCallback()
                     })
-            },
+            }
         },
         collections: {
             get: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
@@ -91,7 +91,7 @@ export const useApi = () => {
                         // setLoading(false)
                         finallyCallback()
                     })
-            },
+            }
         },
         cep: {
             get: (options: ApiOptions) => {
@@ -99,7 +99,7 @@ export const useApi = () => {
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
-            },
+            }
         },
         order: {
             new: (options: ApiOptions) => {
@@ -114,8 +114,13 @@ export const useApi = () => {
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
-            },
+            }
         },
+
+        user: {
+            isSignedUp: (login: string) => api.post("/user/exists", { login }),
+            login: (login: string, password: string) => api.post("/user/login", { login, password })
+        }
     }
 
     return methods

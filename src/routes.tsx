@@ -6,6 +6,8 @@ import { Results } from "./pages/Results"
 import { Product } from "./pages/Product"
 import { Checkout } from "./components/Checkout"
 import { Order } from "./pages/Order"
+import { Login } from "./pages/Login"
+import { FirstLogin } from "./pages/FirstLogin"
 
 interface RoutesProps {}
 
@@ -19,6 +21,9 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
             <Route path="/product/:id" element={<Product />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order/:id" element={<Order />} />
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/first_login" element={<FirstLogin />} />
         </ReactRoutes>
     )
 }

@@ -12,13 +12,14 @@ import { Loading } from "../Loading"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { CepModal } from "../CepModal"
 import { SearchField } from "../../components/SearchField"
+import { useMenu } from "../../hooks/useMenu"
 
 export const Header = () => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
-    const [openMenu, setOpenMenu] = useState(false)
     const [cepModal, setCepModal] = useState(false)
 
+    const menu = useMenu()
     const cart = useCart()
     const navigate = useNavigate()
     const storage = useLocalStorage()
@@ -37,9 +38,8 @@ export const Header = () => {
                     width: "100%",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    paddingTop: isMobile ? "5vw" : "2vw",
-                }}
-            >
+                    paddingTop: isMobile ? "5vw" : "2vw"
+                }}>
                 <IconButton
                     color="secondary"
                     sx={{
@@ -49,14 +49,13 @@ export const Header = () => {
                         fontWeight: "400",
                         fontSize: isMobile ? "4vw" : "1.5vw",
                         flex: isMobile ? 0.3 : "",
-                        justifyContent: "start",
+                        justifyContent: "start"
                     }}
-                    onClick={() => setOpenMenu(true)}
-                >
+                    onClick={() => menu.setOpen(true)}>
                     <MenuIcon
                         sx={{
                             height: isMobile ? "10vw" : "3vw",
-                            width: isMobile ? "10vw" : "3vw",
+                            width: isMobile ? "10vw" : "3vw"
                         }}
                     />
                     Menu
@@ -64,37 +63,35 @@ export const Header = () => {
                 <LogoIcon
                     onClick={() => navigate("/")}
                     style={{
-                        flex: isMobile ? 0.3 : "",
+                        flex: isMobile ? 0.3 : ""
                     }}
                 />
                 {!isMobile && <SearchField />}
                 <Box
                     sx={{
                         flex: isMobile ? 0.3 : "",
-                        justifyContent: "flex-end",
-                    }}
-                >
+                        justifyContent: "flex-end"
+                    }}>
                     <Badge
                         badgeContent={cart.products?.length || 0}
                         color="primary"
                         sx={{
                             //top:"3vw",
-                            right: "1vw",
-                        }}
-                    >
+                            right: "1vw"
+                        }}>
                         <IconButton color="secondary" sx={{ gap: "2vw", padding: 0 }} onClick={() => cart.setOpen(true)}>
                             <CartIcon
                                 style={{
                                     flex: 1,
                                     height: isMobile ? "10vw" : "3vw",
-                                    width: isMobile ? "10vw" : "3vw",
+                                    width: isMobile ? "10vw" : "3vw"
                                 }}
                             />
                         </IconButton>
                     </Badge>
                 </Box>
             </Box>
-            <Menu isOpen={openMenu} setOpen={setOpenMenu} />
+            <Menu isOpen={menu.open} setOpen={menu.setOpen} />
             <Cart isOpen={cart.open} setOpen={cart.setOpen} />
             <Loading />
 

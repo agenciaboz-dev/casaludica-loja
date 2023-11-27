@@ -1,0 +1,52 @@
+import React, { useState } from "react"
+import { Box, Button, CircularProgress, TextField } from "@mui/material"
+import { useFormik } from "formik"
+import { useApi } from "../../hooks/useApi"
+import { ButtonComponent } from "../ButtonComponent"
+import { useNavigate } from "react-router-dom"
+import { useMenu } from "../../hooks/useMenu"
+
+interface LoginContainerProps {}
+
+export const LoginContainer: React.FC<LoginContainerProps> = ({}) => {
+    const api = useApi()
+    const navigate = useNavigate()
+    const menu = useMenu()
+
+    const [loading, setLoading] = useState(false)
+
+    const formik = useFormik({
+        initialValues: { login: "" },
+        onSubmit: async (values) => {
+            setLoading(true)
+            try {
+                const user = (await api.user.isSignedUp(values.login)).data
+                navigate(user ? (user.password ? "/login" : "/first_login") : "/signup", { state: { login: values.login } })
+                setTimeout(() => menu.setOpen(false), 500)
+            } catch (error) {
+            } finally {
+                setLoading(false)
+            }
+        }
+    })
+
+    return (
+        <Box sx={{ width: "100%", flexDirection: "column", gap: "5vw", color: "white", marginBottom: "-5vw" }}>
+            <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
+                <TextField
+                    label="E-mail ou CPF"
+                    value={formik.values.login}
+                    onChange={formik.handleChange}
+                    name="login"
+                    color="secondary"
+                    variant="standard"
+                    InputProps={{ sx: { color: "white" } }}
+                    required
+                />
+                <Button variant="contained" color="success" sx={{ borderRadius: "5vw" }} type="submit">
+                    {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "entrar"}
+                </Button>
+            </form>
+        </Box>
+    )
+}

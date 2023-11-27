@@ -5,5 +5,5 @@ export const useUser = () => {
     const userContext = useContext(UserContext)
     const { user, setUser } = userContext
 
-    return { user }
+    return { user, setUser }
 }
