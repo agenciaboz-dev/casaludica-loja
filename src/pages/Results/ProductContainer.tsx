@@ -1,5 +1,5 @@
 import React from "react"
-import { Avatar, Box, Skeleton, Paper, Grid, Button, useMediaQuery } from "@mui/material"
+import { Avatar, Box, Skeleton, Paper, Grid, Button, useMediaQuery, colors } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useCart } from "../../hooks/useCart"
 import { useDynamicImage } from "../../hooks/useDynamicImage"
@@ -62,16 +62,18 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     />
                     <Box sx={{ flexDirection: "column", alignItems: "center", gap: "2vw" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
-                            <h4
-                                style={{
-                                    textAlign: "start",
-                                    textOverflow: "ellipsis",
-                                    whiteSpace: "nowrap",
-                                    overflow: "hidden",
-                                    width: isMobile ? "40vw" : "100%"
-                                }}>
-                                {product.name}
-                            </h4>
+                            <Box sx={{ color: "primary.main" }}>
+                                <h4
+                                    style={{
+                                        textAlign: "start",
+                                        textOverflow: "ellipsis",
+                                        whiteSpace: "nowrap",
+                                        overflow: "hidden",
+                                        width: isMobile ? "40vw" : "100%"
+                                    }}>
+                                    {product.name}
+                                </h4>
+                            </Box>
                             <p
                                 style={{
                                     textAlign: "start",
