@@ -70,7 +70,12 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                             gap: isMobile ? "2vw" : "1vw",
                         }}
                     >
-                        <UpIcon onClick={() => increase()} />
+                        <UpIcon
+                            onClick={() => increase()}
+                            style={{
+                                cursor: "pointer",
+                            }}
+                        />
                         <Box
                             className="quantity"
                             style={{
@@ -84,9 +89,14 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         >
                             {product.quantity}
                         </Box>
-                        <DownIcon onClick={() => decrease()} />
+                        <DownIcon
+                            onClick={() => decrease()}
+                            style={{
+                                cursor: "pointer",
+                            }}
+                        />
                     </Box>
-                    <RemoveIcon onClick={() => remove()} style={{ alignSelf: "flex-start" }} />
+                    <RemoveIcon onClick={() => remove()} style={{ alignSelf: "flex-start", cursor: "pointer" }} />
                 </Box>
             </Box>
             <Box
