@@ -19,8 +19,8 @@ export const useMenuLinks = () => {
         {
             id: 2,
             name: "Categorias",
-            location: "/",
-            onClick: () => navigate("/")
+            location: "/categories",
+            onClick: () => navigate("/categories")
         },
         {
             id: 3,
