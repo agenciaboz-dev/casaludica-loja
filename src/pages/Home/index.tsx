@@ -1,5 +1,4 @@
 import React from "react"
-import { Footer } from "../../components/Footer"
 import { Categories } from "./Categories"
 import { FeaturedCategory } from "./FeaturedCategory"
 import { Popular } from "./Popular"

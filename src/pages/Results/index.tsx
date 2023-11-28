@@ -1,4 +1,4 @@
-import { Avatar, Button, Skeleton, Box, Grid, useMediaQuery } from "@mui/material"
+import { Skeleton, Box, Grid, useMediaQuery } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useApi } from "../../hooks/useApi"
