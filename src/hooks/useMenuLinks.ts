@@ -52,25 +52,25 @@ export const useMenuLinks = () => {
             id: 4,
             name: "Siga a Rota para nossa loja  🏠",
             location: "/",
-            onClick: () => navigate("/")
+            onClick: () => alert("que isso")
         },
         {
             id: 5,
             name: "Site institucional 🌏",
             location: "/",
-            onClick: () => navigate("/")
+            onClick: () => window.open("https://casaludica.com.br", "_blank")?.focus()
         },
         {
             id: 6,
             name: "Adquira uma Franquia",
             location: "/",
-            onClick: () => navigate("/")
+            onClick: () => window.open("https://casaludica.com.br", "_blank")?.focus()
         },
         {
             id: 7,
             name: "Onde encontrar | Nossas lojas",
             location: "/",
-            onClick: () => navigate("/")
+            onClick: () => window.open("https://casaludica.com.br", "_blank")?.focus()
         }
     ]
 
