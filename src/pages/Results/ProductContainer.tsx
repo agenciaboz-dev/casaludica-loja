@@ -1,11 +1,7 @@
-import React, { useEffect, useRef, useState } from "react"
+import React from "react"
 import { Avatar, Box, Skeleton, Paper, Grid, Button, useMediaQuery } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import { ButtonComponent } from "../../components/ButtonComponent"
 import { useCart } from "../../hooks/useCart"
-import { useApi } from "../../hooks/useApi"
-import { sentenceCase } from "change-case"
-import { useProducts } from "../../hooks/useProducts"
 import { useDynamicImage } from "../../hooks/useDynamicImage"
 
 interface ProductContainerProps {
@@ -21,13 +17,13 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
 
     const skeleton_style = {
         height: isMobile ? "8vw" : "2vw",
-        width: "100%",
+        width: "100%"
     }
 
     const image_skeleton_style = {
         height: isMobile ? "40vw" : "15vw",
         width: isMobile ? "40vw" : "15vw",
-        borderRadius: isMobile ? "5vw" : "1vw",
+        borderRadius: isMobile ? "5vw" : "1vw"
     }
 
     const button_Style = {
@@ -37,7 +33,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
 
         justifyContent: "center",
         alignItems: "center",
-        fontFamily: "BowlbyOneSC",
+        fontFamily: "BowlbyOneSC"
     }
 
     return (

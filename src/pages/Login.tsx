@@ -1,15 +1,12 @@
 import React, { useState } from "react"
 import { Box, CircularProgress, TextField } from "@mui/material"
-import { Background } from "../components/Background"
-import { Header } from "../components/Header"
-import { SearchField } from "../components/SearchField"
-import { Collections } from "./Home/Collections"
 import { useFormik } from "formik"
 import { useLocation, useNavigate } from "react-router-dom"
 import { ButtonComponent } from "../components/ButtonComponent"
 import { useApi } from "../hooks/useApi"
 import { useUser } from "../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
+import { DefaultWrapper } from "../components/DefaultWrapper"
 
 interface LoginProps {}
 
@@ -42,12 +39,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     })
 
     return (
-        <Box sx={{ width: "100%", flexDirection: "column", gap: "5vw", padding: "0 5vw" }}>
-            <Background />
-            <Header />
-            <SearchField />
-            <Collections />
-
+        <DefaultWrapper>
             <Box sx={{ flexDirection: "column", gap: "5vw", color: "primary.main", fontSize: "1.2rem" }}>
                 <h3>Entrar</h3>
                 <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
@@ -56,6 +48,6 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     <ButtonComponent type="submit">{loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "entrar"}</ButtonComponent>
                 </form>
             </Box>
-        </Box>
+        </DefaultWrapper>
     )
 }

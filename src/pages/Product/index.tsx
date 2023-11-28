@@ -16,6 +16,7 @@ import Button from "@mui/material/Button"
 import { useCart } from "../../hooks/useCart"
 import { ButtonComponent } from "../../components/ButtonComponent"
 import { ProductContainer } from "../Results/ProductContainer"
+import { Footer } from "../../components/Footer"
 
 interface ProductProps {}
 interface DataTextProps {
@@ -113,9 +114,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 flexDirection: "column",
                 gap: "5vw",
                 padding: "0 5vw",
-                paddingBottom: "5vw",
-            }}
-        >
+                paddingBottom: "5vw"
+            }}>
             <Background />
             <Header />
             <SearchField />
@@ -139,10 +139,9 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 width: "auto",
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
-                                whiteSpace: "nowrap",
+                                whiteSpace: "nowrap"
                             }}
-                            onClick={() => onCategoryClick()}
-                        >
+                            onClick={() => onCategoryClick()}>
                             {category?.name}
                         </h3>
                         <h3 style={{ fontFamily: "Poppins" }}>/</h3>
@@ -153,9 +152,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
                                 whiteSpace: "nowrap",
-                                maxWidth: "50vw",
-                            }}
-                        >
+                                maxWidth: "50vw"
+                            }}>
                             {product?.name}
                         </h3>
                     </Box>
@@ -176,11 +174,11 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     sx={{
                                         fontSize: "1rem",
                                         "& .MuiRating-iconFilled": {
-                                            color: "primary.main",
+                                            color: "primary.main"
                                         },
                                         "& .MuiRating-iconHover": {
-                                            color: "primary.main",
-                                        },
+                                            color: "primary.main"
+                                        }
                                     }}
                                 />
                                 4.2
@@ -221,9 +219,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     backgroundColor: colors.background_secondary,
                                     border: `1px solid ${colors.primary}`,
                                     borderRadius: "1vw",
-                                    width: "10vw",
-                                }}
-                            >
+                                    width: "10vw"
+                                }}>
                                 <p>{quantity}</p>
                             </Box>
 
@@ -240,7 +237,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 flexDirection: "row-reverse",
                                 alignItems: "center",
                                 fontSize: "8vw",
-                                fontWeight: "bold",
+                                fontWeight: "bold"
                             }}
                         />
                     </Box>
@@ -252,10 +249,9 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 flexDirection: "column",
                                 color: "primary.main",
                                 height: fullDescription ? "auto" : "30vw",
-                                overflow: "hidden",
+                                overflow: "hidden"
                             }}
-                            onClick={() => setFullDescription(!fullDescription)}
-                        >
+                            onClick={() => setFullDescription(!fullDescription)}>
                             <DataText title="Desrição" value="" />
                             <pre style={{ textAlign: "start", whiteSpace: "break-spaces" }}>{product.description}</pre>
                         </Box>
@@ -275,7 +271,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         borderLeft: "2vw solid transparent",
                                         borderRight: "2vw solid transparent",
                                         borderTop: fullDescription ? "" : "3vw solid",
-                                        borderBottom: fullDescription ? "3vw solid" : "",
+                                        borderBottom: fullDescription ? "3vw solid" : ""
                                     }}
                                 />
                             </Paper>
@@ -302,6 +298,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                     </Box>
                 </>
             )}
+            <Footer />
         </Box>
     )
 }

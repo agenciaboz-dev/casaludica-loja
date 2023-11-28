@@ -23,7 +23,7 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({}) => {
             try {
                 const user = (await api.user.isSignedUp(values.login)).data
                 navigate(user ? (user.password ? "/login" : "/first_login") : "/signup", { state: { login: values.login } })
-                setTimeout(() => menu.setOpen(false), 500)
+                menu.setOpen(false)
             } catch (error) {
             } finally {
                 setLoading(false)

@@ -1,17 +1,12 @@
-import { Avatar, Button, Skeleton, Box, Grid, useMediaQuery } from "@mui/material"
+import { Skeleton, Box, Grid, useMediaQuery } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Background } from "../../components/Background"
-import { Footer } from "../../components/Footer"
-import { Header } from "../../components/Header"
-import { SearchField } from "../../components/SearchField"
 import { useApi } from "../../hooks/useApi"
 import { useCart } from "../../hooks/useCart"
-import { Collections } from "../Home/Collections"
 import { useColors } from "../../hooks/useColors"
-import { ButtonComponent } from "../../components/ButtonComponent"
 import { ProductContainer } from "./ProductContainer"
 import { useArray } from "burgos-array"
+import { DefaultWrapper } from "../../components/DefaultWrapper"
 //import "./style.scss"
 
 interface ResultsProps {}
@@ -39,20 +34,20 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                         callback: (response: { data: Product[] }) => {
                             console.log(response.data)
                             setProducts(response.data)
-                        },
+                        }
                     }
                 )
             } else if (type == "collection") {
                 api.products.collection(Number(value), {
                     callback: (response: { data: Product[] }) => {
                         setProducts(response.data)
-                    },
+                    }
                 })
             } else if (type == "category") {
                 api.products.category(value, {
                     callback: (response: { data: Product[] }) => {
                         setProducts(response.data)
-                    },
+                    }
                 })
             }
         } else {
@@ -77,16 +72,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
     }, [])
 
     return (
-        <Box
-            className="Results-Page"
-            sx={{ width: "100%", flexDirection: "column", gap: isMobile ? "5vw" : "2vw", padding: isMobile ? "0 5vw" : "0 10vw" }}
-        >
-            <Background />
-            <Header />
-
-            {isMobile && <SearchField />}
-            <Collections />
-
+        <DefaultWrapper>
             <h3 className="results-title" style={{ color: colors.primary }}>
                 Resultados da pesquisa: {!!products.length && `(${products.length})`}
             </h3>
@@ -113,8 +99,6 @@ export const Results: React.FC<ResultsProps> = ({}) => {
             )}
 
             {!loading && products.length == 0 && <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>}
-
-            <Footer />
-        </Box>
+        </DefaultWrapper>
     )
 }
