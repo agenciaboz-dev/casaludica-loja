@@ -13,8 +13,8 @@ export const useMenuLinks = () => {
         {
             id: 1,
             name: "Coleções",
-            location: "/",
-            onClick: () => navigate("/")
+            location: "/collections",
+            onClick: () => navigate("/collections")
         },
         {
             id: 2,
