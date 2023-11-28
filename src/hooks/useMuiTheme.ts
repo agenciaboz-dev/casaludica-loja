@@ -15,23 +15,23 @@ export const useMuiTheme = () => {
             // mode: 'dark',
 
             primary: {
-                main: colors.primary,
+                main: colors.primary
             },
             secondary: {
-                main: "#fff",
+                main: "#fff"
             },
             text: {
-                primary: colors.primary,
+                primary: colors.primary
                 // secondary: colors.primary,
                 // disabled: colors.primary,
             },
             success: {
-                main: colors.green,
-            },
+                main: colors.green
+            }
             // error: {
             //     main: colors.red,
             // }
-        },
+        }
     })
     
     return THEME

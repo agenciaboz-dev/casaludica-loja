@@ -8,6 +8,7 @@ import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 import { LoginContainer } from "./LoginContainer"
 import { useMenu } from "../../hooks/useMenu"
+import { useNavigate } from "react-router-dom"
 
 interface MenuProps {}
 
@@ -16,6 +17,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
     const links = useMenuLinks()
     const storage = useLocalStorage()
     const colors = useColors()
+    const navigate = useNavigate()
 
     const { open: isOpen, setOpen } = useMenu()
     const { user } = useUser()
@@ -44,7 +46,12 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     gap: isMobile ? "5vw" : "2vw"
                 }}>
                 {user ? (
-                    <>
+                    <Box
+                        sx={{ display: "contents" }}
+                        onClick={() => {
+                            navigate("/profile")
+                            closeMenu()
+                        }}>
                         <Avatar sx={{ width: isMobile ? "20vw" : "3vw", height: isMobile ? "20vw" : "3vw" }} src={user.profilePicUrl} />
                         <Box
                             className="info"
@@ -75,7 +82,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                                 Editar Perfil
                             </h5>
                         </Box>
-                    </>
+                    </Box>
                 ) : (
                     <LoginContainer color="secondary" />
                 )}

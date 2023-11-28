@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { Box } from "@mui/material"
 import { ButtonComponent } from "./ButtonComponent"
 import { PayModal } from "./PayModal"
+import { Box } from "@mui/material"
 
 interface PendingPaymentProps {
     orderId: string

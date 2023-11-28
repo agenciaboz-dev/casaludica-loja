@@ -1,6 +1,5 @@
 import React from "react"
 import { Routes as ReactRoutes, Route } from "react-router-dom"
-import { Box } from "@mui/material"
 import { Home } from "./pages/Home"
 import { Results } from "./pages/Results"
 import { Product } from "./pages/Product"
@@ -11,6 +10,7 @@ import { FirstLogin } from "./pages/FirstLogin"
 import { Collections } from "./pages/Collections"
 import { Categories } from "./pages/Categories"
 import { Orders } from "./pages/Orders"
+import { Profile } from "./pages/Profile"
 
 interface RoutesProps {}
 
@@ -31,6 +31,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
             <Route path="/collections" element={<Collections />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/profile" element={<Profile />} />
         </ReactRoutes>
     )
 }
