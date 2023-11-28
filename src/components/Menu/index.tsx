@@ -77,7 +77,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                         </Box>
                     </>
                 ) : (
-                    <LoginContainer />
+                    <LoginContainer color="secondary" />
                 )}
             </Box>
             <Box sx={{ flexDirection: "column", paddingTop: "3vw" }}>

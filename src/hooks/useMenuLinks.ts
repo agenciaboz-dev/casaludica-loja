@@ -24,29 +24,29 @@ export const useMenuLinks = () => {
         },
         {
             id: 3,
-            name: "Meu Pedido",
-            sublinks: [
-                {
-                    id: 0,
-                    name: "Lista de itens",
-                    location: "/",
-                    onClick: () => navigate("/")
-                },
-                {
-                    id: 1,
-                    name: "Carrinho",
-                    location: "/",
-                    onClick: () => navigate("/")
-                },
-                {
-                    id: 2,
-                    name: "Pagamento",
-                    location: "/",
-                    onClick: () => navigate("/")
-                }
-            ],
-            location: "/",
-            onClick: () => navigate("/")
+            name: "Meus Pedidos",
+            // sublinks: [
+            //     {
+            //         id: 0,
+            //         name: "Lista de itens",
+            //         location: "/",
+            //         onClick: () => navigate("/")
+            //     },
+            //     {
+            //         id: 1,
+            //         name: "Carrinho",
+            //         location: "/",
+            //         onClick: () => navigate("/")
+            //     },
+            //     {
+            //         id: 2,
+            //         name: "Pagamento",
+            //         location: "/",
+            //         onClick: () => navigate("/")
+            //     }
+            // ],
+            location: "/orders",
+            onClick: () => navigate("/orders")
         },
         {
             id: 4,

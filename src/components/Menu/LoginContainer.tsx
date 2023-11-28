@@ -6,9 +6,12 @@ import { ButtonComponent } from "../ButtonComponent"
 import { useNavigate } from "react-router-dom"
 import { useMenu } from "../../hooks/useMenu"
 
-interface LoginContainerProps {}
+interface LoginContainerProps {
+    color?: "error" | "primary" | "secondary" | "info" | "success" | "warning"
+    redirect?: string
+}
 
-export const LoginContainer: React.FC<LoginContainerProps> = ({}) => {
+export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const api = useApi()
     const navigate = useNavigate()
@@ -22,13 +25,13 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({}) => {
             setLoading(true)
             try {
                 const user = (await api.user.isSignedUp(values.login)).data
-                navigate(user ? (user.password ? "/login" : "/first_login") : "/signup", { state: { login: values.login } })
+                navigate(user ? (user.password ? "/login" : "/first_login") : "/signup", { state: { login: values.login, redirect } })
                 menu.setOpen(false)
             } catch (error) {
             } finally {
                 setLoading(false)
             }
-        },
+        }
     })
 
     return (
@@ -39,7 +42,7 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({}) => {
                     value={formik.values.login}
                     onChange={formik.handleChange}
                     name="login"
-                    color="secondary"
+                    color={color || "primary"}
                     variant="standard"
                     InputProps={{ sx: { color: "white" } }}
                     required

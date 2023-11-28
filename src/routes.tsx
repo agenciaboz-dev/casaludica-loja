@@ -10,6 +10,7 @@ import { Login } from "./pages/Login"
 import { FirstLogin } from "./pages/FirstLogin"
 import { Collections } from "./pages/Collections"
 import { Categories } from "./pages/Categories"
+import { Orders } from "./pages/Orders"
 
 interface RoutesProps {}
 
@@ -29,6 +30,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
 
             <Route path="/collections" element={<Collections />} />
             <Route path="/categories" element={<Categories />} />
+            <Route path="/orders" element={<Orders />} />
         </ReactRoutes>
     )
 }
