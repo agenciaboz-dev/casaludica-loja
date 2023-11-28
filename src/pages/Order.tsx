@@ -8,6 +8,7 @@ import { Background } from "../components/Background"
 import { Header } from "../components/Header"
 import { SearchField } from "../components/SearchField"
 import { OrderComponent } from "../components/OrderComponent"
+import { DefaultWrapper } from "../components/DefaultWrapper"
 
 interface OrderProps {}
 
@@ -34,18 +35,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
     }, [])
 
     return (
-        <Box
-            sx={{
-                width: "100%",
-                flexDirection: "column",
-                gap: "5vw",
-                padding: "0 5vw",
-            }}
-        >
-            <Background />
-            <Header />
-            <SearchField />
-
+        <DefaultWrapper>
             <h2 style={{ color: "white", fontSize: "2rem" }}>Seu pedido: #{order?.referenceId}</h2>
 
             {order ? (
@@ -55,6 +45,6 @@ export const Order: React.FC<OrderProps> = ({}) => {
                     <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "50vw" }} />
                 </Box>
             )}
-        </Box>
+        </DefaultWrapper>
     )
 }
