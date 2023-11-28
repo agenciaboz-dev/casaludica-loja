@@ -51,13 +51,12 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                 justifyContent: "space-around",
                 borderRadius: isMobile ? "5vw" : "2vw",
                 padding: isMobile ? "4vw" : "1vw",
-                boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
+                boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)"
             }}
             key={product.id}
             onClick={() => navigate(`/product/${product.id}`)}
             sx={{ marginBottom: "1vw" }}
-            ref={productRef}
-        >
+            ref={productRef}>
             {product.cover ? (
                 <>
                     <Avatar
@@ -73,9 +72,8 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                     textOverflow: "ellipsis",
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
-                                    width: isMobile ? "40vw" : "100%",
-                                }}
-                            >
+                                    width: isMobile ? "40vw" : "100%"
+                                }}>
                                 {product.name}
                             </h4>
                             <p
@@ -88,9 +86,8 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                     display: "-webkit-box",
                                     WebkitBoxOrient: "vertical",
                                     WebkitLineClamp: 3, // Defina o número máximo de linhas que deseja exibir
-                                    whiteSpace: "normal",
-                                }}
-                            >
+                                    whiteSpace: "normal"
+                                }}>
                                 {product.description}
                             </p>
                             <h2
@@ -101,20 +98,12 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
                                     width: isMobile ? "40vw" : "100%",
-                                    color: "#363775",
-                                }}
-                            >
+                                    color: "#363775"
+                                }}>
                                 R${product.price}
                             </h2>
                         </Box>
-                        <Button
-                            onClick={() => cart.add(product)}
-                            sx={{
-                                ...button_Style,
-                                width: "100%",
-                                backgroundColor: "#34A853",
-                            }}
-                        >
+                        <Button onClick={() => cart.add(product)} color="success" variant="contained" fullWidth sx={{ ...button_Style }}>
                             Quero esse
                         </Button>
                     </Box>
