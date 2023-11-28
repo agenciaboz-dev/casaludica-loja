@@ -26,7 +26,6 @@ export const Home = () => {
             <Categories />
             <Popular />
             <FeaturedCategory />
-
             <Footer />
         </Box>
     )

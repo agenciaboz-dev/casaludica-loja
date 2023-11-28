@@ -38,7 +38,6 @@ export const Collections = ({}) => {
                     backgroundColor: "white",
                     borderRadius: isMobile ? "3vw" : "0.5vw",
                     justifyContent: "space-between",
-                    fontSize: "2.5vw",
                     fontWeight: "bold",
                     color: colors.primary,
                     boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",

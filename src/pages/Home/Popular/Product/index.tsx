@@ -56,7 +56,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 >
                     <Box
                         className="text"
-                        sx={{ flexDirection: "column", fontSize: isMobile ? "3.5vw" : "1vw", fontWeight: "bold", gap: isMobile ? "2vw" : "0" }}
+                        sx={{ flexDirection: "column", fontSize: isMobile ? "3.5vw" : "1rem", fontWeight: "bold", gap: isMobile ? "2vw" : "0" }}
                     >
                         <p
                             className="name"
@@ -79,7 +79,13 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     </IconButton>
                 </Box>
             ) : (
-                <Skeleton sx={{ flexShrink: 0 }} variant="rounded" width={"35vw"} height={"45vw"} animation="wave" />
+                <Skeleton
+                    sx={{ flexShrink: 0 }}
+                    variant="rounded"
+                    width={isMobile ? "35vw" : "13vw"}
+                    height={isMobile ? "45vw" : "13vw"}
+                    animation="wave"
+                />
             )}
         </MenuItem>
     )

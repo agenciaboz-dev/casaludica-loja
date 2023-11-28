@@ -16,7 +16,7 @@ export const Footer: React.FC<FooterProps> = ({}) => {
             style={{
                 flexDirection: "column",
                 width: "100%",
-                gap: isMobile ? "5vw" : "2w",
+                gap: isMobile ? "5vw" : "2vw",
             }}
         >
             <Social />

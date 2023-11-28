@@ -49,7 +49,7 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
                                 ),
                                 disableUnderline: true,
                                 sx: { paddingLeft: isMobile ? "1.5vw" : "0.5vw", borderRadius: isMobile ? "2vw" : "0.5vw" },
-                                style: { fontSize: isMobile ? "5vw" : "1vw" },
+                                style: { fontSize: isMobile ? "5vw" : "1rem" },
                             }}
                             inputProps={{ sx: { padding: isMobile ? "3vw 0" : "0.75vw 0 0.5vw 0" } }}
                             variant="filled"

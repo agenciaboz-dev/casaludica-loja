@@ -49,7 +49,7 @@ export const Social: React.FC<SocialProps> = ({}) => {
             >
                 <h3
                     style={{
-                        fontSize: isMobile ? "5vw" : "1vw",
+                        fontSize: isMobile ? "5vw" : "1.5rem",
                     }}
                 >
                     Nos siga em
@@ -57,7 +57,7 @@ export const Social: React.FC<SocialProps> = ({}) => {
                 <h3
                     className="ig-at"
                     style={{
-                        fontSize: isMobile ? "6vw" : "1.5vw",
+                        fontSize: isMobile ? "6vw" : "2rem",
                         fontFamily: "Poppins",
                         marginLeft: isMobile ? "4vw" : 0,
                     }}

@@ -29,6 +29,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
         width: isMobile ? "40vw" : "15vw",
         borderRadius: isMobile ? "5vw" : "1vw",
     }
+
     const button_Style = {
         borderRadius: isMobile ? "20vw" : "2vw",
         border: "none",

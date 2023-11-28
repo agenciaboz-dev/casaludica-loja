@@ -55,7 +55,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
             )}
             {!isMobile && (
                 <Grid container spacing={2} sx={{ alignItems: "center" }}>
-                    <h3 style={{ fontSize: "2.5vw", marginRight: "auto" }}>
+                    <h3 style={{ fontSize: "2.5rem", marginRight: "auto" }}>
                         Mais curtidos
                         <br />
                         pela galerinha
@@ -90,8 +90,8 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                             marginLeft: "auto",
                         }}
                     >
-                        <h3 style={{ fontSize: "2.5vw" }}>Não fique de fora!</h3>
-                        <h3 style={{ fontSize: "2.5vw", textDecoration: "underline" }}>Veja mais</h3>
+                        <h3 style={{ fontSize: "2.5rem" }}>Não fique de fora!</h3>
+                        <h3 style={{ fontSize: "2.5rem", textDecoration: "underline" }}>Veja mais</h3>
                     </Box>
                 </Grid>
             )}

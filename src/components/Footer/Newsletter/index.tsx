@@ -26,7 +26,7 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
     }
 
     const inputProps = {
-        sx: { padding: isMobile ? "3vw" : "1vw" },
+        sx: { padding: isMobile ? "3vw" : "0.75vw" },
     }
 
     return (
@@ -67,7 +67,14 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
                             value={values.email}
                             onChange={handleChange}
                         />
-                        <ButtonComponent type="submit">Inscreva-se</ButtonComponent>
+                        <ButtonComponent
+                            type="submit"
+                            sx={{
+                                padding: "0.5vw",
+                            }}
+                        >
+                            Inscreva-se
+                        </ButtonComponent>
                     </Form>
                 )}
             </Formik>

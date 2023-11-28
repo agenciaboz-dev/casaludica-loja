@@ -10,15 +10,15 @@ export const About: React.FC<AboutProps> = ({}) => {
     const colors = useColors()
 
     const h1Style = {
-        fontSize: isMobile ? "6vw" : "2.5vw",
+        fontSize: isMobile ? "6vw" : "2.5rem",
     }
 
     const h2Style = {
-        fontSize: isMobile ? "6vw" : "2vw",
+        fontSize: isMobile ? "6vw" : "2rem",
     }
 
     const pStyle = {
-        fontSize: isMobile ? "5vw" : "1.5vw",
+        fontSize: isMobile ? "5vw" : "1.5rem",
     }
 
     const containerStyle: React.CSSProperties = {
@@ -40,7 +40,7 @@ export const About: React.FC<AboutProps> = ({}) => {
             <Box className="container" style={containerStyle}>
                 <h1 style={h1Style}>Casa Lúdica</h1>
                 <p style={pStyle}>
-                    Somos uma loja de brinquedos que ama o que faz, especializada em Brinquedos Educativos, Instrumentos Músicais, Playgrounds e
+                    Somos uma loja de brinquedos que ama o que faz, especializada em Brinquedos Educativos, Instrumentos Musicais, Playgrounds e
                     Mobiliários, Materiais Pedagógicos, Jogos e Desafios, Espumados Babys
                 </p>
             </Box>
@@ -57,7 +57,7 @@ export const About: React.FC<AboutProps> = ({}) => {
                 </Box>
             )}
             {!isMobile && (
-                <Box>
+                <Box sx={{ margin: "2vw 0", alignItems: "center" }}>
                     <Box className="container" style={containerStyle}>
                         <h2 style={h2Style}>Fale com a gente</h2>
                         <p style={pStyle}>(47) 99168-4299 (47)3081-4937</p>

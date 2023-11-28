@@ -18,7 +18,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
 
     const style_skeleton: SxProps = {
         width: isMobile ? "43vw" : "15vw",
-        height: isMobile ? "75vw" : "25vw",
+        height: isMobile ? "75vw" : "23vw",
 
         ".skeleton:nth-child(2n)": {
             marginTop: "-10vw",
@@ -40,7 +40,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
             {isMobile && (
                 <BackgroundImage className="background" style={{ position: "absolute", top: "-35vw", left: "-5vw", zIndex: "-1", width: " 100vw" }} />
             )}
-            <h3 style={{ fontSize: isMobile ? "5.5vw" : "2vw", width: "40vw" }}>{title}</h3>
+            <h3 style={{ fontSize: isMobile ? "5.5vw" : "2rem", width: "40vw" }}>{title}</h3>
             <Box className="product-list" sx={{ flexWrap: "wrap", justifyContent: "space-between", gap: "3vw" }}>
                 {products
                     .sort((a, b) => b.id - a.id)

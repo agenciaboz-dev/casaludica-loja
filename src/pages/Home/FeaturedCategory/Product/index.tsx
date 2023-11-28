@@ -27,12 +27,10 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             onClick={() => navigate(`/product/${product.id}`)}
             sx={{
                 borderRadius: isMobile ? "5vw" : "1.5vw",
-                // width: isMobile ? "43vw" : "15vw",
                 flex: 1,
                 height: "fit-content",
                 minHeight: isMobile ? "75vw" : "25vw",
                 alignItems: "center",
-                // gap: isMobile ? "1.5vw" : "0.5vw",
                 justifyContent: "space-between",
                 color: colors.primary,
                 backgroundColor: "white",
@@ -58,8 +56,8 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     >
                         <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>
-                    <h2 style={{ fontSize: isMobile ? "5vw" : "1vw" }}>{product.name}</h2>
-                    <p style={{ fontSize: isMobile ? "3.5vw" : "0.85vw" }}>{product.resume}</p>
+                    <h2 style={{ fontSize: isMobile ? "5vw" : "1.2rem" }}>{product.name}</h2>
+                    <p style={{ fontSize: isMobile ? "3.5vw" : "1rem" }}>{product.resume}</p>
                     <CurrencyText value={product.price} color={"#686868"} style={{ fontWeight: "bold" }} />
 
                     <ButtonComponent sx={{ fontWeight: "400" }} onClick={() => cart.add(product)}>
@@ -72,8 +70,8 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     variant="rounded"
                     className="skeleton"
                     sx={{
-                        width: "43vw",
-                        height: "75vw",
+                        width: isMobile ? "43vw" : "15vw",
+                        height: isMobile ? "75vw" : "23vw",
 
                         ".skeleton:nth-child(2n)": {
                             marginTop: "-10vw",

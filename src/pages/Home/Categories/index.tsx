@@ -22,7 +22,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
 
     return (
         <Box className="Categories-Component" sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: isMobile ? "1vw" : "0" }}>
-            <h3 style={{ fontSize: isMobile ? "5vw" : "1vw" }}>Categorias</h3>
+            <h3 style={{ fontSize: isMobile ? "5vw" : "1.5rem" }}>Categorias</h3>
             <Box
                 className="categories-container"
                 sx={{
@@ -53,7 +53,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                         </Avatar> */}
                         <CategoryIcon />
-                        <p style={{ fontSize: isMobile ? "4vw" : "1vw", wordBreak: "break-all" }}>{sentenceCase(category.name)}</p>
+                        <p style={{ fontSize: isMobile ? "4vw" : "1rem", wordBreak: "break-all" }}>{sentenceCase(category.name)}</p>
                     </MenuItem>
                 ))}
                 {categories.length == 0 && (
