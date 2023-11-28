@@ -1,10 +1,10 @@
-import { Drawer, Box } from '@mui/material';
-import React from 'react';
-import { ReactComponent as CartIcon } from '../../images/cart.svg'
-import { useCart } from '../../hooks/useCart';
-import { CurrencyText } from '../CurrencyText';
-import { Product } from './Product';
-import { useColors } from "../../hooks/useColors";
+import { Drawer, Box, useMediaQuery } from "@mui/material"
+import React from "react"
+import { ReactComponent as CartIcon } from "../../images/cart.svg"
+import { useCart } from "../../hooks/useCart"
+import { CurrencyText } from "../CurrencyText"
+import { Product } from "./Product"
+import { useColors } from "../../hooks/useColors"
 // import './style.scss';
 import { ButtonComponent } from "../ButtonComponent"
 import { useNavigate } from "react-router-dom"
@@ -15,6 +15,7 @@ interface CartProps {
 }
 
 export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const colors = useColors()
     const cart = useCart()
     const navigate = useNavigate()
@@ -32,13 +33,13 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
             anchor={"right"}
             open={isOpen}
             onClose={closeMenu}
-            PaperProps={{ className: "Cart-Component", style: { width: "80vw" } }}
+            PaperProps={{ className: "Cart-Component", style: { width: isMobile ? "80vw" : "25vw" } }}
         >
             <Box
                 className="info"
                 style={{
                     backgroundColor: colors.primary,
-                    padding: "10vw",
+                    padding: isMobile ? "10vw" : "2vw 1vw",
                     justifyContent: "space-between",
                     alignItems: "center",
                 }}
@@ -51,8 +52,8 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
                         color: "white",
                     }}
                 >
-                    <h3 style={{ fontSize: "4vw" }}>SEU CARRINHO</h3>
-                    <p className="total" style={{ fontSize: "3vw" }}>
+                    <h3 style={{ fontSize: isMobile ? "4vw" : "1.5rem" }}>SEU CARRINHO</h3>
+                    <p className="total" style={{ fontSize: isMobile ? "3vw" : "1rem" }}>
                         Valor total: {<CurrencyText value={cart.total} />}
                     </p>
                 </Box>
@@ -61,8 +62,8 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
                     style={{
                         borderRadius: "100%",
                         backgroundColor: colors.secondary,
-                        width: "10vw",
-                        height: "10vw",
+                        width: isMobile ? "10vw" : "2vw",
+                        height: isMobile ? "10vw" : "2vw",
                         justifyContent: "center",
                         alignItems: "center",
                     }}
@@ -74,10 +75,10 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
                 className="product-list"
                 style={{
                     flexDirection: "column",
-                    gap: "5vw",
+                    gap: isMobile ? "5vw" : "2vw",
                     overflowY: "auto",
                     height: "80vh",
-                    padding: "5vw",
+                    padding: isMobile ? "5vw" : "2vw",
                 }}
             >
                 {cart.products?.map((product) => (
@@ -88,14 +89,14 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
                 className="button-container"
                 style={{
                     width: "100%",
-                    padding: "5vw 3vw",
-                    borderTopRightRadius: "10vw",
-                    borderTopLeftRadius: "10vw",
+                    padding: isMobile ? "5vw 3vw" : "2vw 1vw",
+                    borderTopRightRadius: isMobile ? "10vw" : "2vw",
+                    borderTopLeftRadius: isMobile ? "10vw" : "2vw",
                     boxShadow: "0 0 15px rgba(0,0,0,0.4)",
                 }}
             >
                 <ButtonComponent
-                    style={{ width: "100%", fontSize: "4vw" }}
+                    style={{ width: "100%", fontSize: isMobile ? "4vw" : "1.5rem", textTransform: "unset" }}
                     title="Finalizar compra"
                     onClick={() => finishOrder()}
                     disabled={cart.products.length == 0}
