@@ -9,19 +9,16 @@ import { useColors } from "../../hooks/useColors"
 import { ButtonComponent } from "../ButtonComponent"
 import { useNavigate } from "react-router-dom"
 
-interface CartProps {
-    isOpen: boolean
-    setOpen: (value: boolean) => void
-}
+interface CartProps {}
 
-export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
+export const Cart: React.FC<CartProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const colors = useColors()
     const cart = useCart()
     const navigate = useNavigate()
 
     const closeMenu = () => {
-        setOpen(false)
+        cart.setOpen(false)
     }
 
     const finishOrder = () => {
@@ -31,27 +28,24 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
     return (
         <Drawer
             anchor={"right"}
-            open={isOpen}
+            open={cart.open}
             onClose={closeMenu}
-            PaperProps={{ className: "Cart-Component", style: { width: isMobile ? "80vw" : "25vw" } }}
-        >
+            PaperProps={{ className: "Cart-Component", style: { width: isMobile ? "80vw" : "25vw" } }}>
             <Box
                 className="info"
                 style={{
                     backgroundColor: colors.primary,
                     padding: isMobile ? "10vw" : "2vw 1vw",
                     justifyContent: "space-between",
-                    alignItems: "center",
-                }}
-            >
+                    alignItems: "center"
+                }}>
                 <CartIcon />
                 <Box
                     className="text"
                     style={{
                         flexDirection: "column",
-                        color: "white",
-                    }}
-                >
+                        color: "white"
+                    }}>
                     <h3 style={{ fontSize: isMobile ? "4vw" : "1.5rem" }}>SEU CARRINHO</h3>
                     <p className="total" style={{ fontSize: isMobile ? "3vw" : "1rem" }}>
                         Valor total: {<CurrencyText value={cart.total} />}
@@ -65,9 +59,8 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
                         width: isMobile ? "10vw" : "2vw",
                         height: isMobile ? "10vw" : "2vw",
                         justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
+                        alignItems: "center"
+                    }}>
                     <h3>{cart.products?.length || 0}</h3>
                 </Box>
             </Box>
@@ -78,9 +71,8 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
                     gap: isMobile ? "5vw" : "2vw",
                     overflowY: "auto",
                     height: "80vh",
-                    padding: isMobile ? "5vw" : "2vw",
-                }}
-            >
+                    padding: isMobile ? "5vw" : "2vw"
+                }}>
                 {cart.products?.map((product) => (
                     <Product key={product.id} product={product} />
                 ))}
@@ -92,15 +84,13 @@ export const Cart: React.FC<CartProps> = ({ isOpen, setOpen }) => {
                     padding: isMobile ? "5vw 3vw" : "2vw 1vw",
                     borderTopRightRadius: isMobile ? "10vw" : "2vw",
                     borderTopLeftRadius: isMobile ? "10vw" : "2vw",
-                    boxShadow: "0 0 15px rgba(0,0,0,0.4)",
-                }}
-            >
+                    boxShadow: "0 0 15px rgba(0,0,0,0.4)"
+                }}>
                 <ButtonComponent
                     style={{ width: "100%", fontSize: isMobile ? "4vw" : "1.5rem", textTransform: "unset" }}
                     title="Finalizar compra"
                     onClick={() => finishOrder()}
-                    disabled={cart.products.length == 0}
-                >
+                    disabled={cart.products.length == 0}>
                     Finalizar compra
                 </ButtonComponent>
             </Box>

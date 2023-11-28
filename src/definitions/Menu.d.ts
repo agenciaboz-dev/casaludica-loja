@@ -1,12 +1,12 @@
-declare interface Link {
+interface DefaultLink {
     id: number
     name: string
     location: string
+    onClick: () => void
+}
+
+declare interface Link extends DefaultLink {
     sublinks?: Sublink[]
 }
 
-declare interface Sublink {
-    id: number
-    name: string
-    location: string
-}
+declare interface Sublink extends DefaultLink {}

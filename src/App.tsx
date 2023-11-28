@@ -12,6 +12,8 @@ import { Snackbar, SnackbarProvider } from "burgos-snackbar"
 import { Routes } from "./routes"
 import { UserProvider } from "./contexts/userContext"
 import { MenuProvider } from "./contexts/menuContext"
+import { Menu } from "./components/Menu"
+import { Cart } from "./components/Cart"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -28,6 +30,8 @@ function App() {
                                         <UserProvider>
                                             <BrowserRouter>
                                                 <Snackbar />
+                                                <Cart />
+                                                <Menu />
                                                 <Routes />
                                             </BrowserRouter>
                                         </UserProvider>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 //import "./style.scss"
 import MenuIcon from "@mui/icons-material/Menu"
 import { IconButton, Badge, Box, useMediaQuery } from "@mui/material"
-import { Menu } from "../Menu"
 import { ReactComponent as CartIcon } from "../../images/cart.svg"
 import { ReactComponent as LogoIcon } from "../../images/logo.svg"
 import { Cart } from "../Cart"
@@ -38,9 +37,8 @@ export const Header = () => {
                     width: "100%",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    paddingTop: isMobile ? "5vw" : "2vw",
-                }}
-            >
+                    paddingTop: isMobile ? "5vw" : "2vw"
+                }}>
                 <IconButton
                     color="secondary"
                     sx={{
@@ -50,14 +48,13 @@ export const Header = () => {
                         fontWeight: "400",
                         fontSize: isMobile ? "4vw" : "1.5rem",
                         flex: isMobile ? 0.3 : "",
-                        justifyContent: "start",
+                        justifyContent: "start"
                     }}
-                    onClick={() => menu.setOpen(true)}
-                >
+                    onClick={() => menu.setOpen(true)}>
                     <MenuIcon
                         sx={{
                             height: isMobile ? "10vw" : "3vw",
-                            width: isMobile ? "10vw" : "3vw",
+                            width: isMobile ? "10vw" : "3vw"
                         }}
                     />
                     Menu
@@ -66,38 +63,34 @@ export const Header = () => {
                     onClick={() => navigate("/")}
                     style={{
                         flex: isMobile ? 0.3 : "",
-                        cursor: "pointer",
+                        cursor: "pointer"
                     }}
                 />
                 {!isMobile && <SearchField />}
                 <Box
                     sx={{
                         flex: isMobile ? 0.3 : "",
-                        justifyContent: "flex-end",
-                    }}
-                >
+                        justifyContent: "flex-end"
+                    }}>
                     <Badge
                         badgeContent={cart.products?.length || 0}
                         color="primary"
                         sx={{
                             //top:"3vw",
-                            right: "1vw",
-                        }}
-                    >
+                            right: "1vw"
+                        }}>
                         <IconButton color="secondary" sx={{ gap: "2vw", padding: 0 }} onClick={() => cart.setOpen(true)}>
                             <CartIcon
                                 style={{
                                     flex: 1,
                                     height: isMobile ? "10vw" : "3vw",
-                                    width: isMobile ? "10vw" : "3vw",
+                                    width: isMobile ? "10vw" : "3vw"
                                 }}
                             />
                         </IconButton>
                     </Badge>
                 </Box>
             </Box>
-            <Menu isOpen={menu.open} setOpen={menu.setOpen} />
-            <Cart isOpen={cart.open} setOpen={cart.setOpen} />
             <Loading />
 
             <CepModal open={cepModal} setOpen={setCepModal} />

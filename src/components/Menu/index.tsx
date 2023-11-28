@@ -7,18 +7,17 @@ import { LinkContainer } from "./LinkContainer"
 import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 import { LoginContainer } from "./LoginContainer"
+import { useMenu } from "../../hooks/useMenu"
 
-interface MenuProps {
-    isOpen: boolean
-    setOpen: (isOpen: boolean) => void
-}
+interface MenuProps {}
 
-export const Menu: React.FC<MenuProps> = ({ isOpen, setOpen }) => {
+export const Menu: React.FC<MenuProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const links = useMenuLinks()
     const storage = useLocalStorage()
     const colors = useColors()
 
+    const { open: isOpen, setOpen } = useMenu()
     const { user } = useUser()
 
     const closeMenu = () => {

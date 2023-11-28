@@ -1,6 +1,6 @@
 import { Box, MenuItem, useMediaQuery } from "@mui/material"
 import React from "react"
-import { useNavigate } from "react-router-dom"
+import { useMenu } from "../../../hooks/useMenu"
 
 interface LinkProps {
     link: Link
@@ -8,7 +8,12 @@ interface LinkProps {
 
 export const LinkContainer: React.FC<LinkProps> = ({ link }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
-    const navigate = useNavigate()
+    const menu = useMenu()
+
+    const handleMenuClick = (item: Link) => {
+        item.onClick()
+        menu.setOpen(false)
+    }
 
     return (
         <MenuItem
@@ -27,7 +32,7 @@ export const LinkContainer: React.FC<LinkProps> = ({ link }) => {
                     fontWeight: "bold",
                     fontSize: isMobile ? "4vw" : "1.2rem"
                 }}
-                onClick={() => navigate(link.location)}>
+                onClick={() => handleMenuClick(link)}>
                 {link.name}
             </h3>
             {link.sublinks && (
@@ -39,7 +44,7 @@ export const LinkContainer: React.FC<LinkProps> = ({ link }) => {
                         gap: isMobile ? "2vw" : "0.5vw"
                     }}>
                     {link.sublinks?.map((sublink) => (
-                        <p key={sublink.id} onClick={() => navigate(sublink.location)}>
+                        <p key={sublink.id} onClick={() => handleMenuClick(sublink)}>
                             {sublink.name}
                         </p>
                     ))}
