@@ -1,5 +1,5 @@
 import React from "react"
-import { Avatar, Box } from "@mui/material"
+import { Avatar, Box, useMediaQuery } from "@mui/material"
 import BrokenImageIcon from "@mui/icons-material/BrokenImage"
 import { useColors } from "../../../hooks/useColors"
 import { ReactComponent as UpIcon } from "../../../images/quantity-increase.svg"
@@ -14,6 +14,7 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const colors = useColors()
     const cart = useCart()
 
@@ -34,12 +35,12 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             className="Product-Component"
             style={{
                 width: "100%",
-                boxShadow: "0 0 8px rgba(0, 0, 0, 0.4)",
-                padding: "5vw",
-                borderRadius: "10vw",
+                boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
+                padding: isMobile ? "5vw" : "1vw",
+                borderRadius: isMobile ? "10vw" : "1vw",
                 flexDirection: "column",
                 height: "fit-content",
-                gap: "3vw",
+                gap: isMobile ? "3vw" : "1vw",
             }}
         >
             <Box
@@ -52,55 +53,67 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 <Avatar
                     src={"data:image/jpeg;base64," + product.cover}
                     variant={"rounded"}
-                    sx={{ bgcolor: colors.primary, width: "32vw", height: "32vw", borderRadius: "5vw" }}
+                    sx={{ bgcolor: colors.primary, width: isMobile ? "32vw" : "10vw", height: isMobile ? "32vw" : "10vw", borderRadius: "1vw" }}
                 >
                     <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                 </Avatar>
                 <Box
                     className="right-container"
                     style={{
-                        gap: "3vw",
+                        gap: isMobile ? "3vw" : "1vw",
                     }}
                 >
                     <Box
                         className="quantity-container"
                         style={{
                             flexDirection: "column",
-                            gap: "2vw",
+                            gap: isMobile ? "2vw" : "1vw",
                         }}
                     >
-                        <UpIcon onClick={() => increase()} />
+                        <UpIcon
+                            onClick={() => increase()}
+                            style={{
+                                cursor: "pointer",
+                            }}
+                        />
                         <Box
                             className="quantity"
                             style={{
                                 justifyContent: "center",
                                 alignItems: "center",
-                                backgroundColor: colors.secondary,
-                                fontSize: "7vw",
+                                backgroundColor: "lightgrey",
+                                fontSize: isMobile ? "7vw" : "2rem",
                                 fontWeight: "bold",
-                                padding: "2vw",
+                                padding: isMobile ? "2vw" : 0,
                             }}
                         >
                             {product.quantity}
                         </Box>
-                        <DownIcon onClick={() => decrease()} />
+                        <DownIcon
+                            onClick={() => decrease()}
+                            style={{
+                                cursor: "pointer",
+                            }}
+                        />
                     </Box>
-                    <RemoveIcon onClick={() => remove()} style={{ alignSelf: "flex-start" }} />
+                    <RemoveIcon onClick={() => remove()} style={{ alignSelf: "flex-start", cursor: "pointer" }} />
                 </Box>
             </Box>
             <Box
                 className="bottom-container"
                 style={{
-                    gap: "5vw",
+                    gap: isMobile ? "5vw" : "2vw",
+                    alignItems: "center",
+                    justifyContent: "center",
                 }}
             >
                 <Box
                     className="quantity-container"
                     style={{
-                        borderRadius: "100%",
-                        backgroundColor: colors.secondary,
-                        width: "10vw",
-                        height: "10vw",
+                        borderRadius: "50%",
+                        backgroundColor: "lightgrey",
+                        width: isMobile ? "10vw" : "3vw",
+                        height: isMobile ? "10vw" : "3vw",
                         justifyContent: "center",
                         alignItems: "center",
                         fontWeight: "bold",

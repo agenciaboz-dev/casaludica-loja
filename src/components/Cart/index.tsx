@@ -81,7 +81,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
                 className="button-container"
                 style={{
                     width: "100%",
-                    padding: isMobile ? "5vw 3vw" : "2vw 1vw",
+                    padding: isMobile ? "5vw 3vw" : "1vw",
                     borderTopRightRadius: isMobile ? "10vw" : "2vw",
                     borderTopLeftRadius: isMobile ? "10vw" : "2vw",
                     boxShadow: "0 0 15px rgba(0,0,0,0.4)"
