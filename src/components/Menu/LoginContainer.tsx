@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Button, CircularProgress, TextField } from "@mui/material"
+import { Box, Button, CircularProgress, TextField, useMediaQuery } from "@mui/material"
 import { useFormik } from "formik"
 import { useApi } from "../../hooks/useApi"
 import { ButtonComponent } from "../ButtonComponent"
@@ -9,6 +9,7 @@ import { useMenu } from "../../hooks/useMenu"
 interface LoginContainerProps {}
 
 export const LoginContainer: React.FC<LoginContainerProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const api = useApi()
     const navigate = useNavigate()
     const menu = useMenu()
@@ -27,11 +28,11 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({}) => {
             } finally {
                 setLoading(false)
             }
-        }
+        },
     })
 
     return (
-        <Box sx={{ width: "100%", flexDirection: "column", gap: "5vw", color: "white", marginBottom: "-5vw" }}>
+        <Box sx={{ width: "100%", flexDirection: "column", gap: isMobile ? "5vw" : "1vw", color: "white", marginBottom: isMobile ? "-5vw" : "0" }}>
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
                 <TextField
                     label="E-mail ou CPF"

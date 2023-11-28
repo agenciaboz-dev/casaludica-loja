@@ -1,10 +1,10 @@
-import { Avatar, Box, Button, Drawer } from '@mui/material'
-import React from 'react'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
-import { useMenuLinks } from '../../hooks/useMenuLinks'
-import { LinkContainer } from './LinkContainer'
+import { Avatar, Box, Button, Drawer, useMediaQuery } from "@mui/material"
+import React from "react"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
+import { useMenuLinks } from "../../hooks/useMenuLinks"
+import { LinkContainer } from "./LinkContainer"
 // import './style.scss'
-import { useColors } from '../../hooks/useColors'
+import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 import { LoginContainer } from "./LoginContainer"
 
@@ -14,6 +14,7 @@ interface MenuProps {
 }
 
 export const Menu: React.FC<MenuProps> = ({ isOpen, setOpen }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const links = useMenuLinks()
     const storage = useLocalStorage()
     const colors = useColors()
@@ -33,45 +34,51 @@ export const Menu: React.FC<MenuProps> = ({ isOpen, setOpen }) => {
             PaperProps={{
                 className: "Menu-Component",
                 style: {
-                    width: "80vw"
-                }
-            }}>
+                    width: isMobile ? "80vw" : "25vw",
+                },
+            }}
+        >
             <Box
                 className="profile"
                 style={{
                     backgroundColor: colors.primary,
-                    padding: "10vw 5vw",
-                    gap: "5vw"
-                }}>
+                    padding: isMobile ? "10vw 5vw" : "2vw 1vw",
+                    gap: isMobile ? "5vw" : "2vw",
+                }}
+            >
                 {user ? (
                     <>
-                        <Avatar sx={{ width: "20vw", height: "20vw" }} src={user.profilePicUrl} />
+                        <Avatar sx={{ width: isMobile ? "20vw" : "3vw", height: isMobile ? "20vw" : "3vw" }} src={user.profilePicUrl} />
                         <Box
                             className="info"
                             style={{
                                 flexDirection: "column",
                                 justifyContent: "spaceBetween",
-                                color: "white"
-                            }}>
+                                color: "white",
+                            }}
+                        >
                             <h3
                                 className="name"
                                 style={{
-                                    fontSize: "4vw"
-                                }}>
+                                    fontSize: isMobile ? "4vw" : "1.5rem",
+                                }}
+                            >
                                 {user.name}
                             </h3>
                             <p
                                 className="email"
                                 style={{
-                                    fontSize: "3vw"
-                                }}>
+                                    fontSize: isMobile ? "3vw" : "1rem",
+                                }}
+                            >
                                 {user.email}
                             </p>
                             <h5
                                 className="link"
                                 style={{
-                                    textDecoration: "underline"
-                                }}>
+                                    textDecoration: "underline",
+                                }}
+                            >
                                 Editar Perfil
                             </h5>
                         </Box>
@@ -84,9 +91,10 @@ export const Menu: React.FC<MenuProps> = ({ isOpen, setOpen }) => {
                 className="links"
                 style={{
                     flexDirection: "column",
-                    padding: "3vw 8vw",
-                    gap: "4vw"
-                }}>
+                    padding: isMobile ? "3vw 8vw" : "1vw",
+                    gap: isMobile ? "4vw" : "2vw",
+                }}
+            >
                 {links.map((link) => (
                     <LinkContainer key={link.id} link={link} />
                 ))}
@@ -95,7 +103,8 @@ export const Menu: React.FC<MenuProps> = ({ isOpen, setOpen }) => {
                     onClick={() => {
                         storage.set("address", null)
                         window.location.href = "/"
-                    }}>
+                    }}
+                >
                     Resetar endereço
                 </Button>
             </Box>

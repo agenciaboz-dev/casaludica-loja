@@ -1,31 +1,49 @@
-import { Box } from '@mui/material';
-import React from 'react';
+import { Box, useMediaQuery } from "@mui/material"
+import React from "react"
 import { useNavigate } from "react-router-dom"
 
 interface LinkProps {
     link: Link
 }
 
-export const LinkContainer:React.FC<LinkProps> = ({ link }) => {
-
+export const LinkContainer: React.FC<LinkProps> = ({ link }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
-    
+
     return (
-        <Box className='Link-Component' style={{
-            flexDirection: "column"
-        }}>
-            <h3 className='name' style={{
-                fontFamily: "Poppins",
-                fontWeight: "bold",
-                fontSize: "4vw"
-            }} onClick={() => navigate(link.location)}>{link.name}</h3>
-            <Box className="sublinks" style={{
+        <Box
+            className="Link-Component"
+            style={{
                 flexDirection: "column",
-                padding: "2vw 5vw",
-                gap: "2vw"
-            }}>
-                {link.sublinks?.map(sublink => <p key={sublink.id} onClick={() => navigate(sublink.location)}>{sublink.name}</p>)}
-            </Box>
+            }}
+        >
+            <h3
+                className="name"
+                style={{
+                    fontFamily: "Poppins",
+                    fontWeight: "bold",
+                    fontSize: isMobile ? "4vw" : "1.2rem",
+                }}
+                onClick={() => navigate(link.location)}
+            >
+                {link.name}
+            </h3>
+            {link.sublinks && (
+                <Box
+                    className="sublinks"
+                    style={{
+                        flexDirection: "column",
+                        padding: isMobile ? "2vw 5vw" : "0.5vw 1vw",
+                        gap: isMobile ? "2vw" : "0.5vw",
+                    }}
+                >
+                    {link.sublinks?.map((sublink) => (
+                        <p key={sublink.id} onClick={() => navigate(sublink.location)}>
+                            {sublink.name}
+                        </p>
+                    ))}
+                </Box>
+            )}
         </Box>
     )
 }
