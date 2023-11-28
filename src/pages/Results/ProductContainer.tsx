@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Avatar, Box, Skeleton, Paper, Grid, Button } from "@mui/material"
+import { Avatar, Box, Skeleton, Paper, Grid, Button, useMediaQuery } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { ButtonComponent } from "../../components/ButtonComponent"
 import { useCart } from "../../hooks/useCart"
@@ -13,23 +13,24 @@ interface ProductContainerProps {
 }
 
 export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const cart = useCart()
 
     const productRef = useDynamicImage(product)
 
     const skeleton_style = {
-        height: "8vw",
+        height: isMobile ? "8vw" : "2vw",
         width: "100%",
     }
 
     const image_skeleton_style = {
-        height: "40vw",
-        width: "40vw",
-        borderRadius: "5vw",
+        height: isMobile ? "40vw" : "15vw",
+        width: isMobile ? "40vw" : "15vw",
+        borderRadius: isMobile ? "5vw" : "1vw",
     }
     const button_Style = {
-        borderRadius: "20vw",
+        borderRadius: isMobile ? "20vw" : "2vw",
         border: "none",
         color: "white",
 
@@ -45,11 +46,11 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                 flexDirection: "row",
                 alignItems: "center",
                 width: "100%",
-                gap: "3vw",
+                gap: isMobile ? "3vw" : "2vw",
                 justifyContent: "space-around",
-                borderRadius: "5vw",
-                padding: "4vw",
-                boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+                borderRadius: isMobile ? "5vw" : "2vw",
+                padding: isMobile ? "4vw" : "1vw",
+                boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
             }}
             key={product.id}
             onClick={() => navigate(`/product/${product.id}`)}
@@ -61,7 +62,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
-                        sx={{ width: "40vw", height: "auto", borderRadius: "5vw" }}
+                        sx={{ width: isMobile ? "40vw" : "15vw", height: "auto", borderRadius: isMobile ? "5vw" : "1vw" }}
                     />
                     <Box sx={{ flexDirection: "column", alignItems: "center", gap: "2vw" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
@@ -71,7 +72,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                     textOverflow: "ellipsis",
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
-                                    width: "40vw",
+                                    width: isMobile ? "40vw" : "100%",
                                 }}
                             >
                                 {product.name}
@@ -80,7 +81,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                 style={{
                                     textAlign: "start",
                                     overflow: "hidden",
-                                    width: "40vw",
+                                    width: isMobile ? "40vw" : "100%",
                                     maxHeight: "13vw",
                                     textTransform: "lowercase",
                                     display: "-webkit-box",
@@ -94,11 +95,11 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                             <h2
                                 style={{
                                     textAlign: "start",
-                                    fontSize: "5vw",
+                                    fontSize: isMobile ? "5vw" : "1.5rem",
                                     textOverflow: "ellipsis",
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
-                                    width: "40vw",
+                                    width: isMobile ? "40vw" : "100%",
                                     color: "#363775",
                                 }}
                             >
@@ -121,7 +122,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                 <>
                     <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
 
-                    <Box sx={{ width: "45%", flexDirection: "column", gap: "2vw" }}>
+                    <Box sx={{ width: isMobile ? "45%" : "100%", flexDirection: "column", gap: "2vw" }}>
                         <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                         <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                         <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />

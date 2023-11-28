@@ -1,4 +1,4 @@
-import { Avatar, Button, Skeleton, Box, Grid } from "@mui/material"
+import { Avatar, Button, Skeleton, Box, Grid, useMediaQuery } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Background } from "../../components/Background"
@@ -17,6 +17,7 @@ import { useArray } from "burgos-array"
 interface ResultsProps {}
 
 export const Results: React.FC<ResultsProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const cart = useCart()
     const navigate = useNavigate()
     const type = useParams().type
@@ -27,17 +28,6 @@ export const Results: React.FC<ResultsProps> = ({}) => {
 
     const [products, setProducts] = useState<Product[]>([])
     const [loading, setLoading] = useState(true)
-
-    const skeleton_style = {
-        height: "8vw",
-        width: "100%",
-    }
-
-    const image_skeleton_style = {
-        height: "40vw",
-        width: "40vw",
-        borderRadius: "5vw",
-    }
 
     const getProducts = () => {
         setLoading(true)
@@ -87,11 +77,14 @@ export const Results: React.FC<ResultsProps> = ({}) => {
     }, [])
 
     return (
-        <Box className="Results-Page" sx={{ width: "100%", flexDirection: "column", gap: "5vw", padding: "0 5vw" }}>
+        <Box
+            className="Results-Page"
+            sx={{ width: "100%", flexDirection: "column", gap: isMobile ? "5vw" : "2vw", padding: isMobile ? "0 5vw" : "0 10vw" }}
+        >
             <Background />
             <Header />
 
-            <SearchField />
+            {isMobile && <SearchField />}
             <Collections />
 
             <h3 className="results-title" style={{ color: colors.primary }}>
@@ -99,9 +92,14 @@ export const Results: React.FC<ResultsProps> = ({}) => {
             </h3>
 
             {loading ? (
-                <Box sx={{ alignItems: "center", gap: "5vw", flexDirection: "column" }}>
+                <Box sx={{ alignItems: "center", gap: isMobile ? "5vw" : "2vw", flexDirection: "column" }}>
                     {skeletons.map((index) => (
-                        <Skeleton key={index} animation="wave" variant="rounded" sx={{ width: "80vw", height: "45vw" }} />
+                        <Skeleton
+                            key={index}
+                            animation="wave"
+                            variant="rounded"
+                            sx={{ width: isMobile ? "80vw" : "100%", height: isMobile ? "45vw" : "18vw" }}
+                        />
                     ))}
                 </Box>
             ) : (
