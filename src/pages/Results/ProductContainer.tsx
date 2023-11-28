@@ -105,7 +105,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     </Box>
                 </>
             ) : (
-                <>
+                <Box sx={{ gap: isMobile ? "3vw" : "2vw", width: "90vw", alignItems: "center" }}>
                     <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
 
                     <Box sx={{ width: isMobile ? "45%" : "100%", flexDirection: "column", gap: "2vw" }}>
@@ -114,7 +114,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                         <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                         <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
                     </Box>
-                </>
+                </Box>
             )}
         </Box>
     )

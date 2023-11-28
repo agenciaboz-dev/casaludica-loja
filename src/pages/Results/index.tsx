@@ -91,7 +91,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
             ) : (
                 <Grid container spacing={2} sx={{ marginBottom: "10vw" }}>
                     {products.map((product: Product) => (
-                        <Grid item key={product.id} xs={12} sm={12} md={12} lg={12} xl={12}>
+                        <Grid item key={product.id} xs={12}>
                             <ProductContainer key={product.id} product={product} />
                         </Grid>
                     ))}
