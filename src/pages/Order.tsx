@@ -22,18 +22,20 @@ export const Order: React.FC<OrderProps> = ({}) => {
         if (!orderId) {
             navigate("/")
         } else {
-            api.order.get(bozpayStoreIdentifier, orderId, {
+            api.order.get.id(bozpayStoreIdentifier, orderId, {
                 callback: (response) => {
                     console.log(response.data)
                     setOrder(response.data)
-                },
+                }
             })
         }
     }, [])
 
     return (
         <DefaultWrapper>
-            <h2 style={{ color: "white", fontSize: "2rem" }}>Seu pedido: #{order?.referenceId}</h2>
+            <Box sx={{ fontSize: "1rem", color: "primary.main" }}>
+                <h2>Seu pedido: #{order?.referenceId}</h2>
+            </Box>
 
             {order ? (
                 <OrderComponent order={order} />

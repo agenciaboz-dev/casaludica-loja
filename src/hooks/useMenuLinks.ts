@@ -19,58 +19,58 @@ export const useMenuLinks = () => {
         {
             id: 2,
             name: "Categorias",
-            location: "/",
-            onClick: () => navigate("/")
+            location: "/categories",
+            onClick: () => navigate("/categories")
         },
         {
             id: 3,
-            name: "Meu Pedido",
-            sublinks: [
-                {
-                    id: 0,
-                    name: "Lista de itens",
-                    location: "/",
-                    onClick: () => navigate("/")
-                },
-                {
-                    id: 1,
-                    name: "Carrinho",
-                    location: "/",
-                    onClick: () => navigate("/")
-                },
-                {
-                    id: 2,
-                    name: "Pagamento",
-                    location: "/",
-                    onClick: () => navigate("/")
-                }
-            ],
-            location: "/",
-            onClick: () => navigate("/")
+            name: "Meus Pedidos",
+            // sublinks: [
+            //     {
+            //         id: 0,
+            //         name: "Lista de itens",
+            //         location: "/",
+            //         onClick: () => navigate("/")
+            //     },
+            //     {
+            //         id: 1,
+            //         name: "Carrinho",
+            //         location: "/",
+            //         onClick: () => navigate("/")
+            //     },
+            //     {
+            //         id: 2,
+            //         name: "Pagamento",
+            //         location: "/",
+            //         onClick: () => navigate("/")
+            //     }
+            // ],
+            location: "/orders",
+            onClick: () => navigate("/orders")
         },
         {
             id: 4,
             name: "Siga a Rota para nossa loja  🏠",
             location: "/",
-            onClick: () => navigate("/")
+            onClick: () => alert("que isso")
         },
         {
             id: 5,
             name: "Site institucional 🌏",
             location: "/",
-            onClick: () => navigate("/")
+            onClick: () => window.open("https://casaludica.com.br", "_blank")?.focus()
         },
         {
             id: 6,
             name: "Adquira uma Franquia",
             location: "/",
-            onClick: () => navigate("/")
+            onClick: () => window.open("https://casaludica.com.br", "_blank")?.focus()
         },
         {
             id: 7,
             name: "Onde encontrar | Nossas lojas",
             location: "/",
-            onClick: () => navigate("/")
+            onClick: () => window.open("https://casaludica.com.br", "_blank")?.focus()
         }
     ]
 

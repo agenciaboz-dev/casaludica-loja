@@ -17,6 +17,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const { snackbar } = useSnackbar()
 
     const login = useLocation().state?.login
+    const redirect = useLocation().state?.redirect
+
     const api = useApi()
     const navigate = useNavigate()
     const formik = useFormik({
@@ -29,7 +31,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     const user = response.data
                     if (user) {
                         setUser(user)
-                        navigate("/")
+                        navigate(redirect || "/")
                     } else {
                         snackbar({ severity: "error", text: "Credenciais inválidas" })
                     }
@@ -44,7 +46,14 @@ export const Login: React.FC<LoginProps> = ({}) => {
                 <h3>Entrar</h3>
                 <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
                     <TextField label="E-mail ou CPF" name="login" value={formik.values.login} onChange={formik.handleChange} required />
-                    <TextField label="Senha" name="password" value={formik.values.password} onChange={formik.handleChange} required />
+                    <TextField
+                        label="Senha"
+                        name="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        required
+                        autoFocus={!!login}
+                    />
                     <ButtonComponent type="submit">{loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "entrar"}</ButtonComponent>
                 </form>
             </Box>

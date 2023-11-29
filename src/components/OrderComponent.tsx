@@ -28,20 +28,15 @@ const DataText: React.FC<DataTextProps> = ({ title, value, color, bold }) => {
                 color: "primary.main",
                 fontFamily: "BowlbyOneSC",
                 justifyContent: "space-between",
-                fontWeight: bold ? "bold" : "",
-            }}
-        >
+                fontWeight: bold ? "bold" : ""
+            }}>
             {title}
-            <Box sx={{ textAlign: "flex-end", fontSize: "1rem", color: `${color}.main`, fontWeight: bold ? "bold" : "" }}>
-                {value}
-            </Box>
+            <Box sx={{ textAlign: "flex-end", fontSize: "1rem", color: `${color}.main`, fontWeight: bold ? "bold" : "" }}>{value}</Box>
         </Box>
     )
 }
 
-const RealText: React.FC<{ value: string | number }> = ({ value }) => (
-    <CurrencyText value={value} style={{ fontSize: "1rem" }} />
-)
+const RealText: React.FC<{ value: string | number }> = ({ value }) => <CurrencyText value={value} style={{ fontSize: "1rem" }} />
 
 export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
     const subtotal = order.products.reduce((totalPrice, product) => totalPrice + product.price * product.quantity, 0)
@@ -49,17 +44,16 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
     const status = statusEnum(order.status)
 
     return (
-        <Box sx={{ flexDirection: "column", padding: "6vw 0", gap: "5vw" }}>
-            {order.status == "PENDING" && <PendingPayment orderId={order.id.toString()} />}
+        <Box sx={{ flexDirection: "column", gap: "5vw" }}>
+            {order.status == "PENDING" && <PendingPayment orderId={order.referenceId} />}
 
             <Box
                 sx={{
                     flexDirection: "column",
                     padding: "5vw",
                     boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-                    borderRadius: "2vw",
-                }}
-            >
+                    borderRadius: "2vw"
+                }}>
                 <DataText title="Status: " value={status.text} color={status.color} bold />
                 <DataText title="Data: " value={new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")} />
 
@@ -76,9 +70,8 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                         gap: "1vw",
                         padding: "3vw",
                         boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-                        borderRadius: "5vw",
-                    }}
-                >
+                        borderRadius: "5vw"
+                    }}>
                     {order.products.map((item) => (
                         // é o mesmo componente usado no checkout, cuidado ao editar
                         <Product key={item.id} product={{ ...item, cover: "", brand: "", sold: 0, id: Number(item.referenceId) }} hideCloseButton />

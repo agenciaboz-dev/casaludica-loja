@@ -64,7 +64,11 @@ section {
     display: contents;
 }
 
-div {
+.MuiPaper-root {
+    display: flex;
+}
+
+.MuiBox-root {
     display: flex;
 }
 

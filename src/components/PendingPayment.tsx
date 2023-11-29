@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { Box } from "@mui/material"
 import { ButtonComponent } from "./ButtonComponent"
 import { PayModal } from "./PayModal"
+import { Box } from "@mui/material"
 
 interface PendingPaymentProps {
     orderId: string
@@ -17,9 +17,8 @@ export const PendingPayment: React.FC<PendingPaymentProps> = ({ orderId }) => {
                 flexDirection: "column",
                 padding: "5vw 0 5vw",
                 fontFamily: "BowlbyOneSC",
-                color: "#d32f2f",
-            }}
-        >
+                color: "error.main"
+            }}>
             Ainda não recebemos o seu pagamento
             <ButtonComponent onClick={() => setOpenPay(true)}>Pagar</ButtonComponent>
             <PayModal orderId={orderId} open={openPay} close={() => setOpenPay(false)} />

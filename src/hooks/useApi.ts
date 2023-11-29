@@ -108,12 +108,14 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
-            get: (store: string, referenceId: string, options: ApiOptions) => {
-                bozpayApi
-                    .post("/order", { store, referenceId })
-                    .then((response) => options.callback(response))
-                    .catch((error) => defaultError(error, options.errorCallback))
-                    .finally(() => defaultFinally(options.finallyCallback))
+            get: {
+                id: (store: string, referenceId: string, options: ApiOptions) =>
+                    bozpayApi
+                        .post("/order", { store, referenceId })
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback)),
+                user: (user_id: number) => api.post("/order/user", { user_id, store_id: franchise })
             }
         },
 
