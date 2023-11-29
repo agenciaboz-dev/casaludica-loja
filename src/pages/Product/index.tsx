@@ -6,7 +6,7 @@ import { SearchField } from "../../components/SearchField"
 import { useApi } from "../../hooks/useApi"
 import { useCategories } from "../../hooks/useCategories"
 import { useProducts } from "../../hooks/useProducts"
-import { Skeleton, Paper, IconButton, Box, AlertColor, Rating, SxProps } from "@mui/material"
+import { Skeleton, Paper, IconButton, Box, AlertColor, Rating, SxProps, useMediaQuery } from "@mui/material"
 //import "./style.scss"
 import { Carousel } from "react-responsive-carousel"
 import { CurrencyText } from "../../components/CurrencyText"
@@ -58,6 +58,8 @@ const DataText: React.FC<DataTextProps> = ({ title, value, color, bold, valueSx,
     )
 }
 export const Product: React.FC<ProductProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
+
     const id = Number(useParams().id)
     const { products } = useProducts()
     const { categories } = useCategories()
@@ -112,13 +114,14 @@ export const Product: React.FC<ProductProps> = ({}) => {
             sx={{
                 width: "100%",
                 flexDirection: "column",
-                gap: "5vw",
-                padding: "0 5vw",
-                paddingBottom: "5vw"
-            }}>
+                gap: isMobile ? "5vw" : "2vw",
+                padding: isMobile ? "0 5vw" : "0 10vw",
+                paddingBottom: isMobile ? "5vw" : 0,
+            }}
+        >
             <Background />
             <Header />
-            <SearchField />
+            {isMobile && <SearchField />}
 
             {!product ? (
                 <>
@@ -127,7 +130,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 </>
             ) : (
                 <>
-                    <Box sx={{ gap: "2vw", color: "white", fontSize: "0.75rem" }}>
+                    <Box sx={{ gap: isMobile ? "2vw" : "1vw", color: "white", fontSize: "0.75rem" }}>
                         <h3 style={{ fontFamily: "Poppins", cursor: "pointer" }} onClick={() => navigate("/")}>
                             Início
                         </h3>
@@ -139,9 +142,10 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 width: "auto",
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
-                                whiteSpace: "nowrap"
+                                whiteSpace: "nowrap",
                             }}
-                            onClick={() => onCategoryClick()}>
+                            onClick={() => onCategoryClick()}
+                        >
                             {category?.name}
                         </h3>
                         <h3 style={{ fontFamily: "Poppins" }}>/</h3>
@@ -152,33 +156,44 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
                                 whiteSpace: "nowrap",
-                                maxWidth: "50vw"
-                            }}>
+                                maxWidth: isMobile ? "50vw" : "",
+                            }}
+                        >
                             {product?.name}
                         </h3>
                     </Box>
 
-                    <Paper elevation={1} className="title" sx={{ padding: "3vw 5vw", flexDirection: "column", width: "100%" }}>
-                        <Box sx={{ width: "100%", justifyContent: "space-between" }}>
-                            <Box sx={{ flex: 0.7 }}>
+                    <Paper
+                        elevation={1}
+                        className="title"
+                        sx={{
+                            padding: isMobile ? "3vw 5vw" : "0.5vw",
+                            flexDirection: "column",
+                            width: "100%",
+                            alignItems: isMobile ? "" : "center",
+                            gap: isMobile ? "1vw" : "0.5vw",
+                        }}
+                    >
+                        <Box sx={{ width: "100%", justifyContent: isMobile ? "space-between" : "center", gap: "2vw" }}>
+                            <Box sx={{ flex: isMobile ? 0.7 : "" }}>
                                 <DataText
                                     title="Marca:"
                                     value={`${product.brand}`}
-                                    titleSx={{ fontSize: "0.9rem", justifyContent: "flex-start", gap: "2vw" }}
+                                    titleSx={{ fontSize: "0.9rem", justifyContent: "flex-start", gap: isMobile ? "2vw" : "1vw" }}
                                     valueSx={{ fontSize: "0.8rem" }}
                                 />
                             </Box>
-                            <Box sx={{ gap: "1vw", flex: 0.3, alignItems: "center", fontSize: "0.8rem" }}>
+                            <Box sx={{ gap: "1vw", flex: isMobile ? 0.3 : "", alignItems: "center", fontSize: "0.8rem" }}>
                                 <Rating
                                     value={4}
                                     sx={{
                                         fontSize: "1rem",
                                         "& .MuiRating-iconFilled": {
-                                            color: "primary.main"
+                                            color: "primary.main",
                                         },
                                         "& .MuiRating-iconHover": {
-                                            color: "primary.main"
-                                        }
+                                            color: "primary.main",
+                                        },
                                     }}
                                 />
                                 4.2
@@ -187,22 +202,52 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         <h3 style={{ fontSize: "1.2rem" }}>{product.name}</h3>
                     </Paper>
 
-                    <Paper className="galery">
+                    <Paper
+                        className="galery"
+                        sx={{
+                            flexDirection: isMobile ? "" : "column",
+                        }}
+                    >
                         {!!galery.length ? (
                             <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
                                 {galery.map((image, index) => (
                                     <Box key={index}>
-                                        <img src={"data:image/jpeg;base64," + image} alt="" />
+                                        <img
+                                            src={"data:image/jpeg;base64," + image}
+                                            alt=""
+                                            style={{
+                                                height: isMobile ? "" : "20vw",
+                                                width: isMobile ? "" : "20vw",
+                                                margin: "0 auto",
+                                            }}
+                                        />
                                     </Box>
                                 ))}
                             </Carousel>
                         ) : (
-                            <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "90vw" }} />
+                            <Skeleton
+                                variant="rounded"
+                                animation="wave"
+                                sx={{ width: isMobile ? "90vw" : "20vw", height: isMobile ? "90vw" : "20vw", margin: "0 auto" }}
+                            />
                         )}
                     </Paper>
 
-                    <Box className="numbers">
-                        <Box className="quantity-container" sx={{ alignItems: "center", width: "50vw", justifyContent: "space-between" }}>
+                    <Box
+                        className="numbers"
+                        sx={{
+                            justifyContent: isMobile ? "" : "center",
+                            gap: isMobile ? "" : "2vw",
+                        }}
+                    >
+                        <Box
+                            className="quantity-container"
+                            sx={{
+                                alignItems: "center",
+                                width: isMobile ? "50vw" : "10vw",
+                                justifyContent: isMobile ? "space-between" : "center",
+                            }}
+                        >
                             <IconButton onClick={() => changeQuantity(-1)}>
                                 <ArrowIcon />
                             </IconButton>
@@ -212,15 +257,16 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 sx={{
                                     color: colors.primary,
                                     fontWeight: "bold",
-                                    fontSize: "5vw",
+                                    fontSize: isMobile ? "5vw" : "2rem",
                                     justifyContent: "center",
                                     alignItems: "center",
-                                    padding: " 2vw 3vw",
+                                    padding: isMobile ? "2vw 3vw" : "0 1vw",
                                     backgroundColor: colors.background_secondary,
                                     border: `1px solid ${colors.primary}`,
                                     borderRadius: "1vw",
-                                    width: "10vw"
-                                }}>
+                                    width: "10vw",
+                                }}
+                            >
                                 <p>{quantity}</p>
                             </Box>
 
@@ -231,13 +277,14 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         <CurrencyText
                             value={product.price * quantity}
                             style={{
-                                width: "50vw",
+                                width: isMobile ? "50vw" : "10vw",
                                 color: colors.primary,
                                 display: "flex",
                                 flexDirection: "row-reverse",
+                                justifyContent: "center",
                                 alignItems: "center",
-                                fontSize: "8vw",
-                                fontWeight: "bold"
+                                fontSize: isMobile ? "8vw" : "1.5rem",
+                                fontWeight: "bold",
                             }}
                         />
                     </Box>
@@ -248,34 +295,37 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             sx={{
                                 flexDirection: "column",
                                 color: "primary.main",
-                                height: fullDescription ? "auto" : "30vw",
-                                overflow: "hidden"
+                                height: fullDescription ? "auto" : isMobile ? "30vw" : "auto",
+                                overflow: "hidden",
                             }}
-                            onClick={() => setFullDescription(!fullDescription)}>
-                            <DataText title="Desrição" value="" />
+                            onClick={() => setFullDescription(!fullDescription)}
+                        >
+                            <DataText title="Descrição" value="" />
                             <pre style={{ textAlign: "start", whiteSpace: "break-spaces" }}>{product.description}</pre>
                         </Box>
 
-                        <Button sx={{ padding: 0 }} onClick={() => setFullDescription(!fullDescription)}>
-                            <Paper sx={{ width: "100%", padding: "3vw", flexDirection: "column", alignItems: "center" }}>
-                                <DataText
-                                    title={fullDescription ? "Ler menos" : "Ler mais"}
-                                    value=""
-                                    titleSx={{ fontSize: "0.9rem", justifyContent: "flex-start", width: "auto", gap: 0 }}
-                                />
-                                <Box
-                                    sx={{
-                                        width: 0,
-                                        height: 0,
-                                        borderColor: "primary.main",
-                                        borderLeft: "2vw solid transparent",
-                                        borderRight: "2vw solid transparent",
-                                        borderTop: fullDescription ? "" : "3vw solid",
-                                        borderBottom: fullDescription ? "3vw solid" : ""
-                                    }}
-                                />
-                            </Paper>
-                        </Button>
+                        {isMobile && (
+                            <Button sx={{ padding: 0 }} onClick={() => setFullDescription(!fullDescription)}>
+                                <Paper sx={{ width: "100%", padding: "3vw", flexDirection: "column", alignItems: "center" }}>
+                                    <DataText
+                                        title={fullDescription ? "Ler menos" : "Ler mais"}
+                                        value=""
+                                        titleSx={{ fontSize: "0.9rem", justifyContent: "flex-start", width: "auto", gap: 0 }}
+                                    />
+                                    <Box
+                                        sx={{
+                                            width: 0,
+                                            height: 0,
+                                            borderColor: "primary.main",
+                                            borderLeft: "2vw solid transparent",
+                                            borderRight: "2vw solid transparent",
+                                            borderTop: fullDescription ? "" : "3vw solid",
+                                            borderBottom: fullDescription ? "3vw solid" : "",
+                                        }}
+                                    />
+                                </Paper>
+                            </Button>
+                        )}
 
                         {/* <Box sx={{ flexDirection: "column", width: "100%" }}>
                             <DataText title="Largura" value={`${product.width} cm`} />
