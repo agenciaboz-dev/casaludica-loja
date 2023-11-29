@@ -22,17 +22,19 @@ export const LinkContainer: React.FC<LinkProps> = ({ link }) => {
                 flexDirection: "column",
                 alignItems: "flex-start",
                 minHeight: 0,
-                padding: "3vw 10vw",
-                justifyContent: "center"
-            }}>
+                padding: isMobile ? "3vw 10vw" : "1vw 2vw",
+                justifyContent: "center",
+            }}
+        >
             <h3
                 className="name"
                 style={{
                     fontFamily: "Poppins",
                     fontWeight: "bold",
-                    fontSize: isMobile ? "4vw" : "1.2rem"
+                    fontSize: isMobile ? "4vw" : "1.2rem",
                 }}
-                onClick={() => handleMenuClick(link)}>
+                onClick={() => handleMenuClick(link)}
+            >
                 {link.name}
             </h3>
             {link.sublinks && (
@@ -41,8 +43,9 @@ export const LinkContainer: React.FC<LinkProps> = ({ link }) => {
                     sx={{
                         flexDirection: "column",
                         padding: isMobile ? "2vw 5vw" : "0.5vw 1vw",
-                        gap: isMobile ? "2vw" : "0.5vw"
-                    }}>
+                        gap: isMobile ? "2vw" : "0.5vw",
+                    }}
+                >
                     {link.sublinks?.map((sublink) => (
                         <p key={sublink.id} onClick={() => handleMenuClick(sublink)}>
                             {sublink.name}
