@@ -121,7 +121,8 @@ export const useApi = () => {
 
         user: {
             isSignedUp: (login: string) => api.post("/user/exists", { login }),
-            login: (login: string, password: string) => api.post("/user/login", { login, password })
+            login: (login: string, password: string) => api.post("/user/login", { login, password }),
+            uploadProfilePic: (formdata: FormData, user_id: number) => api.post(`/user/upload_profile_pic/${user_id}`, formdata)
         }
     }
 
