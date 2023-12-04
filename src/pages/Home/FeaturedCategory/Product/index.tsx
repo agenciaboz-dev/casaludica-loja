@@ -30,6 +30,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 flex: 1,
                 height: "fit-content",
                 minHeight: isMobile ? "75vw" : "25vw",
+                maxWidth: "43vw",
                 alignItems: "center",
                 justifyContent: "space-between",
                 color: colors.primary,

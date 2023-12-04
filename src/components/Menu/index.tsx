@@ -35,50 +35,57 @@ export const Menu: React.FC<MenuProps> = ({}) => {
             PaperProps={{
                 className: "Menu-Component",
                 style: {
-                    width: isMobile ? "80vw" : "25vw"
-                }
-            }}>
+                    width: isMobile ? "80vw" : "25vw",
+                },
+            }}
+        >
             <Box
                 className="profile"
                 style={{
                     backgroundColor: colors.primary,
                     padding: isMobile ? "10vw 5vw" : "2vw 1vw",
-                    gap: isMobile ? "5vw" : "2vw"
-                }}>
+                    gap: isMobile ? "5vw" : "2vw",
+                }}
+            >
                 {user ? (
                     <Box
                         sx={{ display: "contents" }}
                         onClick={() => {
                             navigate("/profile")
                             closeMenu()
-                        }}>
+                        }}
+                    >
                         <Avatar sx={{ width: isMobile ? "20vw" : "3vw", height: isMobile ? "20vw" : "3vw" }} src={user.profilePicUrl} />
                         <Box
                             className="info"
                             style={{
                                 flexDirection: "column",
                                 justifyContent: "spaceBetween",
-                                color: "white"
-                            }}>
+                                color: "white",
+                            }}
+                        >
                             <h3
                                 className="name"
                                 style={{
-                                    fontSize: isMobile ? "4vw" : "1.5rem"
-                                }}>
+                                    fontSize: isMobile ? "4vw" : "1.5rem",
+                                }}
+                            >
                                 {user.name}
                             </h3>
                             <p
                                 className="email"
                                 style={{
-                                    fontSize: isMobile ? "3vw" : "1rem"
-                                }}>
+                                    fontSize: isMobile ? "3vw" : "1rem",
+                                }}
+                            >
                                 {user.email}
                             </p>
                             <h5
                                 className="link"
                                 style={{
-                                    textDecoration: "underline"
-                                }}>
+                                    textDecoration: "underline",
+                                }}
+                            >
                                 Editar Perfil
                             </h5>
                         </Box>
@@ -87,17 +94,18 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     <LoginContainer color="secondary" />
                 )}
             </Box>
-            <Box sx={{ flexDirection: "column", paddingTop: "3vw" }}>
+            <Box sx={{ flexDirection: "column", paddingTop: isMobile ? "3vw" : "1vw" }}>
                 {links.map((link) => (
                     <LinkContainer key={link.id} link={link} />
                 ))}
                 <Button
                     variant="contained"
-                    sx={{ margin: "0 5vw" }}
+                    sx={{ margin: "1vw 5vw" }}
                     onClick={() => {
                         storage.set("address", null)
                         window.location.href = "/"
-                    }}>
+                    }}
+                >
                     Resetar endereço
                 </Button>
             </Box>

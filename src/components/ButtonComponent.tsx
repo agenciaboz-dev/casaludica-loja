@@ -12,6 +12,7 @@ export const ButtonComponent: React.FC<ButtonProps> = (props) => {
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "BowlbyOneSC",
+        textTransform: "unset",
     }
 
     return (
