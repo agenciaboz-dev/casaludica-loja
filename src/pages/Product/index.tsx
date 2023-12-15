@@ -339,7 +339,15 @@ export const Product: React.FC<ProductProps> = ({}) => {
                     <Box color="primary.main">
                         <h3>Produtos similares ({similarProducts.length})</h3>
                     </Box>
-                    <Box sx={{ gap: "5vw", width: "100vw", overflowX: "auto", marginLeft: "-5vw", padding: "0 5vw 5vw" }}>
+                    <Box
+                        sx={{
+                            gap: "5vw",
+                            width: "100vw",
+                            overflowX: "auto",
+                            marginLeft: isMobile ? "-5vw" : "-10vw",
+                            padding: isMobile ? "0 5vw 5vw" : "0 10vw 5vw",
+                        }}
+                    >
                         {similarProducts
                             .sort((a, b) => a.id - b.id)
                             .map((item) => (
