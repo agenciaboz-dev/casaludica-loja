@@ -39,8 +39,6 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 padding: isMobile ? "2vw" : "1vw",
                 flexDirection: "column",
                 boxShadow: `0 2px 3px rgba(0, 0, 0, 0.4)`,
-
-                "& .Product-Component:nth-child(2n)": { marginTop: "-17vw" },
             }}
         >
             {product.cover ? (
