@@ -39,7 +39,7 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
         api.user
             .uploadProfilePic(formData, user.id)
             .then((response) => {
-                const user = response.data.user
+                const user = response.data
 
                 if (user) {
                     setUser(user)
