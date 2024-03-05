@@ -103,6 +103,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     sx={{ margin: "1vw 5vw" }}
                     onClick={() => {
                         storage.set("address", null)
+                        storage.set("franchise", null)
                         window.location.href = "/"
                     }}
                 >
