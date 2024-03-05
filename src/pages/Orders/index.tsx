@@ -7,6 +7,7 @@ import { useApi } from "../../hooks/useApi"
 import { useArray } from "burgos-array"
 import { OrderComponent } from "../../components/OrderComponent"
 import { Order } from "boz.pay.component"
+import { useFranchise } from "../../hooks/useFranchise"
 
 interface OrdersProps {}
 
@@ -14,13 +15,16 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
     const api = useApi()
     const skeletons = useArray().newArray(3)
 
+    const { franchise } = useFranchise()
+
     const [orders, setOrders] = useState<Order[]>([])
 
     useEffect(() => {
         api.order.get.user(user.id).then((response) => {
             setOrders(response.data.orders)
+            console.log({ orders_response: response?.data.orders })
         })
-    }, [])
+    }, [franchise])
 
     return (
         <Box sx={{ flexDirection: "column", fontSize: "1.2rem", color: "primary.main", width: "100%", gap: "5vw", paddingBottom: "10vw" }}>
