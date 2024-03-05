@@ -44,7 +44,6 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect 
                     name="login"
                     color={color || "primary"}
                     variant="standard"
-                    InputProps={{ sx: { color: "white" } }}
                     required
                 />
                 <Button variant="contained" color="success" sx={{ borderRadius: "5vw" }} type="submit">
