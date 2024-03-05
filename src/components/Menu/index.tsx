@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Drawer, useMediaQuery } from "@mui/material"
+import { Avatar, Box, Button, Drawer, MenuItem, useMediaQuery } from "@mui/material"
 import React from "react"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useMenuLinks } from "../../hooks/useMenuLinks"
@@ -91,7 +91,15 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                         </Box>
                     </Box>
                 ) : (
-                    <LoginContainer color="secondary" />
+                    <MenuItem
+                        sx={{ width: 1, color: "white" }}
+                        onClick={() => {
+                            navigate("/login_checker")
+                            closeMenu()
+                        }}
+                    >
+                        entrar
+                    </MenuItem>
                 )}
             </Box>
             <Box sx={{ flexDirection: "column", paddingTop: isMobile ? "3vw" : "1vw" }}>
