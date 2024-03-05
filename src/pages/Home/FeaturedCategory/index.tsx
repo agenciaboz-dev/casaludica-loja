@@ -5,11 +5,14 @@ import { Skeleton, Box, SxProps, useMediaQuery } from "@mui/material"
 //import "./style.scss"
 import { ReactComponent as BackgroundImage } from "../../../images/background/featured.svg"
 import { useColors } from "../../../hooks/useColors"
+import { useFranchise } from "../../../hooks/useFranchise"
 
 interface FeaturedCategoryProps {}
 
 export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const { franchise } = useFranchise()
+
     const [title, setTitle] = useState("Para reunir a família")
     const [products, setProducts] = useState<Product[]>([])
 
@@ -25,12 +28,14 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
         },
     }
     useEffect(() => {
-        api.products.category("11", {
-            callback: (response: { data: Product[] }) => {
-                setProducts(response.data)
-            },
-        })
-    }, [])
+        if (franchise) {
+            api.products.category("11", {
+                callback: (response: { data: Product[] }) => {
+                    setProducts(response.data)
+                },
+            })
+        }
+    }, [franchise])
 
     return (
         <Box

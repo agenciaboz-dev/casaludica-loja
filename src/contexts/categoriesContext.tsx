@@ -3,6 +3,7 @@ import React from "react"
 import { useApi } from '../hooks/useApi';
 import { AxiosResponse } from "axios"
 import { sentenceCase } from "change-case"
+import { useFranchise } from "../hooks/useFranchise"
 
 interface CategoriesContextValue {
     value: Category[]
@@ -21,9 +22,11 @@ const CategoriesContext = createContext<CategoriesContextValue>({} as Categories
 export default CategoriesContext
 
 export const CategoriesProvider: React.FC<CategoriesProviderProps> = ({ children }) => {
+    const api = useApi()
+    const { franchise } = useFranchise()
+
     const [value, setValue] = useState<Category[]>([])
     const [collections, setCollections] = useState<Collection[]>([])
-    const api = useApi()
 
     useEffect(() => {
         console.log({ collections })
@@ -48,8 +51,10 @@ export const CategoriesProvider: React.FC<CategoriesProviderProps> = ({ children
     }, [value])
 
     useEffect(() => {
-        api.categories.get((response: { data: Category[] }) => setValue(response.data))
-    }, [])
+        if (franchise) {
+            api.categories.get((response: { data: Category[] }) => setValue(response.data))
+        }
+    }, [franchise])
 
     return <CategoriesContext.Provider value={{ value, setValue, collections, setCollections }}>{children}</CategoriesContext.Provider>
 }

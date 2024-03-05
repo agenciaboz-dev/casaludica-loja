@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import React from 'react';
 import { useApi } from "../hooks/useApi"
+import { useFranchise } from "../hooks/useFranchise"
 
 interface ProductsContextValue {
     value: Product[]
@@ -17,8 +18,10 @@ const ProductsContext = createContext<ProductsContextValue>({} as ProductsContex
 export default ProductsContext;
 
 export const ProductsProvider:React.FC<ProductsProviderProps> = ({children}) => {
-    const [value, setValue] = useState<Product[]>([])
     const api = useApi()
+    const { franchise } = useFranchise()
+
+    const [value, setValue] = useState<Product[]>([])
 
     const addProduct = (product: Product) => {
         setValue((value) => [...value.filter((item) => item.id != product.id), product])
@@ -29,8 +32,10 @@ export const ProductsProvider:React.FC<ProductsProviderProps> = ({children}) => 
     }, [value])
 
     useEffect(() => {
-        api.products.list((response: { data: Product[] }) => setValue(response.data))
-    }, [])
+        if (franchise) {
+            api.products.list((response: { data: Product[] }) => setValue(response.data))
+        }
+    }, [franchise])
 
     return <ProductsContext.Provider value={{ value, setValue, addProduct }}>{children}</ProductsContext.Provider>
 }
