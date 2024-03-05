@@ -6,6 +6,7 @@ import backdropStyle from "../style/blurred_backdrop"
 import { useNavigate } from "react-router-dom"
 import { ButtonComponent } from "./ButtonComponent"
 import { useCart } from "../hooks/useCart"
+import { api } from "../api"
 
 interface PayModalProps {
     open: boolean
@@ -20,6 +21,15 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
     const { reset } = useCart()
 
     const [orderButton, setOrderButton] = useState(false)
+
+    const onPaid = async (charge: Charge) => {
+        console.log(charge)
+        setOrderButton(true)
+        reset()
+        try {
+            const paid_response = await api.post("/order/paid", { charge, storeId: franchise })
+        } catch (error) {}
+    }
 
     return (
         <Dialog
@@ -38,12 +48,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
                         referenceId={orderId}
                         sandbox
                         wrapperSx={{ width: "90vw", alignSelf: "center" }}
-                        onPaid={(charge) => {
-                            console.log("paid")
-                            console.log({ charge })
-                            setOrderButton(true)
-                            reset()
-                        }}
+                        onPaid={onPaid}
                     />
                 )}
             </Box>
