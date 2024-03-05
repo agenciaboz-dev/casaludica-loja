@@ -37,6 +37,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
             sx={{ width: "100vw", height: "100vh", justifyContent: "center", alignItems: "center" }}
             PaperProps={{ sx: { borderRadius: "5vw", maxWidth: "100vw" } }}
             slotProps={{ backdrop: { sx: backdropStyle } }}
+            onClose={close}
         >
             <Box sx={{ height: "70vh", flexDirection: "column" }}>
                 {!!orderId && (

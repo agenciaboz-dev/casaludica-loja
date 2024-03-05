@@ -3296,10 +3296,10 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
-boz.pay.component@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/boz.pay.component/-/boz.pay.component-1.4.2.tgz#5abfb2802e737786851456f0c544cb60be2ef17d"
-  integrity sha512-S3LnRO6Q2g6QDRVHcXiy2JCeyzCcWy6501PXUhFMXEo9kQ9g3YgHWDW3699NhnvhES5LY9+NVwP83M6/eBQNqg==
+boz.pay.component@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/boz.pay.component/-/boz.pay.component-1.4.3.tgz#984ef2741060212f89909ed1595dfe6b04453d66"
+  integrity sha512-digONfVW+33zI07ZurTANq47Jb84mRkogF0yJSs6UneX7GN5wfZm9QqcMrsi0lHgncBGWpCnvchUNvQBKKA15A==
   dependencies:
     "@emotion/react" "^11.11.1"
     "@emotion/styled" "^11.11.0"
