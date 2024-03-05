@@ -11,6 +11,7 @@ import { Collections } from "./pages/Collections"
 import { Categories } from "./pages/Categories"
 import { Orders } from "./pages/Orders"
 import { Profile } from "./pages/Profile"
+import { FirstPassword } from "./pages/FirstPassword"
 
 interface RoutesProps {}
 
@@ -33,6 +34,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
 
             <Route path="/login" element={<Login />} />
             <Route path="/first_login" element={<FirstLogin />} />
+            <Route path="/first_password/:hash" element={<FirstPassword />} />
 
             <Route path="/collections" element={<Collections />} />
             <Route path="/categories" element={<Categories />} />
