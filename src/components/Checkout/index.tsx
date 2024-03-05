@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Background } from "../../components/Background"
 import { Header } from "../../components/Header"
 import { SearchField } from "../../components/SearchField"
@@ -15,15 +15,17 @@ import { PayModal } from "../PayModal"
 import { useFranchise } from "../../hooks/useFranchise"
 import { useApi } from "../../hooks/useApi"
 import { useUser } from "../../hooks/useUser"
+import { useNavigate } from "react-router-dom"
 
 interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const { snackbar } = useSnackbar()
-    const { franchise_id: franchise } = useFranchise()
+    const { franchise_id: franchise, currentAddress } = useFranchise()
     const { user } = useUser()
     const cart = useCart()
     const api = useApi()
+    const navigate = useNavigate()
 
     const [payingOrderId, setPayingOrderId] = useState("")
     const [makingOrder, setMakingOrder] = useState(false)
@@ -34,17 +36,17 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
               name: "",
               lastname: "",
               company: "",
-              postalcode: "",
-              address: "",
-              city: "",
+              postalcode: currentAddress?.cep || "",
+              address: currentAddress?.logradouro || "",
+              city: currentAddress?.localidade || "",
               phone: "",
               email: "",
               notes: "",
-              district: "",
+              district: currentAddress?.bairro || "",
               number: "",
-              state: "",
-              complement: "",
-              cpf: ""
+              state: currentAddress?.uf || "",
+              complement: currentAddress?.complemento || "",
+              cpf: "",
           }
 
     const billingFormik = useFormik({
@@ -70,7 +72,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 total: cart.total,
                 storeId: franchise,
 
-                user_id: user?.id
+                user_id: user?.id,
             }
             console.log(data)
             setMakingOrder(true)
@@ -80,9 +82,9 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     setMakingOrder(false)
                     console.log(response.data)
                     setPayingOrderId(response.data.order.id)
-                }
+                },
             })
-        }
+        },
     })
 
     const handleSubmit = () => {
@@ -94,6 +96,12 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
 
         billingFormik.handleSubmit()
     }
+
+    useEffect(() => {
+        if (!cart.products.length) {
+            navigate("/")
+        }
+    }, [])
 
     return (
         <Box className="Checkout-Component" sx={{ flexDirection: "column", width: "100%", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}>
@@ -115,8 +123,9 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     flexDirection: "column",
                     height: "fit-content",
 
-                    gap: "3vw"
-                }}>
+                    gap: "3vw",
+                }}
+            >
                 {cart.products.map((product) => (
                     <Product key={product.id} product={product} />
                 ))}
@@ -132,8 +141,9 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     borderRadius: "4.5vw",
                     flexDirection: "column",
                     height: "fit-content",
-                    gap: "3vw"
-                }}>
+                    gap: "3vw",
+                }}
+            >
                 <Box className="order" sx={{ flexDirection: "column", width: "100%", padding: "1vw 0vw", gap: "3vw" }}>
                     <TextField label="Código do cupom" InputProps={{ sx: { bgcolor: "#F0EEEE" } }} />
                     <ButtonComponent sx={{ width: "100%" }}>Aplicar cupom</ButtonComponent>

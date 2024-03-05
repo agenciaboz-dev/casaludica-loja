@@ -1,6 +1,9 @@
 import React from "react"
-import { Box, Paper, SxProps, TextField } from "@mui/material"
+import { Box, MenuItem, Paper, SxProps, TextField } from "@mui/material"
 import { FormikHelpers, useFormik } from "formik"
+import MaskedInput from "../MaskedInput"
+import { useCepMask, useCpfMask, useNumberMask, usePhoneMask } from "burgos-masks"
+import { estados } from "../../tools/estadosBrasil"
 
 interface BillingProps {
     formik: {
@@ -12,6 +15,11 @@ interface BillingProps {
 
 export const Billing: React.FC<BillingProps> = ({ formik }) => {
     const inputStyle: SxProps = { bgcolor: "#F0EEEE" }
+
+    const cpf_mask = useCpfMask()
+    const cep_mask = useCepMask()
+    const phone_mask = usePhoneMask()
+    const number_mask = useNumberMask({ allowDecimal: false, allowNegative: false })
 
     return (
         <Box sx={{ flexDirection: "column", color: "primary.main", gap: "5vw" }}>
@@ -40,7 +48,7 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         value={formik.values.cpf}
                         name="cpf"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle }}
+                        InputProps={{ sx: inputStyle, inputComponent: MaskedInput, inputProps: { mask: cpf_mask, inputMode: "numeric" } }}
                         required
                     />
                     <TextField
@@ -55,7 +63,7 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         value={formik.values.postalcode}
                         name="postalcode"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle }}
+                        InputProps={{ sx: inputStyle, inputComponent: MaskedInput, inputProps: { mask: cep_mask, inputMode: "numeric" } }}
                         required
                     />
                     <TextField
@@ -71,7 +79,7 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         value={formik.values.number}
                         name="number"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle }}
+                        InputProps={{ sx: inputStyle, inputComponent: MaskedInput, inputProps: { mask: number_mask, inputMode: "numeric" } }}
                         required
                     />
                     <TextField
@@ -83,7 +91,7 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         required
                     />
                     <TextField
-                        label="Complement (opcional)"
+                        label="Complemento (opcional)"
                         value={formik.values.complement}
                         name="complement"
                         onChange={formik.handleChange}
@@ -104,13 +112,22 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         onChange={formik.handleChange}
                         InputProps={{ sx: inputStyle }}
                         required
-                    />
+                        select
+                        SelectProps={{ MenuProps: { MenuListProps: { sx: { width: 1 } } } }}
+                    >
+                        <MenuItem sx={{ display: "none" }} value={""}></MenuItem>
+                        {estados.map((uf) => (
+                            <MenuItem key={uf.value} value={uf.value}>
+                                {uf.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
                     <TextField
                         label="Telefone"
                         value={formik.values.phone}
                         name="phone"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle }}
+                        InputProps={{ sx: inputStyle, inputComponent: MaskedInput, inputProps: { mask: phone_mask, inputMode: "numeric" } }}
                         required
                     />
                     <TextField
