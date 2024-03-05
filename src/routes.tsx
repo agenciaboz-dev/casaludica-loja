@@ -1,5 +1,5 @@
-import React from "react"
-import { Routes as ReactRoutes, Route } from "react-router-dom"
+import React, { useEffect } from "react"
+import { Routes as ReactRoutes, Route, useLocation } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { Results } from "./pages/Results"
 import { Product } from "./pages/Product"
@@ -15,6 +15,12 @@ import { Profile } from "./pages/Profile"
 interface RoutesProps {}
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
+    const pathname = useLocation().pathname
+
+    useEffect(() => {
+        window.scrollTo({ behavior: "smooth", top: 0 })
+    }, [pathname])
+
     return (
         <ReactRoutes>
             <Route index element={<Home />} />
