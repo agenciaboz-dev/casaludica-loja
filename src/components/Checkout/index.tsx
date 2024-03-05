@@ -20,7 +20,7 @@ interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const { snackbar } = useSnackbar()
-    const { franchise } = useFranchise()
+    const { franchise_id: franchise } = useFranchise()
     const { user } = useUser()
     const cart = useCart()
     const api = useApi()

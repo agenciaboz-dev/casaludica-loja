@@ -10,7 +10,7 @@ interface ApiOptions {
 }
 
 export const useApi = () => {
-    const { franchise } = useFranchise()
+    const { franchise_id: franchise } = useFranchise()
 
     const defaultError = (error: Error, errorCallback?: Function) => {
         errorCallback && errorCallback()

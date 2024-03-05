@@ -17,7 +17,7 @@ interface PayModalProps {
 export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
     const navigate = useNavigate()
 
-    const { franchise, bozpayStoreIdentifier } = useFranchise()
+    const { franchise_id: franchise, bozpayStoreIdentifier } = useFranchise()
     const { reset } = useCart()
 
     const [orderButton, setOrderButton] = useState(false)
