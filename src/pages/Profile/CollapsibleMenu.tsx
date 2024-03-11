@@ -17,12 +17,14 @@ export const CollapsibleMenu: React.FC<CollapsibleMenuProps> = ({ title, childre
                 fontSize: "1.2rem",
                 borderBottom: "1px solid",
                 borderColor: "primary.main",
-                flexDirection: "column"
-            }}>
+                flexDirection: "column",
+            }}
+        >
             <MenuItem
                 sx={{ justifyContent: "flex-start", fontWeight: "bold", gap: "3vw", alignItems: "center" }}
-                onClick={() => setOpen((value) => !value)}>
-                {title}
+                onClick={() => setOpen((value) => !value)}
+            >
+                <Box>{title}</Box>
                 <ExpandCircleDownIcon sx={{ rotate: open ? "-180deg" : "", transition: "0.3s" }} />
             </MenuItem>
             <Collapse in={open}>
