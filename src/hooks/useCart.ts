@@ -25,7 +25,7 @@ export const useCart = () => {
 
     const add = (product: Product) => {
         if (cart.products.filter((item) => item.id == product.id).length != 0) {
-            quantity(product, 1)
+            quantity(product, product.quantity)
         } else {
             cartContext.setValue({
                 ...cart,
