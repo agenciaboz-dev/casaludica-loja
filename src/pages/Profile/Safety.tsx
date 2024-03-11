@@ -1,19 +1,43 @@
-import React from "react"
-import { Box, Button } from "@mui/material"
+import React, { useState } from "react"
+import { Box, Button, CircularProgress } from "@mui/material"
 import { useFormik } from "formik"
 import { CollapsibleMenu } from "./CollapsibleMenu"
 import { RoundedTextField } from "../../components/RoundedTextField"
+import { useUser } from "../../hooks/useUser"
+import { useSnackbar } from "burgos-snackbar"
+import { api } from "../../api"
 
 interface SafetyProps {
     user: User
 }
 
 export const Safety: React.FC<SafetyProps> = ({ user }) => {
+    const { setUser } = useUser()
+    const { snackbar } = useSnackbar()
+
+    const [loading, setLoading] = useState(false)
+
     const formik = useFormik({
         initialValues: { password: "", new_password: "" },
-        onSubmit: (values) => {
-            console.log(values)
-        }
+        onSubmit: async (values) => {
+            if (loading) return
+
+            if (values.password == user.password) {
+                setLoading(true)
+                console.log(values)
+                try {
+                    const response = await api.post("/user/update", { id: user.id, password: values.new_password })
+                    setUser(response.data)
+                    snackbar({ severity: "info", text: "dados atualizados" })
+                } catch (error) {
+                    console.log(error)
+                    snackbar({ severity: "error", text: "erro ao atualizar dados, cheque o console" })
+                }
+                setLoading(false)
+            } else {
+                snackbar({ severity: "warning", text: "senha inválida" })
+            }
+        },
     })
 
     return (
@@ -30,12 +54,12 @@ export const Safety: React.FC<SafetyProps> = ({ user }) => {
                     <RoundedTextField
                         label="Nova senha"
                         value={formik.values.new_password}
-                        name="password"
+                        name="new_password"
                         onChange={formik.handleChange}
                         type="password"
                     />
                     <Button type="submit" variant="contained" sx={{ alignSelf: "flex-end", borderRadius: "10vw" }}>
-                        Salvar
+                        {loading ? <CircularProgress size="1.5rem" color="secondary" /> : "salvar"}
                     </Button>
                 </Box>
             </form>
