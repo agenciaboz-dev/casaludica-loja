@@ -18,6 +18,13 @@ export const Social: React.FC<SocialProps> = ({}) => {
         position: "absolute",
     }
 
+    const links = {
+        instagram: "https://www.instagram.com/casaludica/",
+        whatsapp: "https://api.whatsapp.com/send?phone=5547991684299&text=Ol%C3%A1,%20Casa%20L%C3%BAdica!",
+        facebook: "https://www.facebook.com/casaludica.com.br",
+        youtube: "https://www.youtube.com/@casaludica6482",
+    }
+
     return (
         <Box
             className="Social-Component"
@@ -83,10 +90,10 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     gap: "2vw",
                 }}
             >
-                <InstagramIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
-                <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
-                <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
-                <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                <InstagramIcon style={{ width: isMobile ? "15vw" : "4vw" }} onClick={() => window.open(links.instagram, "_blank")?.focus()} />
+                <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} onClick={() => window.open(links.facebook, "_blank")?.focus()} />
+                <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} onClick={() => window.open(links.youtube, "_blank")?.focus()} />
+                <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} onClick={() => window.open(links.whatsapp, "_blank")?.focus()} />
             </Box>
         </Box>
     )
