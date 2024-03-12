@@ -1,10 +1,10 @@
-import { Dialog, CircularProgress, DialogContent, DialogContentText, DialogTitle, TextField, Box } from '@mui/material'
-import Button from '@mui/material/Button'
-import { Form, Formik } from 'formik'
-import React, { useRef, useState, useEffect } from 'react'
+import { Dialog, CircularProgress, DialogContent, DialogContentText, DialogTitle, TextField, Box, useMediaQuery } from "@mui/material"
+import Button from "@mui/material/Button"
+import { Form, Formik } from "formik"
+import React, { useRef, useState, useEffect } from "react"
 import MaskedInput from "react-text-mask"
-import { useApi } from '../../hooks/useApi'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
+import { useApi } from "../../hooks/useApi"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { api } from "../../api"
 import { useFranchise } from "../../hooks/useFranchise"
 
@@ -14,6 +14,7 @@ interface CepModalProps {
 }
 
 export const CepModal: React.FC<CepModalProps> = ({ open, setOpen }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const ref = useRef<MaskedInput>(null)
     const _api = useApi()
     const storage = useLocalStorage()
@@ -70,9 +71,11 @@ export const CepModal: React.FC<CepModalProps> = ({ open, setOpen }) => {
 
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle sx={{ fontSize: "6vw", textAlign: "center" }}>Localização</DialogTitle>
-            <DialogContent sx={{ flexDirection: "column", gap: "3vw" }}>
-                <DialogContentText sx={{}}>Digite seu CEP para encontrarmos a loja mais próxima</DialogContentText>
+            <DialogTitle sx={{ fontSize: isMobile ? "6vw" : "2vw", textAlign: "center" }}>Localização</DialogTitle>
+            <DialogContent sx={{ flexDirection: "column", gap: isMobile ? "3vw" : "1vw" }}>
+                <DialogContentText sx={{ marginBottom: isMobile ? "3vw" : "1vw" }}>
+                    Digite seu CEP para encontrarmos a loja mais próxima
+                </DialogContentText>
                 <MaskedInput
                     mask={[/\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/]}
                     value={cep}
@@ -88,12 +91,12 @@ export const CepModal: React.FC<CepModalProps> = ({ open, setOpen }) => {
                             variant="standard"
                             autoFocus
                             inputMode="numeric"
-                            InputLabelProps={{ sx: { fontSize: "8vw" } }}
-                            InputProps={{ sx: { fontSize: "8vw" } }}
+                            InputLabelProps={{ sx: { fontSize: isMobile ? "5vw" : "1vw" } }}
+                            InputProps={{ sx: { fontSize: isMobile ? "8vw" : "1.5vw", margin: isMobile ? "3vw" : "1vw" }, inputMode: "numeric" }}
                             inputProps={{ sx: { textAlign: "center" } }}
                             error={!!error}
                             helperText={error}
-                            FormHelperTextProps={{ sx: { fontSize: "4vw" } }}
+                            FormHelperTextProps={{ sx: { fontSize: isMobile ? "4vw" : "1vw" } }}
                         />
                     )}
                 />
@@ -103,7 +106,7 @@ export const CepModal: React.FC<CepModalProps> = ({ open, setOpen }) => {
                     </Box>
                 )}
                 {address && (
-                    <Box className="cep-container" style={{ flexDirection: "column", gap: "2vw" }}>
+                    <Box className="cep-container" style={{ flexDirection: "column", gap: isMobile ? "2vw" : "1vw" }}>
                         <p>Bairro: {address.bairro}</p>
                         <p>Logradouro: {address.logradouro}</p>
                         <p>Cidade: {address.localidade}</p>
