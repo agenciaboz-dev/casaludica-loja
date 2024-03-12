@@ -92,7 +92,7 @@ export const CepModal: React.FC<CepModalProps> = ({ open, setOpen }) => {
                             autoFocus
                             inputMode="numeric"
                             InputLabelProps={{ sx: { fontSize: isMobile ? "5vw" : "1vw" } }}
-                            InputProps={{ sx: { fontSize: isMobile ? "8vw" : "1.5vw", margin: isMobile ? "3vw" : "1vw" } }}
+                            InputProps={{ sx: { fontSize: isMobile ? "8vw" : "1.5vw", margin: isMobile ? "3vw" : "1vw" }, inputMode: "numeric" }}
                             inputProps={{ sx: { textAlign: "center" } }}
                             error={!!error}
                             helperText={error}
