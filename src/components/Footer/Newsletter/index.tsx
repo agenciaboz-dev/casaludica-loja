@@ -1,16 +1,29 @@
-import { Box, Button, TextField, useMediaQuery } from "@mui/material"
+import { Box, Button, CircularProgress, TextField, useMediaQuery } from "@mui/material"
 import { Form, Formik } from "formik"
-import React from "react"
+import React, { useState } from "react"
 import { useColors } from "../../../hooks/useColors"
 import { ButtonComponent } from "../../ButtonComponent"
+import { api } from "../../../api"
+import { useSnackbar } from "burgos-snackbar"
 
 interface NewsletterProps {}
 
 export const Newsletter: React.FC<NewsletterProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const colors = useColors()
+    const { snackbar } = useSnackbar()
 
-    const handleSubmit = (values: { name: string; email: string }) => {}
+    const [loading, setLoading] = useState(false)
+
+    const handleSubmit = async (values: { name: string; email: string }) => {
+        if (loading) return
+
+        setLoading(true)
+        await api.post("/newsletter", values)
+        snackbar({ severity: "success", text: "assinado com sucesso" })
+
+        setLoading(false)
+    }
 
     const textFieldSx = {
         backgroundColor: "#D9D9D9",
@@ -73,7 +86,7 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
                                 padding: "0.5vw",
                             }}
                         >
-                            Inscreva-se
+                            {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : "Inscreva-se"}
                         </ButtonComponent>
                     </Form>
                 )}
