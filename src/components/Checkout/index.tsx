@@ -131,24 +131,6 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 ))}
             </Box>
             <Review />
-            <Box
-                className="order"
-                sx={{
-                    width: "100%",
-                    boxShadow: " 0 0 8px rgba(0,0,0,0.4)",
-                    padding: "5vw",
-                    paddingBottom: "2vw",
-                    borderRadius: "4.5vw",
-                    flexDirection: "column",
-                    height: "fit-content",
-                    gap: "3vw",
-                }}
-            >
-                <Box className="order" sx={{ flexDirection: "column", width: "100%", padding: "1vw 0vw", gap: "3vw" }}>
-                    <TextField label="Código do cupom" InputProps={{ sx: { bgcolor: "#F0EEEE" } }} />
-                    <ButtonComponent sx={{ width: "100%" }}>Aplicar cupom</ButtonComponent>
-                </Box>
-            </Box>
             <Billing formik={billingFormik} />
             <ButtonComponent onClick={handleSubmit}>{makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}</ButtonComponent>
 
