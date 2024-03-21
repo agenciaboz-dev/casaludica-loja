@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { Box, Button, CircularProgress, TextField, useMediaQuery } from "@mui/material"
 import { useFormik } from "formik"
 import { useApi } from "../../hooks/useApi"
-import { ButtonComponent } from "../ButtonComponent"
 import { useNavigate } from "react-router-dom"
 import { useMenu } from "../../hooks/useMenu"
 
@@ -31,7 +30,7 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect 
             } finally {
                 setLoading(false)
             }
-        }
+        },
     })
 
     return (
