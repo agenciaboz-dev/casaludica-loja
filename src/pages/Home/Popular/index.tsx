@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { useApi } from "../../../hooks/useApi"
 import { Product as Container } from "./Product"
 import { useColors } from "../../../hooks/useColors"
-import { useProducts } from "../../../hooks/useProducts"
+import { useFranchise } from "../../../hooks/useFranchise"
 //import "./style.scss"
 
 interface PopularProps {}
@@ -12,16 +12,19 @@ export const Popular: React.FC<PopularProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const api = useApi()
     const colors = useColors()
-    const { products } = useProducts()
-    const [popular, setPopular] = useState(products)
+    const { franchise } = useFranchise()
+
+    const [popular, setPopular] = useState<Product[]>([])
 
     useEffect(() => {
         console.log({ popular })
     }, [popular])
 
     useEffect(() => {
-        setPopular(products.sort((a, b) => b.sold - a.sold).slice(0, 5))
-    }, [products])
+        if (franchise) {
+            api.products.list((response: { data: Product[] }) => setPopular(response.data.sort((a, b) => b.sold - a.sold).slice(0, 5)))
+        }
+    }, [])
 
     return (
         <Box
@@ -43,7 +46,8 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                         {popular.map((product) => (
                             <Container key={product.id} product={product} />
                         ))}
-                        {products.length == 0 && (
+
+                        {popular.length == 0 && (
                             <>
                                 <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
                                 <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"40vw"} height={"50vw"} />
@@ -65,7 +69,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                             <Container key={product.id} product={product} />
                         </Grid>
                     ))}
-                    {products.length == 0 && (
+                    {popular.length == 0 && (
                         <>
                             <Grid item>
                                 <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
