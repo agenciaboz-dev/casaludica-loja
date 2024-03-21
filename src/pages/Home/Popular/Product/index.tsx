@@ -74,6 +74,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     <IconButton
                         sx={{ backgroundColor: colors.primary, width: isMobile ? "9vw" : "3vw", height: isMobile ? "9vw" : "3vw" }}
                         onClick={() => cart.add(product)}
+                        disabled={product.stock == 0}
                     >
                         <CartIcon />
                     </IconButton>

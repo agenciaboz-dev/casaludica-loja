@@ -288,7 +288,9 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             }}
                         />
                     </Box>
-                    <ButtonComponent onClick={() => cart.add({ ...product, quantity })}>Adicionar ao carrinho</ButtonComponent>
+                    <ButtonComponent onClick={() => cart.add({ ...product, quantity })} disabled={product.stock == 0}>
+                        {product?.stock == 0 ? "Indisponível" : "Adicionar ao carrinho"}
+                    </ButtonComponent>
 
                     <Box sx={{ flexDirection: "column", width: "100%", gap: "5vw" }}>
                         <Box

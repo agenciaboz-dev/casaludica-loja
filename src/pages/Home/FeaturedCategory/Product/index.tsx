@@ -59,8 +59,8 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     <p style={{ fontSize: isMobile ? "3.5vw" : "1rem" }}>{product.resume}</p>
                     <CurrencyText value={product.price} color={"#686868"} style={{ fontWeight: "bold" }} />
 
-                    <ButtonComponent sx={{ fontWeight: "400" }} onClick={() => cart.add(product)}>
-                        Quero esse
+                    <ButtonComponent sx={{ fontWeight: "400" }} onClick={() => cart.add(product)} disabled={product.stock == 0}>
+                        {product.stock == 0 ? "Indisponível" : "Quero esse"}
                     </ButtonComponent>
                 </>
             ) : (
