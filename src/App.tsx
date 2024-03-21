@@ -14,6 +14,7 @@ import { UserProvider } from "./contexts/userContext"
 import { MenuProvider } from "./contexts/menuContext"
 import { Menu } from "./components/Menu"
 import { Cart } from "./components/Cart"
+import { ConfirmDialog, ConfirmDialogProvider } from "burgos-confirm"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -21,26 +22,29 @@ function App() {
     return (
         <ThemeProvider theme={muiTheme}>
             <SnackbarProvider>
-                <MenuProvider>
-                    <FranchiseProvider>
-                        <LoadingProvider>
-                            <CategoriesProvider>
-                                <ProductsProvider>
-                                    <CartProvider>
-                                        <UserProvider>
-                                            <BrowserRouter>
-                                                <Snackbar />
-                                                <Cart />
-                                                <Menu />
-                                                <Routes />
-                                            </BrowserRouter>
-                                        </UserProvider>
-                                    </CartProvider>
-                                </ProductsProvider>
-                            </CategoriesProvider>
-                        </LoadingProvider>
-                    </FranchiseProvider>
-                </MenuProvider>
+                <ConfirmDialogProvider>
+                    <MenuProvider>
+                        <FranchiseProvider>
+                            <LoadingProvider>
+                                <CategoriesProvider>
+                                    <ProductsProvider>
+                                        <CartProvider>
+                                            <UserProvider>
+                                                <BrowserRouter>
+                                                    <Snackbar />
+                                                    <ConfirmDialog />
+                                                    <Cart />
+                                                    <Menu />
+                                                    <Routes />
+                                                </BrowserRouter>
+                                            </UserProvider>
+                                        </CartProvider>
+                                    </ProductsProvider>
+                                </CategoriesProvider>
+                            </LoadingProvider>
+                        </FranchiseProvider>
+                    </MenuProvider>
+                </ConfirmDialogProvider>
             </SnackbarProvider>
         </ThemeProvider>
     )

@@ -16,6 +16,8 @@ import { useFranchise } from "../../hooks/useFranchise"
 import { useApi } from "../../hooks/useApi"
 import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
+import { api } from "../../api"
+import { useConfirmDialog } from "burgos-confirm"
 
 interface CheckoutProps {}
 
@@ -23,8 +25,9 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const { snackbar } = useSnackbar()
     const { franchise_id: franchise, currentAddress } = useFranchise()
     const { user } = useUser()
+    const { confirm } = useConfirmDialog()
     const cart = useCart()
-    const api = useApi()
+    const api_helper = useApi()
     const navigate = useNavigate()
 
     const [payingOrderId, setPayingOrderId] = useState("")
@@ -49,9 +52,39 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
               cpf: "",
           }
 
+    const findUser = async (cpf: string, email: string) => {
+        const response = await api.post("/user/find", { cpf, email })
+        console.log({ response_data: response.data })
+        const user_id = response.data as number
+        if (user_id) {
+            confirm({
+                title: "usuário encontrado",
+                content: "já existe um usuário cadastro com esses dados, deseja fazer login?",
+                onConfirm: () => {
+                    navigate("/login", { state: { redirect: "/checkout" } })
+                },
+            })
+            return true
+        }
+
+        return false
+    }
+
     const billingFormik = useFormik({
         initialValues,
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
+            setMakingOrder(true)
+            const user_id = user?.id
+
+            if (!user_id) {
+                const user_exists = await findUser(values.cpf, values.email)
+
+                if (user_exists) {
+                    setMakingOrder(false)
+                    return
+                }
+            }
+
             const data: OrderForm = {
                 address: values.address,
                 city: values.city,
@@ -72,11 +105,10 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 total: cart.total,
                 storeId: franchise,
 
-                user_id: user?.id,
+                user_id: user_id,
             }
             console.log(data)
-            setMakingOrder(true)
-            api.order.new({
+            api_helper.order.new({
                 data,
                 callback: (response) => {
                     setMakingOrder(false)
