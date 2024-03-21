@@ -2,11 +2,12 @@ import { Dialog, CircularProgress, DialogContent, DialogContentText, DialogTitle
 import Button from "@mui/material/Button"
 import { Form, Formik } from "formik"
 import React, { useRef, useState, useEffect } from "react"
-import MaskedInput from "react-text-mask"
 import { useApi } from "../../hooks/useApi"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { api } from "../../api"
 import { useFranchise } from "../../hooks/useFranchise"
+import MaskedInput from "../MaskedInput"
+import { useCepMask } from "burgos-masks"
 
 interface CepModalProps {
     open: boolean
@@ -15,10 +16,10 @@ interface CepModalProps {
 
 export const CepModal: React.FC<CepModalProps> = ({ open, setOpen }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
-    const ref = useRef<MaskedInput>(null)
     const _api = useApi()
     const storage = useLocalStorage()
     const franchise = useFranchise()
+    const cep_mask = useCepMask()
 
     const [error, setError] = useState("")
     const [cep, setCep] = useState("")
@@ -76,29 +77,23 @@ export const CepModal: React.FC<CepModalProps> = ({ open, setOpen }) => {
                 <DialogContentText sx={{ marginBottom: isMobile ? "3vw" : "1vw" }}>
                     Digite seu CEP para encontrarmos a loja mais próxima
                 </DialogContentText>
-                <MaskedInput
-                    mask={[/\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/]}
+                <TextField
                     value={cep}
                     onChange={handleChange}
-                    ref={ref}
-                    guide={false}
-                    render={(ref, props) => (
-                        <TextField
-                            {...props}
-                            inputRef={ref}
-                            label="CEP"
-                            id="cep"
-                            variant="standard"
-                            autoFocus
-                            inputMode="numeric"
-                            InputLabelProps={{ sx: { fontSize: isMobile ? "5vw" : "1vw" } }}
-                            InputProps={{ sx: { fontSize: isMobile ? "8vw" : "1.5vw", margin: isMobile ? "3vw" : "1vw" }, inputMode: "numeric" }}
-                            inputProps={{ sx: { textAlign: "center" } }}
-                            error={!!error}
-                            helperText={error}
-                            FormHelperTextProps={{ sx: { fontSize: isMobile ? "4vw" : "1vw" } }}
-                        />
-                    )}
+                    label="CEP"
+                    name="cep"
+                    variant="standard"
+                    autoFocus
+                    InputLabelProps={{ sx: { fontSize: isMobile ? "5vw" : "1vw" } }}
+                    InputProps={{
+                        sx: { fontSize: isMobile ? "8vw" : "1.5vw", margin: isMobile ? "3vw" : "1vw" },
+                        inputComponent: MaskedInput,
+                        inputProps: { mask: cep_mask, inputMode: "numeric" },
+                    }}
+                    inputProps={{ sx: { textAlign: "center" } }}
+                    error={!!error}
+                    helperText={error}
+                    FormHelperTextProps={{ sx: { fontSize: isMobile ? "4vw" : "1vw" } }}
                 />
                 {loading && (
                     <Box sx={{ width: 1, justifyContent: "center", padding: 1 }}>

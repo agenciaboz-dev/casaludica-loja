@@ -24,7 +24,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
         if (franchise) {
             api.products.list((response: { data: Product[] }) => setPopular(response.data.sort((a, b) => b.sold - a.sold).slice(0, 5)))
         }
-    }, [])
+    }, [franchise])
 
     return (
         <Box
