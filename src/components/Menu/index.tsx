@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Drawer, MenuItem, useMediaQuery } from "@mui/material"
+import { Avatar, Box, Button, Drawer, MenuItem, SwipeableDrawer, useMediaQuery } from "@mui/material"
 import React from "react"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useMenuLinks } from "../../hooks/useMenuLinks"
@@ -27,7 +27,8 @@ export const Menu: React.FC<MenuProps> = ({}) => {
     }
 
     return (
-        <Drawer
+        <SwipeableDrawer
+            onOpen={() => setOpen(true)}
             keepMounted
             anchor={"left"}
             open={isOpen}
@@ -118,6 +119,6 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     Resetar endereço
                 </Button>
             </Box>
-        </Drawer>
+        </SwipeableDrawer>
     )
 }
