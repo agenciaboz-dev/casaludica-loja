@@ -117,6 +117,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         justifyContent: "center",
                         alignItems: "center",
                         fontWeight: "bold",
+                        aspectRatio: 1,
                     }}
                 >
                     x{product.quantity}
