@@ -35,11 +35,11 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
         <Dialog
             open={open}
             sx={{ width: "100vw", height: "100vh", justifyContent: "center", alignItems: "center" }}
-            PaperProps={{ sx: { borderRadius: "5vw", maxWidth: "100vw" } }}
+            PaperProps={{ sx: { borderRadius: "5vw", maxWidth: "100vw", margin: "0 5vw" } }}
             slotProps={{ backdrop: { sx: backdropStyle } }}
             onClose={close}
         >
-            <Box sx={{ height: "70vh", flexDirection: "column" }}>
+            <Box sx={{ height: "100vh", flexDirection: "column", alignItems: "center" }}>
                 {!!orderId && (
                     <BozPay
                         pagseguroToken="5e137c4a-acd6-433a-83a7-736815c6995b0ad8f02a47329494fac489b021d5ab384b54-9b9f-4140-b4cf-4675e700a829"
@@ -48,7 +48,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
                         storeIdentifier={bozpayStoreIdentifier}
                         referenceId={orderId}
                         sandbox
-                        wrapperSx={{ width: "90vw", alignSelf: "center" }}
+                        wrapperSx={{ width: "100%", alignSelf: "center" }}
                         onPaid={onPaid}
                     />
                 )}
@@ -56,7 +56,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
             <Dialog open={orderButton} hideBackdrop PaperProps={{ sx: { display: "contents" } }} sx={{ justifyContent: "center" }}>
                 <Box sx={{ position: "absolute", bottom: "15vw", width: "90vw" }}>
                     <ButtonComponent fullWidth onClick={() => navigate(`/order/${orderId}`)}>
-                        visualizar pedido
+                        Visualizar pedido
                     </ButtonComponent>
                 </Box>
             </Dialog>

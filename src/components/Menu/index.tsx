@@ -63,12 +63,16 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                                 flexDirection: "column",
                                 justifyContent: "spaceBetween",
                                 color: "white",
+                                overflow: "hidden",
                             }}
                         >
                             <h3
                                 className="name"
                                 style={{
                                     fontSize: isMobile ? "4vw" : "1.5rem",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
                                 }}
                             >
                                 {user.name}
@@ -77,6 +81,9 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                                 className="email"
                                 style={{
                                     fontSize: isMobile ? "3vw" : "1rem",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
                                 }}
                             >
                                 {user.email}
