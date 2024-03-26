@@ -236,7 +236,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                     <Box
                         className="numbers"
                         sx={{
-                            justifyContent: isMobile ? "" : "center",
+                            justifyContent: isMobile ? "space-between" : "center",
                             gap: isMobile ? "" : "2vw",
                         }}
                     >
@@ -244,11 +244,10 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             className="quantity-container"
                             sx={{
                                 alignItems: "center",
-                                width: isMobile ? "50vw" : "10vw",
-                                justifyContent: isMobile ? "space-between" : "center",
+                                gap: "1vw",
                             }}
                         >
-                            <IconButton onClick={() => changeQuantity(-1)}>
+                            <IconButton onClick={() => changeQuantity(-1)} sx={{ padding: 0 }}>
                                 <ArrowIcon />
                             </IconButton>
 
@@ -264,20 +263,20 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     backgroundColor: colors.background_secondary,
                                     border: `1px solid ${colors.primary}`,
                                     borderRadius: "1vw",
-                                    width: "10vw",
+                                    width: "12vw",
                                 }}
                             >
                                 <p>{quantity}</p>
                             </Box>
 
-                            <IconButton onClick={() => changeQuantity(1)}>
+                            <IconButton onClick={() => changeQuantity(1)} sx={{ padding: 0 }}>
                                 <ArrowIcon style={{ transform: "rotate(180deg)" }} />
                             </IconButton>
                         </Box>
                         <CurrencyText
                             value={product.price * quantity}
                             style={{
-                                width: isMobile ? "50vw" : "10vw",
+                                // width: isMobile ? "50vw" : "10vw",
                                 color: colors.primary,
                                 display: "flex",
                                 flexDirection: "row-reverse",
@@ -285,6 +284,9 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 alignItems: "center",
                                 fontSize: isMobile ? "8vw" : "1.5rem",
                                 fontWeight: "bold",
+                                whiteSpace: "nowrap",
+                                // overflow: "hidden",
+                                textOverflow: "ellipsis",
                             }}
                         />
                     </Box>
