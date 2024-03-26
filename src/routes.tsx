@@ -33,7 +33,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order/:id" element={<Order />} />
 
-            <Route path="/signup" element={<p>tem que fazer</p>} />
+            <Route path="/signup" element={<p>(Página de cadastro ainda não criada.)</p>} />
             <Route path="/login" element={<Login />} />
             <Route path="/login_checker" element={<LoginCheck />} />
             <Route path="/first_login" element={<FirstLogin />} />

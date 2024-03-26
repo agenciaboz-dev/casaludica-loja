@@ -9,6 +9,7 @@ import { useUser } from "../../hooks/useUser"
 import { LoginContainer } from "./LoginContainer"
 import { useMenu } from "../../hooks/useMenu"
 import { useNavigate } from "react-router-dom"
+import logoIconPNG from "../../images/cl-logo.png"
 
 interface MenuProps {}
 
@@ -26,6 +27,14 @@ export const Menu: React.FC<MenuProps> = ({}) => {
         setOpen(false)
     }
 
+    const buttonStyle = {
+        padding: 0,
+        color: "white",
+        textTransform: "unset",
+        textDecoration: "underline",
+        width: "fit-content",
+    }
+
     return (
         <SwipeableDrawer
             onOpen={() => setOpen(true)}
@@ -36,7 +45,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
             PaperProps={{
                 className: "Menu-Component",
                 style: {
-                    width: isMobile ? "80vw" : "25vw",
+                    width: isMobile ? "80vw" : "30vw",
                 },
             }}
         >
@@ -44,8 +53,8 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                 className="profile"
                 style={{
                     backgroundColor: colors.primary,
-                    padding: isMobile ? "10vw 5vw" : "2vw 1vw",
-                    gap: isMobile ? "5vw" : "2vw",
+                    padding: isMobile ? "7.5vw 5vw" : "2vw 1vw",
+                    gap: isMobile ? "5vw" : "1vw",
                 }}
             >
                 {user ? (
@@ -56,14 +65,18 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                             closeMenu()
                         }}
                     >
-                        <Avatar sx={{ width: isMobile ? "20vw" : "3vw", height: isMobile ? "20vw" : "3vw" }} src={user.profilePicUrl} />
+                        <Avatar
+                            sx={{ width: isMobile ? "20vw" : "5vw", height: isMobile ? "20vw" : "5vw", margin: "auto 0" }}
+                            src={user.profilePicUrl}
+                        />
                         <Box
                             className="info"
-                            style={{
+                            sx={{
                                 flexDirection: "column",
-                                justifyContent: "spaceBetween",
+                                justifyContent: "center",
                                 color: "white",
                                 overflow: "hidden",
+                                gap: isMobile ? "1vw" : "0.5vw",
                             }}
                         >
                             <h3
@@ -88,26 +101,83 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                             >
                                 {user.email}
                             </p>
-                            <h5
+                            <h4
                                 className="link"
                                 style={{
                                     textDecoration: "underline",
                                 }}
                             >
                                 Editar Perfil
-                            </h5>
+                            </h4>
                         </Box>
                     </Box>
                 ) : (
-                    <MenuItem
-                        sx={{ width: 1, color: "white" }}
-                        onClick={() => {
-                            navigate("/login_checker")
-                            closeMenu()
-                        }}
-                    >
-                        entrar
-                    </MenuItem>
+                    <Box sx={{ display: "contents" }}>
+                        <Avatar
+                            sx={{
+                                width: isMobile ? "20vw" : "5vw",
+                                height: isMobile ? "20vw" : "5vw",
+                                margin: "auto 0",
+                                backgroundColor: "white",
+                                padding: isMobile ? "1vw" : 0,
+                            }}
+                            src={logoIconPNG}
+                        />
+                        <Box
+                            className="info"
+                            sx={{
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                color: "white",
+                                overflow: "hidden",
+                            }}
+                        >
+                            <h3
+                                className="name"
+                                style={{
+                                    fontSize: isMobile ? "4vw" : "1.5rem",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                }}
+                            >
+                                Já tem uma conta?
+                            </h3>
+                            <Box
+                                sx={{
+                                    flexDirection: isMobile ? "column" : "row",
+                                    gap: isMobile ? 0 : "1vw",
+                                }}
+                            >
+                                <Button
+                                    sx={buttonStyle}
+                                    onClick={() => {
+                                        navigate("/login_checker")
+                                        closeMenu()
+                                    }}
+                                >
+                                    Faça o login
+                                </Button>
+                                <Box
+                                    sx={{
+                                        alignItems: "end",
+                                        gap: "10px",
+                                    }}
+                                >
+                                    <p style={{ fontSize: isMobile ? "2.5vw" : "1vw", paddingBottom: "2px" }}>ou</p>
+                                    <Button
+                                        sx={buttonStyle}
+                                        onClick={() => {
+                                            navigate("/signup")
+                                            closeMenu()
+                                        }}
+                                    >
+                                        Cadastre-se
+                                    </Button>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
                 )}
             </Box>
             <Box sx={{ flexDirection: "column", paddingTop: isMobile ? "3vw" : "1vw" }}>
