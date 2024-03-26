@@ -60,13 +60,15 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 <Box
                     className="right-container"
                     style={{
-                        gap: isMobile ? "3vw" : "1vw",
+                        gap: isMobile ? "1vw" : "1vw",
+                        position: "relative",
                     }}
                 >
                     <Box
                         className="quantity-container"
                         style={{
                             flexDirection: "column",
+                            alignItems: "center",
                             gap: isMobile ? "2vw" : "1vw",
                         }}
                     >
@@ -84,7 +86,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                                 backgroundColor: "lightgrey",
                                 fontSize: isMobile ? "7vw" : "2rem",
                                 fontWeight: "bold",
-                                padding: isMobile ? "2vw" : 0,
+                                padding: isMobile ? "2vw" : "1vw",
                             }}
                         >
                             {product.quantity}
@@ -96,7 +98,10 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                             }}
                         />
                     </Box>
-                    <RemoveIcon onClick={() => remove()} style={{ alignSelf: "flex-start", cursor: "pointer" }} />
+                    <RemoveIcon
+                        onClick={() => remove()}
+                        style={{ alignSelf: "flex-start", cursor: "pointer", position: "sticky", top: 0, right: 0 }}
+                    />
                 </Box>
             </Box>
             <Box
@@ -112,8 +117,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     style={{
                         borderRadius: "50%",
                         backgroundColor: "lightgrey",
-                        width: isMobile ? "10vw" : "3vw",
-                        height: isMobile ? "10vw" : "3vw",
+                        padding: isMobile ? "2vw" : "1vw",
                         justifyContent: "center",
                         alignItems: "center",
                         fontWeight: "bold",
