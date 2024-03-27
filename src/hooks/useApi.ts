@@ -10,7 +10,7 @@ interface ApiOptions {
 }
 
 export const useApi = () => {
-    const { franchise_id: franchise } = useFranchise()
+    const { franchise } = useFranchise()
 
     const defaultError = (error: Error, errorCallback?: Function) => {
         errorCallback && errorCallback()
@@ -25,7 +25,7 @@ export const useApi = () => {
         products: {
             list: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
                 // setLoading(true)
-                api.post("/products", { franchise })
+                api.post("/products", { franchise: franchise?.id })
                     .then((response) => callback(response))
                     .catch((error) => errorCallback(error))
                     .finally(() => {
@@ -43,30 +43,30 @@ export const useApi = () => {
             },
             search: (data: { search: string }, options: ApiOptions) => {
                 // setLoading(true)
-                api.post("/products", { search: data.search, franchise })
+                api.post("/products", { search: data.search, franchise: franchise?.id })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
             category: (category: string, options: ApiOptions) => {
                 // setLoading(true)
-                api.post("/products", { category: Number(category), franchise })
+                api.post("/products", { category: Number(category), franchise: franchise?.id })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
             collection: (collectionId: number, options: ApiOptions) => {
-                api.post("/products", { collection: collectionId, franchise })
+                api.post("/products", { collection: collectionId, franchise: franchise?.id })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
             id: (id: number, options: ApiOptions) => {
-                api.post("/products/id", { id, franchise })
+                api.post("/products/id", { id, franchise: franchise?.id })
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
-            }
+            },
         },
         images: async (id: number, mainOnly?: boolean) => (await api.post("/products/images", { id, mainOnly })).data,
         categories: {
@@ -79,7 +79,7 @@ export const useApi = () => {
                         // setLoading(false)
                         finallyCallback()
                     })
-            }
+            },
         },
         collections: {
             get: (callback: Function, errorCallback: Function = (error: any) => console.error(error), finallyCallback: Function = () => null) => {
@@ -91,7 +91,7 @@ export const useApi = () => {
                         // setLoading(false)
                         finallyCallback()
                     })
-            }
+            },
         },
         cep: {
             get: (options: ApiOptions) => {
@@ -99,7 +99,7 @@ export const useApi = () => {
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
-            }
+            },
         },
         order: {
             new: (options: ApiOptions) => {
@@ -115,15 +115,15 @@ export const useApi = () => {
                         .then((response) => options.callback(response))
                         .catch((error) => defaultError(error, options.errorCallback))
                         .finally(() => defaultFinally(options.finallyCallback)),
-                user: (user_id: number) => api.post("/order/user", { user_id, store_id: franchise })
-            }
+                user: (user_id: number) => api.post("/order/user", { user_id, store_id: franchise?.id }),
+            },
         },
 
         user: {
             isSignedUp: (login: string) => api.post("/user/exists", { login }),
             login: (login: string, password: string) => api.post("/user/login", { login, password }),
-            uploadProfilePic: (formdata: FormData, user_id: number) => api.post(`/user/upload_profile_pic/${user_id}`, formdata)
-        }
+            uploadProfilePic: (formdata: FormData, user_id: number) => api.post(`/user/upload_profile_pic/${user_id}`, formdata),
+        },
     }
 
     return methods

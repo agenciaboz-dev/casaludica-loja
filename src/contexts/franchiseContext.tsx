@@ -4,7 +4,6 @@ import { useLocalStorage } from "../hooks/useLocalStorage"
 import { Franchise } from "../types/server/class/Franchise"
 
 interface FranchiseContextValue {
-    franchise_id: number
     bozpayStoreIdentifier: string
     franchise?: Franchise
     setFranchise: React.Dispatch<React.SetStateAction<Franchise | undefined>>
@@ -24,21 +23,17 @@ export default FranchiseContext
 export const FranchiseProvider: React.FC<FranchiseProviderProps> = ({ children }) => {
     const storage = useLocalStorage()
 
-    const [franchise_id, setFranchiseId] = useState(1)
     const [franchise, setFranchise] = useState<Franchise | undefined>(storage.get("franchise"))
     const [currentAddress, setCurrentAddress] = useState<Address | undefined>(storage.get("address"))
 
-    const bozpayStoreIdentifier = `casaludica.mkt-${franchise_id}`
+    const bozpayStoreIdentifier = `casaludica.mkt-${franchise?.id}`
 
     useEffect(() => {
-        console.log(franchise)
-        if (franchise) {
-            setFranchiseId(franchise.id)
-        }
+        console.log({ franchise })
     }, [franchise])
 
     return (
-        <FranchiseContext.Provider value={{ franchise_id, bozpayStoreIdentifier, franchise, setFranchise, currentAddress, setCurrentAddress }}>
+        <FranchiseContext.Provider value={{ bozpayStoreIdentifier, franchise, setFranchise, currentAddress, setCurrentAddress }}>
             {children}
         </FranchiseContext.Provider>
     )

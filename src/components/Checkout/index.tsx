@@ -23,7 +23,7 @@ interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const { snackbar } = useSnackbar()
-    const { franchise_id: franchise, currentAddress } = useFranchise()
+    const {  franchise, currentAddress } = useFranchise()
     const { user } = useUser()
     const { confirm } = useConfirmDialog()
     const cart = useCart()
@@ -73,6 +73,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const billingFormik = useFormik({
         initialValues,
         onSubmit: async (values) => {
+            if (!franchise) return
             setMakingOrder(true)
             const user_id = user?.id
 
@@ -103,7 +104,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
 
                 products: cart.products.map((item) => ({ ...item, cover: "" })),
                 total: cart.total,
-                storeId: franchise,
+                storeId: franchise.id,
 
                 user_id: user_id,
             }

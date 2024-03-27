@@ -29,7 +29,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
     }
     useEffect(() => {
         if (franchise) {
-            api.products.category("11", {
+            api.products.category("13", {
                 callback: (response: { data: Product[] }) => {
                     setProducts(response.data)
                 },

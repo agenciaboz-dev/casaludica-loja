@@ -17,17 +17,18 @@ interface PayModalProps {
 export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
     const navigate = useNavigate()
 
-    const { franchise_id: franchise, bozpayStoreIdentifier } = useFranchise()
+    const { franchise, bozpayStoreIdentifier } = useFranchise()
     const { reset } = useCart()
 
     const [orderButton, setOrderButton] = useState(false)
 
     const onPaid = async (charge: Charge) => {
+        if (!franchise) return
         console.log(charge)
         setOrderButton(true)
         reset()
         try {
-            const paid_response = await api.post("/order/paid", { charge, storeId: franchise })
+            const paid_response = await api.post("/order/paid", { charge, storeId: franchise.id })
         } catch (error) {}
     }
 
