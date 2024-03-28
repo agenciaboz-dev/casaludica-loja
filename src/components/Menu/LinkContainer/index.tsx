@@ -25,6 +25,7 @@ export const LinkContainer: React.FC<LinkProps> = ({ link }) => {
                 padding: isMobile ? "3vw 10vw" : "1vw 2vw",
                 justifyContent: "center",
             }}
+            onClick={() => handleMenuClick(link)}
         >
             <h3
                 className="name"
@@ -33,7 +34,6 @@ export const LinkContainer: React.FC<LinkProps> = ({ link }) => {
                     fontWeight: "bold",
                     fontSize: isMobile ? "4vw" : "1.2rem",
                 }}
-                onClick={() => handleMenuClick(link)}
             >
                 {link.name}
             </h3>
