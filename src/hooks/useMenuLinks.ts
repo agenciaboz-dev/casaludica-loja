@@ -16,18 +16,6 @@ export const useMenuLinks = () => {
                 onClick: () => navigate("/"),
             },
             {
-                id: 1,
-                name: "Coleções",
-                location: "/collections",
-                onClick: () => navigate("/collections"),
-            },
-            {
-                id: 2,
-                name: "Categorias",
-                location: "/categories",
-                onClick: () => navigate("/categories"),
-            },
-            {
                 id: 3,
                 name: "Meus Pedidos",
                 // sublinks: [
