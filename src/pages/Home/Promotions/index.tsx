@@ -23,7 +23,7 @@ export const Promotions: React.FC<PromotionsProps> = ({}) => {
                 {promotions.map((promotion) => (
                     <Box key={promotion.id}>
                         <img src={promotion.image_url} alt="" />
-                        <p className="legend">{promotion.subtitle}</p>
+                        {/* <p className="legend">{promotion.subtitle}</p> */}
                     </Box>
                 ))}
             </Carousel>
