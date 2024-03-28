@@ -20,10 +20,8 @@ export const Copyright: React.FC<CopyrightProps> = ({}) => {
                 color: colors.primary,
             }}
         >
-            <p>
-                {new Date().getFullYear()} © Direitos Reservados - {app_version}
-            </p>
-            <p>Powered By BOZ</p>
+            <p>{new Date().getFullYear()} © Direitos Reservados</p>
+            <p>Powered By BOZ - {app_version}</p>
         </Box>
     )
 }
