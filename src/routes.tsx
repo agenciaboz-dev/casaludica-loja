@@ -13,6 +13,7 @@ import { Orders } from "./pages/Orders"
 import { Profile } from "./pages/Profile"
 import { FirstPassword } from "./pages/FirstPassword"
 import { LoginCheck } from "./pages/LoginCheck"
+import { DataDeletionInformation } from "./pages/DataDeletionInformation"
 
 interface RoutesProps {}
 
@@ -43,6 +44,8 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
             <Route path="/categories" element={<Categories />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<Profile />} />
+
+            <Route path="data_deletion" element={<DataDeletionInformation />} />
         </ReactRoutes>
     )
 }
