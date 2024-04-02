@@ -66,21 +66,21 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     style={{
                         fontSize: isMobile ? "6vw" : "2rem",
                         fontFamily: "Poppins",
-                        marginLeft: isMobile ? "4vw" : 0,
+                        textAlign: "center",
                     }}
                 >
                     @casaludica
                 </h3>
             </Box>
 
-            <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
+            {/* <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
                 {promotions.map((promotion) => (
                     <Box key={promotion.id}>
                         <img src={promotion.image_url} alt="" />
                         <p className="legend">{promotion.subtitle}</p>
                     </Box>
                 ))}
-            </Carousel>
+            </Carousel> */}
 
             <Box
                 className="icons-container"
