@@ -1,18 +1,23 @@
-import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import { usePromotions } from '../../../hooks/usePromotions';
-import { ReactComponent as InstagramIcon } from '../../../images/socials/instagram.svg'
-import { ReactComponent as FacebookIcon } from '../../../images/socials/facebook.svg'
-import { ReactComponent as YoutubeIcon } from '../../../images/socials/youtube.svg'
-import { ReactComponent as WhatsappIcon } from '../../../images/socials/whatsapp.svg'
-import { ReactComponent as BackgroundImage } from '../../../images/background/socials.svg'
+import React, { useEffect, useState } from "react"
+import { Carousel } from "react-responsive-carousel"
+import { usePromotions } from "../../../hooks/usePromotions"
+import { ReactComponent as InstagramIcon } from "../../../images/socials/instagram.svg"
+import { ReactComponent as FacebookIcon } from "../../../images/socials/facebook.svg"
+import { ReactComponent as YoutubeIcon } from "../../../images/socials/youtube.svg"
+import { ReactComponent as WhatsappIcon } from "../../../images/socials/whatsapp.svg"
+import { ReactComponent as BackgroundImage } from "../../../images/background/socials.svg"
 import { Box, useMediaQuery } from "@mui/material"
+import { api } from "../../../api"
+import { InstagramPost } from "../../../types/server/instagram/post"
+import { InstagramPostContainer } from "./InstagramPostContainer"
 
 interface SocialProps {}
 
 export const Social: React.FC<SocialProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const promotions = usePromotions()
+
+    const [posts, setPosts] = useState<InstagramPost[]>([])
 
     const backgroundStyle = {
         position: "absolute",
@@ -24,6 +29,17 @@ export const Social: React.FC<SocialProps> = ({}) => {
         facebook: "https://www.facebook.com/casaludica.com.br",
         youtube: "https://www.youtube.com/@casaludica6482",
     }
+
+    const getPosts = async () => {
+        const response = await api.get("/instagram/scrape")
+        const posts: InstagramPost[] = response.data
+        console.log(posts.map((post) => post.displayUrl))
+        setPosts(posts)
+    }
+
+    useEffect(() => {
+        getPosts()
+    }, [])
 
     return (
         <Box
@@ -73,14 +89,11 @@ export const Social: React.FC<SocialProps> = ({}) => {
                 </h3>
             </Box>
 
-            {/* <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
-                {promotions.map((promotion) => (
-                    <Box key={promotion.id}>
-                        <img src={promotion.image_url} alt="" />
-                        <p className="legend">{promotion.subtitle}</p>
-                    </Box>
+            <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
+                {posts.map((post) => (
+                    <InstagramPostContainer key={post.id} post={post} />
                 ))}
-            </Carousel> */}
+            </Carousel>
 
             <Box
                 className="icons-container"

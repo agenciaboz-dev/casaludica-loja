@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { UploadedFile } from "express-fileupload";
 import { Order } from "./Order";
+import { WithoutFunctions } from "./helpers";
 export declare const include: {
     orders: {
         include: {
@@ -11,6 +12,7 @@ export declare const include: {
 export type UserPrisma = Prisma.UserGetPayload<{
     include: typeof include;
 }>;
+export type UserForm = Omit<WithoutFunctions<User>, "id" | "orders">;
 export declare class User {
     id: number;
     password: string | null;
@@ -33,7 +35,7 @@ export declare class User {
     static list(): Promise<User[]>;
     static login(login: string, password: string): Promise<User | null>;
     static find(...params: string[]): Promise<User | null>;
-    static autoCreate(data: ClientOrderForm): Promise<User>;
+    static signup(data: UserForm): Promise<User | undefined>;
     init(): Promise<void>;
     load(user_prisma: UserPrisma): void;
     updateImage(file: UploadedFile): Promise<string>;
