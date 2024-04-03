@@ -34,7 +34,7 @@ export const About: React.FC<AboutProps> = ({}) => {
                 flexDirection: "column",
                 gap: isMobile ? "5vw" : "1vw",
                 color: colors.primary,
-                marginTop: isMobile ? "24vw" : "",
+                marginTop: isMobile ? "" : "",
             }}
         >
             <Box className="container" style={containerStyle}>

@@ -6,7 +6,7 @@ import { ReactComponent as FacebookIcon } from "../../../images/socials/facebook
 import { ReactComponent as YoutubeIcon } from "../../../images/socials/youtube.svg"
 import { ReactComponent as WhatsappIcon } from "../../../images/socials/whatsapp.svg"
 import { ReactComponent as BackgroundImage } from "../../../images/background/socials.svg"
-import { Box, useMediaQuery } from "@mui/material"
+import { Box, IconButton, useMediaQuery } from "@mui/material"
 import { api } from "../../../api"
 import { InstagramPost } from "../../../types/server/instagram/post"
 import { InstagramPostContainer } from "./InstagramPostContainer"
@@ -100,13 +100,20 @@ export const Social: React.FC<SocialProps> = ({}) => {
                 style={{
                     width: "100%",
                     justifyContent: "center",
-                    gap: "2vw",
                 }}
             >
-                <InstagramIcon style={{ width: isMobile ? "15vw" : "4vw" }} onClick={() => window.open(links.instagram, "_blank")?.focus()} />
-                <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} onClick={() => window.open(links.facebook, "_blank")?.focus()} />
-                <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} onClick={() => window.open(links.youtube, "_blank")?.focus()} />
-                <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} onClick={() => window.open(links.whatsapp, "_blank")?.focus()} />
+                <IconButton onClick={() => window.open(links.instagram, "_blank")?.focus()}>
+                    <InstagramIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                </IconButton>
+                <IconButton onClick={() => window.open(links.facebook, "_blank")?.focus()}>
+                    <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                </IconButton>
+                <IconButton onClick={() => window.open(links.youtube, "_blank")?.focus()}>
+                    <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                </IconButton>
+                <IconButton onClick={() => window.open(links.whatsapp, "_blank")?.focus()}>
+                    <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                </IconButton>
             </Box>
         </Box>
     )
