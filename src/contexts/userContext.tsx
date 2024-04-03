@@ -3,6 +3,7 @@ import React from "react"
 import { api, bozpayApi } from "../api"
 import { useFranchise } from "../hooks/useFranchise"
 import { Order } from "boz.pay.component"
+import { OrderModal } from "../components/OrderModal"
 
 interface UserContextValue {
     user: User | null
@@ -21,6 +22,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const { franchise } = useFranchise()
     const [user, setUser] = useState<User | null>(null)
 
+    const [pendingOrders, setPendingOrders] = useState<Order[]>([])
+
     const handleShippedOrders = async (user: User) => {
         if (!franchise) return
         const response = await api.post("/order/user", { user_id: user.id, store_id: franchise.id })
@@ -29,6 +32,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         console.log("pedidos em transito")
         console.log(shipped_orders)
         // confirmar entrega e avaliação dos produtos
+        setPendingOrders(shipped_orders)
     }
 
     useEffect(() => {
@@ -37,5 +41,12 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     }, [user])
 
-    return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
+    return (
+        <UserContext.Provider value={{ user, setUser }}>
+            {pendingOrders.map((order) => (
+                <OrderModal key={order.id} order={order} />
+            ))}
+            {children}
+        </UserContext.Provider>
+    )
 }

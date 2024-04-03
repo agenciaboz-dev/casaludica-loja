@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Carousel } from "react-responsive-carousel"
-import { usePromotions } from "../../../hooks/usePromotions"
 import { ReactComponent as InstagramIcon } from "../../../images/socials/instagram.svg"
 import { ReactComponent as FacebookIcon } from "../../../images/socials/facebook.svg"
 import { ReactComponent as YoutubeIcon } from "../../../images/socials/youtube.svg"
@@ -15,7 +14,6 @@ interface SocialProps {}
 
 export const Social: React.FC<SocialProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
-    const promotions = usePromotions()
 
     const [posts, setPosts] = useState<InstagramPost[]>([])
 
@@ -33,7 +31,6 @@ export const Social: React.FC<SocialProps> = ({}) => {
     const getPosts = async () => {
         const response = await api.get("/instagram/scrape")
         const posts: InstagramPost[] = response.data
-        console.log(posts.map((post) => post.displayUrl))
         setPosts(posts)
     }
 
