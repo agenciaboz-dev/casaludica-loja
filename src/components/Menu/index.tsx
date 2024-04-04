@@ -16,7 +16,8 @@ import { ReactComponent as FacebookIcon } from "../../images/socials/facebook.sv
 import { ReactComponent as YoutubeIcon } from "../../images/socials/youtube.svg"
 import { ReactComponent as WhatsappIcon } from "../../images/socials/whatsapp.svg"
 import { ReactComponent as Logo } from "../../images/logo.svg"
-import { ArrowBackIos, Padding } from "@mui/icons-material"
+import { ArrowBackIos, ArrowBackIosNew, Padding } from "@mui/icons-material"
+import { SignupContainer } from "./SignupContainer"
 
 interface MenuProps {}
 
@@ -28,8 +29,8 @@ export const Menu: React.FC<MenuProps> = ({}) => {
     const navigate = useNavigate()
 
     const { open: isOpen, setOpen } = useMenu()
-    const { user } = useUser()
-    const [login, setLogin] = useState(false)
+    const { user, setUser } = useUser()
+    const [renderForm, setRenderForm] = useState<false | "login" | "signup">(false)
     const [havePassword, setHavePassword] = useState(false)
     const [loginString, setLoginString] = useState("")
 
@@ -49,6 +50,11 @@ export const Menu: React.FC<MenuProps> = ({}) => {
         whatsapp: "https://api.whatsapp.com/send?phone=5547991684299&text=Ol%C3%A1,%20Casa%20L%C3%BAdica!",
         facebook: "https://www.facebook.com/casaludica.com.br",
         youtube: "https://www.youtube.com/@casaludica6482",
+    }
+
+    const onSignup = () => {
+        setRenderForm(false)
+        setOpen(false)
     }
 
     return (
@@ -117,14 +123,26 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                             >
                                 {user.email}
                             </p>
-                            <h4
-                                className="link"
-                                style={{
-                                    textDecoration: "underline",
-                                }}
-                            >
-                                Editar Perfil
-                            </h4>
+                            <Box sx={{ flexDirection: "row" }}>
+                                <h4
+                                    className="link"
+                                    style={{
+                                        textDecoration: "underline",
+                                    }}
+                                >
+                                    Editar Perfil
+                                </h4>
+                                <Button
+                                    sx={buttonStyle}
+                                    color="secondary"
+                                    onClick={() => {
+                                        navigate("/")
+                                        setUser(null)
+                                    }}
+                                >
+                                    sair
+                                </Button>
+                            </Box>
                         </Box>
                     </Box>
                 ) : (
@@ -168,7 +186,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                                 <Button
                                     sx={buttonStyle}
                                     onClick={() => {
-                                        setLogin(true)
+                                        setRenderForm("login")
                                         // closeMenu()
                                     }}
                                 >
@@ -184,8 +202,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                                     <Button
                                         sx={buttonStyle}
                                         onClick={() => {
-                                            navigate("/signup")
-                                            closeMenu()
+                                            setRenderForm("signup")
                                         }}
                                     >
                                         Cadastre-se
@@ -196,7 +213,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     </Box>
                 )}
             </Box>
-            {login ? (
+            {renderForm == "login" ? (
                 <Box
                     sx={{
                         flexDirection: "column",
@@ -208,58 +225,52 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                 >
                     {!havePassword ? (
                         <>
-                            <Box sx={{ width: "100%", justifyContent: "space-between" }}>
-                                <p style={{ fontSize: "1.0rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>
-                                    ACESSE SUA CONTA
-                                </p>
-                                <ArrowBackIos
+                            <Box sx={{ width: "100%", justifyContent: "space-between", alignItems: "center" }}>
+                                <p style={{ fontSize: "1.0rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>ACESSE SUA CONTA</p>
+                                <IconButton
+                                    size="small"
+                                    color="primary"
                                     onClick={() => {
-                                        setLogin(false)
+                                        setRenderForm(false)
                                     }}
-                                />
+                                >
+                                    <ArrowBackIosNew />
+                                </IconButton>
                             </Box>
                             <LoginContainer setHavePassword={setHavePassword} setLoginString={setLoginString} />
                         </>
                     ) : (
                         <LoginMenu
-                            setLogin={setLogin}
+                            onBack={() => setRenderForm(false)}
                             loginString={loginString}
                             setLoginString={setLoginString}
                             setHavePassword={setHavePassword}
                         />
                     )}
-                    <Box sx={{ width: 1, alignItems: "center", flexDirection: "column", gap: "2vw" }}>
-                        <Box
-                            className="icons-container"
-                            style={{
-                                width: "100%",
-                                justifyContent: "center",
-                                padding: 0,
+                </Box>
+            ) : renderForm == "signup" ? (
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        paddingTop: isMobile ? "3vw" : "3vw",
+                        padding: "8vw",
+                        width: 1,
+                        gap: 2,
+                    }}
+                >
+                    <Box sx={{ width: "100%", justifyContent: "space-between", alignItems: "center" }}>
+                        <p style={{ fontSize: "1.0rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>CADASTRE-SE</p>
+                        <IconButton
+                            size="small"
+                            color="primary"
+                            onClick={() => {
+                                setRenderForm(false)
                             }}
                         >
-                            <IconButton onClick={() => window.open(socials.instagram, "_blank")?.focus()} size="small">
-                                <InstagramIcon style={{ width: isMobile ? "16vw" : "4vw", padding: 0 }} />
-                            </IconButton>
-                            <IconButton onClick={() => window.open(socials.facebook, "_blank")?.focus()} size="small">
-                                <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
-                            </IconButton>
-                            <IconButton onClick={() => window.open(socials.youtube, "_blank")?.focus()} size="small">
-                                <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
-                            </IconButton>
-                            <IconButton onClick={() => window.open(socials.whatsapp, "_blank")?.focus()} size="small">
-                                <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
-                            </IconButton>
-                        </Box>
-                        <Logo style={{ width: isMobile ? "100%" : "20vw" }} />
-                        <Box sx={{ flexDirection: "column", gap: 0 }}>
-                            <p style={{ fontSize: "0.7rem", color: "black", marginTop: "2vw" }}>
-                                Registrado por Casa Lúdica®
-                            </p>
-                            <p style={{ fontSize: "0.7rem", color: "black", marginTop: "2vw" }}>
-                                Todos os direitos reservados.
-                            </p>
-                        </Box>
+                            <ArrowBackIosNew />
+                        </IconButton>
                     </Box>
+                    <SignupContainer onSignup={onSignup} />
                 </Box>
             ) : (
                 <Box sx={{ flexDirection: "column", paddingTop: isMobile ? "3vw" : "1vw" }}>
@@ -277,6 +288,36 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     >
                         Resetar endereço
                     </Button>
+                </Box>
+            )}
+            {!!renderForm && (
+                <Box sx={{ width: 1, alignItems: "center", flexDirection: "column", gap: "2vw" }}>
+                    <Box
+                        className="icons-container"
+                        style={{
+                            width: "100%",
+                            justifyContent: "center",
+                            padding: 0,
+                        }}
+                    >
+                        <IconButton onClick={() => window.open(socials.instagram, "_blank")?.focus()} size="small">
+                            <InstagramIcon style={{ width: isMobile ? "16vw" : "4vw", padding: 0 }} />
+                        </IconButton>
+                        <IconButton onClick={() => window.open(socials.facebook, "_blank")?.focus()} size="small">
+                            <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                        </IconButton>
+                        <IconButton onClick={() => window.open(socials.youtube, "_blank")?.focus()} size="small">
+                            <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                        </IconButton>
+                        <IconButton onClick={() => window.open(socials.whatsapp, "_blank")?.focus()} size="small">
+                            <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                        </IconButton>
+                    </Box>
+                    <Logo style={{ width: isMobile ? "100%" : "20vw" }} />
+                    <Box sx={{ flexDirection: "column", gap: 0 }}>
+                        <p style={{ fontSize: "0.7rem", color: "black", marginTop: "2vw" }}>Registrado por Casa Lúdica®</p>
+                        <p style={{ fontSize: "0.7rem", color: "black", marginTop: "2vw" }}>Todos os direitos reservados.</p>
+                    </Box>
                 </Box>
             )}
         </SwipeableDrawer>

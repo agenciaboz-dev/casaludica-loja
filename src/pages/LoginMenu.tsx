@@ -11,13 +11,13 @@ import { useMenu } from "../hooks/useMenu"
 import { ArrowBackIos, FamilyRestroomTwoTone } from "@mui/icons-material"
 
 interface LoginMenuProps {
-    setLogin: (value: boolean) => void
+    onBack: () => void
     setLoginString: React.Dispatch<React.SetStateAction<string>>
     setHavePassword: React.Dispatch<React.SetStateAction<boolean>>
     loginString: string
 }
 
-export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginString, setLogin, setHavePassword }) => {
+export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginString, onBack, setHavePassword }) => {
     const [loading, setLoading] = useState(false)
 
     const { setUser } = useUser()
@@ -41,7 +41,7 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
                     setUser(user)
                     navigate(redirect || "/")
                     menu.setOpen(false)
-                    setLogin(false)
+                    onBack()
                 } else {
                     snackbar({ severity: "error", text: "Credenciais inválidas" })
                 }
