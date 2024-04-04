@@ -4,6 +4,7 @@ import { useFormik } from "formik"
 import { useApi } from "../../hooks/useApi"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useMenu } from "../../hooks/useMenu"
+import { useSnackbar } from "burgos-snackbar"
 
 interface LoginContainerProps {
     color?: "error" | "primary" | "secondary" | "info" | "success" | "warning"
@@ -21,6 +22,7 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect,
     const api = useApi()
     const navigate = useNavigate()
     const menu = useMenu()
+    const { snackbar } = useSnackbar()
     // setLoginString(useLocation().state?.login)
 
     const [loading, setLoading] = useState(false)
@@ -31,12 +33,16 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect,
             setLoading(true)
             try {
                 const user = (await api.user.isSignedUp(values.login)).data as User
-                if (setHavePassword && user.password) {
-                    setHavePassword(true)
-                    if (setLoginString) setLoginString(values.login)
+                if (user) {
+                    if (setHavePassword && user.password) {
+                        setHavePassword(true)
+                        if (setLoginString) setLoginString(values.login)
+                    } else {
+                        navigate("/first_login", { state: { login: values.login } })
+                        menu.setOpen(false)
+                    }
                 } else {
-                    navigate("/first_login", { state: { login: values.login } })
-                    menu.setOpen(false)
+                    snackbar({ severity: "error", text: "Login não encontrado." })
                 }
             } catch (error) {
             } finally {
