@@ -38,12 +38,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
         >
             <DialogTitle sx={{ fontWeight: "bold", bgcolor: "#EAECEF" }}>Pedido #{order.referenceId}</DialogTitle>
             <DialogContent sx={{ flexDirection: "column" }}>
-                <DialogContentText sx={{ fontSize: "1.1rem", color: "primary.main", marginTop: "2vw" }}>
-                    Você recebeu seu pedido?
-                </DialogContentText>
-                <Accordion
-                    sx={{ backgroundColor: "transparent", boxShadow: "none", flexDirection: "column", padding: 0, width: 1 }}
-                >
+                <DialogContentText sx={{ fontSize: "1.1rem", color: "primary.main", marginTop: "2vw" }}>Você recebeu seu pedido?</DialogContentText>
+                <Accordion sx={{ backgroundColor: "transparent", boxShadow: "none", flexDirection: "column", padding: 0, width: 1 }}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1-content"
@@ -55,9 +51,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
                     <AccordionDetails sx={{ gap: "4vw", padding: 0, width: 1 }}>
                         <Box sx={{ flexDirection: "column", gap: "1vw", alignItems: "center", p: 0 }}>
                             {order.products.slice(0, 3).map((product) => (
-                                <>
+                                <Box key={product.id} sx={{ display: "contents" }}>
                                     <Box
-                                        key={product.id}
                                         sx={{
                                             color: "gray",
                                             gap: "2vw",
@@ -82,7 +77,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
                                         </Box>
                                         <p>{product.quantity} x</p>
                                     </Box>
-                                </>
+                                </Box>
                             ))}
                             {order.products.length > 3 && (
                                 <Box
