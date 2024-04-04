@@ -7,7 +7,8 @@ const statusEnum = (_originalStatus: string) => {
 
     if (originalStatus == "paid") status = { color: "success", text: "Pago" }
     if (originalStatus == "pending") status = { color: "error", text: "Pendente" }
-    if (originalStatus == "em trânsito") status = { color: "success", text: "Em trânsito" }
+    if (originalStatus == "em trânsito") status = { color: "warning", text: "Em trânsito" }
+    if (originalStatus == "concluído") status = { color: "success", text: "Concluído" }
 
     return status
 }

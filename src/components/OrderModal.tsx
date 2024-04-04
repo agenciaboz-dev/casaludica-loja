@@ -6,6 +6,7 @@ import {
     Avatar,
     Box,
     Button,
+    CircularProgress,
     Dialog,
     DialogActions,
     DialogContent,
@@ -15,14 +16,60 @@ import {
 } from "@mui/material"
 import { Order } from "boz.pay.component"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import { api } from "../api"
+import { ProductContainerOnModal } from "./ProductContainerOnModal"
 
 interface OrderModalProps {
     order: Order
 }
 
 export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
-    const [isOpen, setIsOpen] = useState(true)
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const [isOpen, setIsOpen] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const [confirmed, setConfirmed] = useState(false)
+
+    const [ratings, setRatings] = useState<{ id: number; rating: number }[]>([])
+
+    const onConfirm = async () => {
+        // if (loading) return
+
+        const data: { bozpay_id: number; reference_id: string } = {
+            bozpay_id: order.id,
+            reference_id: order.referenceId,
+        }
+
+        setLoading(true)
+        try {
+            const response = await api.post("/order/confirm_receiving", data)
+            if (response.status == 200) {
+                console.log("success")
+                setConfirmed(true)
+            }
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const onRatingChange = (id: number, value: number) => {
+        setRatings((ratings) => [...ratings.filter((item) => item.id != id), { id, rating: value }])
+    }
+
+    const onReview = async () => {
+        setLoading(true)
+        try {
+            const response = await api.post("/order/review", { ratings })
+            if (response.status == 200) {
+                setIsOpen(false)
+            }
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     return (
         <Dialog
@@ -38,7 +85,9 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
         >
             <DialogTitle sx={{ fontWeight: "bold", bgcolor: "#EAECEF" }}>Pedido #{order.referenceId}</DialogTitle>
             <DialogContent sx={{ flexDirection: "column" }}>
-                <DialogContentText sx={{ fontSize: "1.1rem", color: "primary.main", marginTop: "2vw" }}>Você recebeu seu pedido?</DialogContentText>
+                <DialogContentText sx={{ fontSize: "1.1rem", color: "primary.main", marginTop: "2vw" }}>
+                    {confirmed ? "Avaliar os produtos" : "Você recebeu seu pedido?"}
+                </DialogContentText>
                 <Accordion sx={{ backgroundColor: "transparent", boxShadow: "none", flexDirection: "column", padding: 0, width: 1 }}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -51,33 +100,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
                     <AccordionDetails sx={{ gap: "4vw", padding: 0, width: 1 }}>
                         <Box sx={{ flexDirection: "column", gap: "1vw", alignItems: "center", p: 0 }}>
                             {order.products.slice(0, 3).map((product) => (
-                                <Box key={product.id} sx={{ display: "contents" }}>
-                                    <Box
-                                        sx={{
-                                            color: "gray",
-                                            gap: "2vw",
-                                            alignItems: "center",
-                                            width: 1,
-                                            justifyContent: "space-between",
-                                            marginTop: "2vw",
-                                        }}
-                                    >
-                                        <Box sx={{ flexDirection: "row", gap: "2vw", alignItems: "center", width: 0.8 }}>
-                                            {/* <Avatar src={product.cover} variant="circular" sx={{ width: "8vw", height: "8vw" }} /> */}
-                                            <p
-                                                style={{
-                                                    width: "100%", // Define a largura para 100% ou um valor específico em pixels
-                                                    textOverflow: "ellipsis",
-                                                    overflow: "hidden", // Garante que o conteúdo que excede a largura seja escondido
-                                                    whiteSpace: "nowrap",
-                                                }}
-                                            >
-                                                {product.name}
-                                            </p>
-                                        </Box>
-                                        <p>{product.quantity} x</p>
-                                    </Box>
-                                </Box>
+                                <ProductContainerOnModal product={product} key={product.id} onRatingChange={onRatingChange} confirmed={confirmed} />
                             ))}
                             {order.products.length > 3 && (
                                 <Box
@@ -111,8 +134,10 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
                 </Box>
             </DialogContent>
             <DialogActions>
-                <Button>não</Button>
-                <Button variant="contained"> Sim, Recebi</Button>
+                <Button onClick={() => setIsOpen(false)}>não</Button>
+                <Button variant="contained" onClick={confirmed ? onReview : onConfirm}>
+                    {loading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : confirmed ? "Enviar avaliação" : "Sim, Recebi"}
+                </Button>
             </DialogActions>
         </Dialog>
     )

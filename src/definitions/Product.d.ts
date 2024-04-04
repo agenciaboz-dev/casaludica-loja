@@ -20,4 +20,5 @@ declare interface Product {
     height?: number
     lenght?: number
     ageRating?: string
+    rating: number
 }
