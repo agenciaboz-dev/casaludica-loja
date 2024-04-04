@@ -27,14 +27,28 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
     }, [franchise])
 
     return (
-        <Box sx={{ flexDirection: "column", fontSize: "1.2rem", color: "primary.main", width: "100%", gap: "5vw", paddingBottom: "10vw" }}>
+        <Box
+            sx={{
+                flexDirection: "column",
+                fontSize: "1.2rem",
+                color: "primary.main",
+                width: "100%",
+                gap: "5vw",
+                paddingBottom: "10vw",
+            }}
+        >
             {!!orders.length ? (
                 <>
                     {orders
                         .sort((a, b) => b.id - a.id)
                         .map((order) => (
                             <Box key={order.id} sx={{ flexDirection: "column", width: "100%", color: "primary.main" }}>
-                                <h3>Pedido #{order.referenceId}</h3>
+                                <Box sx={{ justifyContent: "space-between", alignItems: "center" }}>
+                                    <h3>Pedido #{order.referenceId}</h3>
+                                    <p style={{ fontSize: "0.9rem" }}>
+                                        {new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")}{" "}
+                                    </p>
+                                </Box>
                                 <OrderComponent order={order} />
                             </Box>
                         ))}
