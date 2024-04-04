@@ -18,6 +18,7 @@ export declare class Product {
     sold: number;
     ageRating: string;
     brand: string;
+    rating: number;
     constructor(igest_product: IgestProduct);
     static getImages(id: number, mainOnly?: boolean): Promise<string>;
     getImage(mainOnly?: boolean): Promise<string>;

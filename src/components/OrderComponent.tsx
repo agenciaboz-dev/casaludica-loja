@@ -52,8 +52,9 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                     flexDirection: "column",
                     padding: "5vw",
                     boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-                    borderRadius: "2vw"
-                }}>
+                    borderRadius: "2vw",
+                }}
+            >
                 <DataText title="Status: " value={status.text} color={status.color} bold />
                 <DataText title="Data: " value={new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")} />
 
@@ -70,11 +71,16 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                         gap: "1vw",
                         padding: "3vw",
                         boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-                        borderRadius: "5vw"
-                    }}>
+                        borderRadius: "5vw",
+                    }}
+                >
                     {order.products.map((item) => (
                         // é o mesmo componente usado no checkout, cuidado ao editar
-                        <Product key={item.id} product={{ ...item, cover: "", brand: "", sold: 0, id: Number(item.referenceId) }} hideCloseButton />
+                        <Product
+                            key={item.id}
+                            product={{ ...item, cover: "", brand: "", sold: 0, rating: 0, id: Number(item.referenceId) }}
+                            hideCloseButton
+                        />
                     ))}
                 </Box>
             </Box>

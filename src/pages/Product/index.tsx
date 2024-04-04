@@ -185,7 +185,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             </Box>
                             <Box sx={{ gap: "1vw", flex: isMobile ? 0.3 : "", alignItems: "center", fontSize: "0.8rem" }}>
                                 <Rating
-                                    value={4}
+                                    value={product.rating}
                                     sx={{
                                         fontSize: "1rem",
                                         "& .MuiRating-iconFilled": {
@@ -196,7 +196,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         },
                                     }}
                                 />
-                                4.2
+                                {product.rating}
                             </Box>
                         </Box>
                         <h3 style={{ fontSize: "1.2rem" }}>{product.name}</h3>
