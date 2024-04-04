@@ -13,7 +13,7 @@ import { ArrowBackIos, FamilyRestroomTwoTone } from "@mui/icons-material"
 interface LoginMenuProps {
     setLogin: (value: boolean) => void
     setLoginString: React.Dispatch<React.SetStateAction<string>>
-    setHavePassword : React.Dispatch<React.SetStateAction<boolean>>
+    setHavePassword: React.Dispatch<React.SetStateAction<boolean>>
     loginString: string
 }
 

@@ -65,6 +65,7 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect,
                     variant="outlined"
                     sx={input_style}
                     required
+                    autoFocus
                 />
                 <Button variant="contained" color="success" sx={{ borderRadius: "5vw" }} type="submit">
                     {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "entrar"}
