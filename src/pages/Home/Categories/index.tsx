@@ -42,7 +42,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             boxShadow: `0 2px 3px rgba(0, 0, 0, 0.4)`,
                             borderRadius: isMobile ? "2vw" : "0.5vw",
                             width: "fit-content",
-                            padding: isMobile ? "5vw 2vw" : "1vw",
+                            padding: isMobile ? "5vw 2vw" : "2vw 1vw",
                             alignItems: "center",
                             gap: isMobile ? "3vw" : "1vw",
                             flexShrink: "0",

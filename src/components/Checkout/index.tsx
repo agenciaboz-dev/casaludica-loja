@@ -5,7 +5,7 @@ import { SearchField } from "../../components/SearchField"
 import { useCart } from "../../hooks/useCart"
 import { Collections } from "../../pages/Home/Collections"
 import { Product } from "./Product"
-import { Box, CircularProgress, TextField } from "@mui/material"
+import { Box, CircularProgress, Grid, TextField, useMediaQuery } from "@mui/material"
 import { ButtonComponent } from "../ButtonComponent"
 import { Billing } from "./Billing"
 import { useFormik } from "formik"
@@ -23,7 +23,8 @@ interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const { snackbar } = useSnackbar()
-    const {  franchise, currentAddress } = useFranchise()
+    const isMobile = useMediaQuery("(orientation: portrait)")
+    const { franchise, currentAddress } = useFranchise()
     const { user } = useUser()
     const { confirm } = useConfirmDialog()
     const cart = useCart()
@@ -137,12 +138,12 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     }, [])
 
     return (
-        <Box className="Checkout-Component" sx={{ flexDirection: "column", width: "100%", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}>
+        <Box className="Checkout-Component" sx={{ flexDirection: "column", width: "100vw", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}>
             <Background />
             <Header />
             <SearchField />
             <Collections />
-            <p className="finish" style={{ fontWeight: "bold", fontSize: "5vw", color: "#363775", fontFamily: "BowlbyOneSC" }}>
+            <p className="finish" style={{ fontWeight: "bold", fontSize: isMobile ? "5vw" : "3vw", color: "#363775", fontFamily: "BowlbyOneSC" }}>
                 Finalizar Pedido
             </p>
             <Box
@@ -150,9 +151,9 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 sx={{
                     width: "100%",
                     boxShadow: " 0 0 8px rgba(0,0,0,0.4)",
-                    padding: "5vw",
-                    paddingBottom: "4vw",
-                    borderRadius: "4.5vw",
+                    padding: isMobile ? "5vw" : "2vw",
+                    // paddingBottom: isMobile ? "4vw" : "1.8vw",
+                    borderRadius: isMobile ? "4.5vw" : "2vw",
                     flexDirection: "column",
                     height: "fit-content",
 
@@ -163,10 +164,11 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     <Product key={product.id} product={product} />
                 ))}
             </Box>
+            {/* <Box sx={{ flexDirection: isMobile ? "column" : "row" }}> */}
             <Review />
             <Billing formik={billingFormik} />
             <ButtonComponent onClick={handleSubmit}>{makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}</ButtonComponent>
-
+            {/* </Box> */}
             <PayModal open={!!payingOrderId} close={() => setPayingOrderId("")} orderId={payingOrderId} />
         </Box>
     )

@@ -1,4 +1,4 @@
-import { IconButton, Box, TextField, Skeleton, Avatar } from "@mui/material"
+import { IconButton, Box, TextField, Skeleton, Avatar, useMediaQuery } from "@mui/material"
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useCart } from "../../hooks/useCart"
@@ -11,6 +11,7 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const cart = useCart()
     const navigate = useNavigate()
 
@@ -25,28 +26,40 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
         }
     }
     return (
-        <Box sx={{ position: "relative", justifyContent: "center", alignItems: "center", gap: "3vw" }} ref={productRef}>
+        <Box sx={{ position: "relative", justifyContent: isMobile ? "center" : "start", alignItems: "center", gap: "3vw" }} ref={productRef}>
             {product.cover ? (
-                <Avatar src={"data:image/jpeg;base64," + product.cover} variant="rounded" alt="product" style={{ width: "37vw", height: "37vw" }} />
+                <Avatar
+                    src={"data:image/jpeg;base64," + product.cover}
+                    variant="rounded"
+                    alt="product"
+                    style={{ width: isMobile ? "37vw" : "10vw", height: isMobile ? "37vw" : "10vw" }}
+                />
             ) : (
-                <Skeleton variant="rounded" animation="wave" sx={{ width: "37vw", height: "37vw", flexShrink: 0 }} />
+                <Skeleton
+                    variant="rounded"
+                    animation="wave"
+                    sx={{ width: isMobile ? "37vw" : "10vw", height: isMobile ? "37vw" : "10vw", flexShrink: 0 }}
+                />
             )}
-            <Box sx={{ color: "#363775", fontWeight: "500", fontSize: "3vw", flexDirection: "column", gap: "1.8vw" }}>
-                <Box sx={{ flexDirection: "column" }}>
-                    <p style={{ fontSize: "3.2vw" }}>
-                        Produto: <span style={{ fontWeight: "bold" }}>{product.name}</span>
+            <Box sx={{ color: "#363775", fontWeight: "500", fontSize: isMobile ? "3vw" : "1.2vw", flexDirection: "column" }}>
+                <Box sx={{ flexDirection: "column", gap: isMobile ? "1.8vw" : "1vw" }}>
+                    <p style={{ fontSize: isMobile ? "3.2vw" : "1.5vw" }}>
+                        Produto: <span style={{ fontWeight: "bold", fontSize: isMobile ? "3.2vw" : "1.8vw" }}>{product.name}</span>
                     </p>
                     <Box sx={{ flexDirection: "row", gap: "1vw", alignItems: "center" }}>
-                        <p style={{ fontSize: "3.2vw" }}>Quantidade: {product.quantity} </p>
+                        <p>Quantidade: {product.quantity} </p>
                     </Box>
+                    <p style={{ fontSize: isMobile ? "3.5vw" : "1.5vw" }}>
+                        Preço unitário:{" "}
+                        <span style={{ color: "#686868", fontWeight: "bolder", fontSize: isMobile ? "3.8vw" : "1.8vw" }}>
+                            R${product.price.toFixed(2)}
+                        </span>
+                    </p>
                 </Box>
-                <p style={{ fontSize: "3.5vw" }}>
-                    Preço unitário: <span style={{ color: "#686868", fontWeight: "bolder", fontSize: "3.8vw" }}>R${product.price.toFixed(2)}</span>
-                </p>
             </Box>
             {!hideCloseButton && (
                 <IconButton className="close" onClick={deleteProduct} sx={{ position: "absolute", top: "0vw", right: "0vw", padding: 0 }}>
-                    <CloseIcon style={{ height: "auto", width: "6vw" }} />
+                    <CloseIcon style={{ height: "auto", width: isMobile ? "6vw" : "1.8vw" }} />
                 </IconButton>
             )}
         </Box>
