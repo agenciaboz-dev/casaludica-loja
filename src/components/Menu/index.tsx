@@ -16,7 +16,7 @@ import { ReactComponent as FacebookIcon } from "../../images/socials/facebook.sv
 import { ReactComponent as YoutubeIcon } from "../../images/socials/youtube.svg"
 import { ReactComponent as WhatsappIcon } from "../../images/socials/whatsapp.svg"
 import { ReactComponent as Logo } from "../../images/logo.svg"
-import { Padding } from "@mui/icons-material"
+import { ArrowBackIos, Padding } from "@mui/icons-material"
 
 interface MenuProps {}
 
@@ -208,9 +208,16 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                 >
                     {!havePassword ? (
                         <>
-                            <p style={{ fontSize: "1.3rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>
-                                ACESSE SUA CONTA
-                            </p>
+                            <Box sx={{ width: "100%", justifyContent: "space-between" }}>
+                                <p style={{ fontSize: "1.0rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>
+                                    ACESSE SUA CONTA
+                                </p>
+                                <ArrowBackIos
+                                    onClick={() => {
+                                        setLogin(false)
+                                    }}
+                                />
+                            </Box>
                             <LoginContainer setHavePassword={setHavePassword} setLoginString={setLoginString} />
                         </>
                     ) : (
