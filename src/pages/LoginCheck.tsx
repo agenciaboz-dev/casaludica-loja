@@ -7,7 +7,7 @@ interface LoginCheckProps {}
 export const LoginCheck: React.FC<LoginCheckProps> = ({}) => {
     return (
         <DefaultWrapper>
-            <LoginContainer />
+            {/* <LoginContainer setHavePassword={setPassword}/> */}
         </DefaultWrapper>
     )
 }

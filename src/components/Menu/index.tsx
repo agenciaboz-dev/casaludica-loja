@@ -1,5 +1,5 @@
-import { Avatar, Box, Button, Drawer, MenuItem, SwipeableDrawer, useMediaQuery } from "@mui/material"
-import React from "react"
+import { Avatar, Box, Button, Drawer, IconButton, MenuItem, SwipeableDrawer, useMediaQuery } from "@mui/material"
+import React, { useState } from "react"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useMenuLinks } from "../../hooks/useMenuLinks"
 import { LinkContainer } from "./LinkContainer"
@@ -10,6 +10,13 @@ import { LoginContainer } from "./LoginContainer"
 import { useMenu } from "../../hooks/useMenu"
 import { useNavigate } from "react-router-dom"
 import logoIconPNG from "../../images/cl-logo.png"
+import { LoginMenu } from "../../pages/LoginMenu"
+import { ReactComponent as InstagramIcon } from "../../images/socials/instagram.svg"
+import { ReactComponent as FacebookIcon } from "../../images/socials/facebook.svg"
+import { ReactComponent as YoutubeIcon } from "../../images/socials/youtube.svg"
+import { ReactComponent as WhatsappIcon } from "../../images/socials/whatsapp.svg"
+import { ReactComponent as Logo } from "../../images/logo.svg"
+import { Padding } from "@mui/icons-material"
 
 interface MenuProps {}
 
@@ -22,6 +29,9 @@ export const Menu: React.FC<MenuProps> = ({}) => {
 
     const { open: isOpen, setOpen } = useMenu()
     const { user } = useUser()
+    const [login, setLogin] = useState(false)
+    const [havePassword, setHavePassword] = useState(false)
+    const [loginString, setLoginString] = useState("")
 
     const closeMenu = () => {
         setOpen(false)
@@ -33,6 +43,12 @@ export const Menu: React.FC<MenuProps> = ({}) => {
         textTransform: "unset",
         textDecoration: "underline",
         width: "fit-content",
+    }
+    const socials = {
+        instagram: "https://www.instagram.com/casaludica/",
+        whatsapp: "https://api.whatsapp.com/send?phone=5547991684299&text=Ol%C3%A1,%20Casa%20L%C3%BAdica!",
+        facebook: "https://www.facebook.com/casaludica.com.br",
+        youtube: "https://www.youtube.com/@casaludica6482",
     }
 
     return (
@@ -152,8 +168,8 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                                 <Button
                                     sx={buttonStyle}
                                     onClick={() => {
-                                        navigate("/login_checker")
-                                        closeMenu()
+                                        setLogin(true)
+                                        // closeMenu()
                                     }}
                                 >
                                     Faça o login
@@ -180,22 +196,82 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     </Box>
                 )}
             </Box>
-            <Box sx={{ flexDirection: "column", paddingTop: isMobile ? "3vw" : "1vw" }}>
-                {links.map((link) => (
-                    <LinkContainer key={link.id} link={link} />
-                ))}
-                <Button
-                    variant="contained"
-                    sx={{ margin: "1vw 5vw" }}
-                    onClick={() => {
-                        storage.set("address", null)
-                        storage.set("franchise", null)
-                        window.location.href = "/"
+            {login ? (
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        paddingTop: isMobile ? "3vw" : "3vw",
+                        padding: "8vw",
+                        gap: "8vw",
+                        width: 1,
                     }}
                 >
-                    Resetar endereço
-                </Button>
-            </Box>
+                    {!havePassword ? (
+                        <>
+                            <p style={{ fontSize: "1.3rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>
+                                ACESSE SUA CONTA
+                            </p>
+                            <LoginContainer setHavePassword={setHavePassword} setLoginString={setLoginString} />
+                        </>
+                    ) : (
+                        <LoginMenu
+                            setLogin={setLogin}
+                            loginString={loginString}
+                            setLoginString={setLoginString}
+                            setHavePassword={setHavePassword}
+                        />
+                    )}
+                    <Box sx={{ width: 1, alignItems: "center", flexDirection: "column", gap: "2vw" }}>
+                        <Box
+                            className="icons-container"
+                            style={{
+                                width: "100%",
+                                justifyContent: "center",
+                                padding: 0,
+                            }}
+                        >
+                            <IconButton onClick={() => window.open(socials.instagram, "_blank")?.focus()} size="small">
+                                <InstagramIcon style={{ width: isMobile ? "16vw" : "4vw", padding: 0 }} />
+                            </IconButton>
+                            <IconButton onClick={() => window.open(socials.facebook, "_blank")?.focus()} size="small">
+                                <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                            </IconButton>
+                            <IconButton onClick={() => window.open(socials.youtube, "_blank")?.focus()} size="small">
+                                <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                            </IconButton>
+                            <IconButton onClick={() => window.open(socials.whatsapp, "_blank")?.focus()} size="small">
+                                <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                            </IconButton>
+                        </Box>
+                        <Logo style={{ width: isMobile ? "100%" : "20vw" }} />
+                        <Box sx={{ flexDirection: "column", gap: 0 }}>
+                            <p style={{ fontSize: "0.7rem", color: "black", marginTop: "2vw" }}>
+                                Registrado por Casa Lúdica®
+                            </p>
+                            <p style={{ fontSize: "0.7rem", color: "black", marginTop: "2vw" }}>
+                                Todos os direitos reservados.
+                            </p>
+                        </Box>
+                    </Box>
+                </Box>
+            ) : (
+                <Box sx={{ flexDirection: "column", paddingTop: isMobile ? "3vw" : "1vw" }}>
+                    {links.map((link) => (
+                        <LinkContainer key={link.id} link={link} />
+                    ))}
+                    <Button
+                        variant="contained"
+                        sx={{ margin: "1vw 5vw" }}
+                        onClick={() => {
+                            storage.set("address", null)
+                            storage.set("franchise", null)
+                            window.location.href = "/"
+                        }}
+                    >
+                        Resetar endereço
+                    </Button>
+                </Box>
+            )}
         </SwipeableDrawer>
     )
 }
