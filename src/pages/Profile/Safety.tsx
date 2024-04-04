@@ -28,14 +28,14 @@ export const Safety: React.FC<SafetyProps> = ({ user }) => {
                 try {
                     const response = await api.post("/user/update", { id: user.id, password: values.new_password })
                     setUser(response.data)
-                    snackbar({ severity: "info", text: "dados atualizados" })
+                    snackbar({ severity: "info", text: "Dados atualizados" })
                 } catch (error) {
                     console.log(error)
-                    snackbar({ severity: "error", text: "erro ao atualizar dados, cheque o console" })
+                    snackbar({ severity: "error", text: "Erro ao atualizar dados" })
                 }
                 setLoading(false)
             } else {
-                snackbar({ severity: "warning", text: "senha inválida" })
+                snackbar({ severity: "warning", text: "Senha inválida" })
             }
         },
     })

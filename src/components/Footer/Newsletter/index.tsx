@@ -20,7 +20,7 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
 
         setLoading(true)
         await api.post("/newsletter", values)
-        snackbar({ severity: "success", text: "assinado com sucesso" })
+        snackbar({ severity: "success", text: "Assinado com sucesso!" })
 
         setLoading(false)
     }

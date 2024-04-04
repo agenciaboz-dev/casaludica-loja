@@ -39,11 +39,11 @@ export const FirstPassword: React.FC<FirstPasswordProps> = ({}) => {
             try {
                 const response = await api.post("/user/first_password", values)
                 const user = response.data
-                snackbar({ severity: "success", text: "senha gerada com sucesso" })
+                snackbar({ severity: "success", text: "Senha gerada com sucesso!" })
                 setUser(user)
                 navigate("/")
             } catch (error) {
-                snackbar({ severity: "error", text: "não rolou" })
+                snackbar({ severity: "error", text: "Não foi possível gerar a senha" })
                 console.log(error)
             }
 

@@ -60,12 +60,21 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
                     height: "100%",
                     justifyContent: "space-between",
                     color: "primary.main",
-                    "& > p": { fontSize: "0.8rem" }
-                }}>
+                    "& > p": { fontSize: "0.8rem" },
+                }}
+            >
                 <h3>{user.name}</h3>
                 <p>{user.email}</p>
                 {image ? (
-                    <Box sx={{ fontSize: "0.7rem", alignItems: "center", gap: "2vw", textDecoration: "underline", fontWeight: "bold" }}>
+                    <Box
+                        sx={{
+                            fontSize: "0.7rem",
+                            alignItems: "center",
+                            gap: "2vw",
+                            textDecoration: "underline",
+                            fontWeight: "bold",
+                        }}
+                    >
                         Confirmar imagem?
                         <Box sx={{ alignItems: "center", gap: "1vw" }} onClick={() => setImage(undefined)}>
                             Não <CancelIcon color="error" />

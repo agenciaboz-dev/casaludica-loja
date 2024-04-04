@@ -33,10 +33,10 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({ user }) => {
             try {
                 const response = await api.post("/user/update", values)
                 setUser(response.data)
-                snackbar({ severity: "info", text: "dados atualizados" })
+                snackbar({ severity: "info", text: "Dados atualizados" })
             } catch (error) {
                 console.log(error)
-                snackbar({ severity: "error", text: "erro ao atualizar dados, cheque o console" })
+                snackbar({ severity: "error", text: "Erro ao atualizar dados" })
             }
             setLoading(false)
         },
