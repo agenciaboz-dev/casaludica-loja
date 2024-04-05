@@ -21,7 +21,6 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
 
     const [loading, setLoading] = useState(false)
     const cep_mask = useCepMask()
-    const phone_mask = usePhoneMask()
     const number_mask = useNumberMask({ allowDecimal: false, allowNegative: false })
     const { unmask } = useDataHandler()
 
