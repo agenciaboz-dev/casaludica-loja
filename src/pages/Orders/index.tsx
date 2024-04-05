@@ -42,15 +42,7 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
                     {orders
                         .sort((a, b) => b.id - a.id)
                         .map((order) => (
-                            <Box key={order.id} sx={{ flexDirection: "column", width: "100%", color: "primary.main" }}>
-                                <Box sx={{ justifyContent: "space-between", alignItems: "center" }}>
-                                    <h3>Pedido #{order.referenceId}</h3>
-                                    <p style={{ fontSize: "0.9rem" }}>
-                                        {new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")}{" "}
-                                    </p>
-                                </Box>
-                                <OrderComponent order={order} />
-                            </Box>
+                            <OrderComponent order={order} />
                         ))}
                 </>
             ) : (

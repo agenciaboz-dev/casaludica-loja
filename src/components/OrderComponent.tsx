@@ -1,10 +1,11 @@
 import React from "react"
-import { AlertColor, Box, SxProps } from "@mui/material"
+import { AlertColor, Box, Skeleton, SxProps } from "@mui/material"
 import { Order } from "boz.pay.component"
 import { CurrencyText } from "./CurrencyText"
 import { Product } from "./Checkout/Product"
 import { PendingPayment } from "./PendingPayment"
 import statusEnum from "../tools/enumStatus"
+import { useArray } from "burgos-array"
 
 interface OrderComponentProps {
     order: Order
@@ -48,6 +49,8 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
     const freight = order.total - subtotal
     const status = statusEnum(order.status)
 
+    const skeletons = useArray().newArray(2)
+
     return (
         <Box
             sx={{
@@ -84,16 +87,33 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                         maxHeight: "50vw",
                     }}
                 >
-                    {order.products.map((item) => (
-                        // é o mesmo componente usado no checkout, cuidado ao editar
-                        <>
-                            <Product
-                                key={item.id}
-                                product={{ ...item, cover: "", brand: "", sold: 0, rating: 0, id: Number(item.referenceId) }}
-                                hideCloseButton
-                            />
-                        </>
-                    ))}
+                    {!!order.products.length
+                        ? order.products.map((item) => (
+                              // é o mesmo componente usado no checkout, cuidado ao editar
+
+                              <Product
+                                  key={item.id}
+                                  product={{
+                                      ...item,
+                                      cover: "",
+                                      brand: "",
+                                      sold: 0,
+                                      rating: 0,
+                                      id: Number(item.referenceId),
+                                  }}
+                                  hideCloseButton
+                              />
+                          ))
+                        : skeletons.map((index) => (
+                              <Box>
+                                  <Skeleton
+                                      variant="rounded"
+                                      animation="wave"
+                                      key={index}
+                                      sx={{ width: "100%", height: "100vw" }}
+                                  />
+                              </Box>
+                          ))}
                 </Box>
                 <hr></hr>
                 <Box
