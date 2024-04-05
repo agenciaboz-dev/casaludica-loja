@@ -46,6 +46,7 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect,
                     if (setHavePassword && user.password) {
                         setHavePassword(true)
                         if (setLoginString) setLoginString(values.login)
+                        
                     } else {
                         navigate("/first_login", { state: { login: values.login } })
                         menu.setOpen(false)

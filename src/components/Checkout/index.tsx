@@ -18,6 +18,7 @@ import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
 import { api } from "../../api"
 import { useConfirmDialog } from "burgos-confirm"
+import { useMenu } from "../../hooks/useMenu"
 
 interface CheckoutProps {}
 
@@ -30,6 +31,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const cart = useCart()
     const api_helper = useApi()
     const navigate = useNavigate()
+    const menu = useMenu()
 
     const [payingOrderId, setPayingOrderId] = useState("")
     const [makingOrder, setMakingOrder] = useState(false)
@@ -59,10 +61,12 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         const user_id = response.data as number
         if (user_id) {
             confirm({
-                title: "usuário encontrado",
-                content: "já existe um usuário cadastro com esses dados, deseja fazer login?",
+                title: "Usuário Encontrado",
+                content: "Já existe um cadastro com esses dados, deseja fazer login?",
                 onConfirm: () => {
-                    navigate("/login", { state: { redirect: "/checkout" } })
+                    menu.setRenderForm("login")
+                    menu.setHavePassword(true)
+                    menu.setOpen(true)
                 },
             })
             return true
@@ -73,6 +77,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
 
     const billingFormik = useFormik({
         initialValues,
+        // enableReinitialize: true,
         onSubmit: async (values) => {
             if (!franchise) return
             setMakingOrder(true)
@@ -135,8 +140,6 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             })
         },
     })
-
-
 
     useEffect(() => {
         if (!cart.products.length) {

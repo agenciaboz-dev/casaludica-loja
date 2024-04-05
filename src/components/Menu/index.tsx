@@ -30,10 +30,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
 
     const { open: isOpen, setOpen } = useMenu()
     const { user, setUser } = useUser()
-    const [renderForm, setRenderForm] = useState<false | "login" | "signup">(false)
-    const [havePassword, setHavePassword] = useState(false)
-    const [loginString, setLoginString] = useState("")
-
+    const { havePassword, setHavePassword, loginString, setLoginString, renderForm, setRenderForm } = useMenu()
     const closeMenu = () => {
         setOpen(false)
     }
@@ -227,7 +224,9 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     {!havePassword ? (
                         <>
                             <Box sx={{ width: "100%", justifyContent: "space-between", alignItems: "center" }}>
-                                <p style={{ fontSize: "1.0rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>ACESSE SUA CONTA</p>
+                                <p style={{ fontSize: "1.0rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>
+                                    ACESSE SUA CONTA
+                                </p>
                                 <IconButton
                                     size="small"
                                     color="primary"

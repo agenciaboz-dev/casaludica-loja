@@ -40,9 +40,10 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
                 const user = response.data
                 if (user) {
                     setUser(user)
-                    navigate(redirect || "/")
+                    // navigate(redirect || "/")
                     menu.setOpen(false)
-                    onBack()
+                    menu.setRenderForm(false)
+                    // onBack()
                 } else {
                     snackbar({ severity: "error", text: "Credenciais inválidas" })
                 }

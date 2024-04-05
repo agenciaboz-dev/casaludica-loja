@@ -8,6 +8,7 @@ import { useArray } from "burgos-array"
 import { OrderComponent } from "../../components/OrderComponent"
 import { Order } from "boz.pay.component"
 import { useFranchise } from "../../hooks/useFranchise"
+import { useMenu } from "../../hooks/useMenu"
 
 interface OrdersProps {}
 
@@ -49,7 +50,12 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
             ) : (
                 <>
                     {skeletons.map((index) => (
-                        <Skeleton variant="rounded" animation="wave" key={index} sx={{ width: "100%", height: isMobile ? "100vw" : "50vw" }} />
+                        <Skeleton
+                            variant="rounded"
+                            animation="wave"
+                            key={index}
+                            sx={{ width: "100%", height: isMobile ? "100vw" : "50vw" }}
+                        />
                     ))}
                 </>
             )}
@@ -59,16 +65,25 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
 
 export const Orders: React.FC<OrdersProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const menu = useMenu()
     const { user } = useUser()
+
+    useEffect(() => {
+        if (!user) {
+            menu.setRenderForm("login")
+            menu.setOpen(true)
+        }
+    }, [])
 
     return (
         <DefaultWrapper>
             {user ? (
                 <UserWrapper user={user} />
             ) : (
-                <Box sx={{ flexDirection: "column", paddingBottom: isMobile ? "10vw" : "5vw", gap: isMobile ? "5vw" : "1vw" }}>
-                    Entre para ver seus pedidos:
-                    <LoginContainer redirect="/orders" />
+                <Box
+                    sx={{ flexDirection: "column", paddingBottom: isMobile ? "10vw" : "5vw", gap: isMobile ? "5vw" : "1vw" }}
+                >
+                    Entre para ver seus pedidos
                 </Box>
             )}
         </DefaultWrapper>
