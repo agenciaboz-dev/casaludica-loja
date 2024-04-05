@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Collapse, MenuItem } from "@mui/material"
+import { Box, Collapse, MenuItem, useMediaQuery } from "@mui/material"
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown"
 
 interface CollapsibleMenuProps {
@@ -9,6 +9,7 @@ interface CollapsibleMenuProps {
 
 export const CollapsibleMenu: React.FC<CollapsibleMenuProps> = ({ title, children }) => {
     const [open, setOpen] = useState(false)
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     return (
         <Box
@@ -24,7 +25,7 @@ export const CollapsibleMenu: React.FC<CollapsibleMenuProps> = ({ title, childre
                 sx={{ justifyContent: "flex-start", fontWeight: "bold", gap: "3vw", alignItems: "center" }}
                 onClick={() => setOpen((value) => !value)}
             >
-                <Box>{title}</Box>
+                <Box sx={{ fontSize: isMobile ? "" : "1.5vw" }}>{title}</Box>
                 <ExpandCircleDownIcon sx={{ rotate: open ? "-180deg" : "", transition: "0.3s" }} />
             </MenuItem>
             <Collapse in={open}>
