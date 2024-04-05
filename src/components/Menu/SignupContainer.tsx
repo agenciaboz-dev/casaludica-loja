@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, CircularProgress, TextField } from "@mui/material"
+import { Box, CircularProgress, TextField, useMediaQuery } from "@mui/material"
 import { useFormik } from "formik"
 import { useSnackbar } from "burgos-snackbar"
 import { api } from "../../api"
@@ -19,6 +19,7 @@ interface SignupForm {
 }
 
 export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
     const { setUser } = useUser()
@@ -57,7 +58,7 @@ export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) =>
         <Box sx={{ flexDirection: "column", gap: 2 }}>
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
                 <TextField
-                    sx={input_style}
+                    sx={input_style(isMobile)}
                     label="E-mail"
                     name="email"
                     value={formik.values.email}
@@ -66,7 +67,7 @@ export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) =>
                     required
                 />
                 <TextField
-                    sx={input_style}
+                    sx={input_style(isMobile)}
                     label="Senha"
                     name="password"
                     value={formik.values.password}
@@ -75,7 +76,7 @@ export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) =>
                     required
                 />
                 <TextField
-                    sx={input_style}
+                    sx={input_style(isMobile)}
                     label="Confirme sua senha"
                     name="confirm_password"
                     value={formik.values.confirm_password}

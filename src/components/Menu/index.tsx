@@ -218,8 +218,8 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     sx={{
                         flexDirection: "column",
                         paddingTop: isMobile ? "3vw" : "3vw",
-                        padding: "8vw",
-                        gap: "8vw",
+                        padding: isMobile ? "8vw" : "2vw 1vw",
+                        gap: isMobile ? "8vw" : "2vw",
                         width: 1,
                     }}
                 >
