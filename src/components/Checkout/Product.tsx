@@ -17,7 +17,6 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
     const navigate = useNavigate()
 
     const productRef = useDynamicImage(product)
-    const skeletons = useArray().newArray(2)
 
     const deleteProduct = () => {
         if (cart.products.length > 1) {
@@ -74,7 +73,7 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                                     <Box sx={{ width: "100%" }}>
                                         <div
                                             style={{
-                                                width: "100%",
+                                                width: "90%",
                                                 fontSize: "3.5vw",
                                                 fontWeight: "bold",
                                                 whiteSpace: "nowrap",

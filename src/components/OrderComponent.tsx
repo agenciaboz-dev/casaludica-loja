@@ -89,7 +89,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
             </Box>
             {!viewOrder && (
                 <>
-                    <p style={{ fontFamily: "BowlbyOneSC", color: "gray", fontSize: "1.0rem" }}>Entregue em</p>
+                    <p style={{ fontFamily: "BowlbyOneSC", color: "gray", fontSize: "1.0rem" }}>Endereço de entrega</p>
                     <Box
                         sx={{
                             width: 1,
@@ -177,14 +177,14 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
                     }}
                 >
                     <p style={{ fontSize: "1rem", color: "gray" }}>
-                        <span style={{ fontWeight: "600" }}>Subtotal de Itens:</span>R${subtotal.toFixed(2)}
+                        <span style={{ fontWeight: "600" }}>Subtotal de Itens: </span>R$ {subtotal.toFixed(2)}
                     </p>
                     <p style={{ fontSize: "1rem", color: "gray" }}>
                         <span style={{ fontWeight: "600" }}> Frete: </span>
-                        R${freight.toFixed(2)}
+                        R$ {freight.toFixed(2)}
                     </p>
                     <p style={{ fontSize: "1rem", color: "gray" }}>
-                        <span style={{ fontWeight: "600" }}> Total:</span> R${order.total.toFixed(2)}
+                        <span style={{ fontWeight: "600" }}> Total:</span> R$ {order.total.toFixed(2)}
                     </p>
                 </Box>
             </Box>
