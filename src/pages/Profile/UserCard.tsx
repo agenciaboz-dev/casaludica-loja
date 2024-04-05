@@ -42,6 +42,7 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
                 const user = response.data
 
                 if (user) {
+                    console.log(user)
                     setUser(user)
                     snackbar({ severity: "success", text: "Imagem de perfil atualizada!" })
                 } else {
