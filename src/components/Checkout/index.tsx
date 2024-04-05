@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom"
 import { api } from "../../api"
 import { useConfirmDialog } from "burgos-confirm"
 import { useMenu } from "../../hooks/useMenu"
+import { DefaultWrapper } from "../DefaultWrapper"
 
 interface CheckoutProps {}
 
@@ -148,14 +149,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     }, [])
 
     return (
-        <Box className="Checkout-Component" sx={{ flexDirection: "column", width: "100vw", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}>
-            <Background />
-            <Header />
-            {/* <SearchField /> */}
-            <Box sx={{ mt: isMobile ? "2vw" : "-2vw" }}>
-                <Collections />
-            </Box>
-
+        <DefaultWrapper>
             <p
                 className="finish"
                 style={{
@@ -189,6 +183,6 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 <Billing formik={billingFormik} makingOrder={makingOrder} />
                 <PayModal open={!!payingOrderId} close={() => setPayingOrderId("")} orderId={payingOrderId} />
             </Box>
-        </Box>
+        </DefaultWrapper>
     )
 }
