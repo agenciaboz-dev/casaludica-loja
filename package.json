@@ -20,6 +20,7 @@
     "boz.pay.component": "^1.5.33",
     "burgos-array": "^1.0.2",
     "burgos-confirm": "^1.3.1",
+    "burgos-documents": "^1.0.2",
     "burgos-masks": "^1.2.3",
     "burgos-snackbar": "^2.1.0",
     "change-case": "^5.1.2",
