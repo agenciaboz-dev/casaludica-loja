@@ -110,6 +110,21 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 user_id: user_id,
             }
             console.log(data)
+
+            if (user) {
+                const user_entries = Object.entries(user)
+                await Promise.all(
+                    Object.entries(data).map(async ([key, value]) => {
+                        const diff = user_entries.find(([user_key, user_value]) => user_key == key && user_value != value)
+                        if (diff) {
+                            const data: Partial<User> = { id: user.id, [key]: value }
+                            console.log(data)
+                            await api.post("/user/update", data)
+                        }
+                    })
+                )
+            }
+
             api_helper.order.new({
                 data,
                 callback: (response) => {
