@@ -25,7 +25,7 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
     const { snackbar } = useSnackbar()
 
     // const login = useLocation().state?.login
-    const redirect = useLocation().state?.redirect
+    // const redirect = useLocation().state?.redirect
 
     const navigate = useNavigate()
     const menu = useMenu()

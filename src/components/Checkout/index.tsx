@@ -77,7 +77,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
 
     const billingFormik = useFormik({
         initialValues,
-        // enableReinitialize: true,
+        enableReinitialize: true,
         onSubmit: async (values) => {
             if (!franchise) return
             setMakingOrder(true)
