@@ -42,7 +42,7 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
                     {orders
                         .sort((a, b) => b.id - a.id)
                         .map((order) => (
-                            <OrderComponent order={order} />
+                            <OrderComponent order={order} viewOrder />
                         ))}
                 </>
             ) : (
