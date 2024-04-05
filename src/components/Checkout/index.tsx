@@ -121,15 +121,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         },
     })
 
-    const handleSubmit = () => {
-        const values = billingFormik.values
-        if (!values.name || !values.lastname || !values.address || !values.city || !values.email || !values.phone || !values.postalcode) {
-            snackbar({ severity: "error", text: "Preencha os campos obrigatórios" })
-            return
-        }
 
-        billingFormik.handleSubmit()
-    }
 
     useEffect(() => {
         if (!cart.products.length) {
@@ -138,12 +130,23 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     }, [])
 
     return (
-        <Box className="Checkout-Component" sx={{ flexDirection: "column", width: "100vw", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}>
+        <Box
+            className="Checkout-Component"
+            sx={{ flexDirection: "column", width: "100vw", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}
+        >
             <Background />
             <Header />
             <SearchField />
             <Collections />
-            <p className="finish" style={{ fontWeight: "bold", fontSize: isMobile ? "5vw" : "3vw", color: "#363775", fontFamily: "BowlbyOneSC" }}>
+            <p
+                className="finish"
+                style={{
+                    fontWeight: "bold",
+                    fontSize: isMobile ? "5vw" : "3vw",
+                    color: "#363775",
+                    fontFamily: "BowlbyOneSC",
+                }}
+            >
                 Finalizar Pedido
             </p>
             <Box
@@ -156,7 +159,6 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     borderRadius: isMobile ? "4.5vw" : "2vw",
                     flexDirection: "column",
                     height: "fit-content",
-
                     gap: "3vw",
                 }}
             >
@@ -166,8 +168,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             </Box>
             {/* <Box sx={{ flexDirection: isMobile ? "column" : "row" }}> */}
             <Review />
-            <Billing formik={billingFormik} />
-            <ButtonComponent onClick={handleSubmit}>{makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}</ButtonComponent>
+            <Billing formik={billingFormik} makingOrder={makingOrder} />
             {/* </Box> */}
             <PayModal open={!!payingOrderId} close={() => setPayingOrderId("")} orderId={payingOrderId} />
         </Box>
