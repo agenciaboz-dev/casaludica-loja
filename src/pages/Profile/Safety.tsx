@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Button, CircularProgress } from "@mui/material"
+import { Box, Button, CircularProgress, useMediaQuery } from "@mui/material"
 import { useFormik } from "formik"
 import { CollapsibleMenu } from "./CollapsibleMenu"
 import { RoundedTextField } from "../../components/RoundedTextField"
@@ -14,6 +14,7 @@ interface SafetyProps {
 export const Safety: React.FC<SafetyProps> = ({ user }) => {
     const { setUser } = useUser()
     const { snackbar } = useSnackbar()
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     const [loading, setLoading] = useState(false)
 
@@ -43,7 +44,7 @@ export const Safety: React.FC<SafetyProps> = ({ user }) => {
     return (
         <CollapsibleMenu title="Segurança">
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
-                <Box sx={{ flexDirection: "column", gap: "5vw", padding: "5vw 0", width: "100%" }}>
+                <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1.5vw", padding: isMobile ? "5vw 0" : "1.5vw 0", width: "100%" }}>
                     <RoundedTextField
                         label="Senha atual"
                         value={formik.values.password}
