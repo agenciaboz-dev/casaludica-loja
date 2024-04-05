@@ -7,6 +7,9 @@ import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
 import { input_style } from "./LoginContainer"
 import { ButtonComponent } from "../ButtonComponent"
+import { useCpfMask } from "burgos-masks"
+import MaskedInput from "../MaskedInput"
+import { useValidateCPF } from "burgos-documents"
 
 interface SignupContainerProps {
     onSignup: () => void
@@ -16,11 +19,14 @@ interface SignupForm {
     email: string
     password: string
     confirm_password: string
+    cpf: string
 }
 
 export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
+    const cpf_mask = useCpfMask()
+    const validateCPF = useValidateCPF()
     const { snackbar } = useSnackbar()
     const { setUser } = useUser()
 
@@ -31,11 +37,18 @@ export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) =>
             email: "",
             password: "",
             confirm_password: "",
+            cpf: "",
         },
         onSubmit: async (values) => {
             if (loading) return
+
             if (!values.password || values.password != values.confirm_password) {
                 snackbar({ severity: "error", text: "senhas não conferem" })
+                return
+            }
+
+            if (!validateCPF(values.cpf)) {
+                snackbar({ severity: "error", text: "insira um CPF válido" })
                 return
             }
 
@@ -49,6 +62,7 @@ export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) =>
                 onSignup()
             } catch (error) {
                 console.log(error)
+                snackbar({ severity: "error", text: "Não foi possível criar o usário" })
             } finally {
                 setLoading(false)
             }
@@ -64,6 +78,15 @@ export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) =>
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     InputProps={{ inputMode: "email" }}
+                    required
+                />
+                <TextField
+                    sx={input_style(isMobile)}
+                    label="CPF"
+                    name="cpf"
+                    value={formik.values.cpf}
+                    onChange={formik.handleChange}
+                    InputProps={{ inputComponent: MaskedInput, inputProps: { mask: cpf_mask, inputMode: "numeric" } }}
                     required
                 />
                 <TextField
