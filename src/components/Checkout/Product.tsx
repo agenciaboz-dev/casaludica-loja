@@ -90,18 +90,7 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                                     </Box>
                                 </Box>
                             </Box>
-                            <p style={{ fontSize: isMobile ? "3.5vw" : "1.5vw" }}>
-                                Preço unitário:{" "}
-                                <span
-                                    style={{
-                                        color: "#686868",
-                                        fontWeight: "bolder",
-                                        fontSize: isMobile ? "3.8vw" : "1.8vw",
-                                    }}
-                                >
-                                    R${product.price.toFixed(2)}
-                                </span>
-                            </p>
+                            
                             <Box sx={{ flexDirection: "row", justifyContent: "space-between", gap: "2vw" }}>
                                 <p style={{ fontSize: "3.5vw" }}>
                                     Custo:{" "}
