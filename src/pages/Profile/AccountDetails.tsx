@@ -6,6 +6,8 @@ import { useFormik } from "formik"
 import { api } from "../../api"
 import { useUser } from "../../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
+import { usePhoneMask } from "burgos-masks"
+import MaskedInput from "../../components/MaskedInput"
 
 interface AccountDetailsProps {
     user: User
@@ -16,6 +18,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({ user }) => {
     const { snackbar } = useSnackbar()
 
     const [loading, setLoading] = useState(false)
+    const phone_mask = usePhoneMask()
 
     const formik = useFormik({
         initialValues: {
@@ -58,12 +61,14 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({ user }) => {
                         value={formik.values.email}
                         name="email"
                         onChange={formik.handleChange}
+                        InputProps={{ inputMode: "email" }}
                     />
                     <RoundedTextField
                         label="Telefone"
                         value={formik.values.phone}
                         name="phone"
                         onChange={formik.handleChange}
+                        InputProps={{ inputComponent: MaskedInput, inputProps: { mask: phone_mask, inputMode: "numeric" } }}
                     />
                     <Button type="submit" variant="contained" sx={{ alignSelf: "flex-end", borderRadius: "10vw" }}>
                         {loading ? <CircularProgress size="1.5rem" color="secondary" /> : "salvar"}

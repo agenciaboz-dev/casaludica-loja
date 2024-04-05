@@ -34,9 +34,10 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                 position: "relative",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "3vw",
+                gap: isMobile ? "3vw" : "1vw",
                 overflow: "hidden",
                 width: 1,
+                minHeight: isMobile ? "15vw" : "fit-content",
             }}
             ref={productRef}
         >
@@ -45,13 +46,13 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                     src={"data:image/jpeg;base64," + product.cover}
                     variant="rounded"
                     alt="product"
-                    style={{ width: "12vw", height: "12vw" }}
+                    style={{ width: isMobile ? "12vw" : "5vw", height: isMobile ? "12vw" : "5vw" }}
                 />
             ) : (
                 <Skeleton
                     variant="rounded"
                     animation="wave"
-                    sx={{ width: isMobile ? "12vw" : "12vw", height: isMobile ? "12vw" : "10vw", flexShrink: 0 }}
+                    sx={{ width: isMobile ? "12vw" : "5vw", height: isMobile ? "12vw" : "5vw", flexShrink: 0 }}
                 />
             )}
             {product ? (
@@ -60,9 +61,9 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                         sx={{
                             color: "#363775",
                             fontWeight: "500",
-                            fontSize: "3vw",
+                            fontSize: isMobile ? "3vw" : "1rem",
                             flexDirection: "column",
-                            gap: "1.8vw",
+                            gap: isMobile ? "1.8vw" : "1vw",
                             overflow: "hidden",
                             width: 1,
                         }}
@@ -74,7 +75,7 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                                         <div
                                             style={{
                                                 width: "90%",
-                                                fontSize: "3.5vw",
+                                                fontSize: isMobile ? "3.5vw" : "1.2rem",
                                                 fontWeight: "bold",
                                                 whiteSpace: "nowrap",
                                                 overflow: "hidden",
@@ -85,28 +86,24 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                                         </div>
                                     </Box>
                                     <Box sx={{ flexDirection: "row", gap: "1vw", alignItems: "center" }}>
-                                        <p style={{ fontSize: "3.3vw" }}>Quantidade: {product.quantity} </p>
+                                        <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>Quantidade: {product.quantity} </p>
                                     </Box>
                                 </Box>
                             </Box>
 
                             <Box sx={{ flexDirection: "row", justifyContent: "space-between", gap: "2vw" }}>
-                                <p style={{ fontSize: "3.3vw" }}>
+                                <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
                                     Custo:{" "}
-                                    <span style={{ color: "#686868", fontSize: "3.3vw" }}>R${product.price.toFixed(2)}</span>
+                                    <span style={{ color: "#686868", fontSize: isMobile ? "3.3vw" : "1rem" }}>R${product.price.toFixed(2)}</span>
                                 </p>
-                                <p style={{ fontSize: "3.3vw" }}>
-                                    Total: <span style={{ color: "#686868", fontSize: "3.3vw" }}>R${total.toFixed(2)}</span>
+                                <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
+                                    Valor: <span style={{ color: "#686868", fontSize: isMobile ? "3.3vw" : "1rem" }}>R${total.toFixed(2)}</span>
                                 </p>
                             </Box>
                         </Box>
                     </Box>
                     {!hideCloseButton && (
-                        <IconButton
-                            className="close"
-                            onClick={deleteProduct}
-                            sx={{ position: "absolute", top: "0vw", right: "0vw", padding: 0 }}
-                        >
+                        <IconButton className="close" onClick={deleteProduct} sx={{ position: "absolute", top: "0vw", right: "0vw", padding: 0 }}>
                             <CloseIcon style={{ height: "auto", width: "6vw" }} />
                         </IconButton>
                     )}
@@ -116,12 +113,12 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                     variant="rounded"
                     sx={{
                         fontWeight: "500",
-                        fontSize: "3vw",
+                        fontSize: isMobile ? "3vw" : "1rem",
                         flexDirection: "column",
-                        gap: "1.8vw",
+                        gap: isMobile ? "1.8vw" : "1vw",
                         overflow: "hidden",
                         width: 1,
-                        height: "20vw",
+                        height: isMobile ? "20vw" : "5vw",
                         borderRadius: "2vw",
                     }}
                 />

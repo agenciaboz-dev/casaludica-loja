@@ -1,5 +1,5 @@
 import React from "react"
-import { AlertColor, Box, Skeleton, SxProps } from "@mui/material"
+import { AlertColor, Box, Skeleton, SxProps, useMediaQuery } from "@mui/material"
 import { Order } from "boz.pay.component"
 import { CurrencyText } from "./CurrencyText"
 import { Product } from "./Checkout/Product"
@@ -24,12 +24,13 @@ interface DataTextProps {
 }
 
 const DataText: React.FC<DataTextProps> = ({ title, value, color, bold }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     return (
         <Box
             sx={{
-                fontSize: "4vw",
+                fontSize: isMobile ? "4vw" : "1.5rem",
                 alignItems: "center",
-                padding: "1vw",
+                padding: isMobile ? "1vw" : 0,
                 color: "primary.main",
                 fontFamily: "poppins",
                 fontWeight: bold ? "bold" : "",
@@ -41,11 +42,10 @@ const DataText: React.FC<DataTextProps> = ({ title, value, color, bold }) => {
     )
 }
 
-const RealText: React.FC<{ value: string | number }> = ({ value }) => (
-    <CurrencyText value={value} style={{ fontSize: "1rem" }} />
-)
+const RealText: React.FC<{ value: string | number }> = ({ value }) => <CurrencyText value={value} style={{ fontSize: "1rem" }} />
 
 export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const subtotal = order.products.reduce((totalPrice, product) => totalPrice + product.price * product.quantity, 0)
     const freight = order.total - subtotal
     const status = statusEnum(order.status)
@@ -58,21 +58,17 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
         <Box
             sx={{
                 flexDirection: "column",
-                gap: "2vw",
+                gap: isMobile ? "2vw" : "1vw",
                 border: "1px solid  gray",
-                padding: "4vw",
-                borderRadius: "4vw",
+                padding: isMobile ? "4vw" : "1vw",
+                borderRadius: isMobile ? "4vw" : "1vw",
             }}
         >
             <Box sx={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
-                {viewOrder && (
-                    <h4 style={{ fontFamily: "BowlbyOneSC", fontWeight: "600", color: colors.primary }}>
-                        Pedido #{order.referenceId}
-                    </h4>
-                )}
+                {viewOrder && <h4 style={{ fontFamily: "BowlbyOneSC", fontWeight: "600", color: colors.primary }}>Pedido #{order.referenceId}</h4>}
                 {viewOrder && (
                     <p
-                        style={{ textDecoration: "underline", fontSize: "3.5vw" }}
+                        style={{ textDecoration: "underline", fontSize: isMobile ? "3.5vw" : "1rem" }}
                         onClick={() => navigate(`/order/${order.referenceId}`)}
                     >
                         Ver Pedido{" >"}
@@ -83,9 +79,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
 
             <Box alignItems="center" justifyContent={"space-between"}>
                 <DataText title="Status: " value={status.text} color={status.color} bold />
-                <p style={{ fontSize: "0.9rem", color: colors.primary }}>
-                    {new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")}{" "}
-                </p>
+                <p style={{ fontSize: "0.9rem", color: colors.primary }}>{new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")} </p>
             </Box>
             {!viewOrder && (
                 <>
@@ -93,23 +87,22 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
                     <Box
                         sx={{
                             width: 1,
-                            padding: "3vw",
+                            padding: isMobile ? "3vw" : "1vw",
                             flexDirection: "column",
-                            borderRadius: "5vw",
+                            borderRadius: isMobile ? "5vw" : "1vw",
                             border: "1px solid gray",
                             height: "fit-content",
                             overflowY: "auto",
                             maxHeight: "50vw",
-                            gap: "3vw",
+                            gap: isMobile ? "3vw" : "1vw",
                             alignItems: "center",
                         }}
                     >
-                        <Box sx={{ gap: "2vw" }}>
-                            <TiLocation color="gray" style={{ width: "10vw", height: "10vw" }} />
+                        <Box sx={{ gap: "2vw", alignItems: "center" }}>
+                            <TiLocation color="gray" style={{ width: isMobile ? "10vw" : "2vw", height: isMobile ? "10vw" : "2vw" }} />
                             <p style={{ fontWeight: "bold", color: "rgba(85, 85, 85, 1)", fontSize: "0.85rem" }}>
-                                {order.billing.address.address},{order.billing.address.number} -{" "}
-                                {order.billing.address.district}, {order.billing.address.city} -{" "}
-                                {order.billing.address.state}, {order.billing.address.postcode}
+                                {order.billing.address.address},{order.billing.address.number} - {order.billing.address.district},{" "}
+                                {order.billing.address.city} - {order.billing.address.state}, {order.billing.address.postcode}
                             </p>
                         </Box>
                         {/* <Box sx={{ gap: "2vw" }}>
@@ -123,17 +116,15 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
                 </>
             )}
 
-            <Box sx={{ flexDirection: "column", gap: "4vw", p: "1vw" }}>
-                <p style={{ fontFamily: "BowlbyOneSC", color: "gray", fontSize: "1.0rem" }}>
-                    Itens ({order.products.length})
-                </p>
+            <Box sx={{ flexDirection: "column", gap: isMobile ? "4vw" : "1vw", p: isMobile ? "1vw" : 0 }}>
+                <p style={{ fontFamily: "BowlbyOneSC", color: "gray", fontSize: "1rem" }}>Itens ({order.products.length})</p>
                 <Box
                     sx={{
                         flexDirection: "column",
                         alignItems: "flex-start",
-                        gap: "5vw",
-                        padding: "3vw",
-                        borderRadius: "5vw",
+                        gap: isMobile ? "5vw" : "1vw",
+                        padding: isMobile ? "3vw" : "1vw",
+                        borderRadius: isMobile ? "5vw" : "1vw",
                         border: "1px solid gray",
                         height: "fit-content",
                         overflowY: "auto",
@@ -159,12 +150,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
                           ))
                         : skeletons.map((index) => (
                               <Box>
-                                  <Skeleton
-                                      variant="rounded"
-                                      animation="wave"
-                                      key={index}
-                                      sx={{ width: "100%", height: "100vw" }}
-                                  />
+                                  <Skeleton variant="rounded" animation="wave" key={index} sx={{ width: "100%", height: "100vw" }} />
                               </Box>
                           ))}
                 </Box>
@@ -173,7 +159,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
                     sx={{
                         flexDirection: "column",
                         alignItems: "end",
-                        gap: "2vw",
+                        gap: isMobile ? "2vw" : "1vw",
                     }}
                 >
                     <p style={{ fontSize: "1rem", color: "gray" }}>
