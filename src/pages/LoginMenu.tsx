@@ -59,7 +59,7 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
             <Box
                 sx={{
                     flexDirection: "column",
-                    gap: "4vw",
+                    gap: isMobile ? "4vw" : "1vw",
                     color: "primary.main",
                     fontSize: "1.2rem",
                     width: "100%",
