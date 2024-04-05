@@ -16,7 +16,14 @@ export const DefaultWrapper: React.FC<DefaultWrapperProps> = ({ children }) => {
     return (
         <Box
             className="Home-Page"
-            sx={{ width: "100%", flexDirection: "column", padding: isMobile ? "0 5vw" : "0 10vw", gap: isMobile ? "5vw" : "2vw" }}>
+            sx={{
+                width: "100%",
+                flexDirection: "column",
+                padding: isMobile ? "0 5vw" : "0 10vw",
+                gap: isMobile ? "5vw" : "2vw",
+                overflowX: "hidden",
+            }}
+        >
             <Background />
             <Header />
             {isMobile && <SearchField />}
