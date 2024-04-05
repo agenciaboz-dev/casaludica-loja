@@ -48,7 +48,10 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
                     snackbar({ severity: "error", text: "Erro ao atualizar imagem" })
                 }
             })
-            .finally(() => setUploading(false))
+            .finally(() => {
+                setUploading(false)
+                setImage(undefined)
+            })
     }
 
     return (
