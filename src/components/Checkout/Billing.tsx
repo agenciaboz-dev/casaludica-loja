@@ -27,8 +27,8 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
 
     return (
-        <Box sx={{ flexDirection: "column", color: "primary.main", gap: "5vw", width: isMobile ? "100%" : "50%" }}>
-            <p style={{ fontFamily: "BowlbyOneSC", fontSize: isMobile ? "5vw" : "3vw" }}>Endereço da cobrança</p>
+        <Box sx={{ flexDirection: "column", color: "primary.main", gap: isMobile ? "5vw" : "2vw", width: isMobile ? "100%" : "50%" }}>
+            <p style={{ fontFamily: "BowlbyOneSC", fontSize: isMobile ? "5vw" : "2.5vw" }}>Endereço da cobrança</p>
 
             <form onSubmit={formik.handleSubmit}>
                 <Paper
