@@ -26,24 +26,25 @@ export const Order: React.FC<OrderProps> = ({}) => {
                 callback: (response) => {
                     console.log(response.data)
                     setOrder(response.data)
-                }
+                },
             })
         }
     }, [])
 
     return (
         <DefaultWrapper>
-            <Box sx={{ fontSize: "1rem", color: "primary.main" }}>
-                <h2>Seu pedido: #{order?.referenceId}</h2>
-            </Box>
-
-            {order ? (
-                <OrderComponent order={order} />
-            ) : (
-                <Box sx={{ padding: "5vw" }}>
-                    <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "50vw" }} />
+            <Box sx={{ flexDirection: "column", paddingBottom: "10vw", gap: "5vw" }}>
+                <Box sx={{ fontSize: "1rem", color: "primary.main" }}>
+                    <h2>Seu pedido: #{order?.referenceId}</h2>
                 </Box>
-            )}
+                {order ? (
+                    <OrderComponent order={order} />
+                ) : (
+                    <Box sx={{ padding: "5vw" }}>
+                        <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "50vw" }} />
+                    </Box>
+                )}
+            </Box>
         </DefaultWrapper>
     )
 }

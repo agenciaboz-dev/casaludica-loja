@@ -70,7 +70,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
 
             <DataText title="Status: " value={status.text} color={status.color} bold />
 
-            <Box sx={{ flexDirection: "column", gap: "4vw" }}>
+            <Box sx={{ flexDirection: "column", gap: "4vw", p: "1vw" }}>
                 <p style={{ fontFamily: "BowlbyOneSC", color: "gray", fontSize: "1.0rem" }}>
                     Items ({order.products.length})
                 </p>
