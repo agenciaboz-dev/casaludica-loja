@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, CircularProgress, MenuItem, Paper, SxProps, TextField } from "@mui/material"
+import { Box, CircularProgress, MenuItem, Paper, SxProps, TextField, useMediaQuery } from "@mui/material"
 import { FormikHelpers, useFormik } from "formik"
 import MaskedInput from "../MaskedInput"
 import { useCepMask, useCpfMask, useNumberMask, usePhoneMask } from "burgos-masks"
@@ -24,15 +24,16 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
     const phone_mask = usePhoneMask()
     const number_mask = useNumberMask({ allowDecimal: false, allowNegative: false })
     const { user } = useUser()
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     return (
-        <Box sx={{ flexDirection: "column", color: "primary.main", gap: "5vw" }}>
-            <p style={{ fontFamily: "BowlbyOneSC" }}>Detalhes da cobrança</p>
+        <Box sx={{ flexDirection: "column", color: "primary.main", gap: "5vw", width: isMobile ? "100%" : "50%" }}>
+            <p style={{ fontFamily: "BowlbyOneSC", fontSize: isMobile ? "5vw" : "3vw" }}>Endereço da cobrança</p>
 
             <form onSubmit={formik.handleSubmit}>
                 <Paper
                     elevation={5}
-                    sx={{ flexDirection: "column", borderRadius: "4.5vw", width: "100%", padding: "3vw", gap: "5vw" }}
+                    sx={{ flexDirection: "column", borderRadius: "4.5vw", width: "100%", padding: "3vw", gap: isMobile ? "5vw" : "2vw" }}
                 >
                     <TextField
                         label="Nome"
@@ -171,9 +172,7 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                         multiline
                         minRows={3}
                     />
-                    <ButtonComponent type="submit">
-                        {makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}
-                    </ButtonComponent>
+                    <ButtonComponent type="submit">{makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}</ButtonComponent>
                 </Paper>
             </form>
         </Box>

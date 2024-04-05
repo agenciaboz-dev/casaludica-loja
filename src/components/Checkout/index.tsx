@@ -148,10 +148,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     }, [])
 
     return (
-        <Box
-            className="Checkout-Component"
-            sx={{ flexDirection: "column", width: "100vw", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}
-        >
+        <Box className="Checkout-Component" sx={{ flexDirection: "column", width: "100vw", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}>
             <Background />
             <Header />
             <SearchField />
@@ -184,11 +181,11 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     <Product key={product.id} product={product} />
                 ))}
             </Box>
-            {/* <Box sx={{ flexDirection: isMobile ? "column" : "row" }}> */}
-            <Review />
-            <Billing formik={billingFormik} makingOrder={makingOrder} />
-            {/* </Box> */}
-            <PayModal open={!!payingOrderId} close={() => setPayingOrderId("")} orderId={payingOrderId} />
+            <Box sx={{ flexDirection: isMobile ? "column" : "row-reverse", gap: "5vw" }}>
+                <Review />
+                <Billing formik={billingFormik} makingOrder={makingOrder} />
+                <PayModal open={!!payingOrderId} close={() => setPayingOrderId("")} orderId={payingOrderId} />
+            </Box>
         </Box>
     )
 }

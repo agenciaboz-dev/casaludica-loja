@@ -104,7 +104,7 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                     </Box>
                     {!hideCloseButton && (
                         <IconButton className="close" onClick={deleteProduct} sx={{ position: "absolute", top: "0vw", right: "0vw", padding: 0 }}>
-                            <CloseIcon style={{ height: "auto", width: "6vw" }} />
+                            <CloseIcon style={{ height: "auto", width: isMobile ? "6vw" : "1.8vw" }} />
                         </IconButton>
                     )}
                 </>
