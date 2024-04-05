@@ -13,10 +13,19 @@ interface LoginContainerProps {
     setLoginString?: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const input_style = {
-    "& .MuiOutlinedInput-root": { borderRadius: "8vw", height: "12vw", fontSize: "1rem", border: "1px solid primary" },
-    "& .MuiTextField-root": { borderRadius: "8vw", fontSize: "1rem" },
-}
+export const input_style = (isMobile: boolean) => ({
+    "& .MuiOutlinedInput-root": {
+        borderRadius: isMobile ? "8vw" : "2vw",
+        height: isMobile ? "12vw" : "fit-content",
+        fontSize: "1rem",
+        border: "1px solid primary",
+    },
+    "& .MuiTextField-root": {
+        borderRadius: isMobile ? "8vw" : "2vw",
+        fontSize: "1rem",
+    },
+})
+
 export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect, setHavePassword, setLoginString }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const api = useApi()
@@ -69,7 +78,7 @@ export const LoginContainer: React.FC<LoginContainerProps> = ({ color, redirect,
                     name="login"
                     color={color || "primary"}
                     variant="outlined"
-                    sx={input_style}
+                    sx={input_style(isMobile)}
                     required
                     autoFocus
                 />

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, CircularProgress, TextField } from "@mui/material"
+import { Box, CircularProgress, TextField, useMediaQuery } from "@mui/material"
 import { ButtonComponent } from "../components/ButtonComponent"
 import { useUser } from "../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
@@ -18,6 +18,7 @@ interface LoginMenuProps {
 }
 
 export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginString, onBack, setHavePassword }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [loading, setLoading] = useState(false)
 
     const { setUser } = useUser()
@@ -79,7 +80,7 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
                         name="login"
                         value={formik.values.login}
                         onChange={formik.handleChange}
-                        sx={input_style}
+                        sx={input_style(isMobile)}
                         required
                     />
                     <TextField
@@ -89,7 +90,7 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
                         onChange={formik.handleChange}
                         required
                         autoFocus={!!loginString}
-                        sx={input_style}
+                        sx={input_style(isMobile)}
                         type="password"
                     />
                     <ButtonComponent type="submit" fullWidth>

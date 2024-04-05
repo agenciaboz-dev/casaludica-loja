@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, CircularProgress, TextField } from "@mui/material"
+import { Box, CircularProgress, TextField, useMediaQuery } from "@mui/material"
 import { useNavigate, useParams } from "react-router-dom"
 import { DefaultWrapper } from "../components/DefaultWrapper"
 import { useFormik } from "formik"
@@ -18,6 +18,7 @@ interface FormType {
 }
 
 export const FirstPassword: React.FC<FirstPasswordProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const hash = useParams().hash || ""
     const navigate = useNavigate()
     const colors = useColors()
@@ -63,11 +64,9 @@ export const FirstPassword: React.FC<FirstPasswordProps> = ({}) => {
                         onChange={formik.handleChange}
                         required
                         type="password"
-                        sx={input_style}
+                        sx={input_style(isMobile)}
                     />
-                    <ButtonComponent type="submit">
-                        {loading ? <CircularProgress size="1.5rem" /> : "enviar"}
-                    </ButtonComponent>
+                    <ButtonComponent type="submit">{loading ? <CircularProgress size="1.5rem" /> : "enviar"}</ButtonComponent>
                 </Box>
             </form>
         </DefaultWrapper>
