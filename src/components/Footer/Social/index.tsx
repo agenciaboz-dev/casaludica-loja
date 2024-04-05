@@ -62,12 +62,7 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     width: "100vw",
                 }}
             />
-            <Box
-                className="follow-us"
-                style={{
-                    flexDirection: "column",
-                }}
-            >
+            <Box className="follow-us" sx={{ flexDirection: "column", pt: "1vw" }}>
                 <h3
                     style={{
                         fontSize: isMobile ? "5vw" : "1.5rem",
