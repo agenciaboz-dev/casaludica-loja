@@ -41,7 +41,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                     <OrderComponent order={order} />
                 ) : (
                     <Box sx={{ padding: "5vw" }}>
-                        <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "50vw" }} />
+                        <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "100vw" }} />
                     </Box>
                 )}
             </Box>
