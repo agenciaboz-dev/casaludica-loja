@@ -68,7 +68,7 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                         InputProps={{ inputComponent: MaskedInput, inputProps: { mask: cep_mask, inputMode: "numeric" } }}
                     />
                     <RoundedTextField
-                        label="Endereço"
+                        label="Rua"
                         value={formik.values.address}
                         name="address"
                         onChange={formik.handleChange}
