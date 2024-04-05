@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Button, CircularProgress, MenuItem } from "@mui/material"
+import { Box, Button, CircularProgress, MenuItem, useMediaQuery } from "@mui/material"
 import { CollapsibleMenu } from "./CollapsibleMenu"
 import { RoundedTextField } from "../../components/RoundedTextField"
 import { useFormik } from "formik"
@@ -56,10 +56,12 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
         },
     })
 
+    const isMobile = useMediaQuery("(orientation: portrait)")
+
     return (
         <CollapsibleMenu title="Endereço">
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
-                <Box sx={{ flexDirection: "column", gap: "5vw", padding: "5vw 0", width: "100%" }}>
+                <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1.5vw", padding: isMobile ? "5vw 0" : "1.5vw 0", width: "100%" }}>
                     <RoundedTextField
                         label="CEP"
                         value={formik.values.postcode}
@@ -67,12 +69,7 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                         onChange={formik.handleChange}
                         InputProps={{ inputComponent: MaskedInput, inputProps: { mask: cep_mask, inputMode: "numeric" } }}
                     />
-                    <RoundedTextField
-                        label="Rua"
-                        value={formik.values.address}
-                        name="address"
-                        onChange={formik.handleChange}
-                    />
+                    <RoundedTextField label="Rua" value={formik.values.address} name="address" onChange={formik.handleChange} />
                     <RoundedTextField
                         label="Número"
                         value={formik.values.number}
@@ -80,12 +77,7 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                         onChange={formik.handleChange}
                         InputProps={{ inputComponent: MaskedInput, inputProps: { mask: number_mask, inputMode: "numeric" } }}
                     />
-                    <RoundedTextField
-                        label="Bairro"
-                        value={formik.values.district}
-                        name="district"
-                        onChange={formik.handleChange}
-                    />
+                    <RoundedTextField label="Bairro" value={formik.values.district} name="district" onChange={formik.handleChange} />
                     <RoundedTextField label="Cidade" value={formik.values.city} name="city" onChange={formik.handleChange} />
                     <RoundedTextField
                         label="Estado"
@@ -104,12 +96,7 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                             </MenuItem>
                         ))}
                     </RoundedTextField>
-                    <RoundedTextField
-                        label="Complemento"
-                        value={formik.values.complement}
-                        name="complement"
-                        onChange={formik.handleChange}
-                    />
+                    <RoundedTextField label="Complemento" value={formik.values.complement} name="complement" onChange={formik.handleChange} />
                     <Button type="submit" variant="contained" sx={{ alignSelf: "flex-end", borderRadius: "10vw" }}>
                         {loading ? <CircularProgress size="1.5rem" color="secondary" /> : "salvar"}
                     </Button>
