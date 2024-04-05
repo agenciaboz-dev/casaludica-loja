@@ -26,7 +26,7 @@ const DataText: React.FC<DataTextProps> = ({ title, value, color, bold }) => {
                 alignItems: "center",
                 padding: "1vw",
                 color: "primary.main",
-                fontFamily: "BowlbyOneSC",
+                fontFamily: "poppins",
                 justifyContent: "space-between",
                 fontWeight: bold ? "bold" : "",
             }}
@@ -59,10 +59,13 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                 // boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
             }}
         >
+            <Box sx={{ justifyContent: "space-between", alignItems: "center" }}>
+                <h4 style={{ fontFamily: "BowlbyOneSC", fontWeight: "600" }}>Pedido #{order.referenceId}</h4>
+                <p style={{ fontSize: "0.9rem" }}>{new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")} </p>
+            </Box>
             {order.status == "PENDING" && <PendingPayment orderId={order.referenceId} />}
 
             <DataText title="Status: " value={status.text} color={status.color} bold />
-            {/* <DataText title="Data: " value={new Date(Number(order.dateCreated)).toLocaleDateString("pt-br")} /> */}
 
             <Box sx={{ flexDirection: "column", gap: "4vw" }}>
                 <p style={{ fontFamily: "BowlbyOneSC", color: "gray", fontSize: "1.0rem" }}>
@@ -72,14 +75,13 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                     sx={{
                         flexDirection: "column",
                         alignItems: "flex-start",
-                        gap: "1vw",
+                        gap: "5vw",
                         padding: "3vw",
-                        // boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                         borderRadius: "5vw",
                         border: "1px solid gray",
                         height: "fit-content",
                         overflowY: "auto",
-                        maxHeight: "45vw",
+                        maxHeight: "50vw",
                     }}
                 >
                     {order.products.map((item) => (
@@ -94,15 +96,22 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order }) => {
                     ))}
                 </Box>
                 <hr></hr>
-                <Box sx={{ flexDirection: "column", alignItems: "end", gap: "2vw" }}>
-                    <p style={{ fontSize: "1rem" }}>
-                        Subtotal de Itens: <span>R${subtotal.toFixed(2)}</span>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        alignItems: "end",
+                        gap: "2vw",
+                    }}
+                >
+                    <p style={{ fontSize: "0.9rem", color: "gray" }}>
+                        <span style={{ fontWeight: "600" }}>Subtotal de Itens:</span>R${subtotal.toFixed(2)}
                     </p>
-                    <p style={{ fontSize: "1rem" }}>
-                        Frete: <span>R${freight.toFixed(2)}</span>
+                    <p style={{ fontSize: "0.9rem", color: "gray" }}>
+                        <span style={{ fontWeight: "600" }}> Frete: </span>
+                        R${freight.toFixed(2)}
                     </p>
-                    <p style={{ fontSize: "1rem" }}>
-                        Total: <span>R${order.total.toFixed(2)}</span>
+                    <p style={{ fontSize: "0.9rem", color: "gray" }}>
+                        <span style={{ fontWeight: "600" }}> Total:</span> R${order.total.toFixed(2)}
                     </p>
                 </Box>
             </Box>

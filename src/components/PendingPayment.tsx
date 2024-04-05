@@ -16,11 +16,17 @@ export const PendingPayment: React.FC<PendingPaymentProps> = ({ orderId }) => {
                 gap: "5vw",
                 flexDirection: "column",
                 padding: "5vw 0 5vw",
-                fontFamily: "BowlbyOneSC",
-                color: "error.main"
-            }}>
+                fontFamily: "Poppins",
+                fontWeight:"bold",
+                color: "error.main",
+                fontSize: "0.9rem",
+                alignItems: "center",
+            }}
+        >
             Ainda não recebemos o seu pagamento
-            <ButtonComponent onClick={() => setOpenPay(true)}>Pagar</ButtonComponent>
+            <ButtonComponent onClick={() => setOpenPay(true)} fullWidth>
+                Pagar
+            </ButtonComponent>
             <PayModal orderId={orderId} open={openPay} close={() => setOpenPay(false)} />
         </Box>
     )

@@ -34,8 +34,9 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "3vw",
-                overflowX: "hidden",
+                overflow: "hidden",
                 width: 1,
+              
             }}
             ref={productRef}
         >
@@ -62,6 +63,7 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                     gap: "1.8vw",
                     overflow: "hidden",
                     width: 1,
+        
                 }}
             >
                 <Box sx={{ flexDirection: "column", width: 1 }}>
@@ -92,14 +94,14 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                             R${product.price.toFixed(2)}
                         </span>
                     </p>
-                </Box>
-                <Box sx={{ flexDirection: "row", justifyContent: "space-between", gap: "2vw" }}>
-                    <p style={{ fontSize: "3.5vw" }}>
-                        Custo: <span style={{ color: "#686868", fontSize: "3.8vw" }}>R${product.price.toFixed(2)}</span>
-                    </p>
-                    <p style={{ fontSize: "3.5vw" }}>
-                        Total: <span style={{ color: "#686868", fontSize: "3.8vw" }}>R${total.toFixed(2)}</span>
-                    </p>
+                    <Box sx={{ flexDirection: "row", justifyContent: "space-between", gap: "2vw" }}>
+                        <p style={{ fontSize: "3.5vw" }}>
+                            Custo: <span style={{ color: "#686868", fontSize: "3.8vw" }}>R${product.price.toFixed(2)}</span>
+                        </p>
+                        <p style={{ fontSize: "3.5vw" }}>
+                            Total: <span style={{ color: "#686868", fontSize: "3.8vw" }}>R${total.toFixed(2)}</span>
+                        </p>
+                    </Box>
                 </Box>
             </Box>
             {!hideCloseButton && (
