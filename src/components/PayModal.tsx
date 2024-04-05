@@ -35,7 +35,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
     return (
         <Dialog
             open={open}
-            sx={{ width: "100vw", height: "100vh", justifyContent: "center", alignItems: "center" }}
+            sx={{ width: "100vw", height: "90vh", justifyContent: "center", alignItems: "center" }}
             PaperProps={{ sx: { borderRadius: "5vw", maxWidth: "100vw", margin: "0 5vw" } }}
             slotProps={{ backdrop: { sx: backdropStyle } }}
             onClose={close}
@@ -60,7 +60,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
                 PaperProps={{ sx: { display: "contents" } }}
                 sx={{ justifyContent: "center" }}
             >
-                <Box sx={{ position: "absolute", bottom: "15vw", width: "90vw" }}>
+                <Box sx={{ position: "absolute", bottom: "10vw", width: "90vw", p:"1vw" }}>
                     <ButtonComponent fullWidth onClick={() => navigate(`/order/${orderId}`)}>
                         Visualizar pedido
                     </ButtonComponent>
