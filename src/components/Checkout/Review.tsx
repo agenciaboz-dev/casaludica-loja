@@ -10,8 +10,11 @@ export const Review: React.FC<ReviewProps> = ({}) => {
 
     return (
         <Box sx={{ flexDirection: "column", color: "primary.main", gap: "5vw" }}>
-            <Paper elevation={5} sx={{ flexDirection: "column", borderRadius: "4.5vw", gap: "5vw", padding: "3vw", color: "#686868" }}>
-                <Grid container spacing={1.5}>
+            <Paper
+                elevation={5}
+                sx={{ flexDirection: "column", borderRadius: "4.5vw", gap: "5vw", padding: "6vw", color: "#686868" }}
+            >
+                <Grid container spacing={6} justifyContent="space-between">
                     <Grid item xs={6}>
                         <p style={{ fontWeight: "bold" }}>Produtos</p>
                     </Grid>
@@ -20,7 +23,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     </Grid>
                 </Grid>
                 {cart.products.map((product) => (
-                    <Grid container spacing={1.5} key={product.id}>
+                    <Grid container spacing={6} key={product.id}>
                         <Grid item xs={6}>
                             <p>{product.name}</p>
                         </Grid>
@@ -29,7 +32,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                         </Grid>
                     </Grid>
                 ))}
-                <Grid container spacing={1.5}>
+                <Grid container spacing={6}>
                     <Grid item xs={6}>
                         <p style={{ fontWeight: "bold" }}>Subtotal</p>
                     </Grid>
@@ -38,7 +41,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     </Grid>
                 </Grid>
                 <Box sx={{ borderTop: "1px solid", borderColor: "primary.main", color: "black", paddingTop: "5vw" }}>
-                    <Grid container spacing={1.5}>
+                    <Grid container spacing={6}>
                         <Grid item xs={6}>
                             <p style={{ fontWeight: "bold" }}>Total</p>
                         </Grid>

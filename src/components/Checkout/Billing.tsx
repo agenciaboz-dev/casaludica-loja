@@ -1,9 +1,10 @@
 import React from "react"
-import { Box, MenuItem, Paper, SxProps, TextField } from "@mui/material"
+import { Box, CircularProgress, MenuItem, Paper, SxProps, TextField } from "@mui/material"
 import { FormikHelpers, useFormik } from "formik"
 import MaskedInput from "../MaskedInput"
 import { useCepMask, useCpfMask, useNumberMask, usePhoneMask } from "burgos-masks"
 import { estados } from "../../tools/estadosBrasil"
+import { ButtonComponent } from "../ButtonComponent"
 
 interface BillingProps {
     formik: {
@@ -11,9 +12,10 @@ interface BillingProps {
         handleChange: (e: React.ChangeEvent<any>) => void
         handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void
     }
+    makingOrder: boolean
 }
 
-export const Billing: React.FC<BillingProps> = ({ formik }) => {
+export const Billing: React.FC<BillingProps> = ({ formik, makingOrder,  }) => {
     const inputStyle: SxProps = { bgcolor: "#F0EEEE" }
 
     const cpf_mask = useCpfMask()
@@ -26,7 +28,10 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
             <p style={{ fontFamily: "BowlbyOneSC" }}>Detalhes da cobrança</p>
 
             <form onSubmit={formik.handleSubmit}>
-                <Paper elevation={5} sx={{ flexDirection: "column", borderRadius: "4.5vw", width: "100%", padding: "3vw", gap: "5vw" }}>
+                <Paper
+                    elevation={5}
+                    sx={{ flexDirection: "column", borderRadius: "4.5vw", width: "100%", padding: "3vw", gap: "5vw" }}
+                >
                     <TextField
                         label="Nome"
                         value={formik.values.name}
@@ -48,7 +53,11 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         value={formik.values.cpf}
                         name="cpf"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle, inputComponent: MaskedInput, inputProps: { mask: cpf_mask, inputMode: "numeric" } }}
+                        InputProps={{
+                            sx: inputStyle,
+                            inputComponent: MaskedInput,
+                            inputProps: { mask: cpf_mask, inputMode: "numeric" },
+                        }}
                         required
                     />
                     <TextField
@@ -63,7 +72,11 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         value={formik.values.postalcode}
                         name="postalcode"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle, inputComponent: MaskedInput, inputProps: { mask: cep_mask, inputMode: "numeric" } }}
+                        InputProps={{
+                            sx: inputStyle,
+                            inputComponent: MaskedInput,
+                            inputProps: { mask: cep_mask, inputMode: "numeric" },
+                        }}
                         required
                     />
                     <TextField
@@ -79,7 +92,11 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         value={formik.values.number}
                         name="number"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle, inputComponent: MaskedInput, inputProps: { mask: number_mask, inputMode: "numeric" } }}
+                        InputProps={{
+                            sx: inputStyle,
+                            inputComponent: MaskedInput,
+                            inputProps: { mask: number_mask, inputMode: "numeric" },
+                        }}
                         required
                     />
                     <TextField
@@ -127,7 +144,11 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         value={formik.values.phone}
                         name="phone"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle, inputComponent: MaskedInput, inputProps: { mask: phone_mask, inputMode: "numeric" } }}
+                        InputProps={{
+                            sx: inputStyle,
+                            inputComponent: MaskedInput,
+                            inputProps: { mask: phone_mask, inputMode: "numeric" },
+                        }}
                         required
                     />
                     <TextField
@@ -147,7 +168,9 @@ export const Billing: React.FC<BillingProps> = ({ formik }) => {
                         multiline
                         minRows={3}
                     />
-                    <button type="submit" style={{ display: "none" }}></button>
+                    <ButtonComponent type="submit">
+                        {makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}
+                    </ButtonComponent>
                 </Paper>
             </form>
         </Box>
