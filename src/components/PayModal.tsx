@@ -40,7 +40,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
             slotProps={{ backdrop: { sx: backdropStyle } }}
             onClose={close}
         >
-            <Box sx={{ height: "100vh", flexDirection: "column", alignItems: "center" }}>
+            <Box sx={{ height: "fit-content", flexDirection: "column", alignItems: "center" }}>
                 {!!orderId && (
                     <BozPay
                         pagseguroToken="5e137c4a-acd6-433a-83a7-736815c6995b0ad8f02a47329494fac489b021d5ab384b54-9b9f-4140-b4cf-4675e700a829"
@@ -54,7 +54,12 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
                     />
                 )}
             </Box>
-            <Dialog open={orderButton} hideBackdrop PaperProps={{ sx: { display: "contents" } }} sx={{ justifyContent: "center" }}>
+            <Dialog
+                open={orderButton}
+                hideBackdrop
+                PaperProps={{ sx: { display: "contents" } }}
+                sx={{ justifyContent: "center" }}
+            >
                 <Box sx={{ position: "absolute", bottom: "15vw", width: "90vw" }}>
                     <ButtonComponent fullWidth onClick={() => navigate(`/order/${orderId}`)}>
                         Visualizar pedido
