@@ -47,17 +47,18 @@ export const Social: React.FC<SocialProps> = ({}) => {
                 width: "100%",
                 gap: "1vw",
                 color: "white",
+                margin: isMobile ? "10vw 0" : "2vw 0",
             }}
         >
             <BackgroundImage
                 className="background"
                 style={{
                     position: "absolute",
-                    top: isMobile ? "-10vw" : "5vw",
-                    left: isMobile ? "-5vw" : "-10vw",
+                    top: isMobile ? "-10vw" : "-1vw",
+                    left: isMobile ? "-5vw" : "-15vw",
                     zIndex: "-1",
-                    height: isMobile ? "125vw" : "",
-                    transform: isMobile ? "" : "scale(3,1.5)",
+                    height: isMobile ? "145vw" : "33vw",
+                    transform: isMobile ? "scale(1.1,1.1)" : "scale(3,1)",
                     width: "100vw",
                 }}
             />
@@ -79,18 +80,33 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     style={{
                         fontSize: isMobile ? "6vw" : "2rem",
                         fontFamily: "Poppins",
-                        textAlign: "center",
                     }}
                 >
                     @casaludica
                 </h3>
             </Box>
 
-            <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
-                {posts.map((post) => (
-                    <InstagramPostContainer key={post.id} post={post} />
-                ))}
-            </Carousel>
+            <Box
+                sx={{
+                    justifyContent: "center",
+                }}
+            >
+                <Carousel
+                    showThumbs={false}
+                    autoPlay
+                    infiniteLoop
+                    interval={5000}
+                    transitionTime={1000}
+                    showStatus={false}
+                    centerMode={true}
+                    centerSlidePercentage={isMobile ? 100 : 33}
+                    width={"80vw"}
+                >
+                    {posts.map((post) => (
+                        <InstagramPostContainer key={post.id} post={post} />
+                    ))}
+                </Carousel>
+            </Box>
 
             <Box
                 className="icons-container"
