@@ -9,6 +9,7 @@ import { useSnackbar } from "burgos-snackbar"
 import MaskedInput from "../../components/MaskedInput"
 import { useCepMask, useNumberMask, usePhoneMask } from "burgos-masks"
 import { estados } from "../../tools/estadosBrasil"
+import { useDataHandler } from "../../hooks/useDataHandler"
 
 interface AddressProps {
     user: User
@@ -22,6 +23,7 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
     const cep_mask = useCepMask()
     const phone_mask = usePhoneMask()
     const number_mask = useNumberMask({ allowDecimal: false, allowNegative: false })
+    const { unmask } = useDataHandler()
 
     const formik = useFormik<Partial<User>>({
         initialValues: {
@@ -38,9 +40,13 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
             if (loading) return
 
             setLoading(true)
-            console.log(values)
+            const data: Partial<User> = {
+                ...values,
+                postcode: unmask(values.postcode || ""),
+            }
             try {
-                const response = await api.post("/user/update", values)
+                console.log(data)
+                const response = await api.post("/user/update", data)
                 setUser(response.data)
                 snackbar({ severity: "info", text: "Endereço atualizado" })
             } catch (error) {
@@ -89,7 +95,6 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                         onChange={formik.handleChange}
                         select
                         SelectProps={{
-                            
                             MenuProps: { MenuListProps: { sx: { width: 1 } }, sx: { height: 0.7 } },
                         }}
                     >

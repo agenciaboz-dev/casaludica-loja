@@ -65,8 +65,8 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                         pela galerinha
                     </h3>
                     {popular.map((product) => (
-                        <Grid item>
-                            <Container key={product.id} product={product} />
+                        <Grid item key={product.id}>
+                            <Container product={product} />
                         </Grid>
                     ))}
                     {popular.length == 0 && (
