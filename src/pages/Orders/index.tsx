@@ -66,8 +66,8 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             {user ? (
                 <UserWrapper user={user} />
             ) : (
-                <Box sx={{ flexDirection: "column", paddingBottom: isMobile ? "10vw" : "5vw" }}>
-                    Entre para ver seus pedidos
+                <Box sx={{ flexDirection: "column", paddingBottom: isMobile ? "10vw" : "5vw", gap: isMobile ? "5vw" : "1vw" }}>
+                    Entre para ver seus pedidos:
                     <LoginContainer redirect="/orders" />
                 </Box>
             )}
