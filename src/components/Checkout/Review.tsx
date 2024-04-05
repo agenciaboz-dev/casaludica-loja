@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Grid, Paper } from "@mui/material"
+import { Box, Grid, Paper, useMediaQuery } from "@mui/material"
 import { useCart } from "../../hooks/useCart"
 import { CurrencyText } from "../CurrencyText"
 
@@ -7,12 +7,14 @@ interface ReviewProps {}
 
 export const Review: React.FC<ReviewProps> = ({}) => {
     const cart = useCart()
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     return (
-        <Box sx={{ flexDirection: "column", color: "primary.main", gap: "5vw" }}>
+        <Box sx={{ flexDirection: "column", color: "primary.main", gap: "5vw", width: isMobile ? "100%" : "50%" }}>
+            <p style={{ fontFamily: "BowlbyOneSC", fontSize: isMobile ? "5vw" : "3vw" }}>Detalhes do Pedido</p>
             <Paper
                 elevation={5}
-                sx={{ flexDirection: "column", borderRadius: "4.5vw", gap: "5vw", padding: "6vw", color: "#686868" }}
+                sx={{ flexDirection: "column", borderRadius: "4.5vw", gap: isMobile ? "5vw" : "2vw", padding: "6vw", color: "#686868" }}
             >
                 <Grid container spacing={6} justifyContent="space-between">
                     <Grid item xs={6}>
