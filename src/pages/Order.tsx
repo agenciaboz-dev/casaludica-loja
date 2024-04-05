@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Skeleton } from "@mui/material"
+import { Box, Skeleton, useMediaQuery } from "@mui/material"
 import { useNavigate, useParams } from "react-router-dom"
 import { Order as BozpayOrder } from "boz.pay.component"
 import { useApi } from "../hooks/useApi"
@@ -10,6 +10,7 @@ import { DefaultWrapper } from "../components/DefaultWrapper"
 interface OrderProps {}
 
 export const Order: React.FC<OrderProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const orderId = useParams().id
     const api = useApi()
     const navigate = useNavigate()
@@ -33,14 +34,14 @@ export const Order: React.FC<OrderProps> = ({}) => {
 
     return (
         <DefaultWrapper>
-            <Box sx={{ flexDirection: "column", paddingBottom: "10vw", gap: "5vw" }}>
+            <Box sx={{ flexDirection: "column", paddingBottom: isMobile ? "10vw" : "5vw", gap: isMobile ? "5vw" : "1vw" }}>
                 <Box sx={{ fontSize: "1rem", color: "primary.main" }}>
                     <h2>Seu pedido: #{order?.referenceId}</h2>
                 </Box>
                 {order ? (
                     <OrderComponent order={order} />
                 ) : (
-                    <Box sx={{ padding: "5vw" }}>
+                    <Box>
                         <Skeleton variant="rounded" animation="wave" sx={{ width: "90vw", height: "50vw" }} />
                     </Box>
                 )}
