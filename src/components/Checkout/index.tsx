@@ -154,7 +154,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 className="finish"
                 style={{
                     fontWeight: "bold",
-                    fontSize: isMobile ? "5vw" : "2.5vw",
+                    fontSize: isMobile ? "5vw" : "2vw",
                     color: "#363775",
                     fontFamily: "BowlbyOneSC",
                 }}

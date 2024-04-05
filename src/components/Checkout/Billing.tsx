@@ -28,7 +28,7 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
 
     return (
         <Box sx={{ flexDirection: "column", color: "primary.main", gap: isMobile ? "5vw" : "2vw", width: isMobile ? "100%" : "50%" }}>
-            <p style={{ fontFamily: "BowlbyOneSC", fontSize: isMobile ? "5vw" : "2.5vw" }}>Endereço da cobrança</p>
+            <p style={{ fontFamily: "BowlbyOneSC", fontSize: isMobile ? "5vw" : "2vw" }}>Endereço da cobrança</p>
 
             <form onSubmit={formik.handleSubmit}>
                 <Paper

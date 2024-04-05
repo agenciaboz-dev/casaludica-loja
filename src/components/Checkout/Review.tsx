@@ -11,7 +11,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
 
     return (
         <Box sx={{ flexDirection: "column", color: "primary.main", gap: isMobile ? "5vw" : "2vw", width: isMobile ? "100%" : "50%" }}>
-            <p style={{ fontFamily: "BowlbyOneSC", fontSize: isMobile ? "5vw" : "2.5vw" }}>Detalhes do Pedido</p>
+            <p style={{ fontFamily: "BowlbyOneSC", fontSize: isMobile ? "5vw" : "2vw" }}>Detalhes do Pedido</p>
             <Paper
                 elevation={5}
                 sx={{
