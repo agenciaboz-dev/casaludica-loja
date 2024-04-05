@@ -33,7 +33,13 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
             <form onSubmit={formik.handleSubmit}>
                 <Paper
                     elevation={5}
-                    sx={{ flexDirection: "column", borderRadius: "4.5vw", width: "100%", padding: "3vw", gap: isMobile ? "5vw" : "2vw" }}
+                    sx={{
+                        flexDirection: "column",
+                        borderRadius: "4.5vw",
+                        width: "100%",
+                        gap: isMobile ? "5vw" : "2vw",
+                        padding: isMobile ? "6vw" : "3.5vw",
+                    }}
                 >
                     <TextField
                         label="Nome"

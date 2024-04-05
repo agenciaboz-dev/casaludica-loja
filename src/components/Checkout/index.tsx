@@ -151,8 +151,11 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         <Box className="Checkout-Component" sx={{ flexDirection: "column", width: "100vw", padding: "0 5vw", gap: "5vw", paddingBottom: "5vw" }}>
             <Background />
             <Header />
-            <SearchField />
-            <Collections />
+            {/* <SearchField /> */}
+            <Box sx={{ mt: isMobile ? "2vw" : "-2vw" }}>
+                <Collections />
+            </Box>
+
             <p
                 className="finish"
                 style={{
