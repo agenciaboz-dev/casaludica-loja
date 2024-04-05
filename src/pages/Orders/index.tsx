@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Skeleton } from "@mui/material"
+import { Box, Skeleton, useMediaQuery } from "@mui/material"
 import { DefaultWrapper } from "../../components/DefaultWrapper"
 import { useUser } from "../../hooks/useUser"
 import { LoginContainer } from "../../components/Menu/LoginContainer"
@@ -12,6 +12,7 @@ import { useFranchise } from "../../hooks/useFranchise"
 interface OrdersProps {}
 
 const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const api = useApi()
     const skeletons = useArray().newArray(3)
 
@@ -33,8 +34,8 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
                 fontSize: "1.2rem",
                 color: "primary.main",
                 width: "100%",
-                gap: "5vw",
-                paddingBottom: "10vw",
+                gap: isMobile ? "5vw" : "2vw",
+                paddingBottom: isMobile ? "10vw" : "5vw",
             }}
         >
             {!!orders.length ? (
@@ -48,7 +49,7 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
             ) : (
                 <>
                     {skeletons.map((index) => (
-                        <Skeleton variant="rounded" animation="wave" key={index} sx={{ width: "100%", height: "100vw" }} />
+                        <Skeleton variant="rounded" animation="wave" key={index} sx={{ width: "100%", height: isMobile ? "100vw" : "50vw" }} />
                     ))}
                 </>
             )}
@@ -57,6 +58,7 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
 }
 
 export const Orders: React.FC<OrdersProps> = ({}) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const { user } = useUser()
 
     return (
@@ -64,8 +66,8 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             {user ? (
                 <UserWrapper user={user} />
             ) : (
-                <Box sx={{ flexDirection: "column", paddingBottom: "10vw" }}>
-                    Entre para ver seus pedidos
+                <Box sx={{ flexDirection: "column", paddingBottom: isMobile ? "10vw" : "5vw", gap: isMobile ? "5vw" : "1vw" }}>
+                    Entre para ver seus pedidos:
                     <LoginContainer redirect="/orders" />
                 </Box>
             )}

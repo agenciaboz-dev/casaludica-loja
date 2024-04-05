@@ -123,25 +123,26 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                             >
                                 {user.email}
                             </p>
-                            <Box sx={{ flexDirection: "row" }}>
+                            <Box sx={{ flexDirection: "row", justifyContent: "space-between" }}>
                                 <h4
                                     className="link"
                                     style={{
                                         textDecoration: "underline",
+                                        cursor: "pointer",
                                     }}
                                 >
                                     Editar Perfil
                                 </h4>
-                                <Button
-                                    sx={buttonStyle}
+                                <h4
+                                    style={{ textDecoration: "underline", cursor: "pointer" }}
                                     color="secondary"
                                     onClick={() => {
                                         navigate("/")
                                         setUser(null)
                                     }}
                                 >
-                                    sair
-                                </Button>
+                                    Sair
+                                </h4>
                             </Box>
                         </Box>
                     </Box>

@@ -1,23 +1,24 @@
 import React, { useState } from "react"
 import { ButtonComponent } from "./ButtonComponent"
 import { PayModal } from "./PayModal"
-import { Box } from "@mui/material"
+import { Box, useMediaQuery } from "@mui/material"
 
 interface PendingPaymentProps {
     orderId: string
 }
 
 export const PendingPayment: React.FC<PendingPaymentProps> = ({ orderId }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [openPay, setOpenPay] = useState(false)
 
     return (
         <Box
             sx={{
-                gap: "5vw",
+                gap: isMobile ? "5vw" : "1vw",
                 flexDirection: "column",
-                padding: "5vw 0 5vw",
+                padding: isMobile ? "5vw 0" : "1vw 0",
                 fontFamily: "Poppins",
-                fontWeight:"bold",
+                fontWeight: "bold",
                 color: "error.main",
                 fontSize: "0.9rem",
                 alignItems: "center",
