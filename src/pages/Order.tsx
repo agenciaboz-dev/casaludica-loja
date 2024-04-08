@@ -32,6 +32,10 @@ export const Order: React.FC<OrderProps> = ({}) => {
         }
     }, [])
 
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }, [order])
+
     return (
         <DefaultWrapper>
             <Box sx={{ flexDirection: "column", paddingBottom: isMobile ? "10vw" : "5vw", gap: isMobile ? "5vw" : "1vw" }}>

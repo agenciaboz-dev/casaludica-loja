@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, CircularProgress, TextField, useMediaQuery } from "@mui/material"
+import { Box, Button, CircularProgress, TextField, useMediaQuery } from "@mui/material"
 import { ButtonComponent } from "../components/ButtonComponent"
 import { useUser } from "../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
@@ -20,6 +20,7 @@ interface LoginMenuProps {
 export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginString, onBack, setHavePassword }) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const [loading, setLoading] = useState(false)
+    const [forgetPasswordTimeout, setForgetPasswordTimeout] = useState(60)
 
     const { setUser } = useUser()
     const { snackbar } = useSnackbar()
@@ -54,6 +55,23 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
             }
         },
     })
+
+    const onForgetPassword = async () => {
+        if (new Date().getTime() > forgetPasswordTimeout) {
+            try {
+                setForgetPasswordTimeout(new Date().getTime() + 60 * 1000)
+                const response = await api.post("user/forget_password", { login: formik.values.login })
+                snackbar({ severity: "info", text: "um link para redefinição de senha foi enviado ao e-mail associado a este usuário" })
+            } catch (error) {
+                snackbar({ severity: "warning", text: "nenhum usuário encontrado com esse e-mail ou cpf" })
+            }
+        } else {
+            snackbar({
+                severity: "warning",
+                text: `tente novamente em ${Math.round((forgetPasswordTimeout - new Date().getTime()) / 1000)} segundos`,
+            })
+        }
+    }
 
     return (
         <Box sx={{ justifyItems: "space-between", height: 1 }}>
@@ -97,6 +115,9 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
                     <ButtonComponent type="submit" fullWidth>
                         {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "entrar"}
                     </ButtonComponent>
+                    <Button sx={{ padding: 0, minHeight: 0, textDecoration: "underline", textTransform: "none" }} onClick={onForgetPassword}>
+                        Esqueci minha senha
+                    </Button>
                 </form>
             </Box>
         </Box>

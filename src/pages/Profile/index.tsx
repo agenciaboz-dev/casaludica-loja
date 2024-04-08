@@ -17,7 +17,7 @@ export const Profile: React.FC<ProfileProps> = ({}) => {
 
     useEffect(() => {
         if (!user) navigate("/")
-    }, [])
+    }, [user])
 
     return (
         <DefaultWrapper>
