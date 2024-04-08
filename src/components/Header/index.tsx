@@ -37,54 +37,50 @@ export const Header = () => {
                     width: "100%",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    paddingTop: isMobile ? "5vw" : "2vw"
-                }}>
+                    paddingTop: isMobile ? "0vw" : "1vw",
+                }}
+            >
                 <IconButton
                     color="secondary"
                     sx={{
-                        gap: isMobile ? "2vw" : "0.5vw",
-                        padding: 0,
                         fontFamily: "BowlbyOneSC",
                         fontWeight: "400",
-                        fontSize: isMobile ? "4vw" : "1.5rem",
-                        flex: isMobile ? 0.3 : "",
-                        justifyContent: "start"
+                        fontSize: isMobile ? "4vw" : "1rem",
+                        justifyContent: "start",
                     }}
-                    onClick={() => menu.setOpen(true)}>
-                    <MenuIcon
-                        sx={{
-                            height: isMobile ? "10vw" : "3vw",
-                            width: isMobile ? "10vw" : "3vw"
-                        }}
-                    />
-                    Menu
+                    onClick={() => menu.setOpen(true)}
+                >
+                    <MenuIcon sx={{ height: isMobile ? "10vw" : "2.5vw", width: isMobile ? "10vw" : "2.5vw" }} />
+                    {!isMobile && "Menu"}
                 </IconButton>
+
                 <LogoIcon
                     onClick={() => navigate("/")}
                     style={{
-                        flex: isMobile ? 0.3 : "",
-                        cursor: "pointer"
+                        flex: 0.4,
+                        cursor: "pointer",
                     }}
                 />
                 {!isMobile && <SearchField />}
                 <Box
                     sx={{
-                        flex: isMobile ? 0.3 : "",
-                        justifyContent: "flex-end"
-                    }}>
+                        justifyContent: "flex-end",
+                    }}
+                >
                     <Badge
                         badgeContent={cart.products?.length || 0}
                         color="primary"
                         sx={{
                             //top:"3vw",
-                            right: "1vw"
-                        }}>
-                        <IconButton color="secondary" sx={{ gap: "2vw", padding: 0 }} onClick={() => cart.setOpen(true)}>
+                            right: "1vw",
+                        }}
+                    >
+                        <IconButton color="secondary" sx={{}} onClick={() => cart.setOpen(true)}>
                             <CartIcon
                                 style={{
                                     flex: 1,
                                     height: isMobile ? "10vw" : "3vw",
-                                    width: isMobile ? "10vw" : "3vw"
+                                    width: isMobile ? "10vw" : "3vw",
                                 }}
                             />
                         </IconButton>
