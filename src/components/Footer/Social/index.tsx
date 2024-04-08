@@ -58,7 +58,7 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     left: isMobile ? "-5vw" : "-15vw",
                     zIndex: "-1",
                     height: isMobile ? "145vw" : "34vw",
-                    transform: isMobile ? "scale(1.1,1.1)" : "scale(3,1)",
+                    transform: isMobile ? "scale(1,1.1)" : "scale(3,1)",
                     width: "100vw",
                 }}
             />
