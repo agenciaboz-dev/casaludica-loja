@@ -52,13 +52,6 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     gap: isMobile ? "5vw" : "1vw",
                 }}
             >
-                <Avatar
-                    src={"data:image/jpeg;base64," + product.cover}
-                    variant={"rounded"}
-                    sx={{ bgcolor: colors.primary, width: isMobile ? "32vw" : "10vw", height: isMobile ? "32vw" : "10vw", borderRadius: "1vw" }}
-                >
-                    <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
-                </Avatar>
                 <Box
                     className="right-container"
                     style={{
@@ -100,6 +93,13 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         />
                     </Box>
                 </Box>
+                <Avatar
+                    src={"data:image/jpeg;base64," + product.cover}
+                    variant={"rounded"}
+                    sx={{ bgcolor: colors.primary, width: isMobile ? "32vw" : "10vw", height: isMobile ? "32vw" : "10vw", borderRadius: "1vw" }}
+                >
+                    <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
+                </Avatar>
                 <RemoveIcon
                     onClick={() => remove()}
                     style={{ cursor: "pointer", position: "absolute", top: isMobile ? "5vw" : "1vw", right: isMobile ? "5vw" : "1vw" }}
@@ -133,15 +133,10 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         flexDirection: "column",
                     }}
                 >
-                    <h3
-                        className="name"
-                        style={{
-                            fontWeight: "bold",
-                        }}
-                    >
+                    <p className="name" style={{ fontFamily: "BowlbyOneSC" }}>
                         {product.name}
-                    </h3>
-                    <CurrencyText value={product.price * product.quantity} />
+                    </p>
+                    <CurrencyText value={product.price * product.quantity} color={"#686868"} style={{ fontFamily: "BowlbyOneSC" }} />
                 </Box>
             </Box>
         </Box>
