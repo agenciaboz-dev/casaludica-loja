@@ -68,7 +68,7 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
                 {viewOrder && <h4 style={{ fontFamily: "BowlbyOneSC", fontWeight: "600", color: colors.primary }}>Pedido #{order.referenceId}</h4>}
                 {viewOrder && (
                     <p
-                        style={{ textDecoration: "underline", fontSize: isMobile ? "3.5vw" : "1rem" }}
+                        style={{ textDecoration: "underline", fontSize: isMobile ? "3.5vw" : "1rem", fontFamily: "BowlbyOneSC", cursor: "pointer" }}
                         onClick={() => navigate(`/order/${order.referenceId}`)}
                     >
                         Ver Pedido{" >"}
