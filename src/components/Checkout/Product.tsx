@@ -73,14 +73,14 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                     >
                         <Box sx={{ flexDirection: "column", width: 1 }}>
                             <Box sx={{ width: 1, overflow: "hidden" }}>
-                                <Box sx={{ flexDirection: "column", width: 1 }}>
+                                <Box sx={{ flexDirection: "column", width: 1, gap: isMobile ? "2vw" : "0.5vw" }}>
                                     <Box sx={{ width: "100%" }}>
                                         <div
                                             style={{
-                                                width: "90%",
+                                                width: "80%",
                                                 fontSize: isMobile ? "3.5vw" : "1.2rem",
                                                 fontWeight: "bold",
-                                                whiteSpace: "nowrap",
+                                                // whiteSpace: "nowrap",
                                                 overflow: "hidden",
                                                 textOverflow: "ellipsis",
                                             }}
@@ -88,19 +88,16 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                                             {product.name}
                                         </div>
                                     </Box>
-                                    <Box sx={{ flexDirection: "row", gap: "1vw", alignItems: "center" }}>
+                                    <Box sx={{ flexDirection: "column", gap: isMobile ? "2vw" : "0.5vw" }}>
                                         <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>Quantidade: {product.quantity} </p>
+                                        <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
+                                            Preço unitário: <CurrencyText value={product.price} style={current_text_style} />
+                                        </p>
+                                        <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
+                                            Subtotal: <CurrencyText value={total} style={current_text_style} />
+                                        </p>
                                     </Box>
                                 </Box>
-                            </Box>
-
-                            <Box sx={{ flexDirection: "row", justifyContent: "space-between", gap: "2vw" }}>
-                                <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
-                                    Custo: <CurrencyText value={product.price} style={current_text_style} />
-                                </p>
-                                <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
-                                    Valor: <CurrencyText value={total} style={current_text_style} />
-                                </p>
                             </Box>
                         </Box>
                     </Box>

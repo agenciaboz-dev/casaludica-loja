@@ -171,7 +171,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     borderRadius: isMobile ? "4.5vw" : "2vw",
                     flexDirection: "column",
                     height: "fit-content",
-                    gap: "3vw",
+                    gap: isMobile ? "10vw" : "3vw",
                 }}
             >
                 {cart.products.map((product) => (
