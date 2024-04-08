@@ -37,17 +37,19 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 width: "100%",
                 boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
                 padding: isMobile ? "5vw" : "1vw",
-                borderRadius: isMobile ? "10vw" : "1vw",
+                borderRadius: isMobile ? "5vw" : "1vw",
                 flexDirection: "column",
                 height: "fit-content",
                 gap: isMobile ? "3vw" : "1vw",
+                position: "relative",
             }}
         >
             <Box
                 className="top-container"
                 style={{
-                    justifyContent: "space-between",
+                    justifyContent: "start",
                     alignItems: "center",
+                    gap: isMobile ? "5vw" : "1vw",
                 }}
             >
                 <Avatar
@@ -61,7 +63,6 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     className="right-container"
                     style={{
                         gap: isMobile ? "1vw" : "1vw",
-                        position: "relative",
                     }}
                 >
                     <Box
@@ -98,11 +99,11 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                             }}
                         />
                     </Box>
-                    <RemoveIcon
-                        onClick={() => remove()}
-                        style={{ alignSelf: "flex-start", cursor: "pointer", position: "sticky", top: 0, right: 0 }}
-                    />
                 </Box>
+                <RemoveIcon
+                    onClick={() => remove()}
+                    style={{ cursor: "pointer", position: "absolute", top: isMobile ? "5vw" : "1vw", right: isMobile ? "5vw" : "1vw" }}
+                />
             </Box>
             <Box
                 className="bottom-container"
