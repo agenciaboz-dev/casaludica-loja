@@ -3,6 +3,7 @@ import { Avatar, Box, Skeleton, Paper, Grid, Button, useMediaQuery, colors } fro
 import { useNavigate } from "react-router-dom"
 import { useCart } from "../../hooks/useCart"
 import { useDynamicImage } from "../../hooks/useDynamicImage"
+import { CurrencyText } from "../../components/CurrencyText"
 
 interface ProductContainerProps {
     product: Product
@@ -17,13 +18,13 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
 
     const skeleton_style = {
         height: isMobile ? "8vw" : "2vw",
-        width: "100%"
+        width: "100%",
     }
 
     const image_skeleton_style = {
         height: isMobile ? "40vw" : "15vw",
         width: isMobile ? "40vw" : "15vw",
-        borderRadius: isMobile ? "5vw" : "1vw"
+        borderRadius: isMobile ? "5vw" : "1vw",
     }
 
     const button_Style = {
@@ -33,7 +34,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
 
         justifyContent: "center",
         alignItems: "center",
-        fontFamily: "BowlbyOneSC"
+        fontFamily: "BowlbyOneSC",
     }
 
     return (
@@ -102,7 +103,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                     color: "#363775",
                                 }}
                             >
-                                R${product.price}
+                                <CurrencyText value={product.price} style={{ fontWeight: "bold" }} />
                             </h2>
                         </Box>
                         <Button

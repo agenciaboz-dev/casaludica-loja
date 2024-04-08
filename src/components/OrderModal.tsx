@@ -18,6 +18,7 @@ import { Order } from "boz.pay.component"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { api } from "../api"
 import { ProductContainerOnModal } from "./ProductContainerOnModal"
+import { CurrencyText } from "./CurrencyText"
 
 interface OrderModalProps {
     order: Order
@@ -88,10 +89,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
                 <DialogContentText sx={{ fontSize: "1.1rem", color: "primary.main", marginTop: "2vw" }}>
                     {confirmed ? "Avaliar os produtos" : "Você recebeu seu pedido?"}
                 </DialogContentText>
-                <Accordion
-                    sx={{ backgroundColor: "transparent", boxShadow: "none", flexDirection: "column", padding: 0, width: 1 }}
-                    defaultExpanded
-                >
+                <Accordion sx={{ backgroundColor: "transparent", boxShadow: "none", flexDirection: "column", padding: 0, width: 1 }} defaultExpanded>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1-content"
@@ -138,20 +136,14 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
                 </Accordion>
                 <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end", p: 0, marginTop: "3vw" }}>
                     <p style={{ margin: 0 }}>
-                        <span style={{ fontWeight: "bold" }}> Total:</span> R$ {order.total}
+                        <span style={{ fontWeight: "bold" }}> Total:</span> <CurrencyText value={order.total} />
                     </p>
                 </Box>
             </DialogContent>
             <DialogActions>
                 <Button onClick={() => setIsOpen(false)}>não</Button>
                 <Button variant="contained" onClick={confirmed ? onReview : onConfirm}>
-                    {loading ? (
-                        <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
-                    ) : confirmed ? (
-                        "Enviar avaliação"
-                    ) : (
-                        "Sim, Recebi"
-                    )}
+                    {loading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : confirmed ? "Enviar avaliação" : "Sim, Recebi"}
                 </Button>
             </DialogActions>
         </Dialog>

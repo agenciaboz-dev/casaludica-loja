@@ -163,14 +163,15 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
                     }}
                 >
                     <p style={{ fontSize: "1rem", color: "gray" }}>
-                        <span style={{ fontWeight: "600" }}>Subtotal de Itens: </span>R$ {subtotal.toFixed(2)}
+                        <span style={{ fontWeight: "600" }}>Subtotal de Itens: </span>
+                        <CurrencyText value={subtotal} />
                     </p>
                     <p style={{ fontSize: "1rem", color: "gray" }}>
                         <span style={{ fontWeight: "600" }}> Frete: </span>
-                        R$ {freight.toFixed(2)}
+                        <CurrencyText value={freight} />
                     </p>
                     <p style={{ fontSize: "1rem", color: "gray" }}>
-                        <span style={{ fontWeight: "600" }}> Total:</span> R$ {order.total.toFixed(2)}
+                        <span style={{ fontWeight: "600" }}> Total:</span> <CurrencyText value={order.total} />
                     </p>
                 </Box>
             </Box>

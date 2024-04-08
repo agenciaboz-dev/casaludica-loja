@@ -5,6 +5,7 @@ import { useCart } from "../../hooks/useCart"
 import { ReactComponent as CloseIcon } from "../../images/x.svg"
 import { useDynamicImage } from "../../hooks/useDynamicImage"
 import { useArray } from "burgos-array"
+import { CurrencyText } from "../CurrencyText"
 
 interface ProductProps {
     product: Product
@@ -17,6 +18,8 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
     const navigate = useNavigate()
 
     const productRef = useDynamicImage(product)
+
+    const current_text_style = { color: "#686868", fontSize: isMobile ? "3.3vw" : "1rem" }
 
     const deleteProduct = () => {
         if (cart.products.length > 1) {
@@ -93,11 +96,10 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
 
                             <Box sx={{ flexDirection: "row", justifyContent: "space-between", gap: "2vw" }}>
                                 <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
-                                    Custo:{" "}
-                                    <span style={{ color: "#686868", fontSize: isMobile ? "3.3vw" : "1rem" }}>R${product.price.toFixed(2)}</span>
+                                    Custo: <CurrencyText value={product.price} style={current_text_style} />
                                 </p>
                                 <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
-                                    Valor: <span style={{ color: "#686868", fontSize: isMobile ? "3.3vw" : "1rem" }}>R${total.toFixed(2)}</span>
+                                    Valor: <CurrencyText value={total} style={current_text_style} />
                                 </p>
                             </Box>
                         </Box>
