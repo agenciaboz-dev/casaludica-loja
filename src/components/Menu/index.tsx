@@ -224,9 +224,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     {!havePassword ? (
                         <>
                             <Box sx={{ width: "100%", justifyContent: "space-between", alignItems: "center" }}>
-                                <p style={{ fontSize: "1.0rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>
-                                    ACESSE SUA CONTA
-                                </p>
+                                <p style={{ fontSize: "1.0rem", fontFamily: "BowlbyOneSC", textAlign: "center" }}>ACESSE SUA CONTA</p>
                                 <IconButton
                                     size="small"
                                     color="primary"
@@ -313,7 +311,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                             <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
                         </IconButton>
                     </Box>
-                    <Logo style={{ width: isMobile ? "100%" : "20vw" }} />
+                    <Logo style={{ width: isMobile ? "30vw" : "20vw" }} />
                     <Box sx={{ flexDirection: "column", gap: 0 }}>
                         <p style={{ fontSize: "0.7rem", color: "black", marginTop: "2vw" }}>Registrado por Casa Lúdica®</p>
                         <p style={{ fontSize: "0.7rem", color: "black", marginTop: "2vw" }}>Todos os direitos reservados.</p>
