@@ -50,7 +50,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({ user }) => {
     return (
         <CollapsibleMenu title="Detalhes da Conta">
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
-                <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1.5vw", padding: isMobile ? "5vw 0" : "1.5vw 0", width: "100%" }}>
+                <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1vw", padding: isMobile ? "5vw 0" : "1.5vw 0", width: "100%" }}>
                     <RoundedTextField label="Nome" value={formik.values.name} name="name" onChange={formik.handleChange} />
                     <RoundedTextField label="Sobrenome" value={formik.values.lastname} name="lastname" onChange={formik.handleChange} />
                     <RoundedTextField

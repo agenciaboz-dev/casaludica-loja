@@ -61,8 +61,9 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
     return (
         <CollapsibleMenu title="Endereço">
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
-                <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1.5vw", padding: isMobile ? "5vw 0" : "1.5vw 0", width: "100%" }}>
+                <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1vw", padding: isMobile ? "5vw 0" : "1.5vw 0", width: "100%" }}>
                     <RoundedTextField
+                        fullWidth
                         label="CEP"
                         value={formik.values.postcode}
                         name="postcode"

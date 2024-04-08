@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Avatar, Box, CircularProgress } from "@mui/material"
+import { Avatar, Box, CircularProgress, useMediaQuery } from "@mui/material"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import CancelIcon from "@mui/icons-material/Cancel"
 import { useApi } from "../../hooks/useApi"
@@ -26,6 +26,8 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
             setImage(files[0])
         }
     }
+
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     const handleUpload = () => {
         if (!image || uploading) return
@@ -56,8 +58,11 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
     }
 
     return (
-        <Box sx={{ gap: "5vw" }}>
-            <Avatar src={image ? URL.createObjectURL(image) : user.profilePicUrl} sx={{ height: "20vw", width: "20vw" }} />
+        <Box sx={{ gap: isMobile ? "5vw" : "3vw", paddingBottom: isMobile ? "" : "1.2vw" }}>
+            <Avatar
+                src={image ? URL.createObjectURL(image) : user.profilePicUrl}
+                sx={{ height: isMobile ? "20vw" : "7vw", width: isMobile ? "20vw" : "7vw" }}
+            />
             <Box
                 sx={{
                     flexDirection: "column",
@@ -65,10 +70,11 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
                     justifyContent: "space-between",
                     color: "primary.main",
                     "& > p": { fontSize: "0.8rem" },
+                    gap: isMobile ? "" : "0.5vw",
                 }}
             >
-                <h3>{user.name}</h3>
-                <p>{user.email}</p>
+                <h3 style={{ fontSize: isMobile ? "" : "1.5rem" }}>{user.name}</h3>
+                <p style={{ fontSize: isMobile ? "" : "1rem" }}>{user.email}</p>
                 {image ? (
                     <Box
                         sx={{
@@ -88,7 +94,10 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
                         </Box>
                     </Box>
                 ) : (
-                    <p style={{ fontWeight: "bold", textDecoration: "underline" }} onClick={() => ref.current?.click()}>
+                    <p
+                        style={{ fontSize: isMobile ? "" : "1rem", fontWeight: "bold", textDecoration: "underline" }}
+                        onClick={() => ref.current?.click()}
+                    >
                         Editar imagem de perfil
                         <input ref={ref} type="file" hidden onChange={(event) => handleImageChange(event)} />
                     </p>

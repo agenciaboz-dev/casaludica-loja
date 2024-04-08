@@ -44,7 +44,7 @@ export const Safety: React.FC<SafetyProps> = ({ user }) => {
     return (
         <CollapsibleMenu title="Segurança">
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
-                <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1.5vw", padding: isMobile ? "5vw 0" : "1.5vw 0", width: "100%" }}>
+                <Box sx={{ flexDirection: "column", gap: isMobile ? "5vw" : "1vw", padding: isMobile ? "5vw 0" : "1.5vw 0", width: "100%" }}>
                     <RoundedTextField
                         label="Senha atual"
                         value={formik.values.password}

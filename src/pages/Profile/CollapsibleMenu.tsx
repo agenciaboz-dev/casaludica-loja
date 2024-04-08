@@ -29,7 +29,7 @@ export const CollapsibleMenu: React.FC<CollapsibleMenuProps> = ({ title, childre
                 <ExpandCircleDownIcon sx={{ rotate: open ? "-180deg" : "", transition: "0.3s" }} />
             </MenuItem>
             <Collapse in={open}>
-                <Box sx={{ padding: "0 5vw", borderTop: "1px solid", borderColor: "primary.main", width: "100%" }}>{children}</Box>
+                <Box sx={{ padding: isMobile ? "0 5vw" : "0", borderTop: "1px solid", borderColor: "primary.main", width: "100%" }}>{children}</Box>
             </Collapse>
         </Box>
     )
