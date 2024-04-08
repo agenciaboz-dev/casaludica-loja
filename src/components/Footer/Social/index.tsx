@@ -57,7 +57,7 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     top: isMobile ? "-10vw" : "-1vw",
                     left: isMobile ? "-5vw" : "-15vw",
                     zIndex: "-1",
-                    height: isMobile ? "145vw" : "33vw",
+                    height: isMobile ? "145vw" : "34vw",
                     transform: isMobile ? "scale(1.1,1.1)" : "scale(3,1)",
                     width: "100vw",
                 }}
@@ -94,7 +94,7 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     transitionTime={1000}
                     showStatus={false}
                     centerMode={true}
-                    centerSlidePercentage={isMobile ? 100 : 33}
+                    centerSlidePercentage={isMobile ? 100 : 33.33}
                     width={"80vw"}
                 >
                     {posts.map((post) => (
