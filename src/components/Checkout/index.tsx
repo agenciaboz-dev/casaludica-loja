@@ -146,7 +146,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         if (!cart.products.length) {
             navigate("/")
         }
-    }, [])
+    }, [cart.products])
 
     return (
         <DefaultWrapper>
