@@ -15,6 +15,7 @@ import { MenuProvider } from "./contexts/menuContext"
 import { Menu } from "./components/Menu"
 import { Cart } from "./components/Cart"
 import { ConfirmDialog, ConfirmDialogProvider } from "burgos-confirm"
+import { Zap } from "./components/Zap"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -36,6 +37,7 @@ function App() {
                                                     <Cart />
                                                     <Menu />
                                                     <Routes />
+                                                    <Zap />
                                                 </BrowserRouter>
                                             </UserProvider>
                                         </CartProvider>
