@@ -11,7 +11,6 @@ export const Zap: React.FC<ZapProps> = ({}) => {
     const { franchise } = useFranchise()
 
     const url = `https://wa.me/55${unmask(franchise?.phone || "")}`
-    console.log(url)
     const offset = isMobile ? 5 : 10
     const size = isMobile ? "15vw" : "4vw"
 
