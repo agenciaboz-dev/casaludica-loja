@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Background } from "../../components/Background"
 import { Header } from "../../components/Header"
@@ -17,6 +17,7 @@ import { useCart } from "../../hooks/useCart"
 import { ButtonComponent } from "../../components/ButtonComponent"
 import { ProductContainer } from "../Results/ProductContainer"
 import { Footer } from "../../components/Footer"
+import useMeasure from "react-use-measure"
 
 interface ProductProps {}
 interface DataTextProps {
@@ -29,11 +30,13 @@ interface DataTextProps {
 }
 
 const DataText: React.FC<DataTextProps> = ({ title, value, color, bold, valueSx, titleSx }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
+
     return (
         <Box
             sx={{
                 gap: "5vw",
-                fontSize: "1.1rem",
+                fontSize: isMobile ? "1.1rem" : "2rem",
                 alignItems: "center",
                 color: "primary.main",
                 fontFamily: "BowlbyOneSC",
@@ -67,14 +70,22 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const navigate = useNavigate()
     const colors = useColors()
     const cart = useCart()
+    const [descriptionRef, { height }] = useMeasure()
+    const initialDescriptionHeight = isMobile ? "30vw" : "20vw"
+    const max_height = useRef(height)
 
     const [product, setProduct] = useState<Product>()
     const [category, setCategory] = useState<Category>()
     const [galery, setGalery] = useState<string[]>([])
     const [quantity, setQuantity] = useState(1)
-    const [fullDescription, setFullDescription] = useState(false)
+    const [descriptionHeight, setDescriptionHeight] = useState<number | string>(0)
 
     const similarProducts = products.filter((item) => item.category == product?.category && item.id != product?.id)
+    const fullDescription = descriptionHeight == max_height.current
+
+    const onDescriptionClick = () => {
+        setDescriptionHeight((height) => (fullDescription ? initialDescriptionHeight : max_height.current))
+    }
 
     const onCategoryClick = () => {
         navigate(`/search/category/${category?.id}`)
@@ -85,6 +96,18 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
         setQuantity(quantity + value)
     }
+
+    // useLayoutEffect(() => {
+    //     console.log({ height })
+    //     setDescriptionHeight(initialDescriptionHeight)
+    // }, [])
+
+    useEffect(() => {
+        if (height > 0 && !max_height.current) {
+            max_height.current = height
+            setDescriptionHeight(initialDescriptionHeight)
+        }
+    }, [height])
 
     useEffect(() => {
         if (product?.id) {
@@ -167,27 +190,30 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         elevation={1}
                         className="title"
                         sx={{
-                            padding: isMobile ? "3vw 5vw" : "0.5vw",
+                            padding: isMobile ? "3vw 5vw" : "1vw",
                             flexDirection: "column",
                             width: "100%",
-                            alignItems: isMobile ? "" : "center",
-                            gap: isMobile ? "1vw" : "0.5vw",
+                            gap: "1vw",
                         }}
                     >
-                        <Box sx={{ width: "100%", justifyContent: isMobile ? "space-between" : "center", gap: "2vw" }}>
-                            <Box sx={{ flex: isMobile ? 0.7 : "" }}>
+                        <Box sx={{ flex: 1, justifyContent: "space-between", gap: "2vw" }}>
+                            <Box sx={{ flex: isMobile ? 0.7 : 0.9 }}>
                                 <DataText
                                     title="Marca:"
                                     value={`${product.brand}`}
-                                    titleSx={{ fontSize: "0.9rem", justifyContent: "flex-start", gap: isMobile ? "2vw" : "1vw" }}
-                                    valueSx={{ fontSize: "0.8rem" }}
+                                    titleSx={{
+                                        fontSize: isMobile ? "0.9rem" : "1.2rem",
+                                        justifyContent: "flex-start",
+                                        gap: isMobile ? "2vw" : "1vw",
+                                    }}
+                                    valueSx={{ fontSize: isMobile ? "0.8rem" : "1.2rem" }}
                                 />
                             </Box>
-                            <Box sx={{ gap: "1vw", flex: isMobile ? 0.3 : "", alignItems: "center", fontSize: "0.8rem" }}>
+                            <Box sx={{ gap: "1vw", flex: isMobile ? 0.3 : 0.1, alignItems: "center", fontSize: isMobile ? "0.8rem" : "1.2rem" }}>
                                 <Rating
                                     value={product.rating}
                                     sx={{
-                                        fontSize: "1rem",
+                                        fontSize: "1.5rem",
                                         "& .MuiRating-iconFilled": {
                                             color: "primary.main",
                                         },
@@ -199,147 +225,174 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 {product.rating}
                             </Box>
                         </Box>
-                        <h3 style={{ fontSize: "1.2rem" }}>{product.name}</h3>
+                        <h3 style={{ fontSize: isMobile ? "1.2rem" : "2vw" }}>{product.name}</h3>
                     </Paper>
 
-                    <Paper
-                        className="galery"
-                        sx={{
-                            flexDirection: isMobile ? "" : "column",
-                        }}
-                    >
-                        {!!galery.length ? (
-                            <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
-                                {galery.map((image, index) => (
-                                    <Box key={index}>
-                                        <img
-                                            src={"data:image/jpeg;base64," + image}
-                                            alt=""
-                                            style={{
-                                                height: isMobile ? "" : "20vw",
-                                                width: isMobile ? "" : "20vw",
-                                                margin: "0 auto",
-                                            }}
-                                        />
-                                    </Box>
-                                ))}
-                            </Carousel>
-                        ) : (
-                            <Skeleton
-                                variant="rounded"
-                                animation="wave"
-                                sx={{ width: isMobile ? "90vw" : "20vw", height: isMobile ? "90vw" : "20vw", margin: "0 auto" }}
-                            />
-                        )}
-                    </Paper>
-
-                    <Box
-                        className="numbers"
-                        sx={{
-                            justifyContent: isMobile ? "space-between" : "center",
-                            gap: isMobile ? "" : "2vw",
-                        }}
-                    >
-                        <Box
-                            className="quantity-container"
+                    <Box flexDirection={isMobile ? "column" : "row"} gap={isMobile ? "4vw" : "2vw"}>
+                        <Paper
+                            className="galery"
                             sx={{
-                                alignItems: "center",
-                                gap: "1vw",
+                                flexDirection: isMobile ? "" : "column",
+                                width: isMobile ? "100%" : "50%",
                             }}
                         >
-                            <IconButton onClick={() => changeQuantity(-1)} sx={{ padding: 0 }}>
-                                <ArrowIcon />
-                            </IconButton>
-
+                            {!!galery.length ? (
+                                <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
+                                    {galery.map((image, index) => (
+                                        <Box key={index}>
+                                            <img
+                                                src={"data:image/jpeg;base64," + image}
+                                                alt=""
+                                                style={{
+                                                    height: isMobile ? "" : "95%",
+                                                    width: isMobile ? "" : "95%",
+                                                    margin: "0 auto",
+                                                }}
+                                            />
+                                        </Box>
+                                    ))}
+                                </Carousel>
+                            ) : (
+                                <Skeleton
+                                    variant="rounded"
+                                    animation="wave"
+                                    sx={{ width: isMobile ? "90vw" : "40vw", height: isMobile ? "90vw" : "50vw", margin: "0 auto" }}
+                                />
+                            )}
+                        </Paper>
+                        <Box width={isMobile ? "100%" : "45%"} flexDirection={"column"} gap={isMobile ? "4vw" : "2vw"} flex={1}>
                             <Box
-                                className="quantity"
                                 sx={{
-                                    color: colors.primary,
-                                    fontWeight: "bold",
-                                    fontSize: isMobile ? "5vw" : "2rem",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    padding: isMobile ? "2vw 3vw" : "0 1vw",
-                                    backgroundColor: colors.background_secondary,
-                                    border: `1px solid ${colors.primary}`,
-                                    borderRadius: "1vw",
-                                    width: "12vw",
+                                    flexDirection: "column",
+                                    gap: isMobile ? "4vw" : "1vw",
+                                    width: "100%",
+                                    order: isMobile ? 1 : 2,
                                 }}
                             >
-                                <p>{quantity}</p>
-                            </Box>
-
-                            <IconButton onClick={() => changeQuantity(1)} sx={{ padding: 0 }}>
-                                <ArrowIcon style={{ transform: "rotate(180deg)" }} />
-                            </IconButton>
-                        </Box>
-                        <CurrencyText
-                            value={product.price * quantity}
-                            style={{
-                                // width: isMobile ? "50vw" : "10vw",
-                                color: colors.primary,
-                                display: "flex",
-                                flexDirection: "row-reverse",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                fontSize: isMobile ? "8vw" : "1.5rem",
-                                fontWeight: "bold",
-                                whiteSpace: "nowrap",
-                                // overflow: "hidden",
-                                textOverflow: "ellipsis",
-                            }}
-                        />
-                    </Box>
-                    <ButtonComponent onClick={() => cart.add({ ...product, quantity })} disabled={product.stock == 0}>
-                        {product?.stock == 0 ? "Indisponível" : "Adicionar ao carrinho"}
-                    </ButtonComponent>
-
-                    <Box sx={{ flexDirection: "column", width: "100%", gap: "5vw" }}>
-                        <Box
-                            sx={{
-                                flexDirection: "column",
-                                color: "primary.main",
-                                height: fullDescription ? "auto" : isMobile ? "30vw" : "auto",
-                                overflow: "hidden",
-                            }}
-                            onClick={() => setFullDescription(!fullDescription)}
-                        >
-                            <DataText title="Descrição" value="" />
-                            <pre style={{ textAlign: "start", whiteSpace: "break-spaces" }}>{product.description}</pre>
-                        </Box>
-
-                        {isMobile && (
-                            <Button sx={{ padding: 0 }} onClick={() => setFullDescription(!fullDescription)}>
-                                <Paper sx={{ width: "100%", padding: "3vw", flexDirection: "column", alignItems: "center" }}>
-                                    <DataText
-                                        title={fullDescription ? "Ler menos" : "Ler mais"}
-                                        value=""
-                                        titleSx={{ fontSize: "0.9rem", justifyContent: "flex-start", width: "auto", gap: 0 }}
-                                    />
+                                <Box
+                                    className="numbers"
+                                    sx={{
+                                        justifyContent: isMobile ? "space-between" : "center",
+                                    }}
+                                >
                                     <Box
+                                        className="quantity-container"
                                         sx={{
-                                            width: 0,
-                                            height: 0,
-                                            borderColor: "primary.main",
-                                            borderLeft: "2vw solid transparent",
-                                            borderRight: "2vw solid transparent",
-                                            borderTop: fullDescription ? "" : "3vw solid",
-                                            borderBottom: fullDescription ? "3vw solid" : "",
+                                            alignItems: "center",
+                                            gap: isMobile ? "1vw" : "0.5vw",
+                                        }}
+                                    >
+                                        <IconButton onClick={() => changeQuantity(-1)} sx={{ padding: 0 }}>
+                                            <ArrowIcon />
+                                        </IconButton>
+
+                                        <Box
+                                            className="quantity"
+                                            sx={{
+                                                color: colors.primary,
+                                                fontWeight: "bold",
+                                                fontSize: isMobile ? "5vw" : "1.5rem",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                padding: isMobile ? "2vw 3vw" : "0 1vw",
+                                                backgroundColor: colors.background_secondary,
+                                                border: `1px solid ${colors.primary}`,
+                                                borderRadius: "1vw",
+                                                width: isMobile ? "12vw" : "4vw",
+                                            }}
+                                        >
+                                            <p>{quantity}</p>
+                                        </Box>
+
+                                        <IconButton onClick={() => changeQuantity(1)} sx={{ padding: 0 }}>
+                                            <ArrowIcon style={{ transform: "rotate(180deg)" }} />
+                                        </IconButton>
+                                    </Box>
+                                    <CurrencyText
+                                        value={product.price * quantity}
+                                        style={{
+                                            // width: isMobile ? "50vw" : "10vw",
+                                            color: colors.primary,
+                                            display: "flex",
+                                            flexDirection: "row-reverse",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            fontSize: isMobile ? "8vw" : "1.5rem",
+                                            fontWeight: "bold",
+                                            whiteSpace: "nowrap",
+                                            // overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            marginLeft: "1vw",
                                         }}
                                     />
-                                </Paper>
-                            </Button>
-                        )}
+                                </Box>
+                                <ButtonComponent onClick={() => cart.add({ ...product, quantity })} disabled={product.stock == 0}>
+                                    {product?.stock == 0 ? "Indisponível" : "Adicionar ao carrinho"}
+                                </ButtonComponent>
+                            </Box>
 
-                        {/* <Box sx={{ flexDirection: "column", width: "100%" }}>
+                            <Box sx={{ flexDirection: "column", width: "100%", gap: "5vw", order: isMobile ? 2 : 1 }}>
+                                <Box
+                                    sx={{
+                                        flexDirection: "column",
+                                        color: "primary.main",
+                                        height: descriptionHeight || "auto",
+                                        overflow: "hidden",
+                                        transition: "all 0.3s ease-in-out",
+                                    }}
+                                    ref={descriptionRef}
+                                    onClick={onDescriptionClick}
+                                >
+                                    <DataText title="Descrição" value="" />
+                                    <pre style={{ textAlign: "start", whiteSpace: "break-spaces" }}>{product.description}</pre>
+                                </Box>
+
+                                {
+                                    <Button sx={{ padding: 0 }} onClick={onDescriptionClick}>
+                                        <Paper
+                                            sx={{
+                                                width: isMobile ? "100%" : "fit-content",
+                                                padding: isMobile ? "3vw" : "0.5vw 2vw",
+                                                flexDirection: isMobile ? "column" : "row",
+                                                alignItems: "center",
+                                                gap: isMobile ? "" : "1vw",
+                                            }}
+                                        >
+                                            <DataText
+                                                title={fullDescription ? "Ler menos" : "Ler mais"}
+                                                value=""
+                                                titleSx={{
+                                                    fontSize: isMobile ? "0.9rem" : "1.1rem",
+                                                    justifyContent: "flex-start",
+                                                    width: "auto",
+                                                    gap: 0,
+                                                }}
+                                            />
+                                            <Box
+                                                sx={{
+                                                    width: 0,
+                                                    height: 0,
+                                                    borderColor: "primary.main",
+                                                    borderLeft: isMobile ? "2vw solid transparent" : "0.8vw solid transparent",
+                                                    borderRight: isMobile ? "2vw solid transparent" : "0.8vw solid transparent",
+                                                    borderTop: fullDescription ? (isMobile ? "3vw wsolid" : "") : "0.8vw solid",
+                                                    borderBottom: fullDescription ? (isMobile ? "3vw solid" : "0.8vw solid") : "",
+                                                }}
+                                            />
+                                        </Paper>
+                                    </Button>
+                                }
+
+                                {/* <Box sx={{ flexDirection: "column", width: "100%" }}>
                             <DataText title="Largura" value={`${product.width} cm`} />
                             <DataText title="Altura" value={`${product.height} cm`} />
                             <DataText title="Comprimento" value={`${product.lenght} cm`} />
                             <DataText title="Peso" value={`${product.weight} kg`} />
                             <DataText title="Classificação" value={`${product.ageRating}`} />
                         </Box> */}
+                            </Box>
+                        </Box>
                     </Box>
-
                     <Box color="primary.main">
                         <h3>Produtos similares ({similarProducts.length})</h3>
                     </Box>
