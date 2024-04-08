@@ -20,6 +20,7 @@ import { api } from "../../api"
 import { useConfirmDialog } from "burgos-confirm"
 import { useMenu } from "../../hooks/useMenu"
 import { DefaultWrapper } from "../DefaultWrapper"
+import unmask from "../../tools/unmask"
 
 interface CheckoutProps {}
 
@@ -102,12 +103,12 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 name: values.name,
                 notes: values.notes,
                 phone: values.phone,
-                postcode: values.postalcode,
+                postcode: unmask(values.postalcode),
                 district: values.district,
                 number: values.number,
                 state: values.state,
                 complement: values.complement,
-                cpf: values.cpf,
+                cpf: unmask(values.cpf),
 
                 products: cart.products.map((item) => ({ ...item, cover: "" })),
                 total: cart.total,
@@ -134,7 +135,6 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             api_helper.order.new({
                 data,
                 callback: (response) => {
-                    setMakingOrder(false)
                     console.log(response.data)
                     setPayingOrderId(response.data.order.id)
                 },
@@ -143,7 +143,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     })
 
     useEffect(() => {
-        if (!cart.products.length) {
+        if (!cart.products.length && !makingOrder) {
             navigate("/")
         }
     }, [cart.products])
