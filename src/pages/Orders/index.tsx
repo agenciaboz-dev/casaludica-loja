@@ -20,11 +20,13 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
     const { franchise } = useFranchise()
 
     const [orders, setOrders] = useState<Order[]>([])
+    const [empty, setEmpty] = useState(false)
 
     useEffect(() => {
         api.order.get.user(user.id).then((response) => {
             setOrders(response.data.orders)
             console.log({ orders_response: response?.data.orders })
+            if (response.data.orders.length == 0) setEmpty(true)
         })
     }, [franchise])
 
@@ -39,23 +41,20 @@ const UserWrapper: React.FC<{ user: User }> = ({ user }) => {
                 paddingBottom: isMobile ? "10vw" : "5vw",
             }}
         >
-            {!!orders.length ? (
+            {empty ? (
+                <h3 style={{ textAlign: "center" }}>Nenhum pedido encontrado</h3>
+            ) : !!orders.length ? (
                 <>
                     {orders
                         .sort((a, b) => b.id - a.id)
                         .map((order) => (
-                            <OrderComponent order={order} viewOrder />
+                            <OrderComponent order={order} viewOrder key={order.id} />
                         ))}
                 </>
             ) : (
                 <>
                     {skeletons.map((index) => (
-                        <Skeleton
-                            variant="rounded"
-                            animation="wave"
-                            key={index}
-                            sx={{ width: "100%", height: isMobile ? "100vw" : "50vw" }}
-                        />
+                        <Skeleton variant="rounded" animation="wave" key={index} sx={{ width: "100%", height: isMobile ? "100vw" : "50vw" }} />
                     ))}
                 </>
             )}
