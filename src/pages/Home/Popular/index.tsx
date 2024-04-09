@@ -22,7 +22,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
 
     useEffect(() => {
         if (franchise) {
-            api.products.list((response: { data: Product[] }) => setPopular(response.data.sort((a, b) => b.sold - a.sold).slice(0, 5)))
+            api.products.list((response: { data: Product[] }) => setPopular(response.data.sort((a, b) => b.sold - a.sold).slice(0, 6)))
         }
     }, [franchise])
 
@@ -71,6 +71,9 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                     ))}
                     {popular.length == 0 && (
                         <>
+                            <Grid item>
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                            </Grid>
                             <Grid item>
                                 <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
                             </Grid>
