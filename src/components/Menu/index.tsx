@@ -192,11 +192,10 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                                 </Button>
                                 <Box
                                     sx={{
-                                        alignItems: "end",
-                                        gap: "10px",
+                                        gap: isMobile ? "10px" : "1vw",
                                     }}
                                 >
-                                    <p style={{ fontSize: isMobile ? "2.5vw" : "1vw", paddingBottom: "2px" }}>ou</p>
+                                    <p style={{ fontSize: isMobile ? "3vw" : "0.8rem", paddingBottom: "2px", alignSelf: "end" }}>ou</p>
                                     <Button
                                         sx={buttonStyle}
                                         onClick={() => {
