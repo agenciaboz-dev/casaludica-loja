@@ -270,7 +270,15 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     <SignupContainer onSignup={onSignup} />
                 </Box>
             ) : (
-                <Box sx={{ flexDirection: "column", paddingTop: isMobile ? "3vw" : "1vw" }}>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        paddingTop: isMobile ? "3vw" : "1vw",
+                        whiteSpace: "nowrap",
+                        overflowX: "hidden",
+                        textOverflow: "ellipsis",
+                    }}
+                >
                     {links.map((link) => (
                         <LinkContainer key={link.id} link={link} />
                     ))}
