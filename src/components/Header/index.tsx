@@ -75,7 +75,7 @@ export const Header = () => {
                             right: "1vw",
                         }}
                     >
-                        <IconButton color="secondary" sx={{}} onClick={() => cart.setOpen(true)}>
+                        <IconButton color="secondary" sx={{ padding: 0 }} onClick={() => cart.setOpen(true)}>
                             <CartIcon
                                 style={{
                                     flex: 1,
