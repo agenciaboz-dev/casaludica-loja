@@ -40,7 +40,7 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                 gap: isMobile ? "3vw" : "1vw",
                 overflow: "hidden",
                 width: 1,
-                minHeight: isMobile ? "15vw" : "fit-content",
+                minHeight: isMobile ? "40vw" : "fit-content",
             }}
             ref={productRef}
         >
