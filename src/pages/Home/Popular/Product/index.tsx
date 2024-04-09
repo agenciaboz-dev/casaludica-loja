@@ -20,22 +20,22 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     const productRef = useDynamicImage(product)
 
     return (
-        <MenuItem
+        <Box
             ref={productRef}
-            className="Product-Component"
             style={{ backgroundImage: `url(data:image/jpeg;base64,${product.cover})` }}
             onClick={() => navigate(`/product/${product.id}`)}
             sx={{
                 borderRadius: isMobile ? "1vw" : "0.5vw",
                 boxShadow: "0 2px 3px rgba(0, 0, 0, 0.4)",
-                flexShrink: "0",
-                width: isMobile ? "40vw" : "15vw",
+                // flexShrink: "0",
+                width: isMobile ? "40vw" : "100%",
                 height: isMobile ? "50vw" : "15vw",
                 backgroundColor: "white",
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 // backgroundPosition: "center",
-                padding: isMobile ? "2vw" : "1vw",
+                padding: isMobile ? "2vw" : "0.5vw",
+                pb: isMobile ? "" : "1vw",
             }}
         >
             {/* <Avatar src={product.cover} sx={{width: '30vw', height: '30vw'}} /> */}
@@ -61,10 +61,11 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         <p
                             className="name"
                             style={{
-                                whiteSpace: isMobile ? "nowrap" : "normal",
-                                width: isMobile ? "20vw" : "auto",
+                                whiteSpace: "nowrap",
+                                width: isMobile ? "20vw" : "8vw",
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
+                                fontSize: isMobile ? "" : "0.8rem",
                             }}
                         >
                             {product.name}
@@ -72,7 +73,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         <CurrencyText value={product.price} color={colors.pink} />
                     </Box>
                     <IconButton
-                        sx={{ backgroundColor: colors.primary, width: isMobile ? "9vw" : "3vw", height: isMobile ? "9vw" : "3vw" }}
+                        sx={{ backgroundColor: colors.primary, width: isMobile ? "9vw" : "2.3rem", height: isMobile ? "9vw" : "2.3rem" }}
                         onClick={() => cart.add(product)}
                         disabled={product.stock == 0}
                     >
@@ -80,14 +81,8 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     </IconButton>
                 </Box>
             ) : (
-                <Skeleton
-                    sx={{ flexShrink: 0 }}
-                    variant="rounded"
-                    width={isMobile ? "35vw" : "13vw"}
-                    height={isMobile ? "45vw" : "13vw"}
-                    animation="wave"
-                />
+                <Skeleton variant="rounded" width={isMobile ? "35vw" : "100%"} height={isMobile ? "45vw" : "100%"} animation="wave" />
             )}
-        </MenuItem>
+        </Box>
     )
 }
