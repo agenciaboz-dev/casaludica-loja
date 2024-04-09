@@ -88,14 +88,15 @@ export const Social: React.FC<SocialProps> = ({}) => {
             >
                 <Carousel
                     showThumbs={false}
+                    showArrows={isMobile ? false : true}
                     autoPlay
                     infiniteLoop
                     interval={5000}
                     transitionTime={1000}
                     showStatus={false}
                     centerMode={true}
-                    centerSlidePercentage={isMobile ? 100 : 33.33}
-                    width={"80vw"}
+                    centerSlidePercentage={isMobile ? 100 : 20}
+                    width={"100vw"}
                 >
                     {posts.map((post) => (
                         <InstagramPostContainer key={post.id} post={post} />
