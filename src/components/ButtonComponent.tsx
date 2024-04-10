@@ -7,12 +7,13 @@ export const ButtonComponent: React.FC<ButtonProps> = (props) => {
         borderRadius: "20vw",
         border: "none",
         color: "white",
-        fontSize: isMobile ? "4vw" : "1.2rem",
+        fontSize: isMobile ? "4vw" : "1rem",
         padding: isMobile ? "3vw" : "0.5vw 2vw",
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "BowlbyOneSC",
         textTransform: "unset",
+        whiteSpace: "nowrap",
     }
 
     return (
