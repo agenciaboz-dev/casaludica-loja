@@ -81,32 +81,17 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                 <Grid container spacing={2} sx={{ marginBottom: "10vw" }} columns={isMobile ? 1 : 3}>
                     {skeletons.map((index) => (
                         <Grid item key={index} xs={1}>
-                            <Skeleton
-                                key={index}
-                                animation="wave"
-                                variant="rounded"
-                                sx={{ width: isMobile ? "80vw" : "100%", height: isMobile ? "45vw" : "15vw" }}
-                            />
+                            <Skeleton key={index} animation="wave" variant="rounded" sx={{ width: "100%", height: isMobile ? "45vw" : "15vw" }} />
                         </Grid>
                     ))}
                     {skeletons.map((index) => (
                         <Grid item key={index} xs={1}>
-                            <Skeleton
-                                key={index}
-                                animation="wave"
-                                variant="rounded"
-                                sx={{ width: isMobile ? "80vw" : "100%", height: isMobile ? "45vw" : "15vw" }}
-                            />
+                            <Skeleton key={index} animation="wave" variant="rounded" sx={{ width: "100%", height: isMobile ? "45vw" : "15vw" }} />
                         </Grid>
                     ))}
                     {skeletons.map((index) => (
                         <Grid item key={index} xs={1}>
-                            <Skeleton
-                                key={index}
-                                animation="wave"
-                                variant="rounded"
-                                sx={{ width: isMobile ? "80vw" : "100%", height: isMobile ? "45vw" : "15vw" }}
-                            />
+                            <Skeleton key={index} animation="wave" variant="rounded" sx={{ width: "100%", height: isMobile ? "45vw" : "15vw" }} />
                         </Grid>
                     ))}
                 </Grid>
