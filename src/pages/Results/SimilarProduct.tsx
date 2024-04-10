@@ -16,17 +16,6 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
 
     const productRef = useDynamicImage(product)
 
-    // const skeleton_style = {
-    //     height: isMobile ? "8vw" : "2vw",
-    //     width: "100%",
-    // }
-
-    // const image_skeleton_style = {
-    //     height: isMobile ? "40vw" : "15vw",
-    //     width: isMobile ? "40vw" : "15vw",
-    //     borderRadius: isMobile ? "5vw" : "1vw",
-    // }
-
     // const button_Style = {
     //     borderRadius: isMobile ? "20vw" : "2vw",
     //     border: "none",
@@ -47,32 +36,26 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
     //         color: $primary-color;
     //     }
 
-    //     .skeletons-container {
-    //         flex-direction: column;
-    //         gap: 3vw;
-    //         align-items: center;
-    //     }
     //     .results-container {
     //         margin-bottom: 10vw;
     //     }
     // }
 
+    // className="results-container"
+    // style={{
+    //     flexDirection: "row",
+    //     alignItems: "center",
+    //     justifyContent: "space-around",
+    // }}
+
     return (
         <Paper
-            // className="results-container"
-            // style={{
-            //     flexDirection: "row",
-            //     alignItems: "center",
-            //     justifyContent: "space-around",
-            // }}
-
             elevation={2}
             sx={{
                 width: "100%",
                 gap: isMobile ? "3vw" : "1.5vw",
                 borderRadius: isMobile ? "5vw" : "2vw",
                 padding: isMobile ? "4vw" : "1vw",
-                border: "1px solid red",
             }}
             key={product.id}
             onClick={() => navigate(`/product/${product.id}`)}
@@ -83,20 +66,23 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
-                        sx={{ width: isMobile ? "35vw" : "15vw", height: isMobile ? "35vw" : "15vw", borderRadius: isMobile ? "5vw" : "0" }}
+                        sx={{ width: isMobile ? "35vw" : "11vw", height: isMobile ? "35vw" : "11vw", borderRadius: isMobile ? "5vw" : "2vw" }}
                     />
                     <Box sx={{ flexDirection: "column", alignItems: "center" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
                             <Box
                                 sx={{
-                                    color: "primary.main",
-                                    textAlign: "start",
-                                    textOverflow: "ellipsis",
-                                    whiteSpace: "nowrap",
-                                    overflow: "hidden",
-                                    width: isMobile ? "32vw" : "100%",
                                     fontFamily: "BowlbyOneSC",
-                                    fontSize: isMobile ? "0.7rem" : "",
+                                    color: "primary.main",
+                                    fontSize: isMobile ? "0.7rem" : "1.2rem",
+                                    textAlign: "start",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    whiteSpace: "normal",
+                                    width: isMobile ? "32vw" : "12vw",
+                                    display: "-webkit-box",
+                                    WebkitBoxOrient: "vertical",
+                                    WebkitLineClamp: 1,
                                 }}
                             >
                                 {product.name}
@@ -104,7 +90,7 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                             <Box
                                 sx={{
                                     color: "#000",
-                                    fontSize: isMobile ? "0.7rem" : "",
+                                    fontSize: isMobile ? "0.7rem" : "0.9rem",
                                     textAlign: "start",
                                     overflow: "hidden",
                                     textOverflow: "ellipsis",
@@ -114,7 +100,7 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                                     textTransform: "lowercase",
                                     display: "-webkit-box",
                                     WebkitBoxOrient: "vertical",
-                                    WebkitLineClamp: 3, // Defina o número máximo de linhas que deseja exibir
+                                    WebkitLineClamp: 3,
                                 }}
                             >
                                 {product.description}
@@ -139,6 +125,8 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                             fullWidth
                             sx={{
                                 borderRadius: isMobile ? "20vw" : "2vw",
+                                mt: isMobile ? "2vw" : "1vw",
+
                                 color: "white",
                                 justifyContent: "center",
                                 alignItems: "center",
@@ -152,17 +140,22 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                     </Box>
                 </>
             ) : (
-                <Box>
-                    {/* sx={{ gap: isMobile ? "3vw" : "2vw", width: "90vw", alignItems: "center" }} */}
-                    <Skeleton animation="wave" variant="rounded" />
-                    {/* sx={image_skeleton_style} */}
+                <Box sx={{ gap: isMobile ? "3vw" : "2vw", width: isMobile ? "90vw" : "24vw", alignItems: "center" }}>
+                    <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        sx={{
+                            height: isMobile ? "35vw" : "11vw",
+                            width: isMobile ? "35vw" : "11vw",
+                            borderRadius: isMobile ? "5vw" : "1vw",
+                        }}
+                    />
 
                     <Box sx={{ width: isMobile ? "45%" : "100%", flexDirection: "column", gap: "2vw" }}>
-                        <Skeleton animation="wave" variant="rounded" />
-                        <Skeleton animation="wave" variant="rounded" />
-                        <Skeleton animation="wave" variant="rounded" />
-                        <Skeleton animation="wave" variant="rounded" />
-                        {/* sx={skeleton_style} */}
+                        <Skeleton animation="wave" variant="rounded" sx={{ width: "100%" }} />
+                        <Skeleton animation="wave" variant="rounded" sx={{ width: "100%" }} />
+                        <Skeleton animation="wave" variant="rounded" sx={{ width: "100%" }} />
+                        <Skeleton animation="wave" variant="rounded" sx={{ width: "100%" }} />
                     </Box>
                 </Box>
             )}
