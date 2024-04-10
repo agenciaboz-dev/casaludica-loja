@@ -85,7 +85,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
 
             if (
                 !Object.entries(values).every(([key, value]) => {
-                    if (["company", "complement", "notes"].includes(key)) return true
+                    if (["company", "complement", "notes", "profilePicUrl"].includes(key)) return true
                     if (!value) {
                         console.log({ missing_key: key })
                         return false
@@ -95,6 +95,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 })
             ) {
                 snackbar({ severity: "warning", text: "preencha todos os dados obrigatórios" })
+
                 return
             }
 
