@@ -36,6 +36,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 // backgroundPosition: "center",
                 padding: isMobile ? "2vw" : "0.5vw",
                 pb: isMobile ? "" : "1vw",
+                cursor: "pointer",
             }}
         >
             {/* <Avatar src={product.cover} sx={{width: '30vw', height: '30vw'}} /> */}
