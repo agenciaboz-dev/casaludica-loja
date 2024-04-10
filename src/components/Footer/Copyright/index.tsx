@@ -13,7 +13,7 @@ export const Copyright: React.FC<CopyrightProps> = ({}) => {
         <Box
             className="Copyright-Component"
             style={{
-                margin: isMobile ? "10vw 0" : "0 0 5vw",
+                margin: isMobile ? "10vw 0" : "0 0 3vw",
                 width: "100%",
                 flexDirection: "column",
                 textAlign: "center",
