@@ -122,13 +122,11 @@ export const OrderComponent: React.FC<OrderComponentProps> = ({ order, viewOrder
                     sx={{
                         flexDirection: "column",
                         alignItems: "flex-start",
-                        gap: isMobile ? "5vw" : "1vw",
+                        gap: isMobile ? "5vw" : "2vw",
                         padding: isMobile ? "3vw" : "1vw",
                         borderRadius: isMobile ? "5vw" : "1vw",
                         border: "1px solid gray",
                         height: "fit-content",
-                        overflowY: "auto",
-                        maxHeight: "50vw",
                     }}
                 >
                     {!!order.products.length

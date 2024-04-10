@@ -40,7 +40,6 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                 gap: isMobile ? "3vw" : "1vw",
                 overflow: "hidden",
                 width: 1,
-                minHeight: isMobile ? "40vw" : "fit-content",
             }}
             ref={productRef}
         >
@@ -73,7 +72,7 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                     >
                         <Box sx={{ flexDirection: "column", width: 1 }}>
                             <Box sx={{ width: 1, overflow: "hidden" }}>
-                                <Box sx={{ flexDirection: "column", width: 1, gap: isMobile ? "2vw" : "0.5vw" }}>
+                                <Box sx={{ flexDirection: "column", width: 1, gap: isMobile ? "1vw" : "0.5vw" }}>
                                     <Box sx={{ width: "100%" }}>
                                         <div
                                             style={{
@@ -88,7 +87,7 @@ export const Product: React.FC<ProductProps> = ({ product, hideCloseButton }) =>
                                             {product.name}
                                         </div>
                                     </Box>
-                                    <Box sx={{ flexDirection: "column", gap: isMobile ? "2vw" : "0.5vw" }}>
+                                    <Box sx={{ flexDirection: "column", gap: isMobile ? "1vw" : "0.5vw" }}>
                                         <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>Quantidade: {product.quantity} </p>
                                         <p style={{ fontSize: isMobile ? "3.3vw" : "1rem" }}>
                                             Preço unitário: <CurrencyText value={product.price} style={current_text_style} />
