@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Dialog } from "@mui/material"
+import { Box, Dialog, useMediaQuery } from "@mui/material"
 import { BozPay } from "boz.pay.component"
 import { useFranchise } from "../hooks/useFranchise"
 import backdropStyle from "../style/blurred_backdrop"
@@ -16,6 +16,7 @@ interface PayModalProps {
 
 export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
     const navigate = useNavigate()
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     const { franchise, bozpayStoreIdentifier } = useFranchise()
     const { reset } = useCart()
@@ -35,10 +36,10 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
     return franchise ? (
         <Dialog
             open={open}
-            sx={{ width: "100vw", height: "90vh", justifyContent: "center", alignItems: "center" }}
+            sx={{ width: "100vw", height: orderButton ? "90vh" : "100vh", justifyContent: "center", alignItems: "center" }}
             PaperProps={{ sx: { borderRadius: "5vw", maxWidth: "100vw", margin: "0 5vw" } }}
             slotProps={{ backdrop: { sx: backdropStyle } }}
-            onClose={close}
+            // onClose={close}
         >
             <Box sx={{ height: "fit-content", flexDirection: "column", alignItems: "center" }}>
                 {!!orderId && (
@@ -59,13 +60,13 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
                         storeIdentifier={bozpayStoreIdentifier}
                         referenceId={orderId}
                         sandbox
-                        wrapperSx={{ width: "100%", alignSelf: "center" }}
+                        wrapperSx={{ width: isMobile ? "100%" : "90vw" }}
                         onPaid={onPaid}
                     />
                 )}
             </Box>
             <Dialog open={orderButton} hideBackdrop PaperProps={{ sx: { display: "contents" } }} sx={{ justifyContent: "center" }}>
-                <Box sx={{ position: "absolute", bottom: "10vw", width: "90vw", p: "1vw" }}>
+                <Box sx={{ position: "absolute", bottom: isMobile ? "10vw" : "1vw", width: "90vw", p: "1vw" }}>
                     <ButtonComponent fullWidth onClick={() => navigate(`/order/${orderId}`)}>
                         Visualizar pedido
                     </ButtonComponent>
