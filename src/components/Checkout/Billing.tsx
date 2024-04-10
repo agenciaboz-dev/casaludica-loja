@@ -178,7 +178,11 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                         multiline
                         minRows={3}
                     />
-                    <ButtonComponent type="submit">{makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}</ButtonComponent>
+                    {isMobile && (
+                        <ButtonComponent type="submit">
+                            {makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}
+                        </ButtonComponent>
+                    )}
                 </Paper>
             </form>
         </Box>
