@@ -17,7 +17,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     const navigate = useNavigate()
     const colors = useColors()
     const ref = useRef<HTMLElement>() as React.MutableRefObject<HTMLInputElement>
-    const { events } = useDraggable(ref)
+    const { events } = useDraggable(ref, { applyRubberBandEffect: true })
 
     const search = (category: Category) => {
         navigate(`/search/category/${category.id}`)
@@ -36,6 +36,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                     marginLeft: isMobile ? "-5vw" : "-10vw",
                     overflowX: "auto",
                     padding: isMobile ? "1vw 5vw" : "0.5vw 10vw",
+                    scrollbarWidth: "none",
                 }}
             >
                 {categories.map((category) => (
