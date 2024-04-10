@@ -1,5 +1,5 @@
-import React from 'react';
-import { useCategories } from '../../../hooks/useCategories';
+import React, { useRef } from "react"
+import { useCategories } from "../../../hooks/useCategories"
 //import './style.scss';
 import { Avatar, Box, MenuItem, Skeleton, alpha, useMediaQuery } from "@mui/material"
 import BrokenImageIcon from "@mui/icons-material/BrokenImage"
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { useColors } from "../../../hooks/useColors"
 import { sentenceCase } from "change-case"
 import CategoryIcon from "@mui/icons-material/Category"
+import { useDraggable } from "react-use-draggable-scroll"
 
 interface CategoriesProps {}
 
@@ -15,6 +16,8 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     const { categories } = useCategories()
     const navigate = useNavigate()
     const colors = useColors()
+    const ref = useRef<HTMLElement>() as React.MutableRefObject<HTMLInputElement>
+    const { events } = useDraggable(ref)
 
     const search = (category: Category) => {
         navigate(`/search/category/${category.id}`)
@@ -24,6 +27,8 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
         <Box className="Categories-Component" sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: isMobile ? "1vw" : "0" }}>
             <h3 style={{ fontSize: isMobile ? "5vw" : "1.5rem" }}>Categorias</h3>
             <Box
+                ref={ref}
+                {...events}
                 className="categories-container"
                 sx={{
                     gap: isMobile ? "3vw" : "1vw",
