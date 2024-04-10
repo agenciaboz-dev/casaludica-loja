@@ -16,9 +16,9 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                 elevation={5}
                 sx={{
                     flexDirection: "column",
-                    borderRadius: "4.5vw",
+                    borderRadius: isMobile ? "4.5vw" : "2vw",
                     gap: isMobile ? "5vw" : "2vw",
-                    padding: isMobile ? "6vw" : "3.5vw",
+                    padding: isMobile ? "6vw" : "2vw",
                     color: "#686868",
                 }}
             >
