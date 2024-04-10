@@ -63,7 +63,17 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     >
                         <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>
-                    <h2 style={{ fontSize: isMobile ? "5vw" : "1.2rem" }}>{product.name}</h2>
+                    <h2
+                        style={{
+                            fontSize: isMobile ? "5vw" : "1.2rem",
+                            width: isMobile ? "40vw" : "13vw",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                        }}
+                    >
+                        {product.name}
+                    </h2>
                     <CurrencyText value={product.price} color={"#686868"} style={{ fontWeight: "bold" }} />
 
                     <ButtonComponent sx={{ fontWeight: "400" }} onClick={() => cart.add(product)} disabled={product.stock == 0}>

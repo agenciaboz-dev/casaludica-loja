@@ -23,7 +23,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
 
     const style_skeleton: SxProps = {
         width: isMobile ? "43vw" : "15vw",
-        height: isMobile ? "75vw" : "23vw",
+        height: isMobile ? "75vw" : "22vw",
 
         ".skeleton:nth-child(2n)": {
             marginTop: "-10vw",
@@ -31,7 +31,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
     }
     useEffect(() => {
         if (franchise) {
-            api.products.category("13", {
+            api.products.category("11", {
                 callback: (response: { data: Product[] }) => {
                     setProducts(response.data)
                 },
@@ -44,7 +44,15 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
             {isMobile && !isTablet && (
                 <BackgroundImage className="background" style={{ position: "absolute", top: "-35vw", left: "-5vw", zIndex: "-1", width: " 100vw" }} />
             )}
-            <h3 style={{ fontSize: isMobile ? "5.5vw" : "2rem", width: "40vw", color: colors.primary }}>{title}</h3>
+            <h3
+                style={{
+                    fontSize: isMobile ? "5.5vw" : "2rem",
+                    width: "40vw",
+                    color: colors.primary,
+                }}
+            >
+                {title}
+            </h3>
             <Box
                 className="product-list"
                 sx={{
