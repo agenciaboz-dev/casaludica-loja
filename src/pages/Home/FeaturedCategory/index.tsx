@@ -38,20 +38,17 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
     }, [franchise])
 
     return (
-        <Box
-            className="FeaturedCategory-Component"
-            sx={{ position: "relative", width: "100%", flexDirection: "column", gap: "1vw", color: colors.primary }}
-        >
+        <Box className="FeaturedCategory-Component" sx={{ position: "relative", width: "100%", flexDirection: "column", gap: "1vw" }}>
             {isMobile && (
                 <BackgroundImage className="background" style={{ position: "absolute", top: "-35vw", left: "-5vw", zIndex: "-1", width: " 100vw" }} />
             )}
-            <h3 style={{ fontSize: isMobile ? "5.5vw" : "2rem", width: "40vw" }}>{title}</h3>
+            <h3 style={{ fontSize: isMobile ? "5.5vw" : "2rem", width: "40vw", color: colors.primary }}>{title}</h3>
             <Box
                 className="product-list"
                 sx={{
                     flexWrap: "wrap",
-                    justifyContent: "space-between",
-                    gap: "3vw",
+                    justifyContent: "center",
+                    gap: isMobile ? "3vw" : "1vw",
                     "& .Product-Component:nth-child(2n)": { marginTop: isMobile ? "-17vw" : "" },
                 }}
             >

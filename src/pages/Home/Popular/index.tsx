@@ -64,7 +64,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                 <Grid container spacing={2} columns={2}>
                     <Grid item xs={1}>
                         <Box sx={{ height: "100%", alignItems: "center", width: "100%" }}>
-                            <h3 style={{ fontSize: "3.2rem" }}>
+                            <h3 style={{ fontSize: "2.5rem" }}>
                                 Mais curtidos
                                 <br />
                                 pela galerinha
@@ -73,14 +73,14 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                         </Box>
                     </Grid>
                     <Grid item xs={1}>
-                        <Box sx={{ gap: "0.5vw" }}>
+                        <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
                             {popular.slice(0, 3).map((product) => (
                                 <Container product={product} />
                             ))}
                         </Box>
                     </Grid>
                     <Grid item xs={1}>
-                        <Box sx={{ gap: "0.5vw" }}>
+                        <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
                             {popular.slice(3, 6).map((product) => (
                                 <Container product={product} />
                             ))}
@@ -95,10 +95,10 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                                 height: "100%",
                             }}
                         >
-                            <h3 style={{ fontSize: "3.2rem" }}>Não fique de fora!</h3>
+                            <h3 style={{ fontSize: "2.5rem", textAlign: "end" }}>Não fique de fora!</h3>
                             <Button
                                 sx={{
-                                    fontSize: "3.2rem",
+                                    fontSize: "2.5rem",
                                     textDecoration: "underline",
                                     pt: 0,
                                     pb: 0,
