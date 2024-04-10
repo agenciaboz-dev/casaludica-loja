@@ -19,6 +19,7 @@ import { ProductContainer } from "../Results/ProductContainer"
 import { Footer } from "../../components/Footer"
 import useMeasure from "react-use-measure"
 import { SimilarProduct } from "../Results/SimilarProduct"
+import { useDraggable } from "react-use-draggable-scroll"
 
 interface ProductProps {}
 interface DataTextProps {
@@ -74,13 +75,16 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const [descriptionRef, { height }] = useMeasure()
     const initialDescriptionHeight = isMobile ? "30vw" : "20vw"
     const max_height = useRef(height)
+    // const scrollRef = useRef<HTMLElement>() as React.MutableRefObject<HTMLInputElement>
+    // console.log(scrollRef)
+    // const { events } = useDraggable(scrollRef, { applyRubberBandEffect: true })
 
     const [product, setProduct] = useState<Product>()
     const [category, setCategory] = useState<Category>()
     const [galery, setGalery] = useState<string[]>([])
     const [quantity, setQuantity] = useState(1)
     const [descriptionHeight, setDescriptionHeight] = useState<number | string>(0)
-
+    // const [heightControl, setHeightControl] = useState(false)
     const similarProducts = products.filter((item) => item.category == product?.category && item.id != product?.id)
     const fullDescription = descriptionHeight == max_height.current
 
@@ -262,7 +266,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 <Skeleton
                                     variant="rounded"
                                     animation="wave"
-                                    sx={{ width: isMobile ? "90vw" : "40vw", height: isMobile ? "90vw" : "50vw", margin: "0 auto" }}
+                                    sx={{ width: isMobile ? "90vw" : "37vw", height: isMobile ? "90vw" : "37vw", margin: "0 auto" }}
                                 />
                             )}
                         </Paper>
@@ -343,6 +347,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         flexDirection: "column",
                                         color: "primary.main",
                                         height: descriptionHeight || "auto",
+                                        //height: initialDescriptionHeight < max_height ? descriptionHeight : "auto"
                                         overflow: "hidden",
                                         transition: "all 0.3s ease-in-out",
                                     }}
@@ -390,12 +395,12 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 }
 
                                 {/* <Box sx={{ flexDirection: "column", width: "100%" }}>
-                            <DataText title="Largura" value={`${product.width} cm`} />
-                            <DataText title="Altura" value={`${product.height} cm`} />
-                            <DataText title="Comprimento" value={`${product.lenght} cm`} />
-                            <DataText title="Peso" value={`${product.weight} kg`} />
-                            <DataText title="Classificação" value={`${product.ageRating}`} />
-                        </Box> */}
+                                <DataText title="Largura" value={`${product.width} cm`} />
+                                <DataText title="Altura" value={`${product.height} cm`} />
+                                <DataText title="Comprimento" value={`${product.lenght} cm`} />
+                                <DataText title="Peso" value={`${product.weight} kg`} />
+                                <DataText title="Classificação" value={`${product.ageRating}`} />
+                                </Box> */}
                             </Box>
                         </Box>
                     </Box>
@@ -403,8 +408,10 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         <h3>Produtos similares ({similarProducts.length})</h3>
                     </Box>
                     <Box
+                        // ref={scrollRef}
+                        // {...events}
                         sx={{
-                            gap: isMobile ? "5vw" : "1vw",
+                            gap: isMobile ? "5vw" : "2vw",
                             width: "100vw",
                             overflowX: "auto",
                             marginLeft: isMobile ? "-5vw" : "-10vw",
