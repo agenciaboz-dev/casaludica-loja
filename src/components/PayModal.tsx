@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Dialog } from "@mui/material"
+import { Box, Dialog, useMediaQuery } from "@mui/material"
 import { BozPay } from "boz.pay.component"
 import { useFranchise } from "../hooks/useFranchise"
 import backdropStyle from "../style/blurred_backdrop"
@@ -16,6 +16,7 @@ interface PayModalProps {
 
 export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
     const navigate = useNavigate()
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     const { franchise, bozpayStoreIdentifier } = useFranchise()
     const { reset } = useCart()
@@ -35,37 +36,37 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
     return franchise ? (
         <Dialog
             open={open}
-            sx={{ width: "100vw", height: "90vh", justifyContent: "center", alignItems: "center" }}
+            sx={{ width: "100vw", height: orderButton ? "90vh" : "100vh", justifyContent: "center", alignItems: "center" }}
             PaperProps={{ sx: { borderRadius: "5vw", maxWidth: "100vw", margin: "0 5vw" } }}
             slotProps={{ backdrop: { sx: backdropStyle } }}
-            onClose={close}
+            // onClose={close}
         >
             <Box sx={{ height: "fit-content", flexDirection: "column", alignItems: "center" }}>
                 {!!orderId && (
-                    <BozPay
-                        pagseguroToken={franchise.pagseguro_token}
-                        pagseguroTokenSandbox={franchise.pagseguro_token_sandbox}
-                        creditCardPublicKey={franchise.credit_card_public_key}
-                        storeIdentifier={bozpayStoreIdentifier}
-                        referenceId={orderId}
-                        sandbox
-                        wrapperSx={{ width: "100%", alignSelf: "center" }}
-                        onPaid={onPaid}
-                    />
                     // <BozPay
-                    //     pagseguroToken="5e137c4a-acd6-433a-83a7-736815c6995b0ad8f02a47329494fac489b021d5ab384b54-9b9f-4140-b4cf-4675e700a829"
-                    //     pagseguroTokenSandbox="1BD9D2D2181B4660BAFC9426CA5A63A9"
-                    //     creditCardPublicKey="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApv7yDaw4aK+JNxjhxH7P1eTxZvoMfL2S4RifLUUB0+KBlN6uvKVj40wiBhLH7O9EPZeoVdApoK0M78Kol9LT3LYU4jQ0dFeeTeD/NV3AUguVBdJdIu8cUs0+oVvWAB4e0niEgax480x/Go7XG1ffvYAaYkO5FTeEH4qrwbz13a4ALPZ93ge6c6xZVspzAZc+WVnxcLeeoMoD4xz8DZS2LbqwOF9ee8Pcb8ybdr8p0vJL056Kb8AKYZ1mZ88nsdIqmR1jZ+BqRH6zMHW6UCVX6NgqWPkwemsfr2R5S+1EnHGH7ZAiUtRzCpejGVV33PIgOlb7j4JcCvQ6YP07AiiF3QIDAQAB"
+                    //     pagseguroToken={franchise.pagseguro_token}
+                    //     pagseguroTokenSandbox={franchise.pagseguro_token_sandbox}
+                    //     creditCardPublicKey={franchise.credit_card_public_key}
                     //     storeIdentifier={bozpayStoreIdentifier}
                     //     referenceId={orderId}
                     //     sandbox
                     //     wrapperSx={{ width: "100%", alignSelf: "center" }}
                     //     onPaid={onPaid}
                     // />
+                    <BozPay
+                        pagseguroToken="5e137c4a-acd6-433a-83a7-736815c6995b0ad8f02a47329494fac489b021d5ab384b54-9b9f-4140-b4cf-4675e700a829"
+                        pagseguroTokenSandbox="1BD9D2D2181B4660BAFC9426CA5A63A9"
+                        creditCardPublicKey="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApv7yDaw4aK+JNxjhxH7P1eTxZvoMfL2S4RifLUUB0+KBlN6uvKVj40wiBhLH7O9EPZeoVdApoK0M78Kol9LT3LYU4jQ0dFeeTeD/NV3AUguVBdJdIu8cUs0+oVvWAB4e0niEgax480x/Go7XG1ffvYAaYkO5FTeEH4qrwbz13a4ALPZ93ge6c6xZVspzAZc+WVnxcLeeoMoD4xz8DZS2LbqwOF9ee8Pcb8ybdr8p0vJL056Kb8AKYZ1mZ88nsdIqmR1jZ+BqRH6zMHW6UCVX6NgqWPkwemsfr2R5S+1EnHGH7ZAiUtRzCpejGVV33PIgOlb7j4JcCvQ6YP07AiiF3QIDAQAB"
+                        storeIdentifier={bozpayStoreIdentifier}
+                        referenceId={orderId}
+                        sandbox
+                        wrapperSx={{ width: isMobile ? "100%" : "90vw" }}
+                        onPaid={onPaid}
+                    />
                 )}
             </Box>
             <Dialog open={orderButton} hideBackdrop PaperProps={{ sx: { display: "contents" } }} sx={{ justifyContent: "center" }}>
-                <Box sx={{ position: "absolute", bottom: "10vw", width: "90vw", p: "1vw" }}>
+                <Box sx={{ position: "absolute", bottom: isMobile ? "10vw" : "1vw", width: "90vw", p: "1vw" }}>
                     <ButtonComponent fullWidth onClick={() => navigate(`/order/${orderId}`)}>
                         Visualizar pedido
                     </ButtonComponent>

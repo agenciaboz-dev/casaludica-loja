@@ -63,7 +63,6 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                         name="cpf"
                         onChange={formik.handleChange}
                         InputProps={{
-                            readOnly: user ? true : false,
                             sx: inputStyle,
                             inputComponent: MaskedInput,
                             inputProps: { mask: cpf_mask, inputMode: "numeric" },
@@ -166,7 +165,7 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                         value={formik.values.email}
                         name="email"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle, readOnly: user ? true : false }}
+                        InputProps={{ sx: inputStyle }}
                         required
                     />
                     <TextField

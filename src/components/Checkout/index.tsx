@@ -82,6 +82,22 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         enableReinitialize: true,
         onSubmit: async (values) => {
             if (!franchise || makingOrder) return
+
+            if (
+                !Object.entries(values).every(([key, value]) => {
+                    if (["company", "complement", "notes"].includes(key)) return true
+                    if (!value) {
+                        console.log({ missing_key: key })
+                        return false
+                    }
+
+                    return true
+                })
+            ) {
+                snackbar({ severity: "warning", text: "preencha todos os dados obrigatórios" })
+                return
+            }
+
             setMakingOrder(true)
             const user_id = user?.id
 
@@ -141,6 +157,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             })
         },
     })
+
 
     useEffect(() => {
         if (!cart.products.length && !makingOrder) {
