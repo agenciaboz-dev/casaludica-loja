@@ -18,6 +18,7 @@ import { ButtonComponent } from "../../components/ButtonComponent"
 import { ProductContainer } from "../Results/ProductContainer"
 import { Footer } from "../../components/Footer"
 import useMeasure from "react-use-measure"
+import { SimilarProduct } from "../Results/SimilarProduct"
 
 interface ProductProps {}
 interface DataTextProps {
@@ -238,6 +239,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             sx={{
                                 flexDirection: isMobile ? "" : "column",
                                 width: isMobile ? "100%" : "50%",
+                                flex: 1,
                             }}
                         >
                             {!!galery.length ? (
@@ -264,7 +266,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 />
                             )}
                         </Paper>
-                        <Box width={isMobile ? "100%" : "45%"} flexDirection={"column"} gap={isMobile ? "4vw" : "2vw"} flex={1}>
+                        <Box width={isMobile ? "100%" : "50%"} flexDirection={"column"} gap={isMobile ? "4vw" : "2vw"} flex={1}>
                             <Box
                                 sx={{
                                     flexDirection: "column",
@@ -397,12 +399,12 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             </Box>
                         </Box>
                     </Box>
-                    <Box color="primary.main">
+                    <Box color="primary.main" sx={{ fontSize: isMobile ? "" : "1.2rem" }}>
                         <h3>Produtos similares ({similarProducts.length})</h3>
                     </Box>
                     <Box
                         sx={{
-                            gap: "5vw",
+                            gap: isMobile ? "5vw" : "1vw",
                             width: "100vw",
                             overflowX: "auto",
                             marginLeft: isMobile ? "-5vw" : "-10vw",
@@ -412,9 +414,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         {similarProducts
                             .sort((a, b) => a.id - b.id)
                             .map((item) => (
-                                <Box sx={{ width: "90vw" }} key={item.id}>
-                                    <ProductContainer product={item} />
-                                </Box>
+                                <SimilarProduct product={item} key={item.id} />
                             ))}
                     </Box>
                 </>
