@@ -11,6 +11,8 @@ interface FeaturedCategoryProps {}
 
 export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const isTablet = useMediaQuery("(min-width: 450px) and (max-width: 999px)")
+
     const { franchise } = useFranchise()
 
     const [title, setTitle] = useState("Para reunir a família")
@@ -39,7 +41,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
 
     return (
         <Box className="FeaturedCategory-Component" sx={{ position: "relative", width: "100%", flexDirection: "column", gap: "1vw" }}>
-            {isMobile && (
+            {isMobile && !isTablet && (
                 <BackgroundImage className="background" style={{ position: "absolute", top: "-35vw", left: "-5vw", zIndex: "-1", width: " 100vw" }} />
             )}
             <h3 style={{ fontSize: isMobile ? "5.5vw" : "2rem", width: "40vw", color: colors.primary }}>{title}</h3>
