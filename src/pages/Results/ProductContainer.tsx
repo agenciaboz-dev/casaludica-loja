@@ -53,7 +53,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
             }}
             key={product.id}
             onClick={() => navigate(`/product/${product.id}`)}
-            sx={{ marginBottom: "1vw" }}
+            sx={{ marginBottom: isMobile ? "1vw" : "" }}
             ref={productRef}
         >
             {product.cover ? (
@@ -65,7 +65,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     />
                     <Box ref={ref} sx={{ flexDirection: "column", alignItems: "center", gap: "2vw" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
-                            <Box sx={{ color: "primary.main" }}>
+                            <Button sx={{ color: "primary.main", padding: 0 }}>
                                 <h4
                                     style={{
                                         textAlign: "start",
@@ -77,7 +77,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                 >
                                     {product.name}
                                 </h4>
-                            </Box>
+                            </Button>
                             <h2
                                 style={{
                                     textAlign: "start",

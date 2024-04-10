@@ -131,6 +131,10 @@ export const Product: React.FC<ProductProps> = ({}) => {
         }
     }, [id])
 
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }, [])
+
     return (
         <Box
             className="Product-Page"
