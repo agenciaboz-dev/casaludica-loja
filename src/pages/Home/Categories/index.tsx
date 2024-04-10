@@ -21,7 +21,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     }
 
     return (
-        <Box className="Categories-Component" sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: isMobile ? "1vw" : "0" }}>
+        <Box className="Categories-Component" sx={{ width: "100%", flexDirection: "column", color: colors.primary, gap: isMobile ? "1vw" : 0 }}>
             <h3 style={{ fontSize: isMobile ? "5vw" : "1.5rem" }}>Categorias</h3>
             <Box
                 className="categories-container"
@@ -30,7 +30,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                     width: "100vw",
                     marginLeft: isMobile ? "-5vw" : "-10vw",
                     overflowX: "auto",
-                    padding: isMobile ? "1vw 5vw" : "1vw 10vw",
+                    padding: isMobile ? "1vw 5vw" : "0.5vw 10vw",
                 }}
             >
                 {categories.map((category) => (
@@ -42,7 +42,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                             boxShadow: `0 2px 3px rgba(0, 0, 0, 0.4)`,
                             borderRadius: isMobile ? "2vw" : "0.5vw",
                             width: "fit-content",
-                            padding: isMobile ? "5vw 2vw" : "2vw 1vw",
+                            padding: isMobile ? "5vw 2vw" : "1vw",
                             alignItems: "center",
                             gap: isMobile ? "3vw" : "1vw",
                             flexShrink: "0",
