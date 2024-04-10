@@ -9,6 +9,8 @@ import { Box, IconButton, useMediaQuery } from "@mui/material"
 import { api } from "../../../api"
 import { InstagramPost } from "../../../types/server/instagram/post"
 import { InstagramPostContainer } from "./InstagramPostContainer"
+import { ButtonComponent } from "../../ButtonComponent"
+import { ArrowForwardIos } from "@mui/icons-material"
 
 interface SocialProps {}
 
@@ -88,15 +90,20 @@ export const Social: React.FC<SocialProps> = ({}) => {
             >
                 <Carousel
                     showThumbs={false}
-                    showArrows={isMobile ? false : true}
+                    showArrows={false}
                     autoPlay
                     infiniteLoop
-                    interval={5000}
+                    interval={3000}
                     transitionTime={1000}
                     showStatus={false}
                     centerMode={true}
                     centerSlidePercentage={isMobile ? 100 : 20}
                     width={"100vw"}
+                    // renderArrowNext={(onClick, hasNext, label) => (
+                    //     <ButtonComponent onClick={onClick} style={{ position: "absolute", top: "1vw", bottom: "1vw", right: "1vw", padding: 0 }}>
+                    //         <ArrowForwardIos />
+                    //     </ButtonComponent>
+                    // )}
                 >
                     {posts.map((post) => (
                         <InstagramPostContainer key={post.id} post={post} />
