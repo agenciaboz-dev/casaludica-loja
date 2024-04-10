@@ -28,9 +28,8 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             sx={{
                 borderRadius: isMobile ? "5vw" : "1.5vw",
                 flex: 1,
-                height: "fit-content",
-                minHeight: isMobile ? "75vw" : "25vw",
-                maxWidth: "43vw",
+                height: isMobile ? "75vw" : "22vw",
+                maxWidth: isMobile ? "43vw" : "15vw",
                 alignItems: "center",
                 justifyContent: "space-between",
                 color: colors.primary,
@@ -39,10 +38,19 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 padding: isMobile ? "2vw" : "1vw",
                 flexDirection: "column",
                 boxShadow: `0 2px 3px rgba(0, 0, 0, 0.4)`,
+                cursor: "pointer",
             }}
         >
             {product.cover ? (
-                <>
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        height: "100%",
+                        gap: isMobile ? "1vw" : "0.5vw",
+                    }}
+                >
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant={"rounded"}
@@ -56,13 +64,12 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>
                     <h2 style={{ fontSize: isMobile ? "5vw" : "1.2rem" }}>{product.name}</h2>
-                    <p style={{ fontSize: isMobile ? "3.5vw" : "1rem" }}>{product.resume}</p>
                     <CurrencyText value={product.price} color={"#686868"} style={{ fontWeight: "bold" }} />
 
                     <ButtonComponent sx={{ fontWeight: "400" }} onClick={() => cart.add(product)} disabled={product.stock == 0}>
                         {product.stock == 0 ? "Indisponível" : "Quero esse"}
                     </ButtonComponent>
-                </>
+                </Box>
             ) : (
                 <Skeleton
                     animation="wave"

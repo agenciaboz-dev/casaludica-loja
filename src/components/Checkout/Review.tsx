@@ -1,11 +1,15 @@
 import React from "react"
-import { Box, Grid, Paper, useMediaQuery } from "@mui/material"
+import { Box, CircularProgress, Grid, Paper, useMediaQuery } from "@mui/material"
 import { useCart } from "../../hooks/useCart"
 import { CurrencyText } from "../CurrencyText"
+import { ButtonComponent } from "../ButtonComponent"
 
-interface ReviewProps {}
+interface ReviewProps {
+    handleSubmit: () => void
+    makingOrder: boolean
+}
 
-export const Review: React.FC<ReviewProps> = ({}) => {
+export const Review: React.FC<ReviewProps> = ({ handleSubmit, makingOrder }) => {
     const cart = useCart()
     const isMobile = useMediaQuery("(orientation: portrait)")
 
@@ -16,9 +20,9 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                 elevation={5}
                 sx={{
                     flexDirection: "column",
-                    borderRadius: "4.5vw",
+                    borderRadius: isMobile ? "4.5vw" : "2vw",
                     gap: isMobile ? "5vw" : "2vw",
-                    padding: isMobile ? "6vw" : "3.5vw",
+                    padding: isMobile ? "6vw" : "2vw",
                     color: "#686868",
                 }}
             >
@@ -59,6 +63,11 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     </Grid>
                 </Box>
             </Paper>
+            {!isMobile && (
+                <ButtonComponent onClick={() => handleSubmit()}>
+                    {makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}
+                </ButtonComponent>
+            )}
         </Box>
     )
 }

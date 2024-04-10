@@ -9,11 +9,17 @@ import { Box, IconButton, useMediaQuery } from "@mui/material"
 import { api } from "../../../api"
 import { InstagramPost } from "../../../types/server/instagram/post"
 import { InstagramPostContainer } from "./InstagramPostContainer"
+import { ButtonComponent } from "../../ButtonComponent"
+import { ArrowForwardIos } from "@mui/icons-material"
+import { useColors } from "../../../hooks/useColors"
 
 interface SocialProps {}
 
 export const Social: React.FC<SocialProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const isTablet = useMediaQuery("(min-width: 450px) and (max-width: 999px)")
+
+    const colors = useColors()
 
     const [posts, setPosts] = useState<InstagramPost[]>([])
 
@@ -46,22 +52,24 @@ export const Social: React.FC<SocialProps> = ({}) => {
                 flexDirection: "column",
                 width: "100%",
                 gap: "1vw",
-                color: "white",
+                color: isTablet ? colors.primary : "white",
                 margin: isMobile ? "10vw 0" : "2vw 0",
             }}
         >
-            <BackgroundImage
-                className="background"
-                style={{
-                    position: "absolute",
-                    top: isMobile ? "-10vw" : "-1vw",
-                    left: isMobile ? "-5vw" : "-15vw",
-                    zIndex: "-1",
-                    height: isMobile ? "145vw" : "34vw",
-                    transform: isMobile ? "scale(1,1.1)" : "scale(3,1)",
-                    width: "100vw",
-                }}
-            />
+            {!isTablet && (
+                <BackgroundImage
+                    className="background"
+                    style={{
+                        position: "absolute",
+                        top: isMobile ? "-10vw" : "-1vw",
+                        left: isMobile ? "-5vw" : "-15vw",
+                        zIndex: "-1",
+                        height: isMobile ? "145vw" : "34vw",
+                        transform: isMobile ? "scale(1,1.1)" : "scale(3,1)",
+                        width: "100vw",
+                    }}
+                />
+            )}
             <Box className="follow-us" sx={{ flexDirection: "column", pt: "1vw" }}>
                 <h3
                     style={{
@@ -88,15 +96,20 @@ export const Social: React.FC<SocialProps> = ({}) => {
             >
                 <Carousel
                     showThumbs={false}
-                    showArrows={isMobile ? false : true}
+                    showArrows={false}
                     autoPlay
                     infiniteLoop
-                    interval={5000}
+                    interval={3000}
                     transitionTime={1000}
                     showStatus={false}
                     centerMode={true}
                     centerSlidePercentage={isMobile ? 100 : 20}
                     width={"100vw"}
+                    // renderArrowNext={(onClick, hasNext, label) => (
+                    //     <ButtonComponent onClick={onClick} style={{ position: "absolute", top: "1vw", bottom: "1vw", right: "1vw", padding: 0 }}>
+                    //         <ArrowForwardIos />
+                    //     </ButtonComponent>
+                    // )}
                 >
                     {posts.map((post) => (
                         <InstagramPostContainer key={post.id} post={post} />

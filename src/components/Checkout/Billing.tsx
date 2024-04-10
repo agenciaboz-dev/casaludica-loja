@@ -35,10 +35,10 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                     elevation={5}
                     sx={{
                         flexDirection: "column",
-                        borderRadius: "4.5vw",
+                        borderRadius: isMobile ? "4.5vw" : "2vw",
                         width: "100%",
                         gap: isMobile ? "5vw" : "2vw",
-                        padding: isMobile ? "6vw" : "3.5vw",
+                        padding: isMobile ? "6vw" : "2vw",
                     }}
                 >
                     <TextField
@@ -46,7 +46,7 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                         value={formik.values.name}
                         name="name"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle, }}
+                        InputProps={{ sx: inputStyle }}
                         required
                     />
                     <TextField
@@ -54,7 +54,7 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                         value={formik.values.lastname}
                         name="lastname"
                         onChange={formik.handleChange}
-                        InputProps={{ sx: inputStyle,  }}
+                        InputProps={{ sx: inputStyle }}
                         required
                     />
                     <TextField
@@ -178,7 +178,11 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                         multiline
                         minRows={3}
                     />
-                    <ButtonComponent type="submit">{makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}</ButtonComponent>
+                    {isMobile && (
+                        <ButtonComponent type="submit">
+                            {makingOrder ? <CircularProgress size="1.5rem" color="secondary" /> : "Pagar"}
+                        </ButtonComponent>
+                    )}
                 </Paper>
             </form>
         </Box>

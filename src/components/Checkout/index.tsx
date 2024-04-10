@@ -81,7 +81,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
         initialValues,
         enableReinitialize: true,
         onSubmit: async (values) => {
-            if (!franchise) return
+            if (!franchise || makingOrder) return
             setMakingOrder(true)
             const user_id = user?.id
 
@@ -153,7 +153,6 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             <p
                 className="finish"
                 style={{
-                    fontWeight: "bold",
                     fontSize: isMobile ? "5vw" : "2vw",
                     color: "#363775",
                     fontFamily: "BowlbyOneSC",
@@ -179,7 +178,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 ))}
             </Box>
             <Box sx={{ flexDirection: isMobile ? "column" : "row-reverse", gap: "5vw" }}>
-                <Review />
+                <Review handleSubmit={billingFormik.handleSubmit} makingOrder={makingOrder} />
                 <Billing formik={billingFormik} makingOrder={makingOrder} />
                 <PayModal open={!!payingOrderId} close={() => setPayingOrderId("")} orderId={payingOrderId} />
             </Box>

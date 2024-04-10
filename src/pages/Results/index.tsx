@@ -78,20 +78,27 @@ export const Results: React.FC<ResultsProps> = ({}) => {
             </h3>
 
             {loading ? (
-                <Box sx={{ alignItems: "center", gap: isMobile ? "5vw" : "2vw", flexDirection: "column" }}>
+                <Grid container spacing={2} sx={{ marginBottom: "10vw" }} columns={isMobile ? 1 : 3}>
                     {skeletons.map((index) => (
-                        <Skeleton
-                            key={index}
-                            animation="wave"
-                            variant="rounded"
-                            sx={{ width: isMobile ? "80vw" : "100%", height: isMobile ? "45vw" : "18vw" }}
-                        />
+                        <Grid item key={index} xs={1}>
+                            <Skeleton key={index} animation="wave" variant="rounded" sx={{ width: "100%", height: isMobile ? "45vw" : "15vw" }} />
+                        </Grid>
                     ))}
-                </Box>
+                    {skeletons.map((index) => (
+                        <Grid item key={index} xs={1}>
+                            <Skeleton key={index} animation="wave" variant="rounded" sx={{ width: "100%", height: isMobile ? "45vw" : "15vw" }} />
+                        </Grid>
+                    ))}
+                    {skeletons.map((index) => (
+                        <Grid item key={index} xs={1}>
+                            <Skeleton key={index} animation="wave" variant="rounded" sx={{ width: "100%", height: isMobile ? "45vw" : "15vw" }} />
+                        </Grid>
+                    ))}
+                </Grid>
             ) : (
-                <Grid container spacing={2} sx={{ marginBottom: "10vw" }}>
+                <Grid container spacing={2} sx={{ marginBottom: "10vw" }} columns={isMobile ? 1 : 3}>
                     {products.map((product: Product) => (
-                        <Grid item key={product.id} xs={12}>
+                        <Grid item key={product.id} xs={1}>
                             <ProductContainer key={product.id} product={product} />
                         </Grid>
                     ))}

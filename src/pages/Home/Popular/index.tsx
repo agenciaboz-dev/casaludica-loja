@@ -1,9 +1,11 @@
-import { Skeleton, Box, useMediaQuery, Grid } from "@mui/material"
+import { Skeleton, Box, useMediaQuery, Grid, Button } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useApi } from "../../../hooks/useApi"
 import { Product as Container } from "./Product"
 import { useColors } from "../../../hooks/useColors"
 import { useFranchise } from "../../../hooks/useFranchise"
+import kids_image from "../../../images/featured/kids.svg"
+import { useNavigate } from "react-router-dom"
 //import "./style.scss"
 
 interface PopularProps {}
@@ -12,6 +14,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
     const isMobile = useMediaQuery("(orientation: portrait)")
     const api = useApi()
     const colors = useColors()
+    const navigate = useNavigate()
     const { franchise } = useFranchise()
 
     const [popular, setPopular] = useState<Product[]>([])
@@ -22,7 +25,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
 
     useEffect(() => {
         if (franchise) {
-            api.products.list((response: { data: Product[] }) => setPopular(response.data.sort((a, b) => b.sold - a.sold).slice(0, 5)))
+            api.products.list((response: { data: Product[] }) => setPopular(response.data.sort((a, b) => b.sold - a.sold).slice(0, 6)))
         }
     }, [franchise])
 
@@ -41,7 +44,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                     <h3 style={{ fontSize: "5vw" }}>Mais curtidos pela galerinha</h3>
                     <Box
                         className="products-container"
-                        sx={{ width: "100vw", marginLeft: "-5vw", padding: "1vw 5vw", gap: "2vw", overflowX: "auto" }}
+                        sx={{ width: "100vw", marginLeft: "-5vw", padding: "1vw 5vw", gap: "2vw", overflowX: "auto", scrollbarWidth: "none" }}
                     >
                         {popular.map((product) => (
                             <Container key={product.id} product={product} />
@@ -58,17 +61,60 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                 </>
             )}
             {!isMobile && (
-                <Grid container spacing={2} sx={{ alignItems: "center" }}>
-                    <h3 style={{ fontSize: "2.5rem", marginRight: "auto" }}>
-                        Mais curtidos
-                        <br />
-                        pela galerinha
-                    </h3>
-                    {popular.map((product) => (
-                        <Grid item key={product.id}>
-                            <Container product={product} />
-                        </Grid>
-                    ))}
+                <Grid container spacing={2} columns={2}>
+                    <Grid item xs={1}>
+                        <Box sx={{ height: "100%", alignItems: "center", width: "100%" }}>
+                            <h3 style={{ fontSize: "2.5rem" }}>
+                                Mais curtidos
+                                <br />
+                                pela galerinha
+                            </h3>
+                            <img src={kids_image} style={{ width: "9vw", margin: "auto" }} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
+                            {popular.slice(0, 3).map((product) => (
+                                <Container product={product} />
+                            ))}
+                        </Box>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
+                            {popular.slice(3, 6).map((product) => (
+                                <Container product={product} />
+                            ))}
+                        </Box>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <Box
+                            sx={{
+                                flexDirection: "column",
+                                alignItems: "flex-end",
+                                justifyContent: "center",
+                                height: "100%",
+                            }}
+                        >
+                            <h3 style={{ fontSize: "2.5rem", textAlign: "end" }}>Não fique de fora!</h3>
+                            <Button
+                                sx={{
+                                    fontSize: "2.5rem",
+                                    textDecoration: "underline",
+                                    pt: 0,
+                                    pb: 0,
+                                    fontFamily: "BowlbyOneSC",
+                                    textTransform: "unset",
+                                    "&:hover": {
+                                        textDecoration: "underline",
+                                    },
+                                }}
+                                onClick={() => navigate("/search/name/")}
+                            >
+                                Veja mais
+                            </Button>
+                        </Box>
+                    </Grid>
+
                     {popular.length == 0 && (
                         <>
                             <Grid item>
@@ -86,17 +132,11 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                             <Grid item>
                                 <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
                             </Grid>
+                            <Grid item>
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                            </Grid>
                         </>
                     )}
-                    <Box
-                        sx={{
-                            flexDirection: "column",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h3 style={{ fontSize: "2.5rem" }}>Não fique de fora!</h3>
-                        <h3 style={{ fontSize: "2.5rem", textDecoration: "underline" }}>Veja mais</h3>
-                    </Box>
                 </Grid>
             )}
         </Box>

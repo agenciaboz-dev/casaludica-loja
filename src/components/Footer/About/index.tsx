@@ -10,15 +10,15 @@ export const About: React.FC<AboutProps> = ({}) => {
     const colors = useColors()
 
     const h1Style = {
-        fontSize: isMobile ? "6vw" : "2.5rem",
-    }
-
-    const h2Style = {
         fontSize: isMobile ? "6vw" : "2rem",
     }
 
+    const h2Style = {
+        fontSize: isMobile ? "6vw" : "1.5rem",
+    }
+
     const pStyle = {
-        fontSize: isMobile ? "5vw" : "1.5rem",
+        fontSize: isMobile ? "5vw" : "1.2rem",
     }
 
     const containerStyle: React.CSSProperties = {

@@ -1,9 +1,10 @@
 import React from 'react';
 // import './style.scss';
-import { TextField, InputAdornment, useMediaQuery } from "@mui/material"
+import { TextField, InputAdornment, useMediaQuery, Button } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import { Formik, Form } from "formik"
 import { useNavigate } from "react-router-dom"
+import { ButtonComponent } from "../ButtonComponent"
 
 interface SearchFieldProps {}
 
@@ -46,6 +47,15 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
                                             }}
                                         />
                                     </InputAdornment>
+                                ),
+                                endAdornment: (
+                                    <Button
+                                        variant="outlined"
+                                        sx={{ whiteSpace: "nowrap", textTransform: "none" }}
+                                        onClick={() => handleSubmit({ search: "" })}
+                                    >
+                                        Todos
+                                    </Button>
                                 ),
                                 disableUnderline: true,
                                 sx: { paddingLeft: isMobile ? "1.5vw" : "0.5vw", borderRadius: isMobile ? "2vw" : "0.5vw" },

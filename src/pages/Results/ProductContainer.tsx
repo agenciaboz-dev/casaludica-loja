@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useCart } from "../../hooks/useCart"
 import { useDynamicImage } from "../../hooks/useDynamicImage"
 import { CurrencyText } from "../../components/CurrencyText"
+import useMeasure from "react-use-measure"
 
 interface ProductContainerProps {
     product: Product
@@ -13,17 +14,17 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
     const isMobile = useMediaQuery("(orientation: portrait)")
     const navigate = useNavigate()
     const cart = useCart()
-
+    const [ref, dimensions] = useMeasure()
     const productRef = useDynamicImage(product)
 
     const skeleton_style = {
-        height: isMobile ? "8vw" : "2vw",
-        width: "100%",
+        height: isMobile ? "8vw" : "1vw",
+        width: isMobile ? "100%" : "100%",
     }
 
     const image_skeleton_style = {
-        height: isMobile ? "40vw" : "15vw",
-        width: isMobile ? "40vw" : "15vw",
+        height: isMobile ? "40vw" : "12vw",
+        width: isMobile ? "40vw" : "23vw",
         borderRadius: isMobile ? "5vw" : "1vw",
     }
 
@@ -44,7 +45,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                 flexDirection: "row",
                 alignItems: "center",
                 width: "100%",
-                gap: isMobile ? "3vw" : "2vw",
+                gap: isMobile ? "3vw" : "",
                 justifyContent: "space-around",
                 borderRadius: isMobile ? "5vw" : "2vw",
                 padding: isMobile ? "4vw" : "1vw",
@@ -52,7 +53,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
             }}
             key={product.id}
             onClick={() => navigate(`/product/${product.id}`)}
-            sx={{ marginBottom: "1vw" }}
+            sx={{ marginBottom: isMobile ? "1vw" : "" }}
             ref={productRef}
         >
             {product.cover ? (
@@ -60,38 +61,23 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
-                        sx={{ width: isMobile ? "40vw" : "15vw", height: "auto", borderRadius: isMobile ? "5vw" : "1vw" }}
+                        sx={{ width: isMobile ? "40vw" : "50%", height: "auto", borderRadius: isMobile ? "5vw" : "1vw" }}
                     />
-                    <Box sx={{ flexDirection: "column", alignItems: "center", gap: "2vw" }}>
+                    <Box ref={ref} sx={{ flexDirection: "column", alignItems: "center", gap: "2vw" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
-                            <Box sx={{ color: "primary.main" }}>
+                            <Button sx={{ color: "primary.main", padding: 0 }}>
                                 <h4
                                     style={{
                                         textAlign: "start",
                                         textOverflow: "ellipsis",
                                         whiteSpace: "nowrap",
                                         overflow: "hidden",
-                                        width: isMobile ? "40vw" : "100%",
+                                        width: isMobile ? "40vw" : dimensions.width * 1,
                                     }}
                                 >
                                     {product.name}
                                 </h4>
-                            </Box>
-                            <p
-                                style={{
-                                    textAlign: "start",
-                                    overflow: "hidden",
-                                    width: isMobile ? "40vw" : "100%",
-                                    maxHeight: "13vw",
-                                    textTransform: "lowercase",
-                                    display: "-webkit-box",
-                                    WebkitBoxOrient: "vertical",
-                                    WebkitLineClamp: 3, // Defina o número máximo de linhas que deseja exibir
-                                    whiteSpace: "normal",
-                                }}
-                            >
-                                {product.description}
-                            </p>
+                            </Button>
                             <h2
                                 style={{
                                     textAlign: "start",
@@ -119,14 +105,24 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     </Box>
                 </>
             ) : (
-                <Box sx={{ gap: isMobile ? "3vw" : "2vw", width: "90vw", alignItems: "center" }}>
+                <Box
+                    sx={{
+                        gap: isMobile ? "3vw" : "1vw",
+                        width: "90vw",
+                        alignItems: "center",
+                        height: isMobile ? "" : "12vw",
+                    }}
+                >
                     <Skeleton animation="wave" variant="rounded" sx={image_skeleton_style} />
 
-                    <Box sx={{ width: isMobile ? "45%" : "100%", flexDirection: "column", gap: "2vw" }}>
-                        <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                        <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                        <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
-                        <Skeleton animation="wave" variant="rounded" sx={skeleton_style} />
+                    <Box sx={{ width: isMobile ? "45%" : "100%", flexDirection: "column", gap: isMobile ? "5vw" : "2vw" }}>
+                        <Skeleton animation="wave" variant="rounded" sx={{ ...skeleton_style, height: isMobile ? "5vw" : "1.5vw" }} />
+                        <Skeleton animation="wave" variant="rounded" sx={{ ...skeleton_style, height: isMobile ? "7vw" : "2.2vw" }} />
+                        <Skeleton
+                            animation="wave"
+                            variant="rounded"
+                            sx={{ ...skeleton_style, height: isMobile ? "9vw" : "2.4vw", borderRadius: "5vw" }}
+                        />
                     </Box>
                 </Box>
             )}

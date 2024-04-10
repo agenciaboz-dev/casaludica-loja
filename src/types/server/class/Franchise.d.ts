@@ -16,5 +16,8 @@ export declare class Franchise {
         uf: string;
         ibge: string;
     };
+    pagseguro_token: string;
+    pagseguro_token_sandbox: string;
+    credit_card_public_key: string;
     constructor(data: IgestFranchise);
 }
