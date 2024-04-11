@@ -33,7 +33,10 @@ export const Collections = ({}) => {
     const navigate = useNavigate()
 
     return (
-        <Box className="Collections-Component" sx={{ width: "100%", flexDirection: "column", gap: "0.5vw", color: "white" }}>
+        <Box
+            className="Collections-Component"
+            sx={{ width: "100%", flexDirection: "column", gap: "0.5vw", color: "white", marginTop: isMobile ? "" : "-1.5vw" }}
+        >
             <h3>Coleções</h3>
             <Box
                 className="collections-container"
