@@ -37,7 +37,7 @@ export const Header = () => {
                     width: "100%",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    paddingTop: isMobile ? "0vw" : "1vw",
+                    paddingTop: isMobile ? 0 : "1vw",
                 }}
             >
                 <IconButton
