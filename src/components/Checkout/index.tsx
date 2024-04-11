@@ -39,12 +39,12 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const [makingOrder, setMakingOrder] = useState(false)
 
     const initialValues: BillingForm = user
-        ? { ...user, postalcode: user.postcode, notes: "", company: user.company || "", complement: user.complement || "" }
+        ? { ...user, notes: "", company: user.company || "", complement: user.complement || "" }
         : {
               name: "",
               lastname: "",
               company: "",
-              postalcode: currentAddress?.cep || "",
+              postcode: currentAddress?.cep || "",
               address: currentAddress?.logradouro || "",
               city: currentAddress?.localidade || "",
               phone: "",
@@ -120,7 +120,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 name: values.name,
                 notes: values.notes,
                 phone: values.phone,
-                postcode: unmask(values.postalcode),
+                postcode: unmask(values.postcode),
                 district: values.district,
                 number: values.number,
                 state: values.state,
