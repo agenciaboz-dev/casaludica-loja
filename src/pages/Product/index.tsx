@@ -75,9 +75,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const [descriptionRef, { height }] = useMeasure()
     const initialDescriptionHeight = isMobile ? "30vw" : "20vw"
     const max_height = useRef(height)
-    // const scrollRef = useRef<HTMLElement>() as React.MutableRefObject<HTMLInputElement>
-    // console.log(scrollRef)
-    // const { events } = useDraggable(scrollRef, { applyRubberBandEffect: true })
+    const scrollRef = useRef<HTMLElement>() as React.MutableRefObject<HTMLInputElement>
+    const { events } = useDraggable(scrollRef, { applyRubberBandEffect: true })
 
     const [product, setProduct] = useState<Product>()
     const [category, setCategory] = useState<Category>()
@@ -404,28 +403,29 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             </Box>
                         </Box>
                     </Box>
-                    <Box color="primary.main" sx={{ fontSize: isMobile ? "" : "1.2rem" }}>
-                        <h3>Produtos similares ({similarProducts.length})</h3>
-                    </Box>
-                    <Box
-                        // ref={scrollRef}
-                        // {...events}
-                        sx={{
-                            gap: isMobile ? "5vw" : "2vw",
-                            width: "100vw",
-                            overflowX: "auto",
-                            marginLeft: isMobile ? "-5vw" : "-10vw",
-                            padding: isMobile ? "0 5vw 5vw" : "0 10vw 5vw",
-                        }}
-                    >
-                        {similarProducts
-                            .sort((a, b) => a.id - b.id)
-                            .map((item) => (
-                                <SimilarProduct product={item} key={item.id} />
-                            ))}
-                    </Box>
                 </>
             )}
+            <Box color="primary.main" sx={{ fontSize: isMobile ? "" : "1.2rem" }}>
+                <h3>Produtos similares ({similarProducts.length})</h3>
+            </Box>
+            <Box
+                ref={scrollRef}
+                {...events}
+                sx={{
+                    gap: isMobile ? "5vw" : "2vw",
+                    width: "100vw",
+                    overflowX: "auto",
+                    marginLeft: isMobile ? "-5vw" : "-10vw",
+                    padding: isMobile ? "0 5vw 5vw" : "0 10vw 5vw",
+                    scrollbarWidth: "none",
+                }}
+            >
+                {similarProducts
+                    .sort((a, b) => a.id - b.id)
+                    .map((item) => (
+                        <SimilarProduct product={item} key={item.id} />
+                    ))}
+            </Box>
             <Footer />
         </Box>
     )
