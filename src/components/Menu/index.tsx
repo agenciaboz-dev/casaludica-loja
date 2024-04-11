@@ -72,7 +72,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                 className="profile"
                 style={{
                     backgroundColor: colors.primary,
-                    padding: isMobile ? "7.5vw 5vw" : "2vw 1vw",
+                    padding: isMobile ? "7.5vw 5vw" : "2vw 2vw",
                     gap: isMobile ? "5vw" : "1vw",
                 }}
             >
@@ -215,7 +215,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     sx={{
                         flexDirection: "column",
                         paddingTop: isMobile ? "3vw" : "3vw",
-                        padding: isMobile ? "8vw" : "2vw 1vw",
+                        padding: isMobile ? "8vw" : "2vw 2vw",
                         gap: isMobile ? "8vw" : "2vw",
                         width: 1,
                     }}
@@ -250,7 +250,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                     sx={{
                         flexDirection: "column",
                         paddingTop: isMobile ? "3vw" : "3vw",
-                        padding: isMobile ? "8vw" : "2vw 1vw",
+                        padding: isMobile ? "8vw" : "2vw 2vw",
                         width: 1,
                         gap: 2,
                     }}
