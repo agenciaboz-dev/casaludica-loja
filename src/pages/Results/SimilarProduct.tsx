@@ -56,6 +56,7 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                 gap: isMobile ? "3vw" : "1.5vw",
                 borderRadius: isMobile ? "5vw" : "2vw",
                 padding: isMobile ? "4vw" : "1vw",
+                userSelect: "none",
             }}
             key={product.id}
             onClick={() => navigate(`/product/${product.id}`)}
@@ -66,7 +67,12 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
-                        sx={{ width: isMobile ? "35vw" : "11vw", height: isMobile ? "35vw" : "11vw", borderRadius: isMobile ? "5vw" : "2vw" }}
+                        sx={{
+                            width: isMobile ? "35vw" : "11vw",
+                            height: isMobile ? "35vw" : "11vw",
+                            borderRadius: isMobile ? "5vw" : "2vw",
+                            pointerEvents: "none",
+                        }}
                     />
                     <Box sx={{ flexDirection: "column", alignItems: "center" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>

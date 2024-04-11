@@ -37,7 +37,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
         <Dialog
             open={open}
             sx={{ width: "100vw", height: orderButton ? "90vh" : "100vh", justifyContent: "center", alignItems: "center" }}
-            PaperProps={{ sx: { borderRadius: "5vw", maxWidth: "100vw", margin: "0 5vw" } }}
+            PaperProps={{ sx: { borderRadius: "5vw", maxWidth: "100vw", margin: "0 5vw", scrollbarWidth: "none" } }}
             slotProps={{ backdrop: { sx: backdropStyle } }}
             // onClose={close}
         >

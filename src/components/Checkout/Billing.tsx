@@ -78,8 +78,8 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                     />
                     <TextField
                         label="CEP"
-                        value={formik.values.postalcode}
-                        name="postalcode"
+                        value={formik.values.postcode}
+                        name="postcode"
                         onChange={formik.handleChange}
                         InputProps={{
                             sx: inputStyle,

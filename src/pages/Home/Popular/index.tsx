@@ -75,14 +75,14 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                     <Grid item xs={1}>
                         <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
                             {popular.slice(0, 3).map((product) => (
-                                <Container product={product} />
+                                <Container product={product} key={product.id} />
                             ))}
                         </Box>
                     </Grid>
                     <Grid item xs={1}>
                         <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
                             {popular.slice(3, 6).map((product) => (
-                                <Container product={product} />
+                                <Container product={product} key={product.id} />
                             ))}
                         </Box>
                     </Grid>

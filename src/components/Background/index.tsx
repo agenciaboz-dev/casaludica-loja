@@ -21,7 +21,7 @@ export const Background = () => {
                 style={{
                     width: "100%",
                     background: "linear-gradient(90deg, #363775 1.58%, #B6C8D8 100%)",
-                    height: isMobile ? "65vw" : "13vw",
+                    height: isMobile ? "65vw" : "12vw",
                 }}
             ></Box>
         </Box>
