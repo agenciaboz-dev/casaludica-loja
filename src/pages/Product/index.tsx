@@ -74,6 +74,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const cart = useCart()
     const [descriptionRef, { height }] = useMeasure()
     const initialDescriptionHeight = isMobile ? "30vw" : "20vw"
+    // const current_id_ref = useRef(0)
     const max_height = useRef(height)
     // const scrollRef = useRef<HTMLElement>() as React.MutableRefObject<HTMLInputElement>
     // console.log(scrollRef)
@@ -84,7 +85,6 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const [galery, setGalery] = useState<string[]>([])
     const [quantity, setQuantity] = useState(1)
     const [descriptionHeight, setDescriptionHeight] = useState<number | string>(0)
-    // const [heightControl, setHeightControl] = useState(false)
     const similarProducts = products.filter((item) => item.category == product?.category && item.id != product?.id)
     const fullDescription = descriptionHeight == max_height.current
 
@@ -113,6 +113,26 @@ export const Product: React.FC<ProductProps> = ({}) => {
             setDescriptionHeight(initialDescriptionHeight)
         }
     }, [height])
+
+    // useEffect(() => {
+    //     if (current_id_ref.current != id && height > 0 && !max_height.current && height > window.screen.width * 0.2) {
+    //         max_height.current = height
+    //         current_id_ref.current = id
+    //         setDescriptionHeight(initialDescriptionHeight)
+    //     }
+    // }, [height, id])
+
+    // useEffect(() => {
+    //     if (current_id_ref.current != id && height > 0 && !max_height.current && height > window.screen.width * 0.2) {
+    //         max_height.current = height
+
+    //         current_id_ref.current = id
+
+    //         setDescriptionHeight(max_height.current)
+    //     } else if (current_id_ref.current == id && height > max_height.current) {
+    //         setDescriptionHeight(max_height.current)
+    //     }
+    // }, [height, id])
 
     useEffect(() => {
         if (product?.id) {
@@ -347,7 +367,6 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         flexDirection: "column",
                                         color: "primary.main",
                                         height: descriptionHeight || "auto",
-                                        //height: initialDescriptionHeight < max_height ? descriptionHeight : "auto"
                                         overflow: "hidden",
                                         transition: "all 0.3s ease-in-out",
                                     }}
@@ -358,6 +377,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     <pre style={{ textAlign: "start", whiteSpace: "break-spaces" }}>{product.description}</pre>
                                 </Box>
 
+                                {/* {!!max_height.current && ( */}
                                 {
                                     <Button sx={{ padding: 0 }} onClick={onDescriptionClick}>
                                         <Paper
