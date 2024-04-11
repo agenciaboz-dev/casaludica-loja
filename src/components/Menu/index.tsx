@@ -319,7 +319,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                         </IconButton>
                     </Box>
                     <Logo style={{ width: isMobile ? "30vw" : "15vw" }} />
-                    <Box sx={{ flexDirection: "column", gap: 2 }}>
+                    <Box sx={{ flexDirection: "column", gap: 1, pt: isMobile ? undefined : 1 }}>
                         <p style={{ fontSize: "0.7rem", color: "black" }}>Registrado por Casa Lúdica®</p>
                         <p style={{ fontSize: "0.7rem", color: "black" }}>Todos os direitos reservados.</p>
                     </Box>

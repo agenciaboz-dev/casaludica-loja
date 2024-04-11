@@ -37,7 +37,7 @@ export const Header = () => {
                     width: "100%",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    paddingTop: isMobile ? 0 : "1vw",
+                    paddingTop: isMobile ? "8vw" : "2.5vw",
                 }}
             >
                 <IconButton
@@ -57,35 +57,29 @@ export const Header = () => {
                 <LogoIcon
                     onClick={() => navigate("/")}
                     style={{
-                        flex: 0.4,
+                        flex: isMobile ? 0.4 : 0.5,
                         cursor: "pointer",
                     }}
                 />
                 {!isMobile && <SearchField />}
-                <Box
+                <Badge
+                    badgeContent={cart.products?.length || 0}
+                    color="primary"
                     sx={{
-                        justifyContent: "flex-end",
+                        //top:"3vw",
+                        right: "1vw",
                     }}
                 >
-                    <Badge
-                        badgeContent={cart.products?.length || 0}
-                        color="primary"
-                        sx={{
-                            //top:"3vw",
-                            right: "1vw",
-                        }}
-                    >
-                        <IconButton color="secondary" sx={{ padding: 0 }} onClick={() => cart.setOpen(true)}>
-                            <CartIcon
-                                style={{
-                                    flex: 1,
-                                    height: isMobile ? "10vw" : "3vw",
-                                    width: isMobile ? "10vw" : "3vw",
-                                }}
-                            />
-                        </IconButton>
-                    </Badge>
-                </Box>
+                    <IconButton color="secondary" sx={{}} onClick={() => cart.setOpen(true)}>
+                        <CartIcon
+                            style={{
+                                flex: 1,
+                                height: isMobile ? "10vw" : "3vw",
+                                width: isMobile ? "10vw" : "3vw",
+                            }}
+                        />
+                    </IconButton>
+                </Badge>
             </Box>
             <Loading />
 
