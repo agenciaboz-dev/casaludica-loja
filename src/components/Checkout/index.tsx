@@ -67,7 +67,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 content: "Já existe um cadastro com esses dados, deseja fazer login?",
                 onConfirm: () => {
                     menu.setRenderForm("login")
-                    menu.setHavePassword(true)
+                    menu.setHavePassword(false)
                     menu.setOpen(true)
                 },
             })
@@ -158,7 +158,6 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             })
         },
     })
-
 
     useEffect(() => {
         if (!cart.products.length && !makingOrder) {
