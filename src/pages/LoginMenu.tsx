@@ -100,6 +100,7 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
                         value={formik.values.login}
                         onChange={formik.handleChange}
                         sx={input_style(isMobile)}
+                        InputLabelProps={{ style: { padding: isMobile ? "0 2vw" : "0 0.5vw" } }}
                         required
                     />
                     <TextField
@@ -110,10 +111,11 @@ export const LoginMenu: React.FC<LoginMenuProps> = ({ loginString, setLoginStrin
                         required
                         autoFocus={!!loginString}
                         sx={input_style(isMobile)}
+                        InputLabelProps={{ style: { padding: isMobile ? "0 2vw" : "0 0.5vw" } }}
                         type="password"
                     />
                     <ButtonComponent type="submit" fullWidth>
-                        {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "entrar"}
+                        {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "Entrar"}
                     </ButtonComponent>
                     <Button sx={{ padding: 0, minHeight: 0, textDecoration: "underline", textTransform: "none" }} onClick={onForgetPassword}>
                         Esqueci minha senha
