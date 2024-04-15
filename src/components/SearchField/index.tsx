@@ -51,18 +51,26 @@ export const SearchField: React.FC<SearchFieldProps> = ({}) => {
                                 ),
                                 endAdornment: (
                                     <Button
-                                        variant="outlined"
-                                        sx={{ whiteSpace: "nowrap", textTransform: "none" }}
+                                        variant="contained"
+                                        sx={{
+                                            whiteSpace: "nowrap",
+                                            textTransform: "none",
+                                            padding: isMobile ? "0 7vw" : "0 1.5vw",
+                                            fontFamily: "BowlbyOneSC",
+                                        }}
                                         onClick={() => handleSubmit({ search: "" })}
                                     >
-                                        Todos
+                                        Ver todos
                                     </Button>
                                 ),
                                 disableUnderline: true,
-                                sx: { paddingLeft: isMobile ? "1.5vw" : "0.5vw", borderRadius: isMobile ? "2vw" : "0.5vw" },
+                                sx: {
+                                    paddingLeft: isMobile ? "1.5vw" : "0.5vw",
+                                    borderRadius: isMobile ? "2vw" : "0.5vw",
+                                },
                                 style: { fontSize: isMobile ? "5vw" : "1rem" },
                             }}
-                            inputProps={{ sx: { padding: isMobile ? "3vw 0" : "0.75vw 0 0.5vw 0" } }}
+                            inputProps={{ sx: { padding: isMobile ? "3vw 0" : "0.75vw 0 0.5vw 0", fontSize: isMobile ? "4.5vw" : "1.2rem" } }}
                             variant="filled"
                             value={values.search}
                             onChange={handleChange}

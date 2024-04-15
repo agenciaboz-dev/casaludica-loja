@@ -59,7 +59,7 @@ export const Header = () => {
                 <LogoIcon
                     onClick={() => navigate("/")}
                     style={{
-                        flex: isMobile ? 0.4 : 0.5,
+                        flex: 0.4,
                         cursor: "pointer",
                     }}
                 />
