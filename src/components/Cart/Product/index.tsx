@@ -53,45 +53,40 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 }}
             >
                 <Box
-                    className="right-container"
+                    className="quantity-container"
                     style={{
-                        gap: isMobile ? "1vw" : "1vw",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: isMobile ? "2vw" : "1vw",
                     }}
                 >
-                    <Box
-                        className="quantity-container"
+                    <UpIcon
+                        onClick={() => increase()}
                         style={{
-                            flexDirection: "column",
+                            cursor: "pointer",
+                        }}
+                    />
+                    <Box
+                        className="quantity"
+                        style={{
+                            justifyContent: "center",
                             alignItems: "center",
-                            gap: isMobile ? "2vw" : "1vw",
+                            backgroundColor: "lightgrey",
+                            fontSize: isMobile ? "7vw" : "2rem",
+                            fontWeight: "bold",
+                            padding: isMobile ? "2vw" : "1vw",
+                            minWidth: isMobile ? "10vw" : "3.5vw",
+                            minHeight: isMobile ? "10vw" : "3.5vw",
                         }}
                     >
-                        <UpIcon
-                            onClick={() => increase()}
-                            style={{
-                                cursor: "pointer",
-                            }}
-                        />
-                        <Box
-                            className="quantity"
-                            style={{
-                                justifyContent: "center",
-                                alignItems: "center",
-                                backgroundColor: "lightgrey",
-                                fontSize: isMobile ? "7vw" : "2rem",
-                                fontWeight: "bold",
-                                padding: isMobile ? "2vw" : "1vw",
-                            }}
-                        >
-                            {product.quantity}
-                        </Box>
-                        <DownIcon
-                            onClick={() => decrease()}
-                            style={{
-                                cursor: "pointer",
-                            }}
-                        />
+                        {product.quantity}
                     </Box>
+                    <DownIcon
+                        onClick={() => decrease()}
+                        style={{
+                            cursor: "pointer",
+                        }}
+                    />
                 </Box>
                 <Avatar
                     src={"data:image/jpeg;base64," + product.cover}
@@ -110,7 +105,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 style={{
                     gap: isMobile ? "5vw" : "2vw",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                 }}
             >
                 <Box
@@ -123,6 +118,9 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         alignItems: "center",
                         fontWeight: "bold",
                         aspectRatio: 1,
+                        minWidth: isMobile ? "10vw" : "3.5vw",
+                        minHeight: isMobile ? "10vw" : "3.5vw",
+                        height: "auto",
                     }}
                 >
                     x{product.quantity}
