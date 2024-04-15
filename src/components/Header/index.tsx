@@ -47,6 +47,8 @@ export const Header = () => {
                         fontWeight: "400",
                         fontSize: isMobile ? "4vw" : "1rem",
                         justifyContent: "start",
+                        padding: 0,
+                        marginLeft: isMobile ? "-0.8vw" : "-0.2vw",
                     }}
                     onClick={() => menu.setOpen(true)}
                 >
@@ -70,7 +72,7 @@ export const Header = () => {
                         right: "1vw",
                     }}
                 >
-                    <IconButton color="secondary" sx={{ padding: 0 }} onClick={() => cart.setOpen(true)}>
+                    <IconButton color="secondary" sx={{ padding: 0, marginRight: "-1.1vw" }} onClick={() => cart.setOpen(true)}>
                         <CartIcon
                             style={{
                                 flex: 1,
