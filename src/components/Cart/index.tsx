@@ -21,10 +21,16 @@ export const Cart: React.FC<CartProps> = ({}) => {
         cart.setOpen(false)
     }
 
+    const continueBuying = () => {
+        navigate(-1)
+        closeMenu()
+    }
+
     const finishOrder = () => {
         navigate("/checkout")
         closeMenu()
     }
+
     return (
         <SwipeableDrawer
             onOpen={() => cart.setOpen(true)}
@@ -85,14 +91,29 @@ export const Cart: React.FC<CartProps> = ({}) => {
             </Box>
             <Box
                 className="button-container"
-                style={{
+                sx={{
                     width: "100%",
                     padding: isMobile ? "5vw 3vw" : "1vw",
                     borderTopRightRadius: isMobile ? "10vw" : "2vw",
                     borderTopLeftRadius: isMobile ? "10vw" : "2vw",
                     boxShadow: "0 0 15px rgba(0,0,0,0.4)",
+                    flexDirection: "column",
+                    gap: isMobile ? "3vw" : "1vw",
                 }}
             >
+                <ButtonComponent
+                    style={{
+                        width: "100%",
+                        fontSize: isMobile ? "4vw" : "1.5rem",
+                        textTransform: "unset",
+                        backgroundColor: cart.products.length ? colors.primary : colors.disabled,
+                    }}
+                    title="Continuar comprando"
+                    onClick={() => continueBuying()}
+                    disabled={cart.products.length == 0}
+                >
+                    Continuar comprando
+                </ButtonComponent>
                 <ButtonComponent
                     style={{ width: "100%", fontSize: isMobile ? "4vw" : "1.5rem", textTransform: "unset" }}
                     title="Finalizar compra"
