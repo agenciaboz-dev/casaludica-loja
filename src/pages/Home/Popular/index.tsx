@@ -62,21 +62,21 @@ export const Popular: React.FC<PopularProps> = ({}) => {
             )}
             {!isMobile && (
                 <Grid container spacing={2} columns={2}>
-                    <Grid item xs={1}>
-                        <Box sx={{ height: "100%", alignItems: "center", width: "100%" }}>
-                            <h3 style={{ fontSize: "2.5rem" }}>
-                                Mais curtidos
-                                <br />
-                                pela galerinha
-                            </h3>
-                            <img src={kids_image} style={{ width: "9vw", margin: "auto" }} />
-                        </Box>
-                    </Grid>
-                    <Grid item xs={1}>
-                        <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
-                            {popular.slice(0, 3).map((product) => (
-                                <Container product={product} key={product.id} />
-                            ))}
+                    <Grid item xs={2}>
+                        <Box sx={{ justifyContent: "space-between", alignItems: "center" }}>
+                            <Box sx={{ height: "100%", alignItems: "center", width: "100%" }}>
+                                <h3 style={{ fontSize: "2.5rem" }}>
+                                    Mais curtidos
+                                    <br />
+                                    pela galerinha
+                                </h3>
+                                <img src={kids_image} style={{ width: "9vw", margin: "auto" }} />
+                            </Box>
+                            <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
+                                {popular.slice(0, 3).map((product) => (
+                                    <Container product={product} key={product.id} />
+                                ))}
+                            </Box>
                         </Box>
                     </Grid>
                     <Grid item xs={1}>
