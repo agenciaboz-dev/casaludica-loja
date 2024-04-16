@@ -57,7 +57,7 @@ export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({}) => {
                 className="product-list"
                 sx={{
                     flexWrap: "wrap",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     gap: isMobile ? "3vw" : "1vw",
                     "& .Product-Component:nth-child(2n)": { marginTop: isMobile ? "-17vw" : "" },
                 }}
