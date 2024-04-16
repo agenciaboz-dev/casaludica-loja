@@ -318,8 +318,8 @@ export const Menu: React.FC<MenuProps> = ({}) => {
                             <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
                         </IconButton>
                     </Box>
-                    <Logo style={{ width: isMobile ? "30vw" : "15vw" }} />
-                    <Box sx={{ flexDirection: "column", gap: 1, pt: isMobile ? undefined : 1 }}>
+                    <Logo style={{ width: isMobile ? "30vw" : "12vw" }} />
+                    <Box sx={{ flexDirection: "column", gap: 1, pt: isMobile ? undefined : 1, paddingBottom: isMobile ? "8vw" : "2vw" }}>
                         <p style={{ fontSize: "0.7rem", color: "black" }}>Registrado por Casa Lúdica®</p>
                         <p style={{ fontSize: "0.7rem", color: "black" }}>Todos os direitos reservados.</p>
                     </Box>
