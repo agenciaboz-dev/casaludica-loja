@@ -12,6 +12,9 @@ import { InstagramPostContainer } from "./InstagramPostContainer"
 import { ButtonComponent } from "../../ButtonComponent"
 import { ArrowForwardIos } from "@mui/icons-material"
 import { useColors } from "../../../hooks/useColors"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 interface SocialProps {}
 
@@ -43,6 +46,20 @@ export const Social: React.FC<SocialProps> = ({}) => {
     useEffect(() => {
         getPosts()
     }, [])
+
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        cssEase: "ease-in-out",
+        variableWidth: true,
+        arrows: true,
+        pauseOnHover: false,
+    }
 
     return (
         <Box
@@ -92,9 +109,10 @@ export const Social: React.FC<SocialProps> = ({}) => {
             <Box
                 sx={{
                     justifyContent: "center",
+                    margin: isMobile ? "0 auto 0 -5vw" : "0 auto 0 -10vw",
                 }}
             >
-                <Carousel
+                {/* <Carousel
                     showThumbs={false}
                     showArrows={false}
                     autoPlay
@@ -105,16 +123,22 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     centerMode={true}
                     centerSlidePercentage={isMobile ? 100 : 20}
                     width={"100vw"}
-                    // renderArrowNext={(onClick, hasNext, label) => (
-                    //     <ButtonComponent onClick={onClick} style={{ position: "absolute", top: "1vw", bottom: "1vw", right: "1vw", padding: 0 }}>
-                    //         <ArrowForwardIos />
-                    //     </ButtonComponent>
-                    // )}
+                    renderArrowNext={(onClick, hasNext, label) => (
+                        <ButtonComponent onClick={onClick} style={{ position: "absolute", top: "1vw", bottom: "1vw", right: "1vw", padding: 0 }}>
+                            <ArrowForwardIos />
+                        </ButtonComponent>
+                    )}
                 >
                     {posts.map((post) => (
                         <InstagramPostContainer key={post.id} post={post} />
                     ))}
-                </Carousel>
+                </Carousel> */}
+
+                <Slider {...sliderSettings}>
+                    {posts.map((post) => (
+                        <InstagramPostContainer key={post.id} post={post} />
+                    ))}
+                </Slider>
             </Box>
 
             <Box

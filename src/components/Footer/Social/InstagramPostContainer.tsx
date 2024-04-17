@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box, Button, MenuItem, Skeleton } from "@mui/material"
+import { Box, Button, MenuItem, Skeleton, useMediaQuery } from "@mui/material"
 import { InstagramPost } from "../../../types/server/instagram/post"
 import { api } from "../../../api"
 
@@ -8,9 +8,10 @@ interface InstagramPostProps {
 }
 
 export const InstagramPostContainer: React.FC<InstagramPostProps> = ({ post }) => {
+    const isMobile = useMediaQuery("(orientation: portrait)")
     const [source, setSource] = useState("")
 
-    const width = 450
+    const width = isMobile ? "96vw" : 300
     const height = 300
 
     const getSource = async () => {
