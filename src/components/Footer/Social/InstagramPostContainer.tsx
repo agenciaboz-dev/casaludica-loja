@@ -11,8 +11,8 @@ export const InstagramPostContainer: React.FC<InstagramPostProps> = ({ post }) =
     const isMobile = useMediaQuery("(orientation: portrait)")
     const [source, setSource] = useState("")
 
-    const width = isMobile ? "96vw" : 300
-    const height = 300
+    const width = isMobile ? "76vw" : "16vw"
+    const height = isMobile ? "76vw" : "16vw"
 
     const getSource = async () => {
         const response = await api.post("/instagram/image", { url: post.displayUrl })
@@ -27,7 +27,7 @@ export const InstagramPostContainer: React.FC<InstagramPostProps> = ({ post }) =
         <Box>
             {source ? (
                 <Button onClick={() => window.open(post.url, "_blank")?.focus()}>
-                    <img src={source} alt={post.alt} style={{ width, height }} />
+                    <img src={source} alt={post.alt} style={{ width, height, objectFit: "cover" }} />
                 </Button>
             ) : (
                 <Skeleton animation="wave" variant="rounded" sx={{ width, height, bgcolor: "#ffffff19" }} />
