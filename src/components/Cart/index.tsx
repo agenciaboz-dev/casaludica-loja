@@ -37,7 +37,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
             anchor={"right"}
             open={cart.open}
             onClose={closeMenu}
-            PaperProps={{ className: "Cart-Component", style: { width: isMobile ? "80vw" : "25vw" } }}
+            PaperProps={{ className: "Cart-Component", style: { width: isMobile ? "80vw" : "30vw" } }}
         >
             <Box
                 className="info"
