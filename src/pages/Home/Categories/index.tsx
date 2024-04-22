@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import { useCategories } from "../../../hooks/useCategories"
 //import './style.scss';
 import { Avatar, Box, MenuItem, Skeleton, alpha, useMediaQuery } from "@mui/material"
-import BrokenImageIcon from "@mui/icons-material/BrokenImage"
+import ImageIcon from "@mui/icons-material/Image"
 import { useNavigate } from "react-router-dom"
 import { useColors } from "../../../hooks/useColors"
 import { sentenceCase } from "change-case"
@@ -56,7 +56,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         }}
                     >
                         {/* <Avatar src={`/${category.id}`} variant={"rounded"} sx={{ bgcolor: colors.primary, borderRadius: "5vw" }}>
-                            <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
+                            <ImageIcon sx={{ width: "auto", height: "auto" }} />
                         </Avatar> */}
                         <CategoryIcon />
                         <p style={{ fontSize: isMobile ? "4vw" : "1rem", wordBreak: "break-all" }}>{sentenceCase(category.name)}</p>

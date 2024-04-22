@@ -21,6 +21,7 @@ import useMeasure from "react-use-measure"
 import { SimilarProduct } from "../Results/SimilarProduct"
 import { useDraggable } from "react-use-draggable-scroll"
 import "../../style/carouselStyle.css"
+import ImageIcon from "@mui/icons-material/Image"
 
 interface ProductProps {}
 interface DataTextProps {
@@ -339,11 +340,12 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     </Carousel>
                                 </>
                             ) : (
-                                <Skeleton
-                                    variant="rounded"
-                                    animation="wave"
-                                    sx={{ width: isMobile ? "90vw" : "37vw", height: isMobile ? "90vw" : "37vw", margin: "0 auto" }}
-                                />
+                                // <Skeleton
+                                //     variant="rounded"
+                                //     animation="wave"
+                                //     sx={{ width: isMobile ? "90vw" : "37vw", height: isMobile ? "90vw" : "37vw", margin: "0 auto" }}
+                                // />
+                                <ImageIcon color="disabled" sx={{ width: "auto", height: "auto" }} />
                             )}
                         </Paper>
                         <Box width={isMobile ? "100%" : "50%"} flexDirection={"column"} gap={isMobile ? "4vw" : "2vw"} flex={1}>

@@ -62,7 +62,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
-                        sx={{ width: isMobile ? "40vw" : "50%", height: "auto", borderRadius: isMobile ? "5vw" : "1vw" }}
+                        sx={{ width: isMobile ? "40vw" : "50%", height: "auto", borderRadius: isMobile ? "5vw" : "1vw", cursor: "pointer" }}
                     >
                         <ImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>

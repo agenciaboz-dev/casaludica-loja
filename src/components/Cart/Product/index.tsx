@@ -1,6 +1,6 @@
 import React from "react"
 import { Avatar, Box, useMediaQuery } from "@mui/material"
-import BrokenImageIcon from "@mui/icons-material/BrokenImage"
+import ImageIcon from "@mui/icons-material/Image"
 import { useColors } from "../../../hooks/useColors"
 import { ReactComponent as UpIcon } from "../../../images/quantity-increase.svg"
 import { ReactComponent as DownIcon } from "../../../images/quantity-decrease.svg"
@@ -93,7 +93,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     variant={"rounded"}
                     sx={{ bgcolor: colors.primary, width: isMobile ? "32vw" : "10vw", height: isMobile ? "32vw" : "10vw", borderRadius: "1vw" }}
                 >
-                    <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
+                    <ImageIcon sx={{ width: "auto", height: "auto" }} />
                 </Avatar>
                 <RemoveIcon
                     onClick={() => remove()}
