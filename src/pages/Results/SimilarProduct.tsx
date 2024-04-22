@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useCart } from "../../hooks/useCart"
 import { useDynamicImage } from "../../hooks/useDynamicImage"
 import { CurrencyText } from "../../components/CurrencyText"
+import ImageIcon from "@mui/icons-material/Image"
 
 interface SimilarProductProps {
     product: Product
@@ -73,7 +74,9 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                             borderRadius: isMobile ? "5vw" : "2vw",
                             pointerEvents: "none",
                         }}
-                    />
+                    >
+                        <ImageIcon sx={{ width: "auto", height: "auto" }} />
+                    </Avatar>
                     <Box sx={{ flexDirection: "column", alignItems: "center" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
                             <Box

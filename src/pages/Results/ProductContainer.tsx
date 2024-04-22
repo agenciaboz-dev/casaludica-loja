@@ -5,6 +5,7 @@ import { useCart } from "../../hooks/useCart"
 import { useDynamicImage } from "../../hooks/useDynamicImage"
 import { CurrencyText } from "../../components/CurrencyText"
 import useMeasure from "react-use-measure"
+import ImageIcon from "@mui/icons-material/Image"
 
 interface ProductContainerProps {
     product: Product
@@ -62,7 +63,10 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
                         sx={{ width: isMobile ? "40vw" : "50%", height: "auto", borderRadius: isMobile ? "5vw" : "1vw" }}
-                    />
+                    >
+                        <ImageIcon sx={{ width: "auto", height: "auto" }} />
+                    </Avatar>
+
                     <Box ref={ref} sx={{ flexDirection: "column", alignItems: "center", gap: "2vw" }}>
                         <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
                             <Button sx={{ color: "primary.main", padding: 0 }}>

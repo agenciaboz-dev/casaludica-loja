@@ -1,6 +1,6 @@
 import { Avatar, Button, Box, Skeleton, useMediaQuery } from "@mui/material"
 import React, { useEffect, useRef } from "react"
-import BrokenImageIcon from "@mui/icons-material/BrokenImage"
+import ImageIcon from "@mui/icons-material/Image"
 import { useColors } from "../../../../hooks/useColors"
 import { CurrencyText } from "../../../../components/CurrencyText"
 import { useCart } from "../../../../hooks/useCart"
@@ -61,7 +61,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                             borderRadius: isMobile ? "5vw" : "1vw",
                         }}
                     >
-                        <BrokenImageIcon sx={{ width: "auto", height: "auto" }} />
+                        <ImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>
                     <h2
                         style={{
