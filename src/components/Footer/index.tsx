@@ -20,8 +20,15 @@ export const Footer: React.FC<FooterProps> = ({}) => {
             }}
         >
             <Social />
-            <About />
-            {isMobile && <Newsletter />}
+            <Box
+                sx={{
+                    flexDirection: isMobile ? "column" : "row",
+                    gap: isMobile ? "5vw" : "7vw",
+                }}
+            >
+                <About />
+                <Newsletter />
+            </Box>
             <Copyright />
         </Box>
     )

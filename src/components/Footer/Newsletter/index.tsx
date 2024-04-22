@@ -42,6 +42,19 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
         sx: { padding: isMobile ? "3vw" : "0.75vw" },
     }
 
+    const h2Style = {
+        fontSize: isMobile ? "6vw" : "1.5rem",
+    }
+
+    const pStyle = {
+        fontSize: isMobile ? "5vw" : "1.2rem",
+    }
+
+    const containerStyle: React.CSSProperties = {
+        width: "100%",
+        flexDirection: "column",
+    }
+
     return (
         <Box
             className="Newsletter-Component"
@@ -50,8 +63,15 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
                 flexDirection: "column",
                 gap: isMobile ? "1vw" : "0.5vw",
                 color: colors.primary,
+                justifyContent: "space-between",
             }}
         >
+            <Box className="container" style={containerStyle}>
+                <h2 style={h2Style}>Fale com a gente</h2>
+                <p style={pStyle}>(47) 99168-4299 (47)3081-4937</p>
+                <p style={pStyle}>falecom@casaludica.com.br</p>
+                <p style={{ ...pStyle, marginTop: isMobile ? "6vw" : "1vw" }}>Assine a nossa Newsletter e receba novidades e promoções!</p>
+            </Box>
             <Formik initialValues={{ name: "", email: "" }} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form
