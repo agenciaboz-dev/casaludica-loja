@@ -10,7 +10,7 @@ import { api } from "../../../api"
 import { InstagramPost } from "../../../types/server/instagram/post"
 import { InstagramPostContainer } from "./InstagramPostContainer"
 import { ButtonComponent } from "../../ButtonComponent"
-import { ArrowForwardIos } from "@mui/icons-material"
+import PlayArrowIcon from "@mui/icons-material/PlayArrow"
 import { useColors } from "../../../hooks/useColors"
 // import Slider from "react-slick"
 // import "slick-carousel/slick/slick.css"
@@ -114,7 +114,6 @@ export const Social: React.FC<SocialProps> = ({}) => {
             >
                 <Carousel
                     showThumbs={false}
-                    showArrows={false}
                     autoPlay
                     infiniteLoop
                     interval={3000}
@@ -124,8 +123,21 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     centerSlidePercentage={isMobile ? 80 : 17}
                     width={"100vw"}
                     // renderArrowNext={(onClick, hasNext, label) => (
-                    //     <ButtonComponent onClick={onClick} style={{ position: "absolute", top: "1vw", bottom: "1vw", right: "1vw", padding: 0 }}>
-                    //         <ArrowForwardIos />
+                    //     <ButtonComponent
+                    //         onClick={onClick}
+                    //         style={{
+                    //             position: "absolute",
+                    //             top: "50%",
+                    //             bottom: "50%",
+                    //             right: "1vw",
+                    //             padding: 0,
+                    //             borderRadius: "50%",
+                    //             width: isMobile ? "15vw" : "5vw",
+                    //             height: isMobile ? "15vw" : "5vw",
+                    //             aspectRatio: 1,
+                    //         }}
+                    //     >
+                    //         <PlayArrowIcon fontSize="large" />
                     //     </ButtonComponent>
                     // )}
                 >
