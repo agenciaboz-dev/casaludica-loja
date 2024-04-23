@@ -70,7 +70,7 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                                     <br />
                                     pela galerinha
                                 </h3>
-                                <img src={kids_image} style={{ width: "9vw", margin: "auto" }} />
+                                <img src={kids_image} style={{ width: "6vw", margin: "auto" }} />
                             </Box>
                             <Box sx={{ gap: isMobile ? "0.5vw" : "1vw" }}>
                                 {popular.slice(0, 3).map((product) => (
@@ -118,22 +118,22 @@ export const Popular: React.FC<PopularProps> = ({}) => {
                     {popular.length == 0 && (
                         <>
                             <Grid item>
-                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"12vw"} height={"12vw"} />
                             </Grid>
                             <Grid item>
-                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"12vw"} height={"12vw"} />
                             </Grid>
                             <Grid item>
-                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"12vw"} height={"12vw"} />
                             </Grid>
                             <Grid item>
-                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"12vw"} height={"12vw"} />
                             </Grid>
                             <Grid item>
-                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"12vw"} height={"12vw"} />
                             </Grid>
                             <Grid item>
-                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"15vw"} height={"15vw"} />
+                                <Skeleton animation="wave" sx={{ flexShrink: 0 }} variant="rounded" width={"12vw"} height={"12vw"} />
                             </Grid>
                         </>
                     )}
