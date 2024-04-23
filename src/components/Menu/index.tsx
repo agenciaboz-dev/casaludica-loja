@@ -64,7 +64,7 @@ export const Menu: React.FC<MenuProps> = ({}) => {
             PaperProps={{
                 className: "Menu-Component",
                 style: {
-                    width: isMobile ? "80vw" : "30vw",
+                    width: isMobile ? "80vw" : "35vw",
                 },
             }}
         >
