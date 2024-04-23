@@ -368,6 +368,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         sx={{
                                             alignItems: "center",
                                             gap: isMobile ? "1vw" : "0.5vw",
+                                            display: product?.stock == 0 ? "none" : "",
+                                            width: "fit-content",
                                         }}
                                     >
                                         <IconButton onClick={() => changeQuantity(-1)} sx={{ padding: 0 }}>
@@ -399,7 +401,6 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     <CurrencyText
                                         value={product.price * quantity}
                                         style={{
-                                            // width: isMobile ? "50vw" : "10vw",
                                             color: colors.primary,
                                             display: "flex",
                                             flexDirection: "row-reverse",
@@ -411,6 +412,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                             // overflow: "hidden",
                                             textOverflow: "ellipsis",
                                             marginLeft: "1vw",
+                                            width: product?.stock == 0 ? "100%" : "",
                                         }}
                                     />
                                 </Box>
