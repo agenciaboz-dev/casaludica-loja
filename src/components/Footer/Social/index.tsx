@@ -10,7 +10,6 @@ import { api } from "../../../api"
 import { InstagramPost } from "../../../types/server/instagram/post"
 import { InstagramPostContainer } from "./InstagramPostContainer"
 import { ButtonComponent } from "../../ButtonComponent"
-import PlayArrowIcon from "@mui/icons-material/PlayArrow"
 import { useColors } from "../../../hooks/useColors"
 // import Slider from "react-slick"
 // import "slick-carousel/slick/slick.css"
@@ -47,18 +46,27 @@ export const Social: React.FC<SocialProps> = ({}) => {
         getPosts()
     }, [])
 
-    const sliderSettings = {
-        dots: true,
-        infinite: true,
-        speed: 3000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        cssEase: "ease-in-out",
-        variableWidth: true,
-        arrows: true,
-        pauseOnHover: false,
+    // const sliderSettings = {
+    //     dots: true,
+    //     infinite: true,
+    //     speed: 3000,
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     autoplay: true,
+    //     autoplaySpeed: 3000,
+    //     cssEase: "ease-in-out",
+    //     variableWidth: true,
+    //     arrows: true,
+    //     pauseOnHover: false,
+    // }
+
+    const socialIconsStyle = {
+        width: isMobile ? "15vw" : "4vw",
+        height: isMobile ? "15vw" : "4vw",
+        backgroundColor: "#fff",
+        aspectRatio: 1,
+        borderRadius: "50%",
+        border: `2px solid ${colors.primary}`,
     }
 
     return (
@@ -161,16 +169,16 @@ export const Social: React.FC<SocialProps> = ({}) => {
                 }}
             >
                 <IconButton onClick={() => window.open(links.instagram, "_blank")?.focus()}>
-                    <InstagramIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                    <InstagramIcon style={socialIconsStyle} />
                 </IconButton>
                 <IconButton onClick={() => window.open(links.facebook, "_blank")?.focus()}>
-                    <FacebookIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                    <FacebookIcon style={socialIconsStyle} />
                 </IconButton>
                 <IconButton onClick={() => window.open(links.youtube, "_blank")?.focus()}>
-                    <YoutubeIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                    <YoutubeIcon style={socialIconsStyle} />
                 </IconButton>
                 <IconButton onClick={() => window.open(links.whatsapp, "_blank")?.focus()}>
-                    <WhatsappIcon style={{ width: isMobile ? "15vw" : "4vw" }} />
+                    <WhatsappIcon style={socialIconsStyle} />
                 </IconButton>
             </Box>
         </Box>
