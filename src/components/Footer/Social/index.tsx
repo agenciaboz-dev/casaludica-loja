@@ -120,39 +120,24 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     // margin: isMobile ? "0 auto 0 -5vw" : "0 auto 0 -10vw",
                 }}
             >
-                <Carousel
-                    showThumbs={false}
-                    autoPlay
-                    infiniteLoop
-                    interval={3000}
-                    transitionTime={1000}
-                    showStatus={false}
-                    centerMode={true}
-                    centerSlidePercentage={isMobile ? 80 : 17}
-                    width={"100vw"}
-                    // renderArrowNext={(onClick, hasNext, label) => (
-                    //     <ButtonComponent
-                    //         onClick={onClick}
-                    //         style={{
-                    //             position: "absolute",
-                    //             top: "50%",
-                    //             bottom: "50%",
-                    //             right: "1vw",
-                    //             padding: 0,
-                    //             borderRadius: "50%",
-                    //             width: isMobile ? "15vw" : "5vw",
-                    //             height: isMobile ? "15vw" : "5vw",
-                    //             aspectRatio: 1,
-                    //         }}
-                    //     >
-                    //         <PlayArrowIcon fontSize="large" />
-                    //     </ButtonComponent>
-                    // )}
-                >
-                    {posts.map((post) => (
-                        <InstagramPostContainer key={post.id} post={post} />
-                    ))}
-                </Carousel>
+                {posts.length && (
+                    <Carousel
+                        showThumbs={false}
+                        autoPlay
+                        autoFocus={true}
+                        infiniteLoop
+                        interval={5000}
+                        transitionTime={1000}
+                        showStatus={false}
+                        centerMode={true}
+                        centerSlidePercentage={isMobile ? 80 : 17}
+                        width={"100vw"}
+                    >
+                        {posts.map((post) => (
+                            <InstagramPostContainer key={post.id} post={post} />
+                        ))}
+                    </Carousel>
+                )}
 
                 {/* <Slider {...sliderSettings}>
                     {posts.map((post) => (
