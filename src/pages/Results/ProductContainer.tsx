@@ -46,6 +46,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                 flexDirection: "row",
                 alignItems: "center",
                 width: "100%",
+                height: "100%",
                 gap: isMobile ? "3vw" : "",
                 justifyContent: "space-around",
                 borderRadius: isMobile ? "5vw" : "2vw",
@@ -62,7 +63,15 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     <Avatar
                         src={"data:image/jpeg;base64," + product.cover}
                         variant="square"
-                        sx={{ width: isMobile ? "40vw" : "50%", height: "auto", borderRadius: isMobile ? "5vw" : "1vw", cursor: "pointer" }}
+                        sx={{
+                            width: isMobile ? "40vw" : "50%",
+                            height: "auto",
+                            borderRadius: isMobile ? "5vw" : "1vw",
+                            cursor: "pointer",
+                            // maxHeight: isMobile ? "40vw" : "12vw",
+                            // aspectRatio: 1,
+                            // objectFit: "cover",
+                        }}
                     >
                         <ImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>
@@ -73,9 +82,9 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                 <h4
                                     style={{
                                         textAlign: "start",
-                                        textOverflow: "ellipsis",
-                                        whiteSpace: "nowrap",
-                                        overflow: "hidden",
+                                        whiteSpace: "break-spaces",
+                                        // overflow: "hidden",
+                                        // textOverflow: "ellipsis",
                                         width: isMobile ? "40vw" : dimensions.width * 1,
                                     }}
                                 >
