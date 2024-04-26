@@ -49,7 +49,6 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 style={{
                     justifyContent: "start",
                     alignItems: "center",
-                    gap: isMobile ? "5vw" : "1vw",
                 }}
             >
                 <Box
@@ -91,13 +90,19 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 <Avatar
                     src={"data:image/jpeg;base64," + product.cover}
                     variant={"rounded"}
-                    sx={{ bgcolor: colors.primary, width: isMobile ? "32vw" : "10vw", height: isMobile ? "32vw" : "10vw", borderRadius: "1vw" }}
+                    sx={{
+                        bgcolor: colors.primary,
+                        width: isMobile ? "32vw" : "10vw",
+                        height: isMobile ? "32vw" : "10vw",
+                        borderRadius: "1vw",
+                        margin: "0 auto",
+                    }}
                 >
                     <ImageIcon sx={{ width: "auto", height: "auto" }} />
                 </Avatar>
                 <RemoveIcon
                     onClick={() => remove()}
-                    style={{ cursor: "pointer", position: "absolute", top: isMobile ? "5vw" : "1vw", right: isMobile ? "5vw" : "1vw" }}
+                    style={{ cursor: "pointer", position: "absolute", top: isMobile ? "5vw" : "1vw", right: isMobile ? "5vw" : "1vw", zIndex: 9 }}
                 />
             </Box>
             <Box

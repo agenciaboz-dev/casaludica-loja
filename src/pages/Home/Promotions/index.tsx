@@ -11,22 +11,16 @@ export const Promotions: React.FC<PromotionsProps> = ({}) => {
 
     return (
         <Box className="Promotions-Component" sx={{ width: "100%", flexDirection: "column" }}>
-            <Carousel
-                showThumbs={false}
-                autoPlay
-                infiniteLoop
-                interval={5000}
-                transitionTime={1000}
-                showStatus={false}
-                //style={{borderRadius: "3vw"}}
-            >
-                {promotions.map((promotion) => (
-                    <Box key={promotion.id}>
-                        <img src={promotion.image_url} alt="" />
-                        {/* <p className="legend">{promotion.subtitle}</p> */}
-                    </Box>
-                ))}
-            </Carousel>
+            {promotions.length && (
+                <Carousel showThumbs={false} autoPlay autoFocus={true} infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
+                    {promotions.map((promotion) => (
+                        <Box key={promotion.id}>
+                            <img src={promotion.image_url} alt="" />
+                            {/* <p className="legend">{promotion.subtitle}</p> */}
+                        </Box>
+                    ))}
+                </Carousel>
+            )}
         </Box>
     )
 }

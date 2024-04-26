@@ -82,7 +82,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     </IconButton>
                 </Box>
             ) : (
-                <Skeleton variant="rounded" width={isMobile ? "35vw" : "100%"} height={isMobile ? "45vw" : "100%"} animation="wave" />
+                <Skeleton variant="rounded" width={isMobile ? "35vw" : "12vw"} height={isMobile ? "45vw" : "100%"} animation="wave" />
             )}
         </Box>
     )

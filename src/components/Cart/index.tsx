@@ -37,7 +37,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
             anchor={"right"}
             open={cart.open}
             onClose={closeMenu}
-            PaperProps={{ className: "Cart-Component", style: { width: isMobile ? "80vw" : "30vw" } }}
+            PaperProps={{ className: "Cart-Component", style: { width: isMobile ? "80vw" : "35vw" } }}
         >
             <Box
                 className="info"
@@ -65,7 +65,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
                     className="amount-circle"
                     style={{
                         borderRadius: "100%",
-                        backgroundColor: colors.secondary,
+                        backgroundColor: colors.background_secondary,
                         width: isMobile ? "10vw" : "2vw",
                         height: isMobile ? "10vw" : "2vw",
                         justifyContent: "center",

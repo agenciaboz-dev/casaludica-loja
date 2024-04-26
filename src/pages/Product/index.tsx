@@ -268,77 +268,29 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             }}
                         >
                             {!!galery.length ? (
-                                <>
-                                    {/* <style>
-                                        {`
-                                    .carousel .control-arrow {
-                                        opacity: 1 !important;
-                                        border-radius: 50%;
-                                        width: 44px;
-                                        height: 44px;
-                                        top: 50% !important;
-                                        transform: translateY(-50%);
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        margin: 0 10px;
-                                    }
-                                    .carousel .control-prev.control-arrow:before,
-                                    .carousel .control-next.control-arrow:before {
-                                        content: '';
-                                        display: inline-block;
-                                        width: 0;
-                                        height: 0;
-                                        border-style: solid;
-                                    }
-                                    .carousel .control-prev.control-arrow:before {
-                                        border-width: 12px 16px 12px 0;
-                                        border-color: transparent ${colors.primary} transparent transparent;
-                                    }
-                                    .carousel .control-next.control-arrow:before {
-                                        border-width: 12px 0 12px 16px;
-                                        border-color: transparent transparent transparent ${colors.primary};
-                                    }
-                                    .carousel .control-dots {
-                                        position: absolute;
-                                        bottom: -5px;
-                                        width: 100%;
-                                        padding: 0;
-                                        margin: 0;
-                                        list-style: none;
-                                        text-align: center;
-                                    }
-                                    .carousel .control-dots .dot {
-                                        background: ${colors.primary};
-                                        opacity: 1;
-                                        width: 18px;
-                                        height: 18px;
-                                        border-radius: 50%;
-                                        display: inline-block;
-                                        margin: 0 8px;
-                                        border: 2px solid #fff;
-                                    }
-                                    .carousel .control-dots .selected {
-                                        background: ${colors.green} !important;
-                                    }
-                                    `}
-                                    </style> */}
-                                    <Carousel showThumbs={false} autoPlay infiniteLoop interval={5000} transitionTime={1000} showStatus={false}>
-                                        {galery.map((image, index) => (
-                                            <Box key={index}>
-                                                <img
-                                                    src={"data:image/jpeg;base64," + image}
-                                                    alt=""
-                                                    style={{
-                                                        height: isMobile ? "" : "95%",
-                                                        width: isMobile ? "" : "95%",
-                                                        margin: "0 auto",
-                                                    }}
-                                                />
-                                            </Box>
-                                        ))}
-                                    </Carousel>
-                                </>
+                                <Carousel
+                                    showThumbs={false}
+                                    autoPlay
+                                    autoFocus={true}
+                                    infiniteLoop
+                                    interval={5000}
+                                    transitionTime={1000}
+                                    showStatus={false}
+                                >
+                                    {galery.map((image, index) => (
+                                        <Box key={index}>
+                                            <img
+                                                src={"data:image/jpeg;base64," + image}
+                                                alt=""
+                                                style={{
+                                                    height: isMobile ? "" : "95%",
+                                                    width: isMobile ? "" : "95%",
+                                                    margin: "0 auto",
+                                                }}
+                                            />
+                                        </Box>
+                                    ))}
+                                </Carousel>
                             ) : (
                                 // <Skeleton
                                 //     variant="rounded"
@@ -368,6 +320,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         sx={{
                                             alignItems: "center",
                                             gap: isMobile ? "1vw" : "0.5vw",
+                                            display: product?.stock == 0 ? "none" : "",
+                                            width: "fit-content",
                                         }}
                                     >
                                         <IconButton onClick={() => changeQuantity(-1)} sx={{ padding: 0 }}>
@@ -399,7 +353,6 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     <CurrencyText
                                         value={product.price * quantity}
                                         style={{
-                                            // width: isMobile ? "50vw" : "10vw",
                                             color: colors.primary,
                                             display: "flex",
                                             flexDirection: "row-reverse",
@@ -411,6 +364,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                             // overflow: "hidden",
                                             textOverflow: "ellipsis",
                                             marginLeft: "1vw",
+                                            width: product?.stock == 0 ? "100%" : "",
                                         }}
                                     />
                                 </Box>
