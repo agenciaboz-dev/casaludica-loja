@@ -68,7 +68,7 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
         >
             <Box className="container" style={containerStyle}>
                 <h2 style={h2Style}>Fale com a gente</h2>
-                <p style={pStyle}>(47) 99168-4299 (47)3081-4937</p>
+                <p style={pStyle}>(47) 9617-9411</p>
                 <p style={pStyle}>falecom@casaludica.com.br</p>
                 <p style={{ ...pStyle, marginTop: isMobile ? "6vw" : "1vw" }}>Assine a nossa Newsletter e receba novidades e promoções!</p>
             </Box>

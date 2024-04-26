@@ -32,7 +32,7 @@ export const Social: React.FC<SocialProps> = ({}) => {
 
     const links = {
         instagram: "https://www.instagram.com/casaludica/",
-        whatsapp: "https://api.whatsapp.com/send?phone=5547991684299&text=Ol%C3%A1,%20Casa%20L%C3%BAdica!",
+        whatsapp: "https://api.whatsapp.com/send?phone=554796179411&text=Ol%C3%A1,%20Casa%20L%C3%BAdica!",
         facebook: "https://www.facebook.com/casaludica.com.br",
         youtube: "https://www.youtube.com/@casaludica6482",
     }
