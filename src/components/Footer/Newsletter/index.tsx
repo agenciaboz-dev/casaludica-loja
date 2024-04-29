@@ -70,7 +70,6 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
                 <h2 style={h2Style}>Fale com a gente</h2>
                 <p style={pStyle}>(47) 9617-9411</p>
                 <p style={pStyle}>falecom@casaludica.com.br</p>
-                <p style={{ ...pStyle, marginTop: isMobile ? "6vw" : "1vw" }}>Assine a nossa Newsletter e receba novidades e promoções!</p>
             </Box>
             <Formik initialValues={{ name: "", email: "" }} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
@@ -80,6 +79,7 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
                             gap: isMobile ? "3vw" : "1vw",
                         }}
                     >
+                        <p style={{ ...pStyle, marginTop: isMobile ? "6vw" : "1vw" }}>Assine a nossa Newsletter e receba novidades e promoções!</p>
                         <TextField
                             id="name"
                             sx={textFieldSx}
