@@ -78,24 +78,24 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                         <ImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>
                     <Box sx={{ flexDirection: "column", alignItems: "center" }}>
-                        <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
-                            <Box
-                                sx={{
-                                    fontFamily: "BowlbyOneSC",
-                                    color: "primary.main",
-                                    fontSize: isMobile ? "0.7rem" : "1.2rem",
-                                    textAlign: "start",
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                    whiteSpace: "normal",
-                                    width: isMobile ? "32vw" : "12vw",
-                                    display: "-webkit-box",
-                                    WebkitBoxOrient: "vertical",
-                                    WebkitLineClamp: 1,
-                                }}
-                            >
-                                {product.name}
-                            </Box>
+                        <Box
+                            sx={{
+                                fontFamily: "BowlbyOneSC",
+                                color: "primary.main",
+                                fontSize: isMobile ? "0.7rem" : "1.2rem",
+                                textAlign: "start",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "normal",
+                                width: isMobile ? "32vw" : "12vw",
+                                display: "-webkit-box",
+                                WebkitBoxOrient: "vertical",
+                                WebkitLineClamp: 1,
+                            }}
+                        >
+                            {product.name}
+                        </Box>
+                        <Box sx={{ flexDirection: "column", alignItems: "center", height: "100%", justifyContent: "space-evenly" }}>
                             <Box
                                 sx={{
                                     color: "#000",
@@ -134,8 +134,7 @@ export const SimilarProduct: React.FC<SimilarProductProps> = ({ product }) => {
                             fullWidth
                             sx={{
                                 borderRadius: isMobile ? "20vw" : "2vw",
-                                mt: isMobile ? "2vw" : "1vw",
-
+                                mt: "auto",
                                 color: "white",
                                 justifyContent: "center",
                                 alignItems: "center",
