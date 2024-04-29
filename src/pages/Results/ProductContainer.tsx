@@ -33,7 +33,6 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
         borderRadius: isMobile ? "20vw" : "2vw",
         border: "none",
         color: "white",
-
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "BowlbyOneSC",
@@ -75,22 +74,21 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     >
                         <ImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>
-
-                    <Box ref={ref} sx={{ flexDirection: "column", alignItems: "center", gap: "2vw" }}>
-                        <Box sx={{ flexDirection: "column", alignItems: "center", gap: "1vw" }}>
-                            <Button sx={{ color: "primary.main", padding: 0 }}>
-                                <h4
-                                    style={{
-                                        textAlign: "start",
-                                        whiteSpace: "break-spaces",
-                                        // overflow: "hidden",
-                                        // textOverflow: "ellipsis",
-                                        width: isMobile ? "40vw" : dimensions.width * 1,
-                                    }}
-                                >
-                                    {product.name}
-                                </h4>
-                            </Button>
+                    <Box ref={ref} sx={{ flexDirection: "column", alignItems: "center", height: "100%", justifyContent: "space-between" }}>
+                        <Button sx={{ color: "primary.main", padding: 0 }}>
+                            <h4
+                                style={{
+                                    textAlign: "start",
+                                    whiteSpace: "break-spaces",
+                                    // overflow: "hidden",
+                                    // textOverflow: "ellipsis",
+                                    width: isMobile ? "40vw" : dimensions.width * 1,
+                                }}
+                            >
+                                {product.name}
+                            </h4>
+                        </Button>
+                        <Box sx={{ flexDirection: "column", alignItems: "center" }}>
                             <h2
                                 style={{
                                     textAlign: "start",
