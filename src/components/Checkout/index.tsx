@@ -25,8 +25,8 @@ import unmask from "../../tools/unmask"
 interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
-    const { snackbar } = useSnackbar()
     const isMobile = useMediaQuery("(orientation: portrait)")
+    const { snackbar } = useSnackbar()
     const { franchise, currentAddress } = useFranchise()
     const { user } = useUser()
     const { confirm } = useConfirmDialog()
@@ -194,7 +194,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     <Product key={product.id} product={product} />
                 ))}
             </Box>
-            <Box sx={{ flexDirection: isMobile ? "column" : "row-reverse", gap: "5vw" }}>
+            <Box sx={{ flexDirection: isMobile ? "column" : "row-reverse", gap: isMobile ? "5vw" : "3vw" }}>
                 <Review handleSubmit={billingFormik.handleSubmit} makingOrder={makingOrder} />
                 <Billing formik={billingFormik} makingOrder={makingOrder} />
                 <PayModal open={!!payingOrderId} close={() => setPayingOrderId("")} orderId={payingOrderId} />

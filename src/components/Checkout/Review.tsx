@@ -21,7 +21,7 @@ export const Review: React.FC<ReviewProps> = ({ handleSubmit, makingOrder }) => 
                 sx={{
                     flexDirection: "column",
                     borderRadius: isMobile ? "4.5vw" : "2vw",
-                    gap: isMobile ? "5vw" : "2vw",
+                    gap: isMobile ? "5vw" : "1vw",
                     padding: isMobile ? "6vw" : "2vw",
                     color: "#686868",
                 }}
@@ -52,7 +52,7 @@ export const Review: React.FC<ReviewProps> = ({ handleSubmit, makingOrder }) => 
                         <CurrencyText value={cart.total} style={{ fontWeight: "bold" }} />
                     </Grid>
                 </Grid>
-                <Box sx={{ borderTop: "1px solid", borderColor: "primary.main", color: "black", paddingTop: "5vw" }}>
+                <Box sx={{ borderTop: "1px solid", borderColor: "primary.main", color: "black", paddingTop: isMobile ? "5vw" : "2vw" }}>
                     <Grid container spacing={6}>
                         <Grid item xs={6}>
                             <p style={{ fontWeight: "bold" }}>Total</p>

@@ -37,7 +37,7 @@ export const Billing: React.FC<BillingProps> = ({ formik, makingOrder }) => {
                         flexDirection: "column",
                         borderRadius: isMobile ? "4.5vw" : "2vw",
                         width: "100%",
-                        gap: isMobile ? "5vw" : "2vw",
+                        gap: isMobile ? "5vw" : "1vw",
                         padding: isMobile ? "6vw" : "2vw",
                     }}
                 >
