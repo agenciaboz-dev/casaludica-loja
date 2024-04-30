@@ -346,7 +346,11 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                             <p>{quantity}</p>
                                         </Box>
 
-                                        <IconButton onClick={() => changeQuantity(1)} sx={{ padding: 0 }}>
+                                        <IconButton
+                                            onClick={() => changeQuantity(1)}
+                                            sx={{ padding: 0 }}
+                                            disabled={quantity + 1 > (product.stock ? product.stock : 0)}
+                                        >
                                             <ArrowIcon style={{ transform: "rotate(180deg)" }} />
                                         </IconButton>
                                     </Box>
