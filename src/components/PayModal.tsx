@@ -50,7 +50,7 @@ export const PayModal: React.FC<PayModalProps> = ({ open, orderId, close }) => {
                         storeIdentifier={bozpayStoreIdentifier}
                         referenceId={orderId}
                         sandbox={!franchise.pagseguro_token}
-                        wrapperSx={{ width: "100%", alignSelf: "center" }}
+                        wrapperSx={{ width: isMobile ? "100%" : "90vw", alignSelf: "center" }}
                         onPaid={onPaid}
                     />
                     // <BozPay
