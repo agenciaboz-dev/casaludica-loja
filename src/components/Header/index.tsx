@@ -70,6 +70,9 @@ export const Header = () => {
                     sx={{
                         //top:"3vw",
                         right: "1vw",
+                        "& .MuiBadge-badge": {
+                            transform: "translate(20px, -10px)", // Adjust X as needed
+                        },
                     }}
                 >
                     <IconButton color="secondary" sx={{ padding: 0, marginRight: "-1.1vw" }} onClick={() => cart.setOpen(true)}>
