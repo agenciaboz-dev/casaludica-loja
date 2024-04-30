@@ -124,7 +124,6 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     <Carousel
                         showThumbs={false}
                         autoPlay
-                        autoFocus={true}
                         infiniteLoop
                         interval={5000}
                         transitionTime={1000}
