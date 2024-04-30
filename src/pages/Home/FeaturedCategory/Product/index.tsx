@@ -65,11 +65,14 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     </Avatar>
                     <h2
                         style={{
-                            fontSize: isMobile ? "5vw" : "1.2rem",
+                            fontSize: isMobile ? "5vw" : "1rem",
                             width: isMobile ? "40vw" : "13vw",
-                            whiteSpace: "nowrap",
+                            whiteSpace: "normal",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
                         }}
                     >
                         {product.name}
