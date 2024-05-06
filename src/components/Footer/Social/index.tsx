@@ -11,9 +11,10 @@ import { InstagramPost } from "../../../types/server/instagram/post"
 import { InstagramPostContainer } from "./InstagramPostContainer"
 import { ButtonComponent } from "../../ButtonComponent"
 import { useColors } from "../../../hooks/useColors"
-// import Slider from "react-slick"
-// import "slick-carousel/slick/slick.css"
-// import "slick-carousel/slick/slick-theme.css"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import "../../../style/sliderStyle.css"
 
 interface SocialProps {}
 
@@ -46,19 +47,19 @@ export const Social: React.FC<SocialProps> = ({}) => {
         getPosts()
     }, [])
 
-    // const sliderSettings = {
-    //     dots: true,
-    //     infinite: true,
-    //     speed: 3000,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     autoplay: true,
-    //     autoplaySpeed: 3000,
-    //     cssEase: "ease-in-out",
-    //     variableWidth: true,
-    //     arrows: true,
-    //     pauseOnHover: false,
-    // }
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        cssEase: "ease-in-out",
+        variableWidth: true,
+        arrows: true,
+        pauseOnHover: false,
+    }
 
     const socialIconsStyle = {
         width: isMobile ? "15vw" : "4vw",
@@ -117,10 +118,9 @@ export const Social: React.FC<SocialProps> = ({}) => {
             <Box
                 sx={{
                     justifyContent: "center",
-                    // margin: isMobile ? "0 auto 0 -5vw" : "0 auto 0 -10vw",
                 }}
             >
-                {posts.length && (
+                {/* {posts.length && (
                     <Carousel
                         showThumbs={false}
                         autoPlay
@@ -136,13 +136,21 @@ export const Social: React.FC<SocialProps> = ({}) => {
                             <InstagramPostContainer key={post.id} post={post} />
                         ))}
                     </Carousel>
-                )}
+                )} */}
 
-                {/* <Slider {...sliderSettings}>
-                    {posts.map((post) => (
-                        <InstagramPostContainer key={post.id} post={post} />
-                    ))}
-                </Slider> */}
+                {posts.length && (
+                    <Box
+                        sx={{
+                            width: "100vw",
+                        }}
+                    >
+                        <Slider {...sliderSettings}>
+                            {posts.map((post) => (
+                                <InstagramPostContainer key={post.id} post={post} />
+                            ))}
+                        </Slider>
+                    </Box>
+                )}
             </Box>
 
             <Box

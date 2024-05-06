@@ -24,7 +24,13 @@ export const InstagramPostContainer: React.FC<InstagramPostProps> = ({ post }) =
     }, [])
 
     return (
-        <Box>
+        <Box
+            sx={
+                {
+                    // margin: isMobile ? "0 10vw" : 0,
+                }
+            }
+        >
             {source ? (
                 <Button onClick={() => window.open(post.url, "_blank")?.focus()}>
                     <img src={source} alt={post.alt} style={{ width, height, objectFit: "cover" }} />
