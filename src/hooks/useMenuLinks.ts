@@ -62,7 +62,7 @@ export const useMenuLinks = () => {
                 id: 6,
                 name: "Adquira uma Franquia",
                 location: "/",
-                onClick: () => window.open("https://franquia.casaludica.com.br", "_blank")?.focus(),
+                onClick: () => window.open("https://portal.casaludica.com.br", "_blank")?.focus(),
             },
             {
                 id: 7,
