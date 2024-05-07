@@ -120,7 +120,7 @@ export const Social: React.FC<SocialProps> = ({}) => {
                     justifyContent: "center",
                 }}
             >
-                {/* {posts.length && (
+                {posts.length && isMobile && (
                     <Carousel
                         showThumbs={false}
                         autoPlay
@@ -129,16 +129,16 @@ export const Social: React.FC<SocialProps> = ({}) => {
                         transitionTime={1000}
                         showStatus={false}
                         centerMode={true}
-                        centerSlidePercentage={isMobile ? 80 : 17}
+                        centerSlidePercentage={80}
                         width={"100vw"}
                     >
                         {posts.map((post) => (
                             <InstagramPostContainer key={post.id} post={post} />
                         ))}
                     </Carousel>
-                )} */}
+                )}
 
-                {posts.length && (
+                {posts.length && !isMobile && (
                     <Box
                         sx={{
                             width: "100vw",
