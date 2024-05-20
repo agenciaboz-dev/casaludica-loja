@@ -155,7 +155,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
         } else {
             setProduct(products.find((product) => product.id == id))
         }
-    }, [id])
+    }, [id, products])
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" })
