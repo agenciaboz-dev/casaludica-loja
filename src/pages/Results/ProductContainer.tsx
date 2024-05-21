@@ -74,7 +74,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                     >
                         <ImageIcon sx={{ width: "auto", height: "auto" }} />
                     </Avatar>
-                    <Box ref={ref} sx={{ flexDirection: "column", alignItems: "center", height: "100%", justifyContent: "space-between" }}>
+                    <Box sx={{ flexDirection: "column", alignItems: "center", height: "100%", justifyContent: "space-between", padding: "0 1vw" }}>
                         <Button sx={{ color: "primary.main", padding: 0 }}>
                             <h4
                                 style={{
@@ -82,7 +82,7 @@ export const ProductContainer: React.FC<ProductContainerProps> = ({ product }) =
                                     whiteSpace: "break-spaces",
                                     // overflow: "hidden",
                                     // textOverflow: "ellipsis",
-                                    width: isMobile ? "40vw" : dimensions.width * 1,
+                                    width: isMobile ? "40vw" : "100%",
                                 }}
                             >
                                 {product.name}
