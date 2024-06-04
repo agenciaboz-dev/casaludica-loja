@@ -7,6 +7,7 @@ import { useColors } from "../../hooks/useColors"
 import { ProductContainer } from "./ProductContainer"
 import { useArray } from "burgos-array"
 import { DefaultWrapper } from "../../components/DefaultWrapper"
+import { useFranchise } from "../../hooks/useFranchise"
 //import "./style.scss"
 
 interface ResultsProps {}
@@ -20,6 +21,7 @@ export const Results: React.FC<ResultsProps> = ({}) => {
     const api = useApi()
     const colors = useColors()
     const skeletons = useArray().newArray(3)
+    const { franchise } = useFranchise()
 
     const [products, setProducts] = useState<Product[]>([])
     const [loading, setLoading] = useState(true)
@@ -34,20 +36,20 @@ export const Results: React.FC<ResultsProps> = ({}) => {
                         callback: (response: { data: Product[] }) => {
                             console.log(response.data)
                             setProducts(response.data)
-                        }
+                        },
                     }
                 )
             } else if (type == "collection") {
                 api.products.collection(Number(value), {
                     callback: (response: { data: Product[] }) => {
                         setProducts(response.data)
-                    }
+                    },
                 })
             } else if (type == "category") {
                 api.products.category(value, {
                     callback: (response: { data: Product[] }) => {
                         setProducts(response.data)
-                    }
+                    },
                 })
             }
         } else {
@@ -68,10 +70,13 @@ export const Results: React.FC<ResultsProps> = ({}) => {
     }, [products])
 
     useEffect(() => {
+        if (!franchise) {
+            navigate("/")
+        }
         getProducts()
     }, [])
 
-    return (
+    return franchise ? (
         <DefaultWrapper>
             <h3 className="results-title" style={{ color: colors.primary }}>
                 Resultados da pesquisa: {!!products.length && `(${products.length})`}
@@ -107,5 +112,5 @@ export const Results: React.FC<ResultsProps> = ({}) => {
 
             {!loading && products.length == 0 && <p style={{ alignSelf: "center", marginBottom: "10vw" }}>Nenhum resultado</p>}
         </DefaultWrapper>
-    )
+    ) : null
 }
