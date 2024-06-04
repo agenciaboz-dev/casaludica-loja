@@ -46,6 +46,11 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
             <Route path="/profile" element={<Profile />} />
 
             <Route path="data_deletion" element={<DataDeletionInformation />} />
+
+            <Route
+                path="*"
+                element={<div style={{ justifyContent: "center", alignItems: "center", display: "flex", height: "100vh", fontSize: "5vw" }}>404</div>}
+            />
         </ReactRoutes>
     )
 }
