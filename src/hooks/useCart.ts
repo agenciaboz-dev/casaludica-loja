@@ -17,7 +17,9 @@ export const useCart = () => {
         const products: Product[] = JSON.parse(JSON.stringify(cart.products))
         products.map((item) => {
             if (item.id == product.id) {
-                item.quantity = item.quantity + quantity
+                if (item.quantity + quantity < (product.stock || 0)) {
+                    item.quantity = item.quantity + quantity
+                }
             }
         })
         cartContext.setValue({ ...cart, products })

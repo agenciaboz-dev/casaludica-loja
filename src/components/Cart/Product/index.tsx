@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Avatar, Box, useMediaQuery } from "@mui/material"
 import ImageIcon from "@mui/icons-material/Image"
 import { useColors } from "../../../hooks/useColors"
@@ -7,6 +7,8 @@ import { ReactComponent as DownIcon } from "../../../images/quantity-decrease.sv
 import { ReactComponent as RemoveIcon } from "../../../images/remove_product.svg"
 import { CurrencyText } from "../../CurrencyText"
 import { useCart } from "../../../hooks/useCart"
+import { useProducts } from "../../../hooks/useProducts"
+import { useApi } from "../../../hooks/useApi"
 // import './style.scss'
 
 interface ProductProps {
@@ -14,9 +16,11 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
+    const { add: updateProduct } = useProducts()
     const isMobile = useMediaQuery("(orientation: portrait)")
     const colors = useColors()
     const cart = useCart()
+    const api = useApi()
 
     const remove = () => {
         cart.remove(product)
@@ -29,6 +33,15 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     const decrease = () => {
         cart.quantity(product, -1)
     }
+
+    useEffect(() => {
+        if (!product.cover) {
+            api.images(product.id, true).then((image) => {
+                updateProduct({ ...product, cover: image })
+                product.cover = image
+            })
+        }
+    }, [product])
 
     return (
         <Box
