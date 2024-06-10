@@ -62,7 +62,7 @@ export const SignupContainer: React.FC<SignupContainerProps> = ({ onSignup }) =>
                 onSignup()
             } catch (error) {
                 console.log(error)
-                snackbar({ severity: "error", text: "Não foi possível criar o usário" })
+                snackbar({ severity: "error", text: "Não foi possível criar o usuário" })
             } finally {
                 setLoading(false)
             }
